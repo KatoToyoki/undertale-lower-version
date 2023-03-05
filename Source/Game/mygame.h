@@ -62,10 +62,15 @@ namespace game_framework {
 		void OnBeginState();							// 設定每次重玩所需的變數
 		void OnKeyUp(UINT, UINT, UINT); 				// 處理鍵盤Up的動作
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
+		void StartMenu();								// 開始畫面
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap logo;								// csie的logo
+		/*
+		 * definition of using material in start menu
+		 */
+		CMovingBitmap menuTop,menuBottom;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -89,6 +94,10 @@ namespace game_framework {
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+	private:
+		/*
+		 * the images that game used define here
+		 */
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

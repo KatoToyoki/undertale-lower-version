@@ -38,7 +38,6 @@ void CGameStateInit::OnBeginState()
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
@@ -48,4 +47,15 @@ void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CGameStateInit::OnShow()
 {
+	menuTop.LoadBitmapByString({"resources/menu_top.bmp"});
+	menuTop.SetTopLeft(700,0);
+	menuTop.ShowBitmap();
+	menuBottom.LoadBitmapByString({"resources/menu_bottom.bmp"});
+	menuBottom.SetTopLeft(520,560);
+	menuBottom.ShowBitmap();
+}
+
+void CGameStateInit::StartMenu()
+{
+	
 }
