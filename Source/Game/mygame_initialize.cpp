@@ -38,6 +38,7 @@ void CGameStateInit::OnBeginState()
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
