@@ -7,6 +7,8 @@
 #include "../Library/gamecore.h"
 #include "mygame.h"
 
+	// #define MID ((1920/2)-(UserFrame.horizontal_up_frame.GetWidth()/2));
+
 using namespace game_framework;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -33,6 +35,12 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 {
 	// all the material here
+	UserFrame.left_vertical_frame.LoadBitmapByString({"resources/left_vertical_frame.bmp"});
+	UserFrame.right_vertical_frame.LoadBitmapByString({"resources/right_vertical_frame.bmp"});
+	UserFrame.up_horizontal_frame.LoadBitmapByString({ "resources/horizontal_frame.bmp" });
+	UserFrame.down_horizontal_frame.LoadBitmapByString({ "resources/horizontal_frame.bmp" });
+	UserFrame.create_frame(314,1294,312,563);
+	
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -67,4 +75,5 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動
 
 void CGameStateRun::OnShow()
 {
+	UserFrame.show_frame();
 }

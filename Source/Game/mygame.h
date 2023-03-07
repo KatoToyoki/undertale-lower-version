@@ -37,7 +37,7 @@
  *      2. Replace the demonstration of animation as a new bouncing ball.
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
-
+#include "frame.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -98,6 +98,7 @@ namespace game_framework {
 		/*
 		 * the images that game used define here
 		 */
+		Frame UserFrame;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

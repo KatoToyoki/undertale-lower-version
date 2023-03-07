@@ -243,6 +243,7 @@
     <ClCompile Include="Source\Core\StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Game\frame.cpp" />
     <ClCompile Include="Source\Game\mygame_initialize.cpp" />
     <ClCompile Include="Source\Game\mygame_over.cpp" />
     <ClCompile Include="Source\Game\mygame_run.cpp" />
@@ -260,6 +261,7 @@
     <ClInclude Include="Source\Core\Resource.h" />
     <ClInclude Include="Source\Core\StdAfx.h" />
     <ClInclude Include="Source\Game\config.h" />
+    <ClInclude Include="Source\Game\frame.h" />
     <ClInclude Include="Source\Game\mygame.h" />
     <ClInclude Include="Source\Library\audio.h" />
     <ClInclude Include="Source\Library\gamecore.h" />
@@ -267,6 +269,22 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\Core\game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\GAME.ICO" />
+    <Content Include="Resources\GAME.RC2" />
+    <Content Include="Resources\GAME2.ICO" />
+    <Content Include="Resources\GAME4.ICO" />
+    <Content Include="Resources\gamecurs.cur" />
+    <Content Include="Resources\gameDoc.ico" />
+    <Content Include="Resources\giraffe.bmp" />
+    <Content Include="Resources\horizontal_frame.bmp" />
+    <Content Include="Resources\left_vertical_frame.bmp" />
+    <Content Include="Resources\menu_bottom.bmp" />
+    <Content Include="Resources\menu_top.bmp" />
+    <Content Include="Resources\Migosp_battle_idle.png" />
+    <Content Include="Resources\right_vertical_frame.bmp" />
+    <Content Include="Resources\Toolbar.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
