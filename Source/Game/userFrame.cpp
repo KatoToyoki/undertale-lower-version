@@ -18,7 +18,7 @@ void UserFrame::move_frame_to_battle_mode()
 	Coordinate leftTop = {get_corner()._leftTop.x-get_pixel(),get_corner()._leftTop.y-get_pixel()};
 	if (width > battle_frame_size.width)
 	{
-		create_frame(height,width-16,leftTop.x+8,leftTop.y);
+		create_frame(height,width-30,leftTop.x+15,leftTop.y);
 	}
 }
 void UserFrame::move_frame_to_talk_mode()
@@ -29,7 +29,7 @@ void UserFrame::move_frame_to_talk_mode()
 	Coordinate leftTop = {get_corner()._leftTop.x-get_pixel(),get_corner()._leftTop.y-get_pixel()};
 	if (width < user_frame_size.width)
 	{
-		create_frame(height,width+16,leftTop.x-8,leftTop.y);
+		create_frame(height,width+30,leftTop.x-15,leftTop.y);
 	}
 	
 }
