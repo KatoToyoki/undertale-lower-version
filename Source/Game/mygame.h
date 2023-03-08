@@ -38,6 +38,7 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 #include "frame.h"
+#include "userFrame.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -98,7 +99,8 @@ namespace game_framework {
 		/*
 		 * the images that game used define here
 		 */
-		Frame UserFrame;
+		UserFrame user_frame;
+		int stage =0;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

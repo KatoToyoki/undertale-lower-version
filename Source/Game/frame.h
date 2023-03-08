@@ -2,35 +2,54 @@
 #include <vector>
 
 #include "../Library/gameutil.h"
-struct coordinate
+struct Coordinate
 {
     int x;
     int y;
 };
 
-class Frame : public game_framework::CMovingBitmap
+struct FrameData
+{
+    int hieght;
+    int width;
+    Coordinate LeftTop;
+};
+
+struct Corner
+{
+    Coordinate _leftTop;
+    Coordinate _rightTop;
+    Coordinate _leftBottom;
+    Coordinate _rightBottom;
+};
+
+class Frame : game_framework::CMovingBitmap
 {
 public:
     Frame()=default;
     ~Frame()=default;
 
     void create_frame(int height, int width, int leftTop_x,int leftTop_y);
-    void set_frame_size(int height, int width);
-    void set_coordinate(coordinate leftTop);
-    void set_position();
-    std::vector<coordinate> get_corner() const;
+
+    Corner get_corner() const;
     int get_height() const { return _height; }
     int get_width() const { return _width; }
+    int get_pixel() const { return  pixel; }
+    
     void show_frame();
     
     CMovingBitmap left_vertical_frame,right_vertical_frame,up_horizontal_frame,down_horizontal_frame;
+    FrameData user_frame_size = {314, 1294,{312,563}};
+    FrameData battle_frame_size = {314, 416,{715,563}};
 
 private:
+    void set_frame_size(int height, int width);
+    void set_inner_position(Coordinate leftTop);
+    void set_position(Coordinate inner_leftTop);
+    
     int _height;
     int _width;
     int pixel;
-    coordinate _leftTop;
-    coordinate _rightTop;
-    coordinate _leftBottom;
-    coordinate _rightBottom;
+    Corner _corner;
+    
 };

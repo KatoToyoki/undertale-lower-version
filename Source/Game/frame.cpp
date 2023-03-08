@@ -6,12 +6,12 @@
 void Frame::create_frame(int height, int width, int leftTop_x, int leftTop_y)
 {
     pixel = 11;
-    coordinate ori_point;
+    Coordinate ori_point;
     ori_point.x = leftTop_x;
     ori_point.y = leftTop_y;
     set_frame_size(height, width);
-    set_coordinate(ori_point);
-    set_position();
+    set_inner_position(ori_point);
+    set_position(_corner._leftTop);
 }
 
 void Frame::set_frame_size(int height, int width)
@@ -20,35 +20,33 @@ void Frame::set_frame_size(int height, int width)
     _width = width;
 }
 
-void Frame::set_coordinate(coordinate leftTop)
+void Frame::set_inner_position(Coordinate leftTop)
 {
     /*
         座標指向當前設置的框內部四點
      */
-    _leftTop.x = leftTop.x+pixel;
-    _leftTop.y = leftTop.y+pixel;
-    _leftBottom.x = leftTop.x+pixel;
-    _leftBottom.y = leftTop.y+_height-pixel;
+    _corner._leftTop.x = leftTop.x+pixel;
+    _corner._leftTop.y = leftTop.y+pixel;
+    _corner._leftBottom.x = leftTop.x+pixel;
+    _corner._leftBottom.y = leftTop.y+_height-pixel;
 
-    _rightTop.x = leftTop.x+_width-pixel;
-    _rightTop.y = leftTop.y+pixel;
-    _rightBottom.x = leftTop.x+_width-pixel;
-    _rightBottom.y = leftTop.y+_height-pixel;
+    _corner._rightTop.x = leftTop.x+_width-pixel;
+    _corner._rightTop.y = leftTop.y+pixel;
+    _corner._rightBottom.x = leftTop.x+_width-pixel;
+    _corner._rightBottom.y = leftTop.y+_height-pixel;
 }
 
-void Frame::set_position()
+void Frame::set_position(Coordinate inner_leftTop)
 {
-	up_horizontal_frame.SetTopLeft(_leftTop.x-pixel,_leftTop.y-pixel);
-	down_horizontal_frame.SetTopLeft(_leftTop.x-pixel,_leftTop.y-pixel-pixel+_height);
-	left_vertical_frame.SetTopLeft(_leftTop.x+pixel-left_vertical_frame.GetWidth(),_leftTop.y-pixel);
-	right_vertical_frame.SetTopLeft(_leftTop.x-pixel+up_horizontal_frame.GetWidth(),_leftTop.y-pixel);
-    
+	up_horizontal_frame.SetTopLeft(inner_leftTop.x-pixel,inner_leftTop.y-pixel);
+	down_horizontal_frame.SetTopLeft(inner_leftTop.x-pixel,inner_leftTop.y-pixel-pixel+_height);
+	left_vertical_frame.SetTopLeft(inner_leftTop.x+pixel-left_vertical_frame.GetWidth(),inner_leftTop.y-pixel);
+	right_vertical_frame.SetTopLeft(inner_leftTop.x-pixel+_width,inner_leftTop.y-pixel);
 }
 
-std::vector<coordinate> Frame::get_corner() const
+Corner Frame::get_corner() const
 {
-    std::vector<coordinate> v= {_leftTop,_rightTop,_leftBottom,_rightBottom};
-    return  v;
+    return  _corner;
 }
 
 void Frame::show_frame()

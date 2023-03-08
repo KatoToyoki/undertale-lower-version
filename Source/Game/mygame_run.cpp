@@ -6,6 +6,7 @@
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
 #include "mygame.h"
+#include <iostream>
 
 	// #define MID ((1920/2)-(UserFrame.horizontal_up_frame.GetWidth()/2));
 
@@ -26,20 +27,36 @@ CGameStateRun::~CGameStateRun()
 void CGameStateRun::OnBeginState()
 {
 }
-
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
-	
+	if (user_frame.get_width()>416 && stage == 0){
+		user_frame.move_frame_to_battle_mode();
+		if (user_frame.get_width()<416)
+		{
+			stage = 1;
+		}
+	}
+	else if (stage == 2)
+	{
+		user_frame.move_frame_to_talk_mode();
+		if (user_frame.get_width()>=1294)
+		{
+			stage = 0;
+		}
+	}
+	else
+	{
+		Sleep(500);
+		stage = 2;
+	}
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 {
 	// all the material here
-	UserFrame.left_vertical_frame.LoadBitmapByString({"resources/left_vertical_frame.bmp"});
-	UserFrame.right_vertical_frame.LoadBitmapByString({"resources/right_vertical_frame.bmp"});
-	UserFrame.up_horizontal_frame.LoadBitmapByString({ "resources/horizontal_frame.bmp" });
-	UserFrame.down_horizontal_frame.LoadBitmapByString({ "resources/horizontal_frame.bmp" });
-	UserFrame.create_frame(314,1294,312,563);
+	user_frame.lord_img();
+	user_frame.create_frame(314,1294,312,563);
+	// user_frame.create_frame(314,416,751,563);
 	
 }
 
@@ -75,5 +92,5 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動
 
 void CGameStateRun::OnShow()
 {
-	UserFrame.show_frame();
+	user_frame.show_frame();
 }
