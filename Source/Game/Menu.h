@@ -46,19 +46,27 @@ private:
 
 protected:
 public:
-    // CDC *_pDC;
+    CDC *_pDC;
+    //CDC *_pDC= game_framework::CDDraw::GetBackCDC();
 
     // constructor
+    Stage()=default;
+    
     Stage(int ID, std::string name) {
         _ID = ID;
         _coordinate.x=0;
         _coordinate.y=0;
         _stageName = name;
-        //_pDC = game_framework::CDDraw::GetBackCDC();
+        _pDC = game_framework::CDDraw::GetBackCDC();
     }
 
     // destructor
     ~Stage()
+    {
+        //game_framework::CDDraw::ReleaseBackCDC();
+    }
+
+    void deleteIt()
     {
         game_framework::CDDraw::ReleaseBackCDC();
     }
@@ -81,10 +89,10 @@ private:
     TextColor color;
     std::vector<Stage> stages;
 
-    /*
+    
     // to change color of text
     void ChangeColor(Stage stage, int state);
-    */
+    
 
 protected:
 public:
@@ -97,10 +105,10 @@ public:
 
     // set up all the stages 
     void SetUpStages();
-    /*
+    
     // to reveal stages
     void ShowStages();
-    */
+    
     // to get the key
     void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
