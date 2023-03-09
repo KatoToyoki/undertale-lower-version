@@ -29,25 +29,20 @@ void CGameStateRun::OnBeginState()
 }
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
-	if (user_frame.get_width()>416 && stage == 0){
-		user_frame.move_frame_to_battle_mode();
-		if (user_frame.get_width()<416)
-		{
-			stage = 1;
-		}
+	if (stage == 0){
+		change_talk_to_normal_battle();
+	}
+	else if (stage == 1)
+	{
+		change_frame_down();
 	}
 	else if (stage == 2)
 	{
-		user_frame.move_frame_to_talk_mode();
-		if (user_frame.get_width()>=1294)
-		{
-			stage = 0;
-		}
+		change_frame_add_width();
 	}
 	else
 	{
-		Sleep(500);
-		stage = 2;
+		change_frame_up();
 	}
 }
 
@@ -93,4 +88,54 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動
 void CGameStateRun::OnShow()
 {
 	user_frame.show_frame();
+}
+
+void CGameStateRun::change_talk_to_normal_battle()
+{
+	if (user_frame.get_width() > 416)
+	{
+		user_frame.move_frame_to_battle_mode();
+		if (user_frame.get_width() < 416)
+		{
+			stage = 1;
+		}
+	}
+}
+void CGameStateRun::change_frame_down()
+{
+	if (user_frame.get_height() > 227)
+	{
+		user_frame.move_frame_horizontal_down();
+		if (user_frame.get_height() <=227)
+		{
+			stage = 2;
+		}
+	}
+	
+}
+void CGameStateRun::change_frame_add_width()
+{
+	if (user_frame.get_width() < 1294)
+	{
+		user_frame.move_frame_to_talk_mode();
+		if (user_frame.get_width() >= 1294)
+		{
+			stage = 3;
+		}
+	}
+	
+}
+
+void CGameStateRun::change_frame_up()
+{
+	if (user_frame.get_height() < 314)
+	{
+		user_frame.move_frame_horizontal_up();
+		if (user_frame.get_height() >= 314)
+		{
+			stage = 0;
+		}
+		
+	}
+	
 }

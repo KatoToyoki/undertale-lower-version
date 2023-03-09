@@ -23,7 +23,7 @@ struct Corner
     Coordinate _rightBottom;
 };
 
-class Frame : game_framework::CMovingBitmap
+class Frame
 {
 public:
     Frame()=default;
@@ -38,7 +38,11 @@ public:
     
     void show_frame();
     
-    CMovingBitmap left_vertical_frame,right_vertical_frame,up_horizontal_frame,down_horizontal_frame;
+    game_framework::CMovingBitmap left_vertical_frame;
+    game_framework::CMovingBitmap right_vertical_frame;
+    game_framework::CMovingBitmap up_horizontal_frame;
+    game_framework::CMovingBitmap down_horizontal_frame;
+    game_framework::CMovingBitmap down_black;
     FrameData user_frame_size = {314, 1294,{312,563}};
     FrameData battle_frame_size = {314, 416,{715,563}};
 
