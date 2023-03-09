@@ -75,7 +75,7 @@ public:
 
 // ==========================================================
 
-class StartMenu:public game_framework::CTextDraw{
+class MenuStart:public game_framework::CTextDraw{
 private:
     int currentStage;
     TextColor color;
@@ -87,7 +87,7 @@ private:
 protected:
 public:
     // constructor
-    StartMenu()
+    MenuStart()
     {
         currentStage = 0;
         SetUpStages();

@@ -31,7 +31,7 @@ int Stage::GetY()
 
 // =======================================================
 
-void StartMenu::ChangeColor(Stage stage, int state) {
+void MenuStart::ChangeColor(Stage stage, int state) {
     if (state == toOff) {
         ChangeFontLog(stage._pDC, 21, "微軟正黑體",
                                  RGB(color.off.r, color.off.g, color.off.b));
@@ -42,13 +42,13 @@ void StartMenu::ChangeColor(Stage stage, int state) {
     }
 }
 
-void StartMenu::SetUpStages() {
+void MenuStart::SetUpStages() {
     for (int i = 0; i < 3; i++) {
         stages.push_back(Stage(i, "Stage" + std::to_string(i)));
     }
 }
 
-void StartMenu::ShowStages() {
+void MenuStart::ShowStages() {
     for (int i = 0; i < 3; i++) {
         ChangeColor(stages[i], toOn);
         stages[i].SetCoordinate(200*i,400);
@@ -56,7 +56,7 @@ void StartMenu::ShowStages() {
     }
 }
 
-void StartMenu::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags){
+void MenuStart::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags){
     if (nChar == VK_LEFT && currentStage != 0) {
         ChangeColor(stages[currentStage], toOff);
         currentStage -= 1;
