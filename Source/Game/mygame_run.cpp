@@ -6,6 +6,9 @@
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
 #include "mygame.h"
+#include <iostream>
+#include <string>
+#include <vector>
 
 using namespace game_framework;
 
