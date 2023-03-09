@@ -70,4 +70,31 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動
 
 void CGameStateRun::OnShow()
 {
+		What1();
+		What2();
+		What3();
+}
+
+void CGameStateRun::What1()
+{
+	CDC *pDC = CDDraw::GetBackCDC();
+	CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(255, 255, 255), 800);
+	CTextDraw::Print(pDC, 400, 320, "stage1");
+	CDDraw::ReleaseBackCDC();
+}
+
+void CGameStateRun::What2()
+{
+	CDC *pDC = CDDraw::GetBackCDC();
+	CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(255, 255, 255), 800);
+	CTextDraw::Print(pDC, 850, 320, "stage2");
+	CDDraw::ReleaseBackCDC();
+}
+
+void CGameStateRun::What3()
+{
+	CDC *pDC = CDDraw::GetBackCDC();
+	CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(255, 255, 255), 800);
+	CTextDraw::Print(pDC, 1300, 320, "stage3");
+	CDDraw::ReleaseBackCDC();
 }

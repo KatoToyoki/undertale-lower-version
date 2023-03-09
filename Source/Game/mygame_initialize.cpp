@@ -58,9 +58,20 @@ void CGameStateInit::OnShow()
 	menuBottom.LoadBitmapByString({"resources/menu_bottom.bmp"});
 	menuBottom.SetTopLeft(520,560);
 	menuBottom.ShowBitmap();
+	/*
+	CDC *pDC = CDDraw::GetBackCDC();
+
+	CTextDraw::ChangeFontLog(pDC, 21, "微軟正黑體", RGB(255, 255, 255), 800);
+	CTextDraw::Print(pDC, 960, 540, "what the fuck");
+
+
+	CDDraw::ReleaseBackCDC();
+	*/
 }
 
 void CGameStateInit::StartMenu()
 {
-	std::cout<<wtf.myTest;
+	
 }
+
+
