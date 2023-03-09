@@ -40,6 +40,7 @@
 
 
 #include "Menu.h"
+#include "Test.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -67,6 +68,7 @@ namespace game_framework {
 		void StartMenu();								// 開始畫面
 
 		// MenuStart menuStart;
+		Test wtf;
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:

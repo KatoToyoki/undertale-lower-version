@@ -6,6 +6,7 @@
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
 #include "mygame.h"
+#include <iostream>
 
 using namespace game_framework;
 /////////////////////////////////////////////////////////////////////////////
@@ -38,11 +39,15 @@ void CGameStateInit::OnBeginState()
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+	if(nChar==VK_RETURN)
+	{
+		GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+	}
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+	
 }
 
 void CGameStateInit::OnShow()
@@ -57,5 +62,5 @@ void CGameStateInit::OnShow()
 
 void CGameStateInit::StartMenu()
 {
-	
+	std::cout<<wtf.myTest;
 }
