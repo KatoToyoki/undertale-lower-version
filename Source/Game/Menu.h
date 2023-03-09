@@ -1,5 +1,5 @@
 #pragma once
-
+/*
 #ifndef Menu
 #define Menu
 
@@ -113,4 +113,6 @@ public:
     void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
+
 #endif
+*/

@@ -41,6 +41,7 @@
 
 #include "Menu.h"
 #include "Test.h"
+#include "Stage.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -66,9 +67,12 @@ namespace game_framework {
 		void OnKeyUp(UINT, UINT, UINT); 				// 處理鍵盤Up的動作
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void StartMenu();								// 開始畫面
-
+		
 		// MenuStart menuStart;
 		Test wtf;
+		Stage Test=Stage(0,"aa");
+
+		
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:

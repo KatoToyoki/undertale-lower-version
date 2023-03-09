@@ -63,6 +63,9 @@ void CGameStateInit::OnShow()
 
 	CTextDraw::ChangeFontLog(pDC, 21, "微軟正黑體", RGB(255, 255, 255), 800);
 	CTextDraw::Print(pDC, 960, 540, "what the fuck");
+	CTextDraw::Print(pDC, 960, 450, wtf.what);
+	CTextDraw::Print(pDC, 960, 350, Test.GetName());
+	
 
 
 	CDDraw::ReleaseBackCDC();

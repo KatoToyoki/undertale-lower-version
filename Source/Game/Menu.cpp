@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "Menu.h"
-
+/*
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
+
 
 void Stage::SetCoordinate(int x, int y) {
     _coordinate.x = x;
@@ -44,7 +45,7 @@ void MenuStart::ChangeColor(Stage stage, int state) {
 
 void MenuStart::SetUpStages() {
     for (int i = 0; i < 3; i++) {
-        stages.push_back(Stage(i, "Stage" + std::to_string(i)));
+        // stages.push_back(Stage(i, "Stage" + std::to_string(i)));
     }
 }
 
@@ -68,4 +69,4 @@ void MenuStart::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags){
         ChangeColor(stages[currentStage], toOn);
     }
 }
-
+*/
