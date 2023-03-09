@@ -6,7 +6,7 @@ class Test
 {
 public:
     int myTest;
-    Stage testS;
+    Stage testS= Stage(3,"s");
     // CDC *ptr=game_framework::CDDraw::GetBackCDC();
     Test()
     {
