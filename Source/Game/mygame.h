@@ -101,7 +101,6 @@ namespace game_framework {
 		 * the images that game used define here
 		 */
 		UserFrame user_frame;
-		int test_stage = 0;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

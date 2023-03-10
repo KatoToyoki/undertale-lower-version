@@ -29,25 +29,6 @@ void CGameStateRun::OnBeginState()
 }
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
-	if (user_frame.move_done){
-		test_stage+=1;
-	}
-	if (test_stage == 0)
-	{
-		user_frame.control_frame(1);
-	}
-	else if (test_stage == 1)
-	{
-		user_frame.control_frame(3);
-	}
-	else if (test_stage == 2)
-	{
-		user_frame.control_frame(0);
-	}
-	else if (test_stage == 3)
-	{
-		user_frame.control_frame(2);
-	}
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
