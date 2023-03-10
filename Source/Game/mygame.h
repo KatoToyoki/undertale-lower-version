@@ -73,6 +73,14 @@ namespace game_framework {
 		//Stage Test=Stage(0,"aa");
 		//std::vector<Stage> anotherTest;
 
+		int current=0;
+		
+		void StageButton0OFF();
+		void StageButton1OFF();
+		void StageButton2OFF();
+		void StageButton0ON();
+		void StageButton1ON();
+		void StageButton2ON();
 		
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
