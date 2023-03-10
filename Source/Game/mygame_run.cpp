@@ -29,7 +29,6 @@ void CGameStateRun::OnBeginState()
 }
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
-	Sleep(1000);
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -37,7 +36,6 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// all the material here
 	user_frame.lord_img();
 	user_frame.create_frame(314,1294,312,563);
-	// user_frame.create_frame(314,416,751,563);
 	
 }
 
@@ -74,9 +72,6 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動
 void CGameStateRun::OnShow()
 {
 	user_frame.show_frame();
-	test.create_text(test_word);
-	test.change_color(100,100,255,test_word);
-	// test.show_test();
 }
 
 

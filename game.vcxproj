@@ -249,7 +249,6 @@
     <ClCompile Include="Source\Game\mygame_initialize.cpp" />
     <ClCompile Include="Source\Game\mygame_over.cpp" />
     <ClCompile Include="Source\Game\mygame_run.cpp" />
-    <ClCompile Include="Source\Game\test_text.cpp" />
     <ClCompile Include="Source\Game\userFrame.cpp" />
     <ClCompile Include="Source\Library\audio.cpp" />
     <ClCompile Include="Source\Library\gamecore.cpp" />
@@ -269,7 +268,6 @@
     <ClInclude Include="Source\Game\frame.h" />
     <ClInclude Include="Source\Game\move.h" />
     <ClInclude Include="Source\Game\mygame.h" />
-    <ClInclude Include="Source\Game\test_text.h" />
     <ClInclude Include="Source\Game\userFrame.h" />
     <ClInclude Include="Source\Library\audio.h" />
     <ClInclude Include="Source\Library\gamecore.h" />
