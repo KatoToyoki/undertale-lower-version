@@ -70,7 +70,8 @@ namespace game_framework {
 		
 		// MenuStart menuStart;
 		Test wtf;
-		Stage Test=Stage(0,"aa");
+		//Stage Test=Stage(0,"aa");
+		//std::vector<Stage> anotherTest;
 
 		
 	protected:

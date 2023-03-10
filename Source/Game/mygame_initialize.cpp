@@ -58,13 +58,15 @@ void CGameStateInit::OnShow()
 	menuBottom.LoadBitmapByString({"resources/menu_bottom.bmp"});
 	menuBottom.SetTopLeft(520,560);
 	menuBottom.ShowBitmap();
+
+	//anotherTest.push_back(Stage(4,"ddd"));
 	
 	CDC *pDC = CDDraw::GetBackCDC();
 
 	CTextDraw::ChangeFontLog(pDC, 21, "微軟正黑體", RGB(255, 255, 255), 800);
 	CTextDraw::Print(pDC, 960, 540, "what the fuck");
-	CTextDraw::Print(pDC, 960, 450, wtf.what);
-	CTextDraw::Print(pDC, 960, 350, Test.GetName());
+	//CTextDraw::Print(pDC, 960, 450, wtf.what);
+	//CTextDraw::Print(pDC, 960, 350, Test.GetName());
 	
 
 

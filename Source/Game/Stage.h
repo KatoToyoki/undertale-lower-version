@@ -17,8 +17,10 @@ private:
 
 protected:
 public:
-    CDC *_pDC = game_framework::CDDraw::GetBackCDC();
-
+    /*  
+    CDC *_pDC= game_framework::CDDraw::GetBackCDC();
+    */
+    
     // constructor
     Stage()=default;
     
@@ -27,14 +29,14 @@ public:
         _coordinate.x=0;
         _coordinate.y=0;
         _stageName = name;
-        // _pDC = game_framework::CDDraw::GetBackCDC();
     }
-
-    // destructor
+    
+    /*
     void deleteIt()
     {
-        // game_framework::CDDraw::ReleaseBackCDC();
+         // game_framework::CDDraw::ReleaseBackCDC();
     }
+    */
 
     // setter
     void SetCoordinate(int x, int y);
