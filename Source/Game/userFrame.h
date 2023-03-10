@@ -11,6 +11,8 @@ public:
     void move_frame_horizontal_down();
     void move_frame_horizontal_up();
 
+    bool move_done = false;
+
 
 private:
 };

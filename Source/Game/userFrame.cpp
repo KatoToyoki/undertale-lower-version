@@ -44,4 +44,3 @@ void UserFrame::move_frame_horizontal_up()
 	Coordinate leftTop = {get_corner()._leftTop.x-get_pixel(),get_corner()._leftTop.y-get_pixel()};
 	create_frame(height+10,width,leftTop.x,leftTop.y-10);
 }
-

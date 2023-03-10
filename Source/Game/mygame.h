@@ -97,6 +97,7 @@ namespace game_framework {
 		void change_frame_down();
 		void change_frame_add_width();
 		void change_frame_up();
+		void control_frame(int frame_commend_control);
 		
 	protected:
 		void OnMove();									// 移動遊戲元素
@@ -106,7 +107,8 @@ namespace game_framework {
 		 * the images that game used define here
 		 */
 		UserFrame user_frame;
-		int stage =0;
+		int frame_command = 4;
+		int test_stage = 0;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
