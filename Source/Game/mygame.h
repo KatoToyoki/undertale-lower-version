@@ -39,6 +39,7 @@
 */
 #include "frame.h"
 #include "userFrame.h"
+#include "test_text.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -101,6 +102,8 @@ namespace game_framework {
 		 * the images that game used define here
 		 */
 		UserFrame user_frame;
+		test_text test;
+		TextData test_word = {100, 100, 21, "test", RGB(255,255,255),800};
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
