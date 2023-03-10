@@ -48,22 +48,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	{
 		control_frame(2);
 	}
-	
-	if (frame_command == 0){
-		change_talk_to_normal_battle();
-	}
-	else if (frame_command == 1)
-	{
-		change_frame_down();
-	}
-	else if (frame_command == 2)
-	{
-		change_frame_add_width();
-	}
-	else if (frame_command == 3)
-	{
-		change_frame_up();
-	}
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -149,54 +133,76 @@ void CGameStateRun::control_frame(int frame_commend_control)// change move_done 
  * 4 : idle frame
  */
 {
+	int frame_commend = 4;
 	switch(frame_commend_control)
 	{
 	case 0://change talk to normal battle
-		frame_command = 0;
+		frame_commend = 0;
 		if (user_frame.get_width() <= 416)
 		{
-			frame_command = 4;
+			frame_commend = 4;
 			user_frame.move_done = true;
 			break;
 		}
 		user_frame.move_done = false;
 		break;
 	case 1://change talk to long battle
-		frame_command = 0;
-		if (user_frame.get_width() <= 416){ frame_command = 1;}
+		frame_commend = 0;
+		if (user_frame.get_width() <= 416){ frame_commend = 1;}
 		if (user_frame.get_height() <=227 && user_frame.get_width() <= 416)
 		{
-			frame_command = 4;
+			frame_commend = 4;
 			user_frame.move_done = true;
 			break;
 		}
 		user_frame.move_done = false;
 		break;
 	case 2://change normal battle to talk
-		frame_command = 2;	
+		frame_commend = 2;	
 		if (user_frame.get_width() >= 1294)
 		{
-			frame_command = 4;
+			frame_commend = 4;
 			user_frame.move_done = true;
 			break;
 		}
 		user_frame.move_done = false;
 		break;
 	case 3://change long battle to talk
-		frame_command = 2;	
-		if (user_frame.get_width() >= 1294){ frame_command = 3;}
+		frame_commend = 2;	
+		if (user_frame.get_width() >= 1294){ frame_commend = 3;}
 		if (user_frame.get_height() >= 314&& user_frame.get_width() >= 1294)
 		{
-			frame_command = 4;
+			frame_commend = 4;
 			user_frame.move_done = true;
 			break;
 		}
 		user_frame.move_done = false;
 		break;
 	default:
-		frame_command = 4;
+		frame_commend = 4;
 		user_frame.move_done = true;
 		break;
 	}
+	check_which_change_frame_need_call(frame_commend);
 }
+
+void CGameStateRun::check_which_change_frame_need_call(int frame_commend)
+{
+	if (frame_commend == 0){
+		change_talk_to_normal_battle();
+	}
+	else if (frame_commend == 1)
+	{
+		change_frame_down();
+	}
+	else if (frame_commend == 2)
+	{
+		change_frame_add_width();
+	}
+	else if (frame_commend == 3)
+	{
+		change_frame_up();
+	}
+}
+
 
