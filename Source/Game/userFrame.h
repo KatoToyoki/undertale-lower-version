@@ -8,7 +8,8 @@ public:
     void lord_img();
 
 	void control_frame(int frame_commend_control);
-    bool move_done = false;
+
+	bool get_move() const { return move_done;}
 
 private:
     void move_frame_to_battle_mode();
@@ -21,5 +22,7 @@ private:
 	void change_frame_add_width();
 	void change_frame_up();
 	void check_which_change_frame_need_call(int frame_commend);
+	
+    bool move_done = false;
 	
 };
