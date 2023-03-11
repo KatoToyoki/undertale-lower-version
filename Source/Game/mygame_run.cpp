@@ -81,6 +81,14 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動
 
 void CGameStateRun::OnShow()
 {
+	if(isMenu)
+	{
+		WholeMenu();
+	}
+}
+
+void CGameStateRun::WholeMenu()
+{
 	ShowMenuImg();
 	MenuState();
 }

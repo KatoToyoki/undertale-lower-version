@@ -93,19 +93,6 @@ namespace game_framework {
 		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
 		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
-
-		void MenuState();
-		void ShowMenuImg();
-		int currentStage=1;
-		void Stage1OFF();
-		void Stage2OFF();
-		void Stage3OFF();
-		void Stage1ON();
-		void Stage2ON();
-		void Stage3ON();
-		
-		
-		
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
@@ -114,6 +101,18 @@ namespace game_framework {
 		 * the images that game used define here
 		 */
 		CMovingBitmap menuTop,menuBottom;
+		int currentStage=1;
+		bool isMenu=true;
+
+		void WholeMenu();
+		void MenuState();
+		void ShowMenuImg();
+		void Stage1OFF();
+		void Stage2OFF();
+		void Stage3OFF();
+		void Stage1ON();
+		void Stage2ON();
+		void Stage3ON();
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
