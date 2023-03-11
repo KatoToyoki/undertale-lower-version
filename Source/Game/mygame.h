@@ -39,10 +39,6 @@
 */
 
 
-#include "Menu.h"
-#include "Test.h"
-#include "Stage.h"
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// Constants
@@ -67,21 +63,7 @@ namespace game_framework {
 		void OnKeyUp(UINT, UINT, UINT); 				// 處理鍵盤Up的動作
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void StartMenu();								// 開始畫面
-		
-		// MenuStart menuStart;
-		Test wtf;
-		//Stage Test=Stage(0,"aa");
-		//std::vector<Stage> anotherTest;
 
-		int current=0;
-		
-		void StageButton0OFF();
-		void StageButton1OFF();
-		void StageButton2OFF();
-		void StageButton0ON();
-		void StageButton1ON();
-		void StageButton2ON();
-		
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
@@ -89,7 +71,8 @@ namespace game_framework {
 		/*
 		 * definition of using material in start menu
 		 */
-		CMovingBitmap menuTop,menuBottom;
+		CMovingBitmap title,enterCommand;
+		
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -111,10 +94,16 @@ namespace game_framework {
 		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
 
-		void What1();
+		void MenuState();
+		void ShowMenuImg();
+		int currentStage=1;
+		void Stage1OFF();
+		void Stage2OFF();
+		void Stage3OFF();
+		void Stage1ON();
+		void Stage2ON();
+		void Stage3ON();
 		
-		void What2();
-		void What3();
 		
 		
 	protected:
@@ -124,6 +113,7 @@ namespace game_framework {
 		/*
 		 * the images that game used define here
 		 */
+		CMovingBitmap menuTop,menuBottom;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
