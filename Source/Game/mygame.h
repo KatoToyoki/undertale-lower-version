@@ -39,6 +39,7 @@
 */
 #include "frame.h"
 #include "userFrame.h"
+#include "move.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -93,6 +94,7 @@ namespace game_framework {
 		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
 
+		void Move_sub_function();
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
@@ -101,6 +103,8 @@ namespace game_framework {
 		 * the images that game used define here
 		 */
 		UserFrame user_frame;
+		Move heart_test;
+		unsigned _nChar_to_move;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

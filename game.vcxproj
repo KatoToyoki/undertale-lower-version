@@ -284,6 +284,7 @@
     <Content Include="Resources\gamecurs.cur" />
     <Content Include="Resources\gameDoc.ico" />
     <Content Include="Resources\giraffe.bmp" />
+    <Content Include="Resources\heart.bmp" />
     <Content Include="Resources\horizontal_frame.bmp" />
     <Content Include="Resources\left_vertical_frame.bmp" />
     <Content Include="Resources\menu_bottom.bmp" />
