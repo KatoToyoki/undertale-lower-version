@@ -29,7 +29,7 @@ void CGameStateRun::OnBeginState()
 }
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
-	Move_sub_function();
+	heart_test.move_control();
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -43,12 +43,10 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	_nChar_to_move = heart_test.check_press(nChar);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	_nChar_to_move = heart_test.check_press(nChar);
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
@@ -75,43 +73,7 @@ void CGameStateRun::OnShow()
 {
 	user_frame.show_frame();
 	heart_test.heart.ShowBitmap();
-}
-
-void CGameStateRun::Move_sub_function()
-{
-	heart_test.move_control();
-	if ( _nChar_to_move == VK_LEFT && GetKeyState(VK_DOWN)&0x8000)
-	{
-		heart_test.heart.SetTopLeft(heart_test.heart.GetLeft()-5,heart_test.heart.GetTop()+5);
-	}
-	if ( _nChar_to_move == VK_DOWN && GetKeyState(VK_LEFT)&0x8000)
-	{
-		heart_test.heart.SetTopLeft(heart_test.heart.GetLeft()-5,heart_test.heart.GetTop()+5);
-	}
-	if ( _nChar_to_move == VK_RIGHT && GetKeyState(VK_DOWN)&0x8000)
-	{
-		heart_test.heart.SetTopLeft(heart_test.heart.GetLeft()+5,heart_test.heart.GetTop()+5);
-	}
-	if ( _nChar_to_move == VK_DOWN && GetKeyState(VK_RIGHT)&0x8000)
-	{
-		heart_test.heart.SetTopLeft(heart_test.heart.GetLeft()+5,heart_test.heart.GetTop()+5);
-	}
-	if ( _nChar_to_move == VK_LEFT && GetKeyState(VK_UP)&0x8000)
-	{
-		heart_test.heart.SetTopLeft(heart_test.heart.GetLeft()-5,heart_test.heart.GetTop()-5);
-	}
-	if ( _nChar_to_move == VK_UP && GetKeyState(VK_LEFT)&0x8000)
-	{
-		heart_test.heart.SetTopLeft(heart_test.heart.GetLeft()-5,heart_test.heart.GetTop()-5);
-	}
-	if ( _nChar_to_move == VK_RIGHT && GetKeyState(VK_UP)&0x8000)
-	{
-		heart_test.heart.SetTopLeft(heart_test.heart.GetLeft()+5,heart_test.heart.GetTop()-5);
-	}
-	if ( _nChar_to_move == VK_UP && GetKeyState(VK_RIGHT)&0x8000)
-	{
-		heart_test.heart.SetTopLeft(heart_test.heart.GetLeft()+5,heart_test.heart.GetTop()-5);
-	}
+	user_frame.control_frame(0);
 }
 
 
