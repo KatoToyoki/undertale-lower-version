@@ -29,7 +29,7 @@ void CGameStateRun::OnBeginState()
 }
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
-	heart_test.move_control();
+	heart_test.move_control(user_frame.get_corner());
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -73,7 +73,7 @@ void CGameStateRun::OnShow()
 {
 	user_frame.show_frame();
 	heart_test.heart.ShowBitmap();
-	user_frame.control_frame(0);
+	user_frame.control_frame(1);
 }
 
 

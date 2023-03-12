@@ -8,17 +8,40 @@ void Move::load_img()
 }
 
 
-void Move::check_range(Corner corner)
+Vec2 Move::check_range(Corner corner,Vec2 force)
 {
-    int x = heart.GetLeft();
-    int y = heart.GetTop();
-    int height_half = heart.GetHeight()/2;
-    int width_half = heart.GetWidth()/2;
+	int range_x_begin = corner._leftTop.x + 10;
+	int range_x_end = corner._rightTop.x - (heart.GetWidth() /2) -6;
+	int range_y_begin = corner._leftTop.y;
+	int range_y_end = corner._rightBottom.y - heart.GetHeight() +1 ;
+	Vec2 force_new = force;
+
+	if (heart.GetLeft() + (int)(force.x * move_num) >=range_x_end && force.x == 1)
+	{
+		force_new.x = 0;
+	}
+
+	if (heart.GetLeft() + (int)(force.x * move_num) <=range_x_begin && force.x == -1)
+	{
+		force_new.x = 0;
+	}
+
+	if (heart.GetTop() + (int)(force.y * move_num) >=range_y_end && force.y == 1)
+	{
+		force_new.y = 0;
+	}
+	
+	if (heart.GetTop() + (int)(force.y * move_num) <=range_y_begin && force.y == -1)
+	{
+		force_new.y = 0;
+	}
+
+	return force_new;
     
 }
 
 
-void Move::move_control()
+void Move::move_control(Corner corner)
 {
     
     Vec2 force = {0 ,0};
@@ -46,7 +69,9 @@ void Move::move_control()
 		force.x+=1;
 		force.y+=0;
 	}
-	move_act(normalize(force));
+
+		
+	move_act(normalize(check_range(corner,force)));
 	
 }
 

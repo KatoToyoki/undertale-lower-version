@@ -12,23 +12,21 @@ struct Vec2
 class Move
 {
 public:
+    Move()
+    {
+        move_num = 7.0;
+    }
     void load_img();
-    void check_range(Corner corner);
-    
-    void move_control();
-    void move_act(Vec2 force);
+    void move_control(Corner corner);
 
     
     game_framework::CMovingBitmap heart;
 private:
+    Vec2 check_range(Corner corner,Vec2 force);
     Vec2 normalize(Vec2 force);
+    void move_act(Vec2 force);
     
-    bool stop_postion_up = true;
-    bool stop_postion_down = true;
-    bool stop_postion_left = true;
-    bool stop_postion_right = true;
-    bool stop = true;
 
-    int move_num = 10;
+    float move_num ;
 
 };
