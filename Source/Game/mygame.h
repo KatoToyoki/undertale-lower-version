@@ -105,6 +105,7 @@ namespace game_framework {
 		UserFrame user_frame;
 		ShowNormalMode show_normal_mode;
 		int test_index = 0;
+		bool isMenu;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

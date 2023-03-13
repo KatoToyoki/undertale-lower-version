@@ -36,6 +36,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 {
 	// all the material here
 	show_normal_mode.init(&user_frame);
+	isMenu = false;
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -70,7 +71,10 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動
 
 void CGameStateRun::OnShow()
 {
-	user_frame.show_frame();
+	if (!isMenu)
+	{
+		user_frame.show_frame();
+	}
 }
 
 
