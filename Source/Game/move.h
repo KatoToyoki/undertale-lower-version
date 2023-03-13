@@ -25,8 +25,6 @@ private:
     Vec2 check_range(Corner corner,Vec2 force);
     Vec2 normalize(Vec2 force);
     void move_act(Vec2 force);
-    
 
-    float move_num ;
-
+    float move_num;
 };
