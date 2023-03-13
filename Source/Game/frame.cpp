@@ -57,4 +57,16 @@ void Frame::show_frame()
     left_vertical_frame.ShowBitmap();
     right_vertical_frame.ShowBitmap();
     down_black.ShowBitmap();
+    
 }
+
+void Frame::off_frame()
+{
+    down_horizontal_frame.UnshowBitmap();
+    up_horizontal_frame.UnshowBitmap();
+    left_vertical_frame.UnshowBitmap();
+    right_vertical_frame.UnshowBitmap();
+    down_black.UnshowBitmap();
+    
+}
+

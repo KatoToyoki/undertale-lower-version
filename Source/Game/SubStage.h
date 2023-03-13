@@ -1,8 +1,8 @@
 #pragma once
 
-class sub_stage
+class SubStage
 {
 public:
-    virtual void init();
-    virtual void end();
+    // virtual void init() = 0;
+    // virtual void end() = 0;
 };

@@ -39,6 +39,8 @@
 */
 #include "frame.h"
 #include "userFrame.h"
+#include "first_stage_sub_stage/show_normal_mode.h"
+
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -101,6 +103,8 @@ namespace game_framework {
 		 * the images that game used define here
 		 */
 		UserFrame user_frame;
+		ShowNormalMode show_normal_mode;
+		int test_index = 0;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

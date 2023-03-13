@@ -35,8 +35,10 @@ public:
     int get_height() const { return _height; }
     int get_width() const { return _width; }
     int get_pixel() const { return  pixel; }
+    void set_position(Coordinate inner_leftTop);
     
     void show_frame();
+    void off_frame();
     
     game_framework::CMovingBitmap left_vertical_frame;
     game_framework::CMovingBitmap right_vertical_frame;
@@ -49,7 +51,6 @@ public:
 private:
     void set_frame_size(int height, int width);
     void set_inner_position(Coordinate leftTop);
-    void set_position(Coordinate inner_leftTop);
     
     int _height;
     int _width;

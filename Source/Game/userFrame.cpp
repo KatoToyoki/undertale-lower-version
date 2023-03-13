@@ -2,7 +2,7 @@
 #include "userFrame.h"
 #include "../Library/gamecore.h"
 
-void UserFrame::lord_img()
+void UserFrame::load_img()
 {
 	left_vertical_frame.LoadBitmapByString({"resources/left_vertical_frame.bmp"});
 	right_vertical_frame.LoadBitmapByString({"resources/right_vertical_frame.bmp"});
@@ -74,7 +74,7 @@ void UserFrame::change_frame_up()
 	}
 }
 
-void UserFrame::control_frame(int frame_commend_control)// change move_done to åˆ¤æ–· move_done=ture can go next act
+void UserFrame::control_frame(int frame_command_control)// change move_done to åˆ¤æ–· move_done=ture can go next act
 /*
  * 0 : change talk to normal battle
  * 1 : change talk to long battle
@@ -84,7 +84,7 @@ void UserFrame::control_frame(int frame_commend_control)// change move_done to å
  */
 {
 	int frame_commend = 4;
-	switch(frame_commend_control)
+	switch(frame_command_control)
 	{
 	case 0://change talk to normal battle
 		frame_commend = 0;
@@ -113,6 +113,7 @@ void UserFrame::control_frame(int frame_commend_control)// change move_done to å
 		{
 			frame_commend = 4;
 			move_done = true;
+			set_frame_to_talk();
 			break;
 		}
 		move_done = false;
@@ -124,6 +125,7 @@ void UserFrame::control_frame(int frame_commend_control)// change move_done to å
 		{
 			frame_commend = 4;
 			move_done = true;
+			set_frame_to_talk();
 			break;
 		}
 		move_done = false;
@@ -153,4 +155,9 @@ void UserFrame::check_which_change_frame_need_call(int frame_commend)
 	{
 		change_frame_up();
 	}
+}
+
+void UserFrame::set_frame_to_talk()
+{
+	create_frame(314, 1294, 312, 563);
 }
