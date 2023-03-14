@@ -3,7 +3,7 @@
 #include <vector>
 #include "../Library/gameutil.h"
 
-void Frame::create_frame(int height, int width, int leftTop_x, int leftTop_y)
+void Frame::create_frame(int height = 314, int width = 1294, int leftTop_x = 312, int leftTop_y = 563)
 {
     pixel = 11;
     Coordinate ori_point;

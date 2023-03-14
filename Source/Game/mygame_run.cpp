@@ -31,7 +31,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 {
 	// show_normal_mode.set_frame();
 	
-	show_normal_mode.init(&user_frame);
+	show_normal_mode.init(&user_frame,&button_frame);
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
