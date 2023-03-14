@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SubStage.h"
+#include "sub_stage.h"
 class FirstStage
 {
 public:

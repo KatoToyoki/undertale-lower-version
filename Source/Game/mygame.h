@@ -38,7 +38,7 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 #include "frame.h"
-#include "userFrame.h"
+#include "user_frame.h"
 #include "first_stage_sub_stage/show_normal_mode.h"
 
 

@@ -29,13 +29,16 @@ void CGameStateRun::OnBeginState()
 }
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
-	show_normal_mode.set_frame();
+	// show_normal_mode.set_frame();
+	
+	show_normal_mode.init(&user_frame);
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 {
 	// all the material here
-	show_normal_mode.init(&user_frame);
+	user_frame.load_img();
+	user_frame.create_frame(314,1294,312,563);
 	isMenu = false;
 }
 

@@ -1,5 +1,6 @@
+
 #include "stdafx.h"
-#include "userFrame.h"
+#include "user_frame.h"
 #include "../Library/gamecore.h"
 
 void UserFrame::load_img()
@@ -91,14 +92,18 @@ void UserFrame::control_frame(int frame_command_control)// change move_done to å
 		if (get_width() <= 416)
 		{
 			frame_commend = 4;
-			move_done = true;
+			create_frame(314, 416, 751, 563);
+			set_frame_to_talk();
 			break;
 		}
 		move_done = false;
 		break;
 	case 1://change talk to long battle
 		frame_commend = 0;
-		if (get_width() <= 416){ frame_commend = 1;}
+		if (get_width() <= 416 )
+		{
+			frame_commend = 1;
+		}
 		if (get_height() <=227 && get_width() <= 416)
 		{
 			frame_commend = 4;
@@ -113,7 +118,7 @@ void UserFrame::control_frame(int frame_command_control)// change move_done to å
 		{
 			frame_commend = 4;
 			move_done = true;
-			set_frame_to_talk();
+			create_frame(314, 1294, 312, 563);
 			break;
 		}
 		move_done = false;
@@ -125,7 +130,7 @@ void UserFrame::control_frame(int frame_command_control)// change move_done to å
 		{
 			frame_commend = 4;
 			move_done = true;
-			set_frame_to_talk();
+			create_frame(314, 1294, 312, 563);
 			break;
 		}
 		move_done = false;
@@ -159,5 +164,4 @@ void UserFrame::check_which_change_frame_need_call(int frame_commend)
 
 void UserFrame::set_frame_to_talk()
 {
-	create_frame(314, 1294, 312, 563);
 }
