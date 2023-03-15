@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "ButtonFrame.h"
 
+int ButtonFrame::get_current_selection()
+{
+    return _current_selection;
+}
+
 void ButtonFrame::LoadSetIMG()
 {
     _buttons[fight].LoadBitmapByString({
@@ -30,15 +35,9 @@ void ButtonFrame::LoadSetIMG()
         "resources/mercy_selected.bmp",
     });
     _buttons[mercy].SetTopLeft(1335,917);
-    /*
-    _buttons[fight].SetFrameIndexOfBitmap(toOn);
-    _buttons[act].SetFrameIndexOfBitmap(toOff);
-    _buttons[item].SetFrameIndexOfBitmap(toOff);
-    _buttons[mercy].SetFrameIndexOfBitmap(toOff);
-    */
 }
 
-void ButtonFrame::setInit()
+void ButtonFrame::SetInit()
 {
     _buttons[fight].SetFrameIndexOfBitmap(toOn);
     _buttons[act].SetFrameIndexOfBitmap(toOff);
@@ -53,24 +52,6 @@ void ButtonFrame::show_button() {
     _buttons[mercy].ShowBitmap();
 }
 
-void ButtonFrame::changeState()
-{
-    _buttons[_current_selection].SetFrameIndexOfBitmap(toOff);
-    _current_selection+=target; 
-    _buttons[_current_selection].SetFrameIndexOfBitmap(toOn);
-    isChange=false;
-}
-
-int ButtonFrame::getCurrentSelection()
-{
-    return _current_selection;
-}
-
-int ButtonFrame::getTarget()
-{
-    return target;
-}
-
 void ButtonFrame::choose_update(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
     if(nChar==VK_LEFT && _current_selection!=fight)
@@ -83,31 +64,54 @@ void ButtonFrame::choose_update(UINT nChar, UINT nRepCnt, UINT nFlags)
         target=toRight;
         isChange=true;
     }
+    else if(nChar==VK_RETURN)
+    {
+        target=selected;
+        isChange=true;
+    }
+    // press "esc" to test if all off is okay, it's a temp test
+    else if(nChar==VK_ESCAPE)
+    {
+        target=allOff;
+        isChange=true;
+    }
 }
 
-void ButtonFrame::setCurentSelection(int curr)
-{
-    _current_selection=curr;
-}
-
-bool ButtonFrame::getIsChange()
+bool ButtonFrame::GetIsChange()
 {
     return isChange;
 }
 
+void ButtonFrame::ChangeState()
+{
+    if(target==selected)
+    {
+        _buttons[_current_selection].SetFrameIndexOfBitmap(selected);
+        return;
+    }
+    // press "esc" to test if all off is okay, it's a temp test
+    else if(target==allOff)
+    {
+        for(int i=0;i<4;i++)
+        {
+            _buttons[i].SetFrameIndexOfBitmap(toOff);
+        }
+        return;
+    }
+    _buttons[_current_selection].SetFrameIndexOfBitmap(toOff);
+    _current_selection+=target; 
+    _buttons[_current_selection].SetFrameIndexOfBitmap(toOn);
+    isChange=false;
+}
+
+void ButtonFrame::GetInActivity()
+{
+    _buttons[_current_selection].SetFrameIndexOfBitmap(selected);
+}
 
 void ButtonFrame::all_button_off() {
     _buttons[fight].SetFrameIndexOfBitmap(toOff);
     _buttons[act].SetFrameIndexOfBitmap(toOff);
     _buttons[item].SetFrameIndexOfBitmap(toOff);
     _buttons[mercy].SetFrameIndexOfBitmap(toOff);
-
-    _buttons[fight].ShowBitmap();
-    _buttons[act].ShowBitmap();
-    _buttons[item].ShowBitmap();
-    _buttons[mercy].ShowBitmap();
-}
-
-int ButtonFrame::get_current_selection() { 
-    return _current_selection; 
 }

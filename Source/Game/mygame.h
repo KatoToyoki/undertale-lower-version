@@ -116,9 +116,7 @@ namespace game_framework {
 		void Stage2ON();
 		void Stage3ON();
 		void MenuOff();
-		int a;
-
-		void RevealButton();
+		
 		
 	};
 

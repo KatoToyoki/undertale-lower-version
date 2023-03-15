@@ -60,16 +60,12 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			isMenu=false;
 			MenuOff();
 			gameButtonFrame.LoadSetIMG();
-			gameButtonFrame.setInit();
+			gameButtonFrame.SetInit();
 		}
 	}
 	else if(isMenu==false)
 	{
 		gameButtonFrame.choose_update(nChar,nRepCnt,nFlags);
-		if(nChar==VK_LEFT)
-		{
-			a=3;
-		}
 	}
 }
 
@@ -107,18 +103,12 @@ void CGameStateRun::OnShow()
 	else
 	{
 		gameButtonFrame.show_button();
-		if(gameButtonFrame.getIsChange()==true)
+		if(gameButtonFrame.GetIsChange()==true)
 		{
-			gameButtonFrame.changeState();
+			gameButtonFrame.ChangeState();
 		}
 	}
 }
-
-void CGameStateRun::RevealButton()
-{
-	
-}
-
 
 void CGameStateRun::WholeMenu()
 {
