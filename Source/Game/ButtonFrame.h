@@ -10,23 +10,15 @@ enum activities { fight, act, item, mercy };
 class ButtonFrame {
 private:
     int _current_selection = fight;
-    //game_framework::CMovingBitmap _fight, _act, _item, _mercy; // [0] off [1] on
     game_framework::CMovingBitmap _fight ;
     game_framework::CMovingBitmap _act;
     game_framework::CMovingBitmap _item;
     game_framework::CMovingBitmap _mercy;
-    void changeState(game_framework::CMovingBitmap Off,game_framework::CMovingBitmap On, int command);
 
 public:
     // load the images
-    ButtonFrame();
-    
-    void choose_update(UINT nChar, UINT nRepCnt, UINT nFlags);
-
-    void all_button_off();
-
-    int get_current_selection();
+    ButtonFrame()=default;
+    void LoadSetIMG();
 
     void show_button();
-    
 };

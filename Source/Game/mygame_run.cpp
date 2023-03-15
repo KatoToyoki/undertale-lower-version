@@ -94,6 +94,11 @@ void CGameStateRun::OnShow()
 	{
 		WholeMenu();
 	}
+	else
+	{
+		gameButtonFrame.LoadSetIMG();
+		gameButtonFrame.show_button();
+	}
 }
 
 void CGameStateRun::WholeMenu()
