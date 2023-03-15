@@ -61,6 +61,15 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			MenuOff();
 		}
 	}
+	else if(isMenu==false)
+	{
+		//gameButtonFrame.choose_update(nChar,nRepCnt,nFlags);
+		//gameButtonFrame.all_button_off();
+		if(nChar==VK_LEFT)
+		{
+			a=3;
+		}
+	}
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -98,6 +107,12 @@ void CGameStateRun::OnShow()
 	{
 		gameButtonFrame.LoadSetIMG();
 		gameButtonFrame.show_button();
+		//gameButtonFrame.all_button_off();
+		if(a==3)
+		{
+			gameButtonFrame.all_button_off();
+			Stage1ON();
+		}
 	}
 }
 
