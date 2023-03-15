@@ -104,7 +104,7 @@ namespace game_framework {
 		CMovingBitmap menuTop,menuBottom;
 		int currentStage=1;
 		bool isMenu=true;
-		ButtonFrame gameButtonFrame;
+		// ButtonFrame gameButtonFrame;
 		
 		void WholeMenu();
 		void MenuState();

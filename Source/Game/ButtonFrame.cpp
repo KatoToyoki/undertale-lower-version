@@ -31,7 +31,7 @@ ButtonFrame::ButtonFrame()
     });
     _mercy.SetTopLeft(920,700);
 }
-/*
+
 void ButtonFrame::changeState(game_framework::CMovingBitmap Off,game_framework::CMovingBitmap On,int command)
 {
     Off.SetFrameIndexOfBitmap(toOff);
@@ -100,4 +100,3 @@ void ButtonFrame::show_button() {
     _item.SetFrameIndexOfBitmap(toOff);
     _mercy.SetFrameIndexOfBitmap(toOff);
 }
-*/
