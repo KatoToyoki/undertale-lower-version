@@ -9,18 +9,21 @@ ButtonFrame::ButtonFrame()
         "resources/fight_selected.bmp",
     });
     _fight.SetTopLeft(20,700);
+    
     _act.LoadBitmapByString({
         "resources/act_off.bmp",
         "resources/act_on.bmp",
         "resources/act_selected.bmp",
     });
     _act.SetTopLeft(320,700);
+    
     _item.LoadBitmapByString({
         "resources/item_off.bmp",
         "resources/item_on.bmp",
         "resources/item_selected.bmp",
     });
     _item.SetTopLeft(620,700);
+    
     _mercy.LoadBitmapByString({
         "resources/mercy_off.bmp",
         "resources/mercy_on.bmp",
@@ -28,7 +31,7 @@ ButtonFrame::ButtonFrame()
     });
     _mercy.SetTopLeft(920,700);
 }
-
+/*
 void ButtonFrame::changeState(game_framework::CMovingBitmap Off,game_framework::CMovingBitmap On,int command)
 {
     Off.SetFrameIndexOfBitmap(toOff);
@@ -97,3 +100,4 @@ void ButtonFrame::show_button() {
     _item.SetFrameIndexOfBitmap(toOff);
     _mercy.SetFrameIndexOfBitmap(toOff);
 }
+*/
