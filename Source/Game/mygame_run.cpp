@@ -59,6 +59,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		{
 			isMenu=false;
 			MenuOff();
+			gameButtonFrame.LoadSetIMG();
+			gameButtonFrame.setInit();
 		}
 	}
 	else if(isMenu==false)
@@ -104,9 +106,7 @@ void CGameStateRun::OnShow()
 	}
 	else
 	{
-		gameButtonFrame.LoadSetIMG();
 		gameButtonFrame.show_button();
-		
 		if(gameButtonFrame.getIsChange()==true)
 		{
 			gameButtonFrame.changeState();

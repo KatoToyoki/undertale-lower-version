@@ -32,7 +32,7 @@ public:
 
     void choose_update(UINT nChar, UINT nRepCnt, UINT nFlags);
     //int choose_update(UINT nChar, UINT nRepCnt, UINT nFlags);
-
+    void setInit();
     
     void all_button_off();
 

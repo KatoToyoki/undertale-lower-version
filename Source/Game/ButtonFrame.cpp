@@ -30,7 +30,16 @@ void ButtonFrame::LoadSetIMG()
         "resources/mercy_selected.bmp",
     });
     _buttons[mercy].SetTopLeft(1335,917);
+    /*
+    _buttons[fight].SetFrameIndexOfBitmap(toOn);
+    _buttons[act].SetFrameIndexOfBitmap(toOff);
+    _buttons[item].SetFrameIndexOfBitmap(toOff);
+    _buttons[mercy].SetFrameIndexOfBitmap(toOff);
+    */
+}
 
+void ButtonFrame::setInit()
+{
     _buttons[fight].SetFrameIndexOfBitmap(toOn);
     _buttons[act].SetFrameIndexOfBitmap(toOff);
     _buttons[item].SetFrameIndexOfBitmap(toOff);
@@ -49,7 +58,6 @@ void ButtonFrame::changeState()
     _buttons[_current_selection].SetFrameIndexOfBitmap(toOff);
     _current_selection+=target; 
     _buttons[_current_selection].SetFrameIndexOfBitmap(toOn);
-    show_button();
     isChange=false;
 }
 
