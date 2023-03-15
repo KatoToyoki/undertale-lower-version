@@ -38,6 +38,7 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
+#include "ButtonFrame.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -103,7 +104,8 @@ namespace game_framework {
 		CMovingBitmap menuTop,menuBottom;
 		int currentStage=1;
 		bool isMenu=true;
-
+		//ButtonFrame gameButtonFrame;
+		
 		void WholeMenu();
 		void MenuState();
 		void ShowMenuImg();
@@ -113,6 +115,8 @@ namespace game_framework {
 		void Stage1ON();
 		void Stage2ON();
 		void Stage3ON();
+		void MenuOff();
+		
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

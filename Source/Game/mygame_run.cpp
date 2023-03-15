@@ -44,13 +44,22 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	if(nChar==VK_LEFT &&currentStage!=1)
+	if(isMenu)
 	{
-		currentStage-=1;
-	}
-	else if(nChar==VK_RIGHT&&currentStage!=3)
-	{
-		currentStage+=1;
+		if(nChar==VK_LEFT &&currentStage!=1)
+		{
+			currentStage-=1;
+		}
+		else if(nChar==VK_RIGHT&&currentStage!=3)
+		{
+			currentStage+=1;
+		}
+
+		if(nChar==VK_RETURN)
+		{
+			isMenu=false;
+			MenuOff();
+		}
 	}
 }
 
@@ -167,4 +176,10 @@ void CGameStateRun::Stage3ON()
 	CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
 	CTextDraw::Print(pDC, 1330, 320, "stage3");
 	CDDraw::ReleaseBackCDC();
+}
+
+void CGameStateRun::MenuOff()
+{
+	menuTop.UnshowBitmap();
+	menuBottom.UnshowBitmap();
 }
