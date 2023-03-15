@@ -81,7 +81,7 @@ void ButtonFrame::show_button() {
     _buttons[mercy].SetFrameIndexOfBitmap(toOff);
     _buttons[mercy].ShowBitmap();
 }
-
+/*
 void ButtonFrame::changeState(game_framework::CMovingBitmap Off,game_framework::CMovingBitmap On,int command)
 {
     Off.SetFrameIndexOfBitmap(toOff);
@@ -100,6 +100,20 @@ void ButtonFrame::changeState(game_framework::CMovingBitmap Off,game_framework::
     On.SetFrameIndexOfBitmap(toOn);
     On.ShowBitmap();
 }
+*/
+void ButtonFrame::changeState(int direction)
+{
+    _buttons[_current_selection].SetFrameIndexOfBitmap(toOff);
+    _buttons[_current_selection].ShowBitmap();
+    _current_selection+=direction;
+    _buttons[_current_selection].SetFrameIndexOfBitmap(toOn);
+    _buttons[_current_selection].ShowBitmap();
+}
+
+int ButtonFrame::getCurrentSelection()
+{
+    return _current_selection;
+}
 
 
 void ButtonFrame::choose_update(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -109,14 +123,24 @@ void ButtonFrame::choose_update(UINT nChar, UINT nRepCnt, UINT nFlags)
         switch (_current_selection)
         {
         case act:
-            changeState(_act,_fight,toLeft);
-            break;
+            //changeState(_act,_fight,toLeft);
+            //direction=toLeft;
+            _current_selection=act*toLeft;
+            //return act*toLeft;
+            
         case item:
-            changeState(_item,_act,toLeft);
-            break;
+            //changeState(_item,_act,toLeft);
+            //direction=toLeft;
+            _current_selection=item*toLeft;
+
+            //return item*toLeft;
+            
         case mercy:
-            changeState(_mercy,_item,toLeft);
-            break;
+            //changeState(_mercy,_item,toLeft);
+            //direction=toLeft;
+            _current_selection=mercy*toLeft;
+
+            //return mercy*toLeft;
         }
     }
     else if(nChar==VK_RIGHT)
@@ -124,17 +148,29 @@ void ButtonFrame::choose_update(UINT nChar, UINT nRepCnt, UINT nFlags)
         switch (_current_selection)
         {
         case fight:
-            changeState(_fight,_act,toRight);
-            break;
+            //changeState(_fight,_act,toRight);
+            //break;
+            //direction=toRight;
+            _current_selection= fight*toRight;
         case act:
-            changeState(_act,_item,toRight);
-            break;
+            //changeState(_act,_item,toRight);
+            //break;
+            //direction=toRight;
+            _current_selection= act*toRight;
         case item:
-            changeState(_item,_mercy,toRight);
-            break;
+            //changeState(_item,_mercy,toRight);
+            //break;
+            //direction=toRight;
+            _current_selection=item*toRight;
         }
     }
 }
+
+void ButtonFrame::setCurentSelection(int curr)
+{
+    _current_selection=curr;
+}
+
 
 void ButtonFrame::all_button_off() {
     /*
