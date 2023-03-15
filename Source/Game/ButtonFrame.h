@@ -10,7 +10,8 @@ enum activities { fight, act, item, mercy };
 class ButtonFrame {
 private:
     int _current_selection = fight;
-    //int direction;
+    int target=0;
+    bool isChange=false;
     game_framework::CMovingBitmap _fight,_act,_item,_mercy ;
     game_framework::CMovingBitmap _buttons[4] ;
 
@@ -22,10 +23,12 @@ public:
     // load the images
     ButtonFrame()=default;
     void LoadSetIMG();
-    void changeState(int direction);
+    void changeState();
     int getCurrentSelection();
     void setCurentSelection(int curr);
     void show_button();
+    int getTarget();
+    bool getIsChange();
 
     void choose_update(UINT nChar, UINT nRepCnt, UINT nFlags);
     //int choose_update(UINT nChar, UINT nRepCnt, UINT nFlags);

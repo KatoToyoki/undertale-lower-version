@@ -64,7 +64,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	else if(isMenu==false)
 	{
 		gameButtonFrame.choose_update(nChar,nRepCnt,nFlags);
-		//gameButtonFrame.all_button_off();
 		if(nChar==VK_LEFT)
 		{
 			a=3;
@@ -107,43 +106,19 @@ void CGameStateRun::OnShow()
 	{
 		gameButtonFrame.LoadSetIMG();
 		gameButtonFrame.show_button();
-		//gameButtonFrame.all_button_off();
-		/*
-		if(a==3)
-		{
-			gameButtonFrame.all_button_off();
-			Stage1ON();
-		}
-		*/
-		switch (gameButtonFrame.get_current_selection())
-		{
-		case -act:
-			gameButtonFrame.setCurentSelection(-gameButtonFrame.getCurrentSelection());
-			gameButtonFrame.changeState(toLeft);
-			break;
-		case -item:
-			gameButtonFrame.setCurentSelection(-gameButtonFrame.getCurrentSelection());
-			gameButtonFrame.changeState(toLeft);
-			break;
-		case -mercy:
-			gameButtonFrame.setCurentSelection(-gameButtonFrame.getCurrentSelection());
-			gameButtonFrame.changeState(toLeft);
-			break;
-		case fight:
-			gameButtonFrame.changeState(toRight);
-			break;
-		case act:
-			gameButtonFrame.changeState(toRight);
-			break;
-		case item:
-			gameButtonFrame.changeState(toRight);
-			break;
-		}
-
-		//if(gameButtonFrame.get_current_selection()!=)
 		
+		if(gameButtonFrame.getIsChange()==true)
+		{
+			gameButtonFrame.changeState();
+		}
 	}
 }
+
+void CGameStateRun::RevealButton()
+{
+	
+}
+
 
 void CGameStateRun::WholeMenu()
 {
