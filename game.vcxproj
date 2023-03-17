@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -247,6 +247,7 @@
     <ClCompile Include="Source\Game\ButtonFrame.cpp" />
     <ClCompile Include="Source\Game\first_stage.cpp" />
     <ClCompile Include="Source\Game\frame.cpp" />
+    <ClCompile Include="Source\Game\move.cpp" />
     <ClCompile Include="Source\Game\monster_frame.cpp" />
     <ClCompile Include="Source\Game\mygame_initialize.cpp" />
     <ClCompile Include="Source\Game\mygame_over.cpp" />
@@ -272,6 +273,7 @@
     <ClInclude Include="Source\Game\first_stage.h" />
     <ClInclude Include="Source\Game\frame.h" />
     <ClInclude Include="Source\Game\monster_frame.h" />
+    <ClInclude Include="Source\Game\move.h" />
     <ClInclude Include="Source\Game\mygame.h" />
     <ClInclude Include="Source\Game\sub_stage.h" />
     <ClInclude Include="Source\Game\user_frame.h" />
