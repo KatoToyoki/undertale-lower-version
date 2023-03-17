@@ -283,20 +283,38 @@
     <ResourceCompile Include="Source\Core\game.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\act_off.bmp" />
+    <Content Include="Resources\act_on.bmp" />
+    <Content Include="Resources\act_selected.bmp" />
+    <Content Include="Resources\down_black.bmp" />
+    <Content Include="Resources\empty_enter.bmp" />
+    <Content Include="Resources\enter.bmp" />
+    <Content Include="Resources\fight_off.bmp" />
+    <Content Include="Resources\fight_on.bmp" />
+    <Content Include="Resources\fight_selected.bmp" />
     <Content Include="Resources\GAME.ICO" />
     <Content Include="Resources\GAME.RC2" />
     <Content Include="Resources\GAME2.ICO" />
+    <Content Include="Resources\GAME2.png" />
     <Content Include="Resources\GAME4.ICO" />
     <Content Include="Resources\gamecurs.cur" />
     <Content Include="Resources\gameDoc.ico" />
     <Content Include="Resources\giraffe.bmp" />
+    <Content Include="Resources\heart.bmp" />
     <Content Include="Resources\horizontal_frame.bmp" />
+    <Content Include="Resources\item_off.bmp" />
+    <Content Include="Resources\item_on.bmp" />
+    <Content Include="Resources\item_selected.bmp" />
     <Content Include="Resources\left_vertical_frame.bmp" />
     <Content Include="Resources\menu_bottom.bmp" />
     <Content Include="Resources\menu_top.bmp" />
+    <Content Include="Resources\mercy_off.bmp" />
+    <Content Include="Resources\mercy_on.bmp" />
+    <Content Include="Resources\mercy_selected.bmp" />
     <Content Include="Resources\Migosp_battle_idle.png" />
     <Content Include="Resources\right_vertical_frame.bmp" />
     <Content Include="Resources\Toolbar.bmp" />
+    <Content Include="Resources\undertale.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
