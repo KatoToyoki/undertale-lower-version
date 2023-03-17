@@ -39,7 +39,6 @@
 */
 #include "frame.h"
 #include "user_frame.h"
-#include "first_stage_sub_stage/show_normal_mode.h"
 #include "ButtonFrame.h"
 
 
@@ -105,7 +104,6 @@ namespace game_framework {
 		 */
 		UserFrame user_frame;
 		ButtonFrame button_frame;
-		ShowNormalMode show_normal_mode;
 		
 		int test_index = 0;
 		bool isMenu;
