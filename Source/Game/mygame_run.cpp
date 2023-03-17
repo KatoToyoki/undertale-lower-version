@@ -60,6 +60,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     }
   } else if (isMenu == false) {
     gameButtonFrame.choose_update(nChar, nRepCnt, nFlags);
+    gameFight.ToStop(nChar,nRepCnt,nFlags);
   }
 }
 
@@ -107,6 +108,14 @@ void CGameStateRun::OnShow()
 
     gameFight.show_fight_img();
     gameFight.MoveingBar();
+
+    gameFight.TTTT();
+    if(gameFight._isAttack==true)
+    {
+      gameFight.attack();
+      gameFight.RevealMinusHP();
+    }
+   
   }
 }
 
