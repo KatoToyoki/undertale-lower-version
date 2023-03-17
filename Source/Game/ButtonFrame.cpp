@@ -52,28 +52,34 @@ void ButtonFrame::show_button() {
     _buttons[mercy].ShowBitmap();
 }
 
-void ButtonFrame::choose_update(UINT nChar, UINT nRepCnt, UINT nFlags)
+void ButtonFrame::choose_update(UINT nChar)
 {
-    if(nChar==VK_LEFT && _current_selection!=fight)
-    {
-        target=toLeft;
-        isChange=true;
-    }
-    else if(nChar==VK_RIGHT && _current_selection!=mercy)
-    {
-        target=toRight;
-        isChange=true;
-    }
-    else if(nChar==VK_RETURN)
-    {
-        target=selected;
-        isChange=true;
-    }
-    // press "esc" to test if all off is okay, it's a temp test
-    else if(nChar==VK_ESCAPE)
-    {
-        target=allOff;
-        isChange=true;
+    if (_enable){
+        if(nChar==VK_LEFT && _current_selection!=fight)
+        {
+            target=toLeft;
+            isChange=true;
+        }
+        else if(nChar==VK_RIGHT && _current_selection!=mercy)
+        {
+            target=toRight;
+            isChange=true;
+        }
+        else if(nChar==VK_RETURN)
+        {
+            target=selected;
+            isChange=true;
+        }
+        // press "esc" to test if all off is okay, it's a temp test
+        else if(nChar==VK_ESCAPE)
+        {
+            target=allOff;
+            isChange=true;
+        }
+        if (isChange)
+        {
+            ChangeState();
+        }
     }
 }
 
@@ -92,10 +98,7 @@ void ButtonFrame::ChangeState()
     // press "esc" to test if all off is okay, it's a temp test
     else if(target==allOff)
     {
-        for(int i=0;i<4;i++)
-        {
-            _buttons[i].SetFrameIndexOfBitmap(toOff);
-        }
+        all_button_off();
         return;
     }
     _buttons[_current_selection].SetFrameIndexOfBitmap(toOff);
@@ -109,9 +112,19 @@ void ButtonFrame::GetInActivity()
     _buttons[_current_selection].SetFrameIndexOfBitmap(selected);
 }
 
+
 void ButtonFrame::all_button_off() {
     _buttons[fight].SetFrameIndexOfBitmap(toOff);
     _buttons[act].SetFrameIndexOfBitmap(toOff);
     _buttons[item].SetFrameIndexOfBitmap(toOff);
     _buttons[mercy].SetFrameIndexOfBitmap(toOff);
+}
+
+void ButtonFrame::set_updata_enable(bool enable)
+{
+    if (_enable)
+    {
+        _buttons[_current_selection].SetFrameIndexOfBitmap(toOn);
+    }
+    _enable = enable;
 }

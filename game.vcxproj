@@ -247,6 +247,7 @@
     <ClCompile Include="Source\Game\ButtonFrame.cpp" />
     <ClCompile Include="Source\Game\first_stage.cpp" />
     <ClCompile Include="Source\Game\frame.cpp" />
+    <ClCompile Include="Source\Game\menu.cpp" />
     <ClCompile Include="Source\Game\move.cpp" />
     <ClCompile Include="Source\Game\monster_frame.cpp" />
     <ClCompile Include="Source\Game\mygame_initialize.cpp" />
@@ -272,6 +273,7 @@
     <ClInclude Include="Source\Game\config.h" />
     <ClInclude Include="Source\Game\first_stage.h" />
     <ClInclude Include="Source\Game\frame.h" />
+    <ClInclude Include="Source\Game\menu.h" />
     <ClInclude Include="Source\Game\monster_frame.h" />
     <ClInclude Include="Source\Game\move.h" />
     <ClInclude Include="Source\Game\mygame.h" />

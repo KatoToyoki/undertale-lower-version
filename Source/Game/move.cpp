@@ -10,8 +10,8 @@ void Move::load_img()
 
 Vec2 Move::check_range(Corner corner,Vec2 force)
 {
-	int border_left = corner._leftTop.x + 11;
-	int border_right = corner._rightTop.x - (heart.GetWidth() /2) -7;
+	int border_left = corner._leftTop.x ;
+	int border_right = corner._rightTop.x - heart.GetWidth();
 	int border_top = corner._leftTop.y;
 	int border_bottom = corner._rightBottom.y - heart.GetHeight() ;
 	Vec2 force_new = force;

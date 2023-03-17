@@ -39,10 +39,10 @@ void Frame::set_position(Coordinate inner_leftTop) {
                                  inner_leftTop.y - pixel);
   down_horizontal_frame.SetTopLeft(inner_leftTop.x - pixel,
                                    inner_leftTop.y - pixel - pixel + _height);
-  left_vertical_frame.SetTopLeft(inner_leftTop.x + pixel -
+  left_vertical_frame.SetTopLeft(inner_leftTop.x -//somesus here
                                      left_vertical_frame.GetWidth(),
                                  inner_leftTop.y - pixel);
-  right_vertical_frame.SetTopLeft(inner_leftTop.x - pixel + _width,
+  right_vertical_frame.SetTopLeft(inner_leftTop.x - pixel -pixel + _width,
                                   inner_leftTop.y - pixel);
   down_black.SetTopLeft(0, inner_leftTop.y - pixel + _height);
 }
