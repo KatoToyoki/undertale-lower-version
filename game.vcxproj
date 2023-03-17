@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -243,10 +243,17 @@
     <ClCompile Include="Source\Core\StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Game\battleFrame.cpp" />
     <ClCompile Include="Source\Game\ButtonFrame.cpp" />
+    <ClCompile Include="Source\Game\first_stage.cpp" />
+    <ClCompile Include="Source\Game\frame.cpp" />
+    <ClCompile Include="Source\Game\move.cpp" />
+    <ClCompile Include="Source\Game\monster_frame.cpp" />
     <ClCompile Include="Source\Game\mygame_initialize.cpp" />
     <ClCompile Include="Source\Game\mygame_over.cpp" />
     <ClCompile Include="Source\Game\mygame_run.cpp" />
+    <ClCompile Include="Source\Game\sub_stage.cpp" />
+    <ClCompile Include="Source\Game\user_frame.cpp" />
     <ClCompile Include="Source\Library\audio.cpp" />
     <ClCompile Include="Source\Library\gamecore.cpp" />
     <ClCompile Include="Source\Library\gameutil.cpp">
@@ -260,15 +267,56 @@
     <ClInclude Include="Source\Core\MainFrm.h" />
     <ClInclude Include="Source\Core\Resource.h" />
     <ClInclude Include="Source\Core\StdAfx.h" />
+    <ClInclude Include="Source\Game\battleFrame.h" />
     <ClInclude Include="Source\Game\ButtonFrame.h" />
     <ClInclude Include="Source\Game\config.h" />
+    <ClInclude Include="Source\Game\first_stage.h" />
+    <ClInclude Include="Source\Game\frame.h" />
+    <ClInclude Include="Source\Game\monster_frame.h" />
+    <ClInclude Include="Source\Game\move.h" />
     <ClInclude Include="Source\Game\mygame.h" />
+    <ClInclude Include="Source\Game\sub_stage.h" />
+    <ClInclude Include="Source\Game\user_frame.h" />
     <ClInclude Include="Source\Library\audio.h" />
     <ClInclude Include="Source\Library\gamecore.h" />
     <ClInclude Include="Source\Library\gameutil.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\Core\game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\act_off.bmp" />
+    <Content Include="Resources\act_on.bmp" />
+    <Content Include="Resources\act_selected.bmp" />
+    <Content Include="Resources\down_black.bmp" />
+    <Content Include="Resources\empty_enter.bmp" />
+    <Content Include="Resources\enter.bmp" />
+    <Content Include="Resources\fight_off.bmp" />
+    <Content Include="Resources\fight_on.bmp" />
+    <Content Include="Resources\fight_selected.bmp" />
+    <Content Include="Resources\GAME.ICO" />
+    <Content Include="Resources\GAME.RC2" />
+    <Content Include="Resources\GAME2.ICO" />
+    <Content Include="Resources\GAME2.png" />
+    <Content Include="Resources\GAME4.ICO" />
+    <Content Include="Resources\gamecurs.cur" />
+    <Content Include="Resources\gameDoc.ico" />
+    <Content Include="Resources\giraffe.bmp" />
+    <Content Include="Resources\heart.bmp" />
+    <Content Include="Resources\horizontal_frame.bmp" />
+    <Content Include="Resources\item_off.bmp" />
+    <Content Include="Resources\item_on.bmp" />
+    <Content Include="Resources\item_selected.bmp" />
+    <Content Include="Resources\left_vertical_frame.bmp" />
+    <Content Include="Resources\menu_bottom.bmp" />
+    <Content Include="Resources\menu_top.bmp" />
+    <Content Include="Resources\mercy_off.bmp" />
+    <Content Include="Resources\mercy_on.bmp" />
+    <Content Include="Resources\mercy_selected.bmp" />
+    <Content Include="Resources\Migosp_battle_idle.png" />
+    <Content Include="Resources\right_vertical_frame.bmp" />
+    <Content Include="Resources\Toolbar.bmp" />
+    <Content Include="Resources\undertale.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
