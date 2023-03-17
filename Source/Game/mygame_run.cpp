@@ -39,7 +39,6 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// all the material here
 	user_frame.load_img();
 	user_frame.create_frame(314,1294,312,563);
-	// isMenu = false;
 
 	menuTop.LoadBitmapByString({"resources/menu_top.bmp"});
 	menuTop.SetTopLeft(727,0);
@@ -205,6 +204,3 @@ void CGameStateRun::MenuOff()
 	menuTop.UnshowBitmap();
 	menuBottom.UnshowBitmap();
 }
-
-
-
