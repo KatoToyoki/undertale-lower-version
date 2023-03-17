@@ -38,6 +38,7 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
+#include "ButtonFrame.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -63,6 +64,7 @@ namespace game_framework {
 		void OnKeyUp(UINT, UINT, UINT); 				// 處理鍵盤Up的動作
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void StartMenu();								// 開始畫面
+
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
@@ -70,7 +72,8 @@ namespace game_framework {
 		/*
 		 * definition of using material in start menu
 		 */
-		CMovingBitmap menuTop,menuBottom;
+		CMovingBitmap title,enterCommand;
+		
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -98,6 +101,23 @@ namespace game_framework {
 		/*
 		 * the images that game used define here
 		 */
+		CMovingBitmap menuTop,menuBottom;
+		int currentStage=1;
+		bool isMenu=true;
+		ButtonFrame gameButtonFrame;
+		
+		void WholeMenu();
+		void MenuState();
+		void ShowMenuImg();
+		void Stage1OFF();
+		void Stage2OFF();
+		void Stage3OFF();
+		void Stage1ON();
+		void Stage2ON();
+		void Stage3ON();
+		void MenuOff();
+		
+		
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

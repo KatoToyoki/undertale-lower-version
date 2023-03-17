@@ -6,6 +6,7 @@
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
 #include "mygame.h"
+#include <iostream>
 
 using namespace game_framework;
 /////////////////////////////////////////////////////////////////////////////
@@ -30,6 +31,11 @@ void CGameStateInit::OnInit()
 	//
 	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
 	//
+	
+	title.LoadBitmapByString({"resources/undertale.bmp"});
+	title.SetTopLeft(342,400);
+	enterCommand.LoadBitmapByString({"resources/empty_enter.bmp","resources/enter.bmp"});
+	enterCommand.SetTopLeft(815,700);
 }
 
 void CGameStateInit::OnBeginState()
@@ -38,24 +44,26 @@ void CGameStateInit::OnBeginState()
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+	if(nChar==VK_RETURN)
+	{
+		GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+	}
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+	
 }
 
 void CGameStateInit::OnShow()
 {
-	menuTop.LoadBitmapByString({"resources/menu_top.bmp"});
-	menuTop.SetTopLeft(700,0);
-	menuTop.ShowBitmap();
-	menuBottom.LoadBitmapByString({"resources/menu_bottom.bmp"});
-	menuBottom.SetTopLeft(520,560);
-	menuBottom.ShowBitmap();
+	StartMenu();
 }
 
 void CGameStateInit::StartMenu()
 {
-	
+	title.ShowBitmap();
+	Sleep(200);
+	enterCommand.ShowBitmap();
+	enterCommand.SetAnimation(300,false);
 }
