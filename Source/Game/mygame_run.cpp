@@ -97,6 +97,7 @@ void CGameStateRun::OnShow()
     WholeMenu();
   } else {
     user_frame.show_frame();
+    // heart_test.heart.ShowBitmap();
 
     gameButtonFrame.show_button();
     if (gameButtonFrame.GetIsChange() == true) {
