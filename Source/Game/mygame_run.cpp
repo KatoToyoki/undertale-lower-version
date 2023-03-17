@@ -32,14 +32,14 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
   // all the material here
   user_frame.load_img();
-  user_frame.create_frame(314, 1294, 312, 563);
+  user_frame.create_frame(314, 1294, 301, 563);
   // user_frame.create_frame(314,416,751,563);
   heart_test.load_img();
 
   menuTop.LoadBitmapByString({"resources/menu_top.bmp"});
   menuTop.SetTopLeft(727, 0);
   menuBottom.LoadBitmapByString({"resources/menu_bottom.bmp"});
-  menuBottom.SetTopLeft(599, 560);
+  menuBottom.SetTopLeft(599, 700);
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
@@ -56,6 +56,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
       MenuOff();
       gameButtonFrame.LoadSetIMG();
       gameButtonFrame.SetInit();
+      gameFight.load_img();
     }
   } else if (isMenu == false) {
     gameButtonFrame.choose_update(nChar, nRepCnt, nFlags);
@@ -103,6 +104,9 @@ void CGameStateRun::OnShow()
     if (gameButtonFrame.GetIsChange() == true) {
       gameButtonFrame.ChangeState();
     }
+
+    gameFight.show_fight_img();
+    gameFight.MoveingBar();
   }
 }
 

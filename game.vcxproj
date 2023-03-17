@@ -245,6 +245,7 @@
     </ClCompile>
     <ClCompile Include="Source\Game\battleFrame.cpp" />
     <ClCompile Include="Source\Game\ButtonFrame.cpp" />
+    <ClCompile Include="Source\Game\Fight.cpp" />
     <ClCompile Include="Source\Game\first_stage.cpp" />
     <ClCompile Include="Source\Game\frame.cpp" />
     <ClCompile Include="Source\Game\move.cpp" />
@@ -270,6 +271,7 @@
     <ClInclude Include="Source\Game\battleFrame.h" />
     <ClInclude Include="Source\Game\ButtonFrame.h" />
     <ClInclude Include="Source\Game\config.h" />
+    <ClInclude Include="Source\Game\Fight.h" />
     <ClInclude Include="Source\Game\first_stage.h" />
     <ClInclude Include="Source\Game\frame.h" />
     <ClInclude Include="Source\Game\monster_frame.h" />

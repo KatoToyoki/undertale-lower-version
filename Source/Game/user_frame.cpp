@@ -104,7 +104,7 @@ void UserFrame::control_frame(
     if (get_width() >= 1294) {
       frame_commend = 4;
       move_done = true;
-      create_frame(314, 1294, 312, 563);
+      create_frame(314, 1294, 301, 563);
       break;
     }
     move_done = false;
@@ -117,7 +117,7 @@ void UserFrame::control_frame(
     if (get_height() >= 314 && get_width() >= 1294) {
       frame_commend = 4;
       move_done = true;
-      create_frame(314, 1294, 312, 563);
+      create_frame(314, 1294, 301, 563);
       break;
     }
     move_done = false;

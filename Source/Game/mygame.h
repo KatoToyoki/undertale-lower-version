@@ -40,6 +40,7 @@
 #include "frame.h"
 #include "move.h"
 #include "user_frame.h"
+#include "Fight.h"
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -112,6 +113,7 @@ private:
   int currentStage = 1;
   bool isMenu = true;
   ButtonFrame gameButtonFrame;
+  Fight gameFight;
 
   void WholeMenu();
   void MenuState();
