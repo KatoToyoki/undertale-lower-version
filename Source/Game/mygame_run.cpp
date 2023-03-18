@@ -41,6 +41,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameButtonFrame.SetInit();
 
   menu.load_img_set_postion();
+  
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
@@ -100,5 +101,6 @@ void CGameStateRun::OnShow()
 
     user_frame.show_frame();
     gameButtonFrame.show_button();
+
   }
 }
