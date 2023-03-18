@@ -89,10 +89,11 @@ void UserFrame::control_frame(
     break;
   case 1: // change talk to long battle
     frame_commend = 0;
-    if (get_width() <= 416) {
+    if (get_width() <= 558 && frame_commend == 0) {
       frame_commend = 1;
     }
-    if (get_height() <= 227 && get_width() <= 416) {
+    if (get_height() <= 227 && get_width() <= 558 && frame_commend == 1) {
+      create_frame(227, 528, 695, 650);
       frame_commend = 4;
       move_done = true;
       break;

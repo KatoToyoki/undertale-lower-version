@@ -26,6 +26,7 @@ void CGameStateRun::OnBeginState() {}
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
   heart_test.move_control(user_frame.get_corner());
+  user_frame.control_frame(talk_to_long_battle);
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
@@ -101,5 +102,3 @@ void CGameStateRun::OnShow()
     gameButtonFrame.show_button();
   }
 }
-
-
