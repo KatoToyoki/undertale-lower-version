@@ -2,9 +2,7 @@
 #include "menu.h"
 #include <ddraw.h>
 
-#include "mygame.h"
-
-#include "../Library/gamecore.h"
+#include "text.h"
 
 void Menu::load_img_set_postion()
 {
@@ -12,83 +10,43 @@ void Menu::load_img_set_postion()
   menuTop.SetTopLeft(727, 0);
   menuBottom.LoadBitmapByString({"resources/menu_bottom.bmp"});
   menuBottom.SetTopLeft(599, 560);
+
+  stage1 = Text(40,"stage1",RGB(255,255,255),800,430,320);
+  stage2 = Text(40,"Stage2",RGB(255,255,255),800,880,320);
+  stage3 = Text(40, "Stage3",RGB(255,255,255),800,1330,320);
+  //45
 }
 
 
-void Menu::WholeMenu(int current_stage)
+void Menu::WholeMenu()
 {
   ShowMenuImg();
-  MenuState(current_stage);
+  MenuState();
 }
 
-void Menu::Stage1OFF()
-{
-  CDC *pDC = game_framework::CDDraw::GetBackCDC();
-  game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(255, 255, 255), 800);
-  game_framework::CTextDraw::Print(pDC, 430, 320, "stage1");
-  game_framework::CDDraw::ReleaseBackCDC();
-}
-
-void Menu::Stage2OFF()
-{
-  CDC *pDC = game_framework::CDDraw::GetBackCDC();
-  game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(255, 255, 255), 800);
-  game_framework::CTextDraw::Print(pDC, 880, 320, "stage2");
-  game_framework::CDDraw::ReleaseBackCDC();
-}
-
-void Menu::Stage3OFF()
-{
-  CDC *pDC = game_framework::CDDraw::GetBackCDC();
-  game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(255, 255, 255), 800);
-  game_framework::CTextDraw::Print(pDC, 1330, 320, "stage3");
-  game_framework::CDDraw::ReleaseBackCDC();
-}
-
-void Menu::Stage1ON()
-{
-  CDC *pDC = game_framework::CDDraw::GetBackCDC();
-  game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-  game_framework::CTextDraw::Print(pDC, 430, 320, "stage1");
-  game_framework::CDDraw::ReleaseBackCDC();
-}
-
-void Menu::Stage2ON()
-{
-  CDC *pDC = game_framework::CDDraw::GetBackCDC();
-  game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-  game_framework::CTextDraw::Print(pDC, 880, 320, "stage2");
-  game_framework::CDDraw::ReleaseBackCDC();
-}
-
-void Menu::Stage3ON()
-{
-  CDC *pDC = game_framework::CDDraw::GetBackCDC();
-  game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-  game_framework::CTextDraw::Print(pDC, 1330, 320, "stage3");
-  game_framework::CDDraw::ReleaseBackCDC();
-}
-
-void Menu::MenuState(int current_stage)
+void Menu::MenuState()
 {
   switch (current_stage)
   {
   case(1):
-    Stage1ON();
-    Stage2OFF();
-    Stage3OFF();
+    stage1.set_color(RGB(255,255,45));
+    stage2.set_color(RGB(255,255,255));
+    stage3.set_color(RGB(255,255,255));
     break;
   case(2):
-    Stage1OFF();
-    Stage2ON();
-    Stage3OFF();
+    stage1.set_color(RGB(255,255,255));
+    stage2.set_color(RGB(255,255,45));
+    stage3.set_color(RGB(255,255,255));
     break;
   case(3):
-    Stage1OFF();
-    Stage2OFF();
-    Stage3ON();
+    stage1.set_color(RGB(255,255,255));
+    stage2.set_color(RGB(255,255,255));
+    stage3.set_color(RGB(255,255,45));
     break;
   }
+  stage1.print();
+  stage2.print();
+  stage3.print();
 }
 
 void Menu::ShowMenuImg()
@@ -103,3 +61,26 @@ void Menu::MenuOff()
   menuTop.UnshowBitmap();
   menuBottom.UnshowBitmap();
 }
+
+void Menu::choose(UINT nChar)
+{
+  
+    if (nChar == VK_LEFT && current_stage != 1) {
+      current_stage -= 1;
+    } else if (nChar == VK_RIGHT && current_stage != 3) {
+      current_stage += 1;
+    }
+
+    if (nChar == VK_RETURN) {
+      isMenu = false;
+      MenuOff();
+      // gameButtonFrame.set_updata_enable(true);
+    }
+}
+
+bool Menu::get_menu()
+{
+  return isMenu;
+}
+
+

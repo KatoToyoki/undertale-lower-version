@@ -26,7 +26,7 @@ void CGameStateRun::OnBeginState() {}
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
   heart_test.move_control(user_frame.get_corner());
-  user_frame.control_frame(talk_to_long_battle);
+  // user_frame.control_frame(talk_to_long_battle);
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
@@ -41,23 +41,18 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameButtonFrame.SetInit();
 
   menu.load_img_set_postion();
-  
+
+  Text text(45, "*  Check", RGB(255,255,255),750, 465,613);
+
+  std::vector<Text> text_vector = {text,text,text,talk_mode};
+  game_text = GameText(text_vector);
+  game_text.set_enable(true);
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
 
-  if (isMenu) {
-    if (nChar == VK_LEFT && currentStage != 1) {
-      currentStage -= 1;
-    } else if (nChar == VK_RIGHT && currentStage != 3) {
-      currentStage += 1;
-    }
-
-    if (nChar == VK_RETURN) {
-      isMenu = false;
-      menu.MenuOff();
-      // gameButtonFrame.set_updata_enable(true);
-    }
+  if (menu.get_menu()) {
+    menu.choose(nChar);
   } else{
     gameButtonFrame.choose_update(nChar);
   }
@@ -94,13 +89,15 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 }
 void CGameStateRun::OnShow()
 {
-  if (isMenu) {
-    menu.WholeMenu(currentStage);
+  if (menu.get_menu()) {
+    menu.WholeMenu();
+    
   } else {
     heart_test.heart.ShowBitmap();
 
     user_frame.show_frame();
     gameButtonFrame.show_button();
-
+    // game_text.print_vector();
+    game_text.print_text();
   }
 }

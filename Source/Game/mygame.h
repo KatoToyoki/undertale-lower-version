@@ -45,6 +45,7 @@
 #include "user_frame.h"
 #include "menu.h"
 #include "text.h"
+#include "game_text.h"
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -111,12 +112,11 @@ private:
   ButtonFrame button_frame;
   Move heart_test;
   Menu menu;
+  GameText game_text;
   
   
   int test_index = 0;
 
-  int currentStage = 1;
-  bool isMenu = true;
   ButtonFrame gameButtonFrame;
 
 

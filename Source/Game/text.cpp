@@ -30,7 +30,7 @@ void Text::set_enable(bool enable)
 
 void Text::print()
 {
-    if (_enable)
+    if (true)
     {
         CDC *pDC = game_framework::CDDraw::GetBackCDC();
     
