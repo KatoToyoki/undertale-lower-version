@@ -39,15 +39,22 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   
   gameButtonFrame.LoadSetIMG();
   gameButtonFrame.SetInit();
+  gameButtonFrame.set_updata_enable(true);
 
   menu.load_img_set_postion();
 
   Text text(45, "*  Check", RGB(255,255,255),750, 465,613);
+  Text text1(45, "*  Check1", RGB(255,255,255),750, 465,613);
+  Text text2(45, "*  Check2", RGB(255,255,255),750, 465,613);
 
-  std::vector<Text> text_vector = {text,text,text,talk_mode};
-  game_text = GameText(text_vector);
-  game_text.set_enable(true);
+  std::vector<Text> text_vector = {text,text1,text2,text,text,text};
+  game_text = GameText(text_vector,act_mode);
+  // game_text.set_enable(true);
+  // game_text.set_text_index(0,3);
+  user_frame.load_text(game_text);
+  user_frame.set_choose(false,0,5);
 }
+
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
 
@@ -55,6 +62,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     menu.choose(nChar);
   } else{
     gameButtonFrame.choose_update(nChar);
+    user_frame.choose_updata(nChar);
   }
 }
 
@@ -96,8 +104,9 @@ void CGameStateRun::OnShow()
     heart_test.heart.ShowBitmap();
 
     user_frame.show_frame();
+    user_frame.print();
     gameButtonFrame.show_button();
-    // game_text.print_vector();
-    game_text.print_text();
+    game_text.print_vector();
+    // game_text.print_text();
   }
 }

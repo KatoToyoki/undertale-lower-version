@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "user_frame.h"
 #include "../Library/gamecore.h"
+#include "game_text.h"
 
 void UserFrame::load_img() {
   left_vertical_frame.LoadBitmapByString({"resources/left_vertical_frame.bmp"});
@@ -141,4 +142,93 @@ void UserFrame::check_which_change_frame_need_call(int frame_commend) {
   } else if (frame_commend == 3) {
     change_frame_up();
   }
+}
+
+void UserFrame::load_text(GameText game_text)
+{
+  _game_text = game_text;
+}
+
+int UserFrame::get_current_selection()
+{
+  return _current_selection;
+}
+
+void UserFrame::set_choose(bool enable, int head, int text_len)
+{
+  _enable = enable;
+  _game_text.set_enable(_enable);
+  _head = head;
+  _text_len = text_len;
+  if (_enable)
+  {
+    // _current_selection = 0;
+    _game_text._data[_current_selection].set_color(RGB(255,255,45));
+  }
+}
+
+void UserFrame::print()
+{
+  if (_enable){
+    if (_head !=0 && _text_len <= 3)
+    {
+      _game_text.set_enable(true);
+      _game_text.set_text_index(_head,_text_len);
+      _game_text.print_text();
+    }
+    else
+    {
+      _game_text.set_enable(true);
+      _game_text.print_vector();
+    }
+  }
+}
+
+void UserFrame::choose_updata(UINT nChar)
+{
+  if (_enable)
+  {
+    if (_game_text._mode == act_mode)
+    {
+      if ( nChar == VK_LEFT && (_current_selection%2) != 0)
+      {
+        _current_selection -=1;
+      }
+      if (nChar == VK_RIGHT && (_current_selection%2) != 1 && _current_selection+1 <=_game_text.get_vector_len()-1)
+      {
+        _current_selection +=1;
+      }
+      if (nChar == VK_DOWN && (_current_selection+2<=_game_text.get_vector_len()-1))
+      {
+        _current_selection +=2;
+      }
+      if (nChar == VK_UP && (_current_selection/2) != 0)
+      {
+        _current_selection -=2;
+      }
+    }
+    if (_game_text._mode == talk_target_mode)
+    {
+      if (nChar == VK_DOWN && _current_selection < _game_text.get_vector_len()-1)
+      {
+        _current_selection +=1;
+      }
+      if (nChar == VK_UP && _current_selection != 0)
+      {
+        _current_selection -=1;
+      }
+    }
+    text_color_change();
+  }
+}
+
+void UserFrame::text_color_change()
+{
+  if (_enable){
+    for (Text &text : _game_text._data)
+    {
+      text.set_color(RGB(255,255,255));
+    }
+    _game_text._data[_current_selection].set_color(RGB(255,255,45));
+    }
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "frame.h"
+#include "game_text.h"
 
 enum frame_command {
   talk_to_normal_battle,
@@ -16,6 +17,15 @@ public:
   void control_frame(int frame_command_control);
 
   bool get_move() const { return move_done; }
+  int get_current_selection();
+  
+  void load_text(GameText game_text);
+  void set_choose(bool enable, int head = 0, int text_len = 20);
+  
+  void choose_updata(UINT nChar);
+  void print();
+  
+  int _current_selection = 0;
 
 private:
   void move_frame_to_battle_mode();
@@ -29,6 +39,10 @@ private:
   void change_frame_up();
   void check_which_change_frame_need_call(int frame_commend);
 
-
+  void text_color_change();
+  
   bool move_done = false;
+  bool _enable = false;
+  int _head = 0,_text_len = 1;
+  GameText _game_text;
 };

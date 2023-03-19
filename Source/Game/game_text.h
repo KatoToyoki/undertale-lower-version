@@ -5,7 +5,7 @@
 
 enum mode
 {
-    talk_mode,
+    talk_target_mode,
     act_mode
 };
 class GameText
@@ -17,9 +17,12 @@ public:
     void set_text_index(int head, int text_len);
     void print_vector();
     void print_text();
+
+    int get_vector_len();
+    std::vector<Text> _data;
+    int _mode;
     
 private:
-    std::vector<Text> _data;
     bool _enable = false;
     int _text_len = 3;
     int print_index = 0;

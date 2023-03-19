@@ -68,6 +68,7 @@ void ButtonFrame::choose_update(UINT nChar)
         else if(nChar==VK_RETURN)
         {
             target=selected;
+            _enable = false;
             isChange=true;
         }
         // press "esc" to test if all off is okay, it's a temp test
