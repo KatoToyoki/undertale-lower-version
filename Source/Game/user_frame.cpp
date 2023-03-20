@@ -124,6 +124,16 @@ void UserFrame::control_frame(
     }
     move_done = false;
     break;
+  case 5:
+    frame_commend = 0;
+    if (get_width() <= 575) {
+      frame_commend = 4;
+      create_frame(314, 575, 671, 563);
+      break;
+    }
+    move_done = false;
+    break;
+    
   default:
     frame_commend = 4;
     move_done = true;

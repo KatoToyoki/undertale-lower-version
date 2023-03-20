@@ -53,7 +53,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   case 5:
     //maybe battle mode
     user_frame.set_choose(false);
-    user_frame.control_frame(talk_to_normal_battle);
+    user_frame.control_frame(talk_to_papyrus_normal_battle);
     heart_test.move_control(user_frame.get_corner());
     
     break;

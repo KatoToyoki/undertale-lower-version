@@ -7,7 +7,8 @@ enum frame_command {
   talk_to_long_battle,
   no_work,
   to_talk,
-  idle
+  idle,
+  talk_to_papyrus_normal_battle
 };
 
 class UserFrame : public Frame {
