@@ -160,7 +160,7 @@ void UserFrame::set_choose(bool enable, int head, int text_len)
   _game_text.set_enable(_enable);
   _head = head;
   _text_len = text_len;
-  if (_enable)
+  if (_enable && _game_text._mode != talk_mode)
   {
     // _current_selection = 0;
     _game_text._data[_current_selection].set_color(RGB(255,255,45));
@@ -188,7 +188,7 @@ void UserFrame::choose_updata(UINT nChar)
 {
   if (_enable)
   {
-    if (_game_text._mode == act_mode)
+    if (_game_text._mode == act_item_mode)
     {
       if ( nChar == VK_LEFT && (_current_selection%2) != 0)
       {
@@ -207,7 +207,7 @@ void UserFrame::choose_updata(UINT nChar)
         _current_selection -=2;
       }
     }
-    if (_game_text._mode == talk_target_mode)
+    if (_game_text._mode == target_mode)
     {
       if (nChar == VK_DOWN && _current_selection < _game_text.get_vector_len()-1)
       {
@@ -229,6 +229,15 @@ void UserFrame::text_color_change()
     {
       text.set_color(RGB(255,255,255));
     }
-    _game_text._data[_current_selection].set_color(RGB(255,255,45));
+    if (_game_text._mode != talk_mode)
+    {
+      _game_text._data[_current_selection].set_color(RGB(255,255,45));
     }
+  }
 }
+
+int UserFrame::get_text_vector_len()
+{
+  return _game_text.get_vector_len();
+}
+

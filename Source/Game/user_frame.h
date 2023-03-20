@@ -18,6 +18,7 @@ public:
 
   bool get_move() const { return move_done; }
   int get_current_selection();
+  int get_text_vector_len();
   
   void load_text(GameText game_text);
   void set_choose(bool enable, int head = 0, int text_len = 20);

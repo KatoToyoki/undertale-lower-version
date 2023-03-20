@@ -8,9 +8,6 @@
 
 #include "../Library/gamecore.h"
 #include "mygame.h"
-#include <iostream>
-
-// #define MID ((1920/2)-(UserFrame.horizontal_up_frame.GetWidth()/2));
 
 using namespace game_framework;
 
@@ -25,34 +22,54 @@ CGameStateRun::~CGameStateRun() {}
 void CGameStateRun::OnBeginState() {}
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
-  heart_test.move_control(user_frame.get_corner());
-  // user_frame.control_frame(talk_to_long_battle);
+  switch (stage_go)
+  {
+  case 1:
+    show_normal_mode.init(&user_frame,&gameButtonFrame);
+    break;
+  case 2:
+    switch (gameButtonFrame.get_current_selection())
+    {
+    case 0:
+      show_normal_mode.choose_fight_taget();
+      break;
+    case 1:
+      show_normal_mode.choose_act_target();
+      break;
+    case 2:
+      show_normal_mode.choose_item();
+      break;
+    case 3:
+      show_normal_mode.choose_mercy();
+      break;
+    }
+    break;
+  case 3:
+    show_normal_mode.choose_act();
+    break;
+  case 4:
+    show_normal_mode.choose_act_after();
+    break;
+  case 5:
+    //maybe battle mode
+    user_frame.set_choose(false);
+    user_frame.control_frame(talk_to_normal_battle);
+    heart_test.move_control(user_frame.get_corner());
+    
+    break;
+  }
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
-  // all the material here
   user_frame.load_img();
   user_frame.create_frame(314, 1294, 312, 563);
-  // user_frame.create_frame(314,416,751,563);
   heart_test.load_img();
   
   gameButtonFrame.LoadSetIMG();
   gameButtonFrame.SetInit();
-  gameButtonFrame.set_updata_enable(true);
 
   menu.load_img_set_postion();
-
-  Text text(45, "*  Check", RGB(255,255,255),750, 465,613);
-  Text text1(45, "*  Check1", RGB(255,255,255),750, 465,613);
-  Text text2(45, "*  Check2", RGB(255,255,255),750, 465,613);
-
-  std::vector<Text> text_vector = {text,text1,text2,text,text,text};
-  game_text = GameText(text_vector,act_mode);
-  // game_text.set_enable(true);
-  // game_text.set_text_index(0,3);
-  user_frame.load_text(game_text);
-  user_frame.set_choose(false,0,5);
 }
 
 
@@ -61,8 +78,25 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   if (menu.get_menu()) {
     menu.choose(nChar);
   } else{
+    //need OnKeyDown can put here no any if else
+
     gameButtonFrame.choose_update(nChar);
     user_frame.choose_updata(nChar);
+    
+  }
+
+
+  
+  //stage_control don't touch here
+  if (nChar == VK_RETURN)
+  {
+    stage_go+=1;
+    user_frame._current_selection = 0;
+  }
+  if (nChar == 0x58)
+  {
+    stage_go-=1;
+    user_frame._current_selection = 0;
   }
 }
 
@@ -101,12 +135,12 @@ void CGameStateRun::OnShow()
     menu.WholeMenu();
     
   } else {
+    //all show thing put here no any if else
     heart_test.heart.ShowBitmap();
 
     user_frame.show_frame();
-    user_frame.print();
+    user_frame.print();//print all thing in user_frame by load_text(GameText) in OnMove and set_enable)
     gameButtonFrame.show_button();
-    game_text.print_vector();
-    // game_text.print_text();
+    
   }
 }

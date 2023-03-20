@@ -5,13 +5,14 @@
 
 enum mode
 {
-    talk_target_mode,
-    act_mode
+    talk_mode,
+    target_mode,
+    act_item_mode
 };
 class GameText
 {
 public:
-    GameText(std::vector<Text> data = {},mode mode_command = act_mode);
+    GameText(std::vector<Text> data = {},mode mode_command = act_item_mode);
 
     void set_enable(bool enable);
     void set_text_index(int head, int text_len);

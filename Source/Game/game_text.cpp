@@ -7,13 +7,17 @@ GameText::GameText(std::vector<Text> data,mode mode_command)
     _mode = mode_command;
     for (Text &text : data)
     {
-        if (mode_command == act_mode)
+        if (mode_command == act_item_mode)
         {
             text.set_positon(465+((i%2)*590),613 + ((i/2)*72) );
         }
-        if (mode_command == talk_target_mode)
+        if (mode_command == talk_mode)
         {
             text.set_positon(370,613 + ((i%3)*72) );
+        }
+        if (mode_command == target_mode)
+        {
+            text.set_positon(465,613 + ((i%3)*72) );
         }
         i+=1;
             
