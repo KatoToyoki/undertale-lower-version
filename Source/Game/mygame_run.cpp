@@ -106,10 +106,17 @@ void CGameStateRun::OnShow()
       gameButtonFrame.ChangeState();
     }
 
-    gameFight.show_fight_img();
-    gameFight.MoveingBar();
-
-    //gameFight.TTTT();
+    if(gameFight.GetEnable()==true)
+    {
+      gameFight.show_fight_img();
+      gameFight.MoveingBar();
+    }
+    else
+    {
+      gameFight.EndFight();
+    }
+    
+    
     if(gameFight.GetIsAttack()==true)
     {
       gameFight.attack();

@@ -22,12 +22,13 @@ enum MonsterFull
 class Fight
 {
 private:
-    bool _enable;
+    bool _enable=true;
     game_framework::CMovingBitmap fightScope,fightBar;
     game_framework::CMovingBitmap HPFrame,HP,HPminus;
     bool _isBarStop=false;
 
     bool _isAttack=false;
+    bool _isHPBarStop=false;
     std::string minusHP="";
     int attackCount=0;
     int minusPosition=1300;
@@ -35,7 +36,7 @@ private:
 
     // temp testing variable
     int monsterHP=1000;
-    int durationMinusHP=80;
+    int durationMinusHP=240;
     
     
 protected:
@@ -55,8 +56,12 @@ public:
     void SetIsAttack();
     void EndFight();
 
+    void MovingHPBar();
+
     void ShowHPBar();
     void UnshowHPBar();
+
+    bool GetEnable();
 
     // REQUIRED
     // load and set img for init

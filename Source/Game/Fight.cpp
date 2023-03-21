@@ -40,6 +40,7 @@ void Fight::UnshowHPBar()
     HP.UnshowBitmap();
     HPminus.UnshowBitmap();
     HPFrame.UnshowBitmap();
+    _enable=false;
 }
 
 
@@ -56,34 +57,51 @@ int Fight::attack()
     {
         monsterHP-=(int)(test*0.15);
         minusPosition=(int)(1300-(minusPosition*0.15));
-        HPminus.SetTopLeft(minusPosition,374);
+        MovingHPBar();
+        // HPminus.SetTopLeft(minusPosition,374);
         minusHP=std::to_string((int)(test*0.15));
     }
     else if((fightBar.GetLeft()>=thirdFront && fightBar.GetLeft()<secondFront) || (fightBar.GetLeft()>=secondBehind && fightBar.GetLeft()<thirdBehind))
     {
         monsterHP-=(int)(test*0.18);
         minusPosition=(int)(1300-(minusPosition*0.18));
-        HPminus.SetTopLeft(minusPosition,374);
+        MovingHPBar();
+        // HPminus.SetTopLeft(minusPosition,374);
         minusHP=std::to_string((int)(test*0.18));
     }
     else if((fightBar.GetLeft()>=secondFront && fightBar.GetLeft()<firstFront) || (fightBar.GetLeft()>=firstBehind && fightBar.GetLeft()<secondBehind))
     {
         monsterHP-=(int)(test*0.21);
         minusPosition=(int)(1300-(minusPosition*0.21));
-        HPminus.SetTopLeft(minusPosition,374);
+        MovingHPBar();
+        // HPminus.SetTopLeft(minusPosition,374);
         minusHP=std::to_string((int)(test*0.21));
     }
     else if(fightBar.GetLeft()>=firstFront && fightBar.GetLeft()<firstBehind)
     {
         monsterHP-=(int)(test*0.24);
         minusPosition=(int)(1300-(minusPosition*0.24));
-        HPminus.SetTopLeft(minusPosition,374);
+        MovingHPBar();
+        // HPminus.SetTopLeft(minusPosition,374);
         minusHP=std::to_string((int)(test*0.24));
     }
 
     
     return 0;
 }
+
+void Fight::MovingHPBar()
+{
+    if(HPminus.GetLeft()-10>minusPosition && _isHPBarStop==false){
+        HPminus.SetTopLeft(HPminus.GetLeft()-4,374);
+    }
+    else if(HPminus.GetLeft()-4<=minusPosition)
+    {
+        HPminus.SetTopLeft(minusPosition,374);
+        _isHPBarStop=true;
+    }
+}
+
 
 void Fight::MoveingBar()
 {
@@ -169,5 +187,13 @@ void Fight::SetIsAttack()
 
 void Fight::EndFight()
 {
-    
+    fightScope.UnshowBitmap();
+    fightBar.UnshowBitmap();
+    fightBar.SetTopLeft(240,593);
 }
+
+bool Fight::GetEnable()
+{
+    return _enable;
+}
+
