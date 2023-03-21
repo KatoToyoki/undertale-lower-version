@@ -243,6 +243,7 @@
     <ClCompile Include="Source\Core\StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Game\acts.cpp" />
     <ClCompile Include="Source\Game\battleFrame.cpp" />
     <ClCompile Include="Source\Game\ButtonFrame.cpp" />
     <ClCompile Include="Source\Game\first_stage.cpp" />
@@ -272,6 +273,7 @@
     <ClInclude Include="Source\Core\MainFrm.h" />
     <ClInclude Include="Source\Core\Resource.h" />
     <ClInclude Include="Source\Core\StdAfx.h" />
+    <ClInclude Include="Source\Game\acts.h" />
     <ClInclude Include="Source\Game\battleFrame.h" />
     <ClInclude Include="Source\Game\ButtonFrame.h" />
     <ClInclude Include="Source\Game\config.h" />
