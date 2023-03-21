@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "show_normal_mode.h"
 #include "../ButtonFrame.h"
+#include "../acts.h"
 
 void ShowNormalMode::init(UserFrame *user_frame,
 	ButtonFrame *button_frame)//宣告於OnMove()
@@ -80,8 +81,10 @@ void ShowNormalMode::choose_act_after()
 	_button_frame->all_button_off();
 
 	// _enemy.print_select_act_text(true);
-	Text text(45, "*  Monster_act_someting", RGB(255,255,255),750, 465,613);
-	std::vector<Text> text_vector = {text,text,text,text};
+	Text text0(45, "*  Migosp - AT 7 DF 5", RGB(255,255,255),750, 465,613);
+	Text text1(45, "*  It seems evil,", RGB(255,255,255),750, 465,613);
+	Text text2(45, "   but it's just with the wrong crowd...", RGB(255,255,255),750, 465,613);
+	std::vector<Text> text_vector = {text0,text1,text2};
 	GameText game_text = GameText(text_vector,talk_mode);
 	_user_frame->load_text(game_text);
 	_user_frame->set_choose(true,0,2);
