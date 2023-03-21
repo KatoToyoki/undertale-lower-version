@@ -88,12 +88,12 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
 
   
   //stage_control don't touch here
-  if (nChar == VK_RETURN)
+  if (nChar == VK_RETURN || nChar == 0x5A)
   {
     stage_go+=1;
     user_frame._current_selection = 0;
   }
-  if (nChar == 0x58)
+  if ((nChar == 0x58 || nChar == VK_SHIFT) && stage_go !=1)
   {
     stage_go-=1;
     user_frame._current_selection = 0;
