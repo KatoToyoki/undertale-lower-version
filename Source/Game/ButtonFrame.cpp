@@ -42,7 +42,7 @@ void ButtonFrame::SetInit()
     _buttons[fight].SetFrameIndexOfBitmap(toOn);
     _buttons[act].SetFrameIndexOfBitmap(toOff);
     _buttons[item].SetFrameIndexOfBitmap(toOff);
-    _buttons[mercy].SetFrameIndexOfBitmap(toOff);
+    _buttons[mercy].SetFrameIndexOfBitmap(toOff);                  
 }
 
 void ButtonFrame::show_button() {

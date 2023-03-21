@@ -109,12 +109,27 @@ void CGameStateRun::OnShow()
     gameFight.show_fight_img();
     gameFight.MoveingBar();
 
-    gameFight.TTTT();
-    if(gameFight._isAttack==true)
+    //gameFight.TTTT();
+    if(gameFight.GetIsAttack()==true)
     {
       gameFight.attack();
-      gameFight.RevealMinusHP();
+      if(gameFight.GetDurationMinusHP()>0 && gameFight.GetAttackCount()<=1)
+      {
+        gameFight.RevealMinusHP();
+        gameFight.ShowHPBar();
+      }
+      else if(gameFight.GetDurationMinusHP()==0)
+      {
+        gameFight.SetDurationMinusHP();
+        gameFight.SetMinusHP();
+        gameFight.SetIsAttack();
+        gameFight.UnshowHPBar();
+        
+      }
+      
     }
+
+    
    
   }
 }

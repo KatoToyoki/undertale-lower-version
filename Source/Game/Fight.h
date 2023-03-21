@@ -24,11 +24,18 @@ class Fight
 private:
     bool _enable;
     game_framework::CMovingBitmap fightScope,fightBar;
+    game_framework::CMovingBitmap HPFrame,HP,HPminus;
     bool _isBarStop=false;
+
+    bool _isAttack=false;
+    std::string minusHP="";
+    int attackCount=0;
+    int minusPosition=1300;
    
 
     // temp testing variable
     int monsterHP=1000;
+    int durationMinusHP=80;
     
     
 protected:
@@ -37,8 +44,19 @@ public:
     Fight()=default;
     ~Fight()=default;
 
-    bool _isAttack=false;
-    std::string minusHP="";
+    
+    int GetAttackCount();
+    bool GetIsAttack();
+    
+    std::string GetMinusHP();
+    int GetDurationMinusHP();
+    void SetDurationMinusHP();
+    void SetMinusHP();
+    void SetIsAttack();
+    void EndFight();
+
+    void ShowHPBar();
+    void UnshowHPBar();
 
     // REQUIRED
     // load and set img for init
@@ -63,6 +81,6 @@ public:
 
     void RevealMinusHP();
 
-    void TTTT();
+    //void TTTT();
     
 };
