@@ -23,7 +23,7 @@ public:
   int get_text_vector_len();
   
   void load_text(GameText game_text);
-  void set_choose(bool enable, int head = 0, int text_len = 20);
+  void set_choose(bool enable, int head = 0, int text_len = 0);
   
   void choose_updata(UINT nChar);
   void print();

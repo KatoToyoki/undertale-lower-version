@@ -54,12 +54,28 @@ void GameText::set_text_index(int head, int text_len)
 
 void GameText::print_text()
 {
-    for (int i=print_index; i<_text_len+1; i++)
+    for (int i=print_index; i<_text_len; i++)
     {
         _data[i].set_positon(370,613 + (((i-print_index)%3)*72) );
         _data[i].print();
     }
 }
+
+void GameText::print()
+{
+    if (_mode == target_mode || _mode == act_item_mode)
+    {
+       print_vector(); 
+    }
+    if (_mode == talk_mode )
+    {
+        print_text();
+    }
+    
+}
+
+
+
 
 int GameText::get_vector_len()
 {

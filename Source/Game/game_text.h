@@ -20,8 +20,7 @@ public:
     int get_positon_y(int index);
     void set_enable(bool enable);
     void set_text_index(int head, int text_len);
-    void print_vector();
-    void print_text();
+    void print();
 
     int get_vector_len();
     std::vector<Text> _data;
@@ -32,4 +31,6 @@ private:
     int _text_len = 3;
     int print_index = 0;
   
+    void print_vector();
+    void print_text();
 };

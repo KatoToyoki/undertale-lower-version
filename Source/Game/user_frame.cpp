@@ -170,9 +170,10 @@ int UserFrame::get_current_selection()
 void UserFrame::set_choose(bool enable, int head, int text_len)
 {
   _enable = enable;
-  _game_text.set_enable(_enable);
   _head = head;
   _text_len = text_len;
+  _game_text.set_enable(_enable);
+  _game_text.set_text_index(_head,_text_len);
   if (_enable && _game_text._mode != talk_mode)
   {
     // _current_selection = 0;
@@ -185,17 +186,7 @@ void UserFrame::set_choose(bool enable, int head, int text_len)
 void UserFrame::print()
 {
   if (_enable){
-    if (_head !=0 && _text_len <= 3)
-    {
-      _game_text.set_enable(true);
-      _game_text.set_text_index(_head,_text_len);
-      _game_text.print_text();
-    }
-    else
-    {
-      _game_text.set_enable(true);
-      _game_text.print_vector();
-    }
+    _game_text.print();
   }
 }
 
