@@ -179,7 +179,7 @@ void UserFrame::set_choose(bool enable, int head, int text_len)
     // _current_selection = 0;
     int x= _game_text.get_positon_x(_current_selection);
     int y= _game_text.get_positon_y(_current_selection);
-    heart.SetTopLeft(x-80,y+12);
+    heart.SetTopLeft(x-78,y+21);
   }
 }
 

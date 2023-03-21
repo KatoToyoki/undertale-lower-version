@@ -9,15 +9,15 @@ GameText::GameText(std::vector<Text> data,mode mode_command)
     {
         if (mode_command == act_item_mode)
         {
-            text.set_positon(465+((i%2)*590),613 + ((i/2)*72) );
+            text.set_positon(460+((i%2)*590),601 + ((i/2)*72) );
         }
         if (mode_command == talk_mode)
         {
-            text.set_positon(370,613 + ((i%3)*72) );
+            text.set_positon(352,605 + ((i%3)*72) );
         }
         if (mode_command == target_mode)
         {
-            text.set_positon(465,613 + ((i%3)*72) );
+            text.set_positon(460,601 + ((i%3)*72) );
         }
         i+=1;
             
@@ -56,7 +56,7 @@ void GameText::print_text()
 {
     for (int i=print_index; i<_text_len; i++)
     {
-        _data[i].set_positon(370,613 + (((i-print_index)%3)*72) );
+        _data[i].set_positon(352,605 + (((i-print_index)%3)*72) );
         _data[i].print();
     }
 }

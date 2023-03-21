@@ -34,7 +34,7 @@ void Text::print()
     {
         CDC *pDC = game_framework::CDDraw::GetBackCDC();
     
-        game_framework::CTextDraw::ChangeFontLog(pDC, _size, "微軟正黑體", _color, _weight);
+        game_framework::CTextDraw::ChangeFontLog(pDC, _size, "Determination Mono Web", _color, _weight);
     
         game_framework::CTextDraw::Print(pDC, _x, _y, _str);
         game_framework::CDDraw::ReleaseBackCDC();
