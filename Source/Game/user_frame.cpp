@@ -10,6 +10,9 @@ void UserFrame::load_img() {
   up_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame.bmp"});
   down_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame.bmp"});
   down_black.LoadBitmapByString({"resources/down_black.bmp"});
+  
+  heart.LoadBitmapByString({"resources/heart.bmp"},RGB(255,255,255));
+  heart.SetTopLeft(1000,700);
 }
 
 void UserFrame::move_frame_to_battle_mode() {
@@ -173,7 +176,9 @@ void UserFrame::set_choose(bool enable, int head, int text_len)
   if (_enable && _game_text._mode != talk_mode)
   {
     // _current_selection = 0;
-    _game_text._data[_current_selection].set_color(RGB(255,255,45));
+    int x= _game_text.get_positon_x(_current_selection);
+    int y= _game_text.get_positon_y(_current_selection);
+    heart.SetTopLeft(x-80,y+12);
   }
 }
 
@@ -228,26 +233,19 @@ void UserFrame::choose_updata(UINT nChar)
         _current_selection -=1;
       }
     }
-    text_color_change();
-  }
-}
-
-void UserFrame::text_color_change()
-{
-  if (_enable){
-    for (Text &text : _game_text._data)
-    {
-      text.set_color(RGB(255,255,255));
-    }
-    if (_game_text._mode != talk_mode)
-    {
-      _game_text._data[_current_selection].set_color(RGB(255,255,45));
-    }
   }
 }
 
 int UserFrame::get_text_vector_len()
 {
   return _game_text.get_vector_len();
+}
+
+void UserFrame::show_select_heart()
+{
+  if (_enable && _game_text._mode != talk_mode)
+  {
+    heart.ShowBitmap();
+  }
 }
 

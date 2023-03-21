@@ -54,7 +54,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     //maybe battle mode
     user_frame.set_choose(false);
     user_frame.control_frame(talk_to_papyrus_normal_battle);
-    heart_test.move_control(user_frame.get_corner());
+    heart_test.move_control(user_frame.get_corner(),true);
     
     break;
   }
@@ -136,10 +136,12 @@ void CGameStateRun::OnShow()
     
   } else {
     //all show thing put here no any if else
-    heart_test.heart.ShowBitmap();
+    heart_test.show_heard_img();
 
     user_frame.show_frame();
+    user_frame.show_select_heart();
     user_frame.print();//print all thing in user_frame by load_text(GameText) in OnMove and set_enable)
+    
     gameButtonFrame.show_button();
     
   }

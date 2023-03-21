@@ -14,6 +14,7 @@ enum frame_command {
 class UserFrame : public Frame {
 public:
   void load_img();
+  void show_select_heart();
 
   void control_frame(int frame_command_control);
 
@@ -28,6 +29,8 @@ public:
   void print();
   
   int _current_selection = 0;
+  
+  game_framework::CMovingBitmap heart;
 
 private:
   void move_frame_to_battle_mode();
@@ -40,8 +43,6 @@ private:
   void change_frame_add_width();
   void change_frame_up();
   void check_which_change_frame_need_call(int frame_commend);
-
-  void text_color_change();
   
   bool move_done = false;
   bool _enable = false;

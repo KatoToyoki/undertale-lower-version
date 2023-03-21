@@ -65,3 +65,13 @@ int GameText::get_vector_len()
 {
     return _data.size();
 }
+
+int GameText::get_positon_x(int index)
+{
+    return _data[index]._x;
+}
+
+int GameText::get_positon_y(int index)
+{
+    return _data[index]._y;
+}

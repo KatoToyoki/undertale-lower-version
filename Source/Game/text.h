@@ -10,6 +10,7 @@ public:
     void set_positon(int x,int y);
     void set_enable(bool enable);
     void print();
+    int _x,_y;
 private:
     bool _enable = false;
 
@@ -17,6 +18,5 @@ private:
     std::string _str;
     COLORREF _color;
     int _weight;
-    int _x,_y;
     
 };
