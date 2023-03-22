@@ -47,6 +47,7 @@
 #include "first_stage_sub_stage/show_menu.h"
 #include "first_stage_sub_stage/show_normal_mode.h"
 #include "barrage.h"
+#include "monster_frame.h"
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -116,13 +117,14 @@ private:
   GameText game_text;
   ShowNormalMode show_normal_mode;
   Barrage barrage;
+  MonsterFrame monster_frame;
   
   
   int stage_go = 0;
 
   ButtonFrame gameButtonFrame;
 
-
+  CMovingBitmap green_line;
 };
 
 /////////////////////////////////////////////////////////////////////////////

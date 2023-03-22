@@ -54,10 +54,13 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     //maybe battle mode
     barrage.set_show_enable(true);
     barrage.damege_hit(&heart_test);
+    barrage.right_move(1);
     
     user_frame.set_choose(false);
     user_frame.control_frame(talk_to_papyrus_normal_battle);
     heart_test.move_control(user_frame.get_corner(),true);
+
+    monster_frame.set_enable(true);
     
     break;
   }
@@ -73,10 +76,15 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameButtonFrame.SetInit();
 
   menu.load_img_set_postion();
-
+  barrage = Barrage(2,blue);
   barrage.load_img("enter");
   barrage.set_positon(700,700);
   // game_framework::CSpecialEffect::SetCurrentTime();
+  green_line.LoadBitmapByString({"resources/green_line.bmp"},RGB(255,255,255));
+  green_line.SetTopLeft(274,20);
+
+  monster_frame.load_img();
+  monster_frame.set_img_position(1190,307);
 }
 
 
@@ -152,5 +160,8 @@ void CGameStateRun::OnShow()
     gameButtonFrame.show_button();
 
     barrage.show_img();
+    green_line.ShowBitmap();
+
+    monster_frame.show_monster_frame_and_print();
   }
 }
