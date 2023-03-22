@@ -46,6 +46,7 @@
 #include "game_text.h"
 #include "first_stage_sub_stage/show_menu.h"
 #include "first_stage_sub_stage/show_normal_mode.h"
+#include "barrage.h"
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -114,6 +115,7 @@ private:
   Menu menu;
   GameText game_text;
   ShowNormalMode show_normal_mode;
+  Barrage barrage;
   
   
   int stage_go = 0;

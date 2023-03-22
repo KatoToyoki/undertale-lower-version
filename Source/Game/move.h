@@ -20,10 +20,11 @@ public:
     void move_control(Corner corner,bool enable);
     void set_heard_postion(int x, int y);
     void show_heard_img();
-    void set_show_heard_img_enable(bool enable);
 
+    void shine_two_second();
     
     game_framework::CMovingBitmap heart;
+	DWORD time_count =0;
 private:
     Vec2 check_range(Corner corner,Vec2 force);
     Vec2 normalize(Vec2 force);
@@ -31,4 +32,5 @@ private:
 
     float move_num;
     bool _enable = false;
+    bool _shine_mode = false;
 };

@@ -81,13 +81,13 @@ void ShowNormalMode::choose_act_after()
 	_button_frame->all_button_off();
 
 	// _enemy.print_select_act_text(true);
-	Text text0(60, "*  Migosp - AT 7 DF 5", RGB(255,255,255),600, 465,613);
-	Text text1(60, "*  It seems evil,", RGB(255,255,255),600, 465,613);
-	Text text2(60, "   but it's just with the wrong crowd...", RGB(255,255,255),600, 465,613);
+	Text text0(60, "* Migosp - AT 7 DF 5", RGB(255,255,255),600, 465,613);
+	Text text1(60, "* It seems evil,but it's just ", RGB(255,255,255),600, 465,613);
+	Text text2(60, "  with the wrong crowd...", RGB(255,255,255),600, 465,613);
 	std::vector<Text> text_vector = {text0,text1,text2};
 	GameText game_text = GameText(text_vector,talk_mode);
 	_user_frame->load_text(game_text);
-	_user_frame->set_choose(true,0,2);
+	_user_frame->set_choose(true,0,3);
 }
 
 void ShowNormalMode::choose_item()

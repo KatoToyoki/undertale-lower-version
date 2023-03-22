@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "move.h"
 
+#include "../Library/gamecore.h"
+
 void Move::load_img()
 {
     heart.LoadBitmapByString({"resources/heart.bmp"},RGB(255,255,255));
@@ -110,6 +112,29 @@ void Move::show_heard_img()
 {
 	if (_enable)
 	{
-		heart.ShowBitmap();
+		if (_shine_mode)
+		{
+			heart.UnshowBitmap();
+		}
+		else
+		{
+			heart.ShowBitmap();
+		}
 	}
 }
+
+void Move::shine_two_second()
+{
+	time_count += game_framework::CSpecialEffect::GetEllipseTime();
+	
+	if (time_count >= 700)
+	{
+		_shine_mode = false;
+	}
+	else
+	{
+		game_framework::CSpecialEffect::DelayFromSetCurrentTime(10);
+		_shine_mode = !_shine_mode;
+	}
+}
+

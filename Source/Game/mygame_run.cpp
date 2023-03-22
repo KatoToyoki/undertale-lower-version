@@ -52,6 +52,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     break;
   case 5:
     //maybe battle mode
+    barrage.set_show_enable(true);
+    barrage.damege_hit(&heart_test);
+    
     user_frame.set_choose(false);
     user_frame.control_frame(talk_to_papyrus_normal_battle);
     heart_test.move_control(user_frame.get_corner(),true);
@@ -70,6 +73,10 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameButtonFrame.SetInit();
 
   menu.load_img_set_postion();
+
+  barrage.load_img("enter");
+  barrage.set_positon(700,700);
+  // game_framework::CSpecialEffect::SetCurrentTime();
 }
 
 
@@ -143,6 +150,7 @@ void CGameStateRun::OnShow()
     user_frame.print();//print all thing in user_frame by load_text(GameText) in OnMove and set_enable)
     
     gameButtonFrame.show_button();
-    
+
+    barrage.show_img();
   }
 }
