@@ -106,6 +106,7 @@ void CGameStateRun::OnShow()
       gameButtonFrame.ChangeState();
     }
 
+    // all 110~137 are fight flow
     if(gameFight.GetEnable()==true)
     {
       gameFight.show_fight_img();
@@ -115,9 +116,8 @@ void CGameStateRun::OnShow()
     {
       gameFight.EndFight();
     }
-    
-    
-    if(gameFight.GetIsAttack()==true)
+
+    if(gameFight.GetIsAttack()==true || gameFight.IfMiss()==true)
     {
       gameFight.attack();
       if(gameFight.GetDurationMinusHP()>0 && gameFight.GetAttackCount()<=1)
@@ -132,11 +132,7 @@ void CGameStateRun::OnShow()
         gameFight.ResetIsAttack();
         gameFight.UnshowHPBar();
       }
-      
     }
-
-    
-   
   }
 }
 

@@ -109,6 +109,9 @@ public:
     // depending on key in, decide if the bar will stop
     void ToStop(UINT nChar, UINT nRepCnt, UINT nFlags);
 
+    // in order to do the miss condition
+    bool IfMiss();
+
     // to show how much attack enemy received
     void RevealMinusHP();
 

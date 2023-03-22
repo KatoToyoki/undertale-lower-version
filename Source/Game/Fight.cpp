@@ -101,9 +101,10 @@ int Fight::attack()
         MovingHPBar();
         minusHP="-"+(std::to_string((int)(test*0.24)));
     }
-    else if(fightBar.GetLeft()>firstBehind)
+    else if(fightBar.GetLeft()>=firstBehind)
     {
         minusHP="MISS";
+        _isAttack=true;
     }
     return 0;
 }
@@ -118,13 +119,22 @@ void Fight::MovingBar()
 
 void Fight::ToStop(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-    if(nChar==VK_RETURN || minusHP=="MISS")
+    if(nChar==VK_RETURN)
         // minusHP.compare("MISS")==0
         {
         _isBarStop=true;
         _isAttack=true;
         attackCount+=1;
         }
+}
+
+bool Fight::IfMiss()
+{
+    if((minusHP.compare("MISS")==0) || (fightBar.GetLeft()>=1520))
+    {
+        return true;
+    }
+    return false;
 }
 
 void Fight::RevealMinusHP()
