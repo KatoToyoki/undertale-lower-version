@@ -2,9 +2,10 @@
 #include "show_normal_mode.h"
 #include "../ButtonFrame.h"
 #include "../acts.h"
+#include "../monster_frame.h"
 
 void ShowNormalMode::init(UserFrame *user_frame,
-	ButtonFrame *button_frame)//宣告於OnMove()
+                          ButtonFrame *button_frame, MonsterFrame *monster_frame,Move *heart_test)//宣告於OnMove()
 {
 	_user_frame = user_frame;
 	_user_frame->control_frame(to_talk);
@@ -12,12 +13,19 @@ void ShowNormalMode::init(UserFrame *user_frame,
 	_button_frame = button_frame;
 	_button_frame->set_updata_enable(true);
 
+	_monster_frame = monster_frame;
+    _monster_frame->set_enable(false);
+
+	_heart_test = heart_test;
+    _heart_test->move_control(_user_frame->get_corner(),false);
+	
 	// _ememy.print_text(text, true);
 	Text text(60, "* Monster_say_someting", RGB(255,255,255),500, 465,613);
 	std::vector<Text> text_vector = {text,text,text,text};
 	GameText game_text = GameText(text_vector,talk_mode);
 	_user_frame->load_text(game_text);
 	_user_frame->set_choose(true,0,3);
+	
 }
 
 void ShowNormalMode::end()

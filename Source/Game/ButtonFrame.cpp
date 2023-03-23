@@ -65,7 +65,7 @@ void ButtonFrame::choose_update(UINT nChar)
             target=toRight;
             isChange=true;
         }
-        else if(nChar==VK_RETURN)
+        else if(nChar==VK_RETURN || nChar == 0x5A)
         {
             target=selected;
             _enable = false;

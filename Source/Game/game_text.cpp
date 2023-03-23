@@ -19,6 +19,10 @@ GameText::GameText(std::vector<Text> data,mode mode_command)
         {
             text.set_positon(460,601 + ((i%3)*72) );
         }
+        if (mode_command == monster_mode)
+        {
+            text.set_positon(1234,333 + (i%3)*50 );
+        }
         i+=1;
             
     }
@@ -54,9 +58,16 @@ void GameText::set_text_index(int head, int text_len)
 
 void GameText::print_text()
 {
-    for (int i=print_index; i<_text_len; i++)
+    for (int i=print_index; i<_text_len+print_index; i++)
     {
-        _data[i].set_positon(352,605 + (((i-print_index)%3)*72) );
+        if (_mode == talk_mode)
+        {
+            _data[i].set_positon(352,605 + (((i-print_index)%3)*72) );
+        }
+        else
+        {
+            _data[i].set_positon(1234,333 + (((i-print_index)%3)*50) );
+        }
         _data[i].print();
     }
 }
@@ -67,15 +78,12 @@ void GameText::print()
     {
        print_vector(); 
     }
-    if (_mode == talk_mode )
+    if (_mode == talk_mode || _mode == monster_mode)
     {
         print_text();
     }
     
 }
-
-
-
 
 int GameText::get_vector_len()
 {

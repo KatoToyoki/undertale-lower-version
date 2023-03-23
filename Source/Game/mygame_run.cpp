@@ -25,7 +25,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   switch (stage_go)
   {
   case 1:
-    show_normal_mode.init(&user_frame,&gameButtonFrame);
+    show_normal_mode.init(&user_frame,&gameButtonFrame,&monster_frame,&heart_test);
     break;
   case 2:
     switch (gameButtonFrame.get_current_selection())
@@ -60,7 +60,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     user_frame.control_frame(talk_to_papyrus_normal_battle);
     heart_test.move_control(user_frame.get_corner(),true);
 
-    monster_frame.set_enable(true);
+    monster_frame.set_enable(true,1,1);
     
     break;
   }
@@ -85,6 +85,12 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 
   monster_frame.load_img();
   monster_frame.set_img_position(1190,307);
+  
+	Text data(33, "Mmm, cha", RGB(0,0,0),30, 1234,333);
+	Text data2(33, "cha cha!", RGB(0,0,0),30, 1234,382);
+  vector<Text> vector = {data,data2};
+  GameText game_text(vector,monster_mode);
+  monster_frame.load_game_text(game_text);
 }
 
 
