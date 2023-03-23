@@ -103,12 +103,12 @@ void Move::move_act(Vec2 force)
 		heart.GetTop() + (int)(force.y));
 }
 
-void Move::set_heard_postion(int x, int y)
+void Move::set_heart_postion(int x, int y)
 {
 	heart.SetTopLeft(x,y);
 }
 
-void Move::show_heard_img()
+void Move::show_heart_img()
 {
 	if (_enable)
 	{

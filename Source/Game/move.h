@@ -18,8 +18,8 @@ public:
     }
     void load_img();
     void move_control(Corner corner,bool enable);
-    void set_heard_postion(int x, int y);
-    void show_heard_img();
+    void set_heart_postion(int x, int y);
+    void show_heart_img();
 
     void shine_two_second();
     

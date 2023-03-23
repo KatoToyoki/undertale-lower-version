@@ -151,7 +151,7 @@ void CGameStateRun::OnShow()
     
   } else {
     //all show thing put here no any if else
-    heart_test.show_heard_img();
+    heart_test.show_heart_img();
 
     user_frame.show_frame();
     user_frame.show_select_heart();
