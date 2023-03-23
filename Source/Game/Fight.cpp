@@ -101,7 +101,7 @@ int Fight::attack()
         MovingHPBar();
         minusHP="-"+(std::to_string((int)(test*0.24)));
     }
-    else if(fightBar.GetLeft()>=firstBehind)
+    else if(fightBar.GetLeft()>=theEnd)
     {
         minusHP="MISS";
         _isAttack=true;
