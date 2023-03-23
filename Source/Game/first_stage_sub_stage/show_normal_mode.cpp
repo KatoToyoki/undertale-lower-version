@@ -44,18 +44,26 @@ void ShowNormalMode::choose_fight_taget()
 	// _ememy.print_saying(???,false);
 	
 	// _enemy.name_print(true);
-	// _enemy.life_print(true);
-	_user_frame->set_choose(true,0,1);
+	Text text(60, "* target", RGB(255,255,255),500, 465,613);
+	std::vector<Text> text_vector = {text,text,text};
+	GameText game_text = GameText(text_vector,target_mode);
 	
-	// _game_fight->set_fight_img_enable(true);
+	_user_frame->load_text(game_text);
+	_user_frame->set_choose(true,0,_user_frame->get_text_vector_len());
+	
+	// _enemy.life_print(true);
+	
+	_game_fight->set_fight_img_enable(false);
 }
 void ShowNormalMode::choose_fight()
 {
 	// _enemy.name_print(false);
 	// _enemy.life_print(false);
+	_user_frame->control_frame(to_talk);
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
 	
+	_game_fight->set_fight_img_enable(true);
 	// fight.check();
 	_user_frame->set_choose(true,0,1);
 }

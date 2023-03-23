@@ -29,46 +29,48 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       &monster_frame,&heart_test,&gameFight);
     break;
   case 2:
-	  gameFight.set_fight_img_enable(true);
-    // switch (gameButtonFrame.get_current_selection())
-    // {
-    // case 0:
-    //   show_normal_mode.choose_fight_taget();
-    //   break;
-    // case 1:
-    //   show_normal_mode.choose_act_target();
-    //   break;
-    // case 2:
-    //   show_normal_mode.choose_item();
-    //   break;
-    // case 3:
-    //   show_normal_mode.choose_mercy();
-    //   break;
-    // }
+    switch (gameButtonFrame.get_current_selection())
+    {
+    case 0:
+      show_normal_mode.choose_fight_taget();
+      break;
+    case 1:
+      show_normal_mode.choose_act_target();
+      break;
+    case 2:
+      show_normal_mode.choose_item();
+      break;
+    case 3:
+      show_normal_mode.choose_mercy();
+      break;
+    }
     break;
   case 3:
-    // switch (gameButtonFrame.get_current_selection())
-    // {
-    // case 0:
-    //   show_normal_mode.choose_fight();
-    //   break;
-    // case 1:
-    //   show_normal_mode.choose_act();
-    //   break;
-    // case 2:
-    //   show_normal_mode.choose_item();
-    //   break;
-    // case 3:
-    //   show_normal_mode.choose_mercy();
-    //   break;
-    // }
-    //
-    // break;
-  case 4:
     switch (gameButtonFrame.get_current_selection())
     {
     case 0:
       show_normal_mode.choose_fight();
+      break;
+    case 1:
+      show_normal_mode.choose_act();
+      break;
+    case 2:
+      show_normal_mode.choose_item();
+      break;
+    case 3:
+      show_normal_mode.choose_mercy();
+      break;
+    }
+    
+    break;
+  case 4:
+    switch (gameButtonFrame.get_current_selection())
+    {
+    case 0:
+      if (gameFight.GetDurationMinusHP()<=0)
+      {
+        stage_go+=1;
+      }
       break;
     case 1:
       show_normal_mode.choose_act_after();
