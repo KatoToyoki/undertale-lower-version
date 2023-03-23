@@ -48,6 +48,7 @@
 #include "first_stage_sub_stage/show_normal_mode.h"
 #include "barrage.h"
 #include "monster_frame.h"
+#include "Fight.h"
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -123,6 +124,7 @@ private:
   int stage_go = 0;
 
   ButtonFrame gameButtonFrame;
+  Fight gameFight;
 
   CMovingBitmap green_line;
 };

@@ -5,7 +5,10 @@
 #include "../monster_frame.h"
 
 void ShowNormalMode::init(UserFrame *user_frame,
-                          ButtonFrame *button_frame, MonsterFrame *monster_frame,Move *heart_test)//宣告於OnMove()
+                          ButtonFrame *button_frame,
+                          MonsterFrame *monster_frame,
+                          Move *heart_test,
+                          Fight *game_fight)//宣告於OnMove()
 {
 	_user_frame = user_frame;
 	_user_frame->control_frame(to_talk);
@@ -18,6 +21,9 @@ void ShowNormalMode::init(UserFrame *user_frame,
 
 	_heart_test = heart_test;
     _heart_test->move_control(_user_frame->get_corner(),false);
+
+	_game_fight = game_fight;
+	_game_fight->set_fight_img_enable(false);
 	
 	// _ememy.print_text(text, true);
 	Text text(60, "* Monster_say_someting", RGB(255,255,255),500, 465,613);
@@ -40,6 +46,8 @@ void ShowNormalMode::choose_fight_taget()
 	// _enemy.name_print(true);
 	// _enemy.life_print(true);
 	_user_frame->set_choose(true,0,1);
+	
+	// _game_fight->set_fight_img_enable(true);
 }
 void ShowNormalMode::choose_fight()
 {
@@ -48,7 +56,6 @@ void ShowNormalMode::choose_fight()
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
 	
-	// fight.show_img(true);
 	// fight.check();
 	_user_frame->set_choose(true,0,1);
 }

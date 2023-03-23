@@ -25,16 +25,53 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   switch (stage_go)
   {
   case 1:
-    show_normal_mode.init(&user_frame,&gameButtonFrame,&monster_frame,&heart_test);
+    show_normal_mode.init(&user_frame,&gameButtonFrame,
+      &monster_frame,&heart_test,&gameFight);
     break;
   case 2:
+	  gameFight.set_fight_img_enable(true);
+    // switch (gameButtonFrame.get_current_selection())
+    // {
+    // case 0:
+    //   show_normal_mode.choose_fight_taget();
+    //   break;
+    // case 1:
+    //   show_normal_mode.choose_act_target();
+    //   break;
+    // case 2:
+    //   show_normal_mode.choose_item();
+    //   break;
+    // case 3:
+    //   show_normal_mode.choose_mercy();
+    //   break;
+    // }
+    break;
+  case 3:
+    // switch (gameButtonFrame.get_current_selection())
+    // {
+    // case 0:
+    //   show_normal_mode.choose_fight();
+    //   break;
+    // case 1:
+    //   show_normal_mode.choose_act();
+    //   break;
+    // case 2:
+    //   show_normal_mode.choose_item();
+    //   break;
+    // case 3:
+    //   show_normal_mode.choose_mercy();
+    //   break;
+    // }
+    //
+    // break;
+  case 4:
     switch (gameButtonFrame.get_current_selection())
     {
     case 0:
-      show_normal_mode.choose_fight_taget();
+      show_normal_mode.choose_fight();
       break;
     case 1:
-      show_normal_mode.choose_act_target();
+      show_normal_mode.choose_act_after();
       break;
     case 2:
       show_normal_mode.choose_item();
@@ -43,12 +80,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       show_normal_mode.choose_mercy();
       break;
     }
-    break;
-  case 3:
-    show_normal_mode.choose_act();
-    break;
-  case 4:
-    show_normal_mode.choose_act_after();
+    
     break;
   case 5:
     //maybe battle mode
@@ -60,7 +92,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     user_frame.control_frame(talk_to_papyrus_normal_battle);
     heart_test.move_control(user_frame.get_corner(),true);
 
-    monster_frame.set_enable(true,1,1);
+    monster_frame.set_enable(true,0,2);
     
     break;
   }
@@ -91,6 +123,9 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   vector<Text> vector = {data,data2};
   GameText game_text(vector,monster_mode);
   monster_frame.load_game_text(game_text);
+
+  gameFight.load_img();
+  gameFight.set_fight_img_enable(false);
 }
 
 
@@ -103,7 +138,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
 
     gameButtonFrame.choose_update(nChar);
     user_frame.choose_updata(nChar);
-    
+    gameFight.ToStop(nChar);
   }
 
 
@@ -159,15 +194,18 @@ void CGameStateRun::OnShow()
     //all show thing put here no any if else
     heart_test.show_heart_img();
 
+    barrage.show_img();
+    
     user_frame.show_frame();
     user_frame.show_select_heart();
     user_frame.print();//print all thing in user_frame by load_text(GameText) in OnMove and set_enable)
     
-    gameButtonFrame.show_button();
-
-    barrage.show_img();
     green_line.ShowBitmap();
-
     monster_frame.show_monster_frame_and_print();
+    
+    gameButtonFrame.show_button();
+    gameFight.show_fight_img();
+    gameFight.MovingBar();
+
   }
 }

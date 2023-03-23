@@ -10,6 +10,7 @@ void UserFrame::load_img() {
   up_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame.bmp"});
   down_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame.bmp"});
   down_black.LoadBitmapByString({"resources/down_black.bmp"});
+  stage_in_top_black.LoadBitmapByString({"resources/stage_in_top_black.bmp"});
   
   heart.LoadBitmapByString({"resources/heart.bmp"},RGB(255,255,255));
   heart.SetTopLeft(1000,700);

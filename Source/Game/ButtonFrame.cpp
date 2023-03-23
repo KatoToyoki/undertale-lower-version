@@ -13,28 +13,28 @@ void ButtonFrame::LoadSetIMG()
         "resources/fight_on.bmp",
         "resources/fight_selected.bmp",
     });
-    _buttons[fight].SetTopLeft(335,917);
+    _buttons[fight].SetTopLeft(312,975);
     
     _buttons[act].LoadBitmapByString({
         "resources/act_off.bmp",
         "resources/act_on.bmp",
         "resources/act_selected.bmp",
     });
-    _buttons[act].SetTopLeft(665,917);
+    _buttons[act].SetTopLeft(658,975);
     
     _buttons[item].LoadBitmapByString({
         "resources/item_off.bmp",
         "resources/item_on.bmp",
         "resources/item_selected.bmp",
     });
-    _buttons[item].SetTopLeft(1000,917);
+    _buttons[item].SetTopLeft(1014,975);
     
     _buttons[mercy].LoadBitmapByString({
         "resources/mercy_off.bmp",
         "resources/mercy_on.bmp",
         "resources/mercy_selected.bmp",
     });
-    _buttons[mercy].SetTopLeft(1335,917);
+    _buttons[mercy].SetTopLeft(1360,975);
 }
 
 void ButtonFrame::SetInit()
@@ -42,7 +42,7 @@ void ButtonFrame::SetInit()
     _buttons[fight].SetFrameIndexOfBitmap(toOn);
     _buttons[act].SetFrameIndexOfBitmap(toOff);
     _buttons[item].SetFrameIndexOfBitmap(toOff);
-    _buttons[mercy].SetFrameIndexOfBitmap(toOff);
+    _buttons[mercy].SetFrameIndexOfBitmap(toOff);                  
 }
 
 void ButtonFrame::show_button() {

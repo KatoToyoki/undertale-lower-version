@@ -246,6 +246,7 @@
     <ClCompile Include="Source\Game\acts.cpp" />
     <ClCompile Include="Source\Game\barrage.cpp" />
     <ClCompile Include="Source\Game\ButtonFrame.cpp" />
+    <ClCompile Include="Source\Game\Fight.cpp" />
     <ClCompile Include="Source\Game\first_stage.cpp" />
     <ClCompile Include="Source\Game\first_stage_sub_stage\show_menu.cpp" />
     <ClCompile Include="Source\Game\first_stage_sub_stage\show_normal_mode.cpp" />
@@ -277,6 +278,7 @@
     <ClInclude Include="Source\Game\barrage.h" />
     <ClInclude Include="Source\Game\ButtonFrame.h" />
     <ClInclude Include="Source\Game\config.h" />
+    <ClInclude Include="Source\Game\Fight.h" />
     <ClInclude Include="Source\Game\first_stage.h" />
     <ClInclude Include="Source\Game\first_stage_sub_stage\show_menu.h" />
     <ClInclude Include="Source\Game\first_stage_sub_stage\show_normal_mode.h" />
