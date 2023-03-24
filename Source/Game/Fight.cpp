@@ -67,11 +67,43 @@ void Fight::load_img()
 
 void Fight::show_fight_img()
 {
-    fightScope.ShowBitmap();
-    fightBar.ShowBitmap();
+    if (_enable)
+    {
+        fightScope.ShowBitmap();
+        fightBar.ShowBitmap();
+    }
+    else if (!_enable)
+    {
+        _isBarStop = false;
+        _isAttack = false;
+        _isHPBarStop = false;
+        minusHP ="";
+        attackCount = 0;
+        fightBar.SetTopLeft(240,593);
+        fightScope.UnshowBitmap();
+        fightBar.UnshowBitmap();
+        
+    }
+    
+    if((_isAttack==true || IfMiss()==true) && _enable)
+    {
+      attack();
+      if(GetDurationMinusHP()>0 && GetAttackCount()<=1)
+      {
+        RevealMinusHP();
+        ShowHPBar();
+      }
+      else if(GetDurationMinusHP()==0)
+      {
+        ResetDurationMinusHP();
+        ResetMinusHP();
+        ResetIsAttack();
+        UnshowHPBar();
+      }
+    }
 }
 
-int Fight::attack()
+void Fight::attack()
 {
     if((fightBar.GetLeft()>=theStart && fightBar.GetLeft()<thirdFront) || (fightBar.GetLeft()>=thirdBehind && fightBar.GetLeft()<theEnd))
     {
@@ -106,20 +138,22 @@ int Fight::attack()
         minusHP="MISS";
         _isAttack=true;
     }
-    return 0;
 }
 
 void Fight::MovingBar()
 {
-    if(fightBar.GetLeft()<1560 && _isBarStop==false){
-        fightBar.SetTopLeft(fightBar.GetLeft()+16,590);
-        attackCount=0;
+    if (_enable)
+    {
+        if(fightBar.GetLeft()<1560 && _isBarStop==false){
+            fightBar.SetTopLeft(fightBar.GetLeft()+16,590);
+            attackCount=0;
+        }
     }
 }
 
-void Fight::ToStop(UINT nChar, UINT nRepCnt, UINT nFlags)
+void Fight::ToStop(UINT nChar)
 {
-    if(nChar==VK_RETURN)
+    if(nChar==VK_RETURN && _enable)
         // minusHP.compare("MISS")==0
         {
         _isBarStop=true;
@@ -130,17 +164,13 @@ void Fight::ToStop(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 bool Fight::IfMiss()
 {
-    if((minusHP.compare("MISS")==0) || (fightBar.GetLeft()>=1520))
-    {
-        return true;
-    }
-    return false;
+    return ((minusHP.compare("MISS")==0) || (fightBar.GetLeft()>=1520));
 }
 
 void Fight::RevealMinusHP()
 {
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
-    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(255, 255, 255), 800);
+    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "Determination Mono Web", RGB(255, 255, 255), 800);
     game_framework::CTextDraw::Print(pDC, 900, 280, minusHP);
     game_framework::CDDraw::ReleaseBackCDC();
     if(durationMinusHP!=0)
@@ -174,11 +204,4 @@ void Fight::UnshowHPBar()
     HPminus.UnshowBitmap();
     HPFrame.UnshowBitmap();
     _enable=false;
-}
-
-void Fight::EndFight()
-{
-    fightScope.UnshowBitmap();
-    fightBar.UnshowBitmap();
-    fightBar.SetTopLeft(240,593);
 }

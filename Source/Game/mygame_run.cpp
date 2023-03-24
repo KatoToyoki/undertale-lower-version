@@ -8,9 +8,6 @@
 
 #include "../Library/gamecore.h"
 #include "mygame.h"
-#include <iostream>
-
-// #define MID ((1920/2)-(UserFrame.horizontal_up_frame.GetWidth()/2));
 
 using namespace game_framework;
 
@@ -25,42 +22,139 @@ CGameStateRun::~CGameStateRun() {}
 void CGameStateRun::OnBeginState() {}
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
-  heart_test.move_control(user_frame.get_corner());
+  switch (stage_go)
+  {
+  case 1:
+    show_normal_mode.init(&user_frame,&gameButtonFrame,
+      &monster_frame,&heart_test,&gameFight);
+    break;
+  case 2:
+    switch (gameButtonFrame.get_current_selection())
+    {
+    case 0:
+      show_normal_mode.choose_fight_taget();
+      break;
+    case 1:
+      show_normal_mode.choose_act_target();
+      break;
+    case 2:
+      show_normal_mode.choose_item();
+      break;
+    case 3:
+      show_normal_mode.choose_mercy();
+      break;
+    }
+    break;
+  case 3:
+    switch (gameButtonFrame.get_current_selection())
+    {
+    case 0:
+      show_normal_mode.choose_fight();
+      break;
+    case 1:
+      show_normal_mode.choose_act();
+      break;
+    case 2:
+      show_normal_mode.choose_item();
+      break;
+    case 3:
+      show_normal_mode.choose_mercy();
+      break;
+    }
+    
+    break;
+  case 4:
+    switch (gameButtonFrame.get_current_selection())
+    {
+    case 0:
+      if (gameFight.GetDurationMinusHP()<=0)
+      {
+        stage_go+=1;
+      }
+      break;
+    case 1:
+      show_normal_mode.choose_act_after();
+      break;
+    case 2:
+      show_normal_mode.choose_item();
+      break;
+    case 3:
+      show_normal_mode.choose_mercy();
+      break;
+    }
+    
+    break;
+  case 5:
+    //maybe battle mode
+    barrage.set_show_enable(true);
+    barrage.damege_hit(&heart_test);
+    barrage.right_move(1);
+    
+    user_frame.set_choose(false);
+    user_frame.control_frame(talk_to_papyrus_normal_battle);
+    heart_test.move_control(user_frame.get_corner(),true);
+
+    monster_frame.set_enable(true,0,2);
+    
+    break;
+  }
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
-  // all the material here
   user_frame.load_img();
-  user_frame.create_frame(314, 1294, 301, 563);
-  // user_frame.create_frame(314,416,751,563);
+  user_frame.create_frame(314, 1294, 312, 563);
   heart_test.load_img();
+  
+  gameButtonFrame.LoadSetIMG();
+  gameButtonFrame.SetInit();
 
-  menuTop.LoadBitmapByString({"resources/menu_top.bmp"});
-  menuTop.SetTopLeft(727, 0);
-  menuBottom.LoadBitmapByString({"resources/menu_bottom.bmp"});
-  menuBottom.SetTopLeft(599, 700);
+  menu.load_img_set_postion();
+  barrage = Barrage(2,blue);
+  barrage.load_img("enter");
+  barrage.set_positon(700,700);
+  // game_framework::CSpecialEffect::SetCurrentTime();
+  green_line.LoadBitmapByString({"resources/green_line.bmp"},RGB(255,255,255));
+  green_line.SetTopLeft(274,20);
+
+  monster_frame.load_img();
+  monster_frame.set_img_position(1190,307);
+  
+	Text data(33, "Mmm, cha", RGB(0,0,0),30, 1234,333);
+	Text data2(33, "cha cha!", RGB(0,0,0),30, 1234,382);
+  vector<Text> vector = {data,data2};
+  GameText game_text(vector,monster_mode);
+  monster_frame.load_game_text(game_text);
+
+  gameFight.load_img();
+  gameFight.set_fight_img_enable(false);
 }
+
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
 
-  if (isMenu) {
-    if (nChar == VK_LEFT && currentStage != 1) {
-      currentStage -= 1;
-    } else if (nChar == VK_RIGHT && currentStage != 3) {
-      currentStage += 1;
-    }
+  if (menu.get_menu()) {
+    menu.choose(nChar);
+  } else{
+    //need OnKeyDown can put here no any if else
 
-    if (nChar == VK_RETURN) {
-      isMenu = false;
-      MenuOff();
-      gameButtonFrame.LoadSetIMG();
-      gameButtonFrame.SetInit();
-      gameFight.load_img();
-    }
-  } else if (isMenu == false) {
-    gameButtonFrame.choose_update(nChar, nRepCnt, nFlags);
-    gameFight.ToStop(nChar,nRepCnt,nFlags);
+    gameButtonFrame.choose_update(nChar);
+    user_frame.choose_updata(nChar);
+    gameFight.ToStop(nChar);
+  }
+
+
+  
+  //stage_control don't touch here
+  if (nChar == VK_RETURN || nChar == 0x5A)
+  {
+    stage_go+=1;
+    user_frame._current_selection = 0;
+  }
+  if ((nChar == 0x58 || nChar == VK_SHIFT) && stage_go !=1)
+  {
+    stage_go-=1;
+    user_frame._current_selection = 0;
   }
 }
 
@@ -95,131 +189,25 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 }
 void CGameStateRun::OnShow()
 {
-  if (isMenu) {
-    WholeMenu();
+  if (menu.get_menu()) {
+    menu.WholeMenu();
+    
   } else {
+    //all show thing put here no any if else
+    heart_test.show_heart_img();
+
+    barrage.show_img();
+    
     user_frame.show_frame();
-    // heart_test.heart.ShowBitmap();
-
+    user_frame.show_select_heart();
+    user_frame.print();//print all thing in user_frame by load_text(GameText) in OnMove and set_enable)
+    
+    green_line.ShowBitmap();
+    monster_frame.show_monster_frame_and_print();
+    
     gameButtonFrame.show_button();
-    if (gameButtonFrame.GetIsChange() == true) {
-      gameButtonFrame.ChangeState();
-    }
+    gameFight.show_fight_img();
+    gameFight.MovingBar();
 
-    // all 110~137 are fight flow
-    if(gameFight.GetEnable()==true)
-    {
-      gameFight.show_fight_img();
-      gameFight.MovingBar();
-    }
-    else
-    {
-      gameFight.EndFight();
-    }
-
-    if(gameFight.GetIsAttack()==true || gameFight.IfMiss()==true)
-    {
-      gameFight.attack();
-      if(gameFight.GetDurationMinusHP()>0 && gameFight.GetAttackCount()<=1)
-      {
-        gameFight.RevealMinusHP();
-        gameFight.ShowHPBar();
-      }
-      else if(gameFight.GetDurationMinusHP()==0)
-      {
-        gameFight.ResetDurationMinusHP();
-        gameFight.ResetMinusHP();
-        gameFight.ResetIsAttack();
-        gameFight.UnshowHPBar();
-      }
-    }
   }
-}
-
-void CGameStateRun::WholeMenu()
-{
-  ShowMenuImg();
-  MenuState();
-}
-
-void CGameStateRun::MenuState()
-{
-  switch (currentStage)
-  {
-  case(1):
-    Stage1ON();
-    Stage2OFF();
-    Stage3OFF();
-    break;
-  case(2):
-    Stage1OFF();
-    Stage2ON();
-    Stage3OFF();
-    break;
-  case(3):
-    Stage1OFF();
-    Stage2OFF();
-    Stage3ON();
-    break;
-  }
-}
-
-void CGameStateRun::ShowMenuImg()
-{
-  menuTop.ShowBitmap();
-  menuBottom.ShowBitmap();
-}
-
-void CGameStateRun::Stage1OFF()
-{
-  CDC *pDC = CDDraw::GetBackCDC();
-  CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(255, 255, 255), 800);
-  CTextDraw::Print(pDC, 430, 320, "stage1");
-  CDDraw::ReleaseBackCDC();
-}
-
-void CGameStateRun::Stage2OFF()
-{
-  CDC *pDC = CDDraw::GetBackCDC();
-  CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(255, 255, 255), 800);
-  CTextDraw::Print(pDC, 880, 320, "stage2");
-  CDDraw::ReleaseBackCDC();
-}
-
-void CGameStateRun::Stage3OFF()
-{
-  CDC *pDC = CDDraw::GetBackCDC();
-  CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(255, 255, 255), 800);
-  CTextDraw::Print(pDC, 1330, 320, "stage3");
-  CDDraw::ReleaseBackCDC();
-}
-
-void CGameStateRun::Stage1ON()
-{
-  CDC *pDC = CDDraw::GetBackCDC();
-  CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-  CTextDraw::Print(pDC, 430, 320, "stage1");
-  CDDraw::ReleaseBackCDC();
-}
-
-void CGameStateRun::Stage2ON()
-{
-  CDC *pDC = CDDraw::GetBackCDC();
-  CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-  CTextDraw::Print(pDC, 880, 320, "stage2");
-  CDDraw::ReleaseBackCDC();
-}
-
-void CGameStateRun::Stage3ON()
-{
-  CDC *pDC = CDDraw::GetBackCDC();
-  CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-  CTextDraw::Print(pDC, 1330, 320, "stage3");
-  CDDraw::ReleaseBackCDC();
-}
-
-void CGameStateRun::MenuOff()
-{
-  menuTop.UnshowBitmap();
-  menuBottom.UnshowBitmap();
 }

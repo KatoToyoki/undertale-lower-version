@@ -41,6 +41,7 @@ public:
   game_framework::CMovingBitmap up_horizontal_frame;
   game_framework::CMovingBitmap down_horizontal_frame;
   game_framework::CMovingBitmap down_black;
+  game_framework::CMovingBitmap stage_in_top_black;
   FrameData user_frame_size = {314, 1294, {312, 563}};
   FrameData battle_frame_size = {314, 416, {751, 563}};
 

@@ -31,7 +31,7 @@ class Fight
 {
 private:
     // enable is to control the fight flow is willing and ready to do
-    bool _enable=true;
+    bool _enable=false;
     
     // the images of fight range and white fight bar
     game_framework::CMovingBitmap fightScope,fightBar;
@@ -83,7 +83,7 @@ public:
     // the setters
     
     // REQUIRED
-    // put OnShow, set if the image will be revealed
+    // put OnMove, set if the image will be revealed
     void set_fight_img_enable(bool enable);
 
     // reset all these to its default state so that when a new round it could start like a new turn
@@ -96,18 +96,18 @@ public:
     void load_img();
     
     // REQUIRED
-    // put OnMove, can modify enable to control if img will reveal or not
+    // put OnShow, can modify enable to control if img will reveal or not
     void show_fight_img();
     
     // REQUIRED
     // depending on the position, return the value of how much will HP be subtracted
-    int attack();
+    void attack();
     
     // to let attack bar gradually moving
     void MovingBar();
 
     // depending on key in, decide if the bar will stop
-    void ToStop(UINT nChar, UINT nRepCnt, UINT nFlags);
+    void ToStop(UINT nChar);
 
     // in order to do the miss condition
     bool IfMiss();

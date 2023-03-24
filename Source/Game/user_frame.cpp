@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "user_frame.h"
 #include "../Library/gamecore.h"
+#include "game_text.h"
 
 void UserFrame::load_img() {
   left_vertical_frame.LoadBitmapByString({"resources/left_vertical_frame.bmp"});
@@ -9,6 +10,10 @@ void UserFrame::load_img() {
   up_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame.bmp"});
   down_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame.bmp"});
   down_black.LoadBitmapByString({"resources/down_black.bmp"});
+  stage_in_top_black.LoadBitmapByString({"resources/stage_in_top_black.bmp"});
+  
+  heart.LoadBitmapByString({"resources/heart.bmp"},RGB(255,255,255));
+  heart.SetTopLeft(1000,700);
 }
 
 void UserFrame::move_frame_to_battle_mode() {
@@ -89,10 +94,11 @@ void UserFrame::control_frame(
     break;
   case 1: // change talk to long battle
     frame_commend = 0;
-    if (get_width() <= 416) {
+    if (get_width() <= 558 && frame_commend == 0) {
       frame_commend = 1;
     }
-    if (get_height() <= 227 && get_width() <= 416) {
+    if (get_height() <= 227 && get_width() <= 558 && frame_commend == 1) {
+      create_frame(227, 528, 695, 650);
       frame_commend = 4;
       move_done = true;
       break;
@@ -104,7 +110,7 @@ void UserFrame::control_frame(
     if (get_width() >= 1294) {
       frame_commend = 4;
       move_done = true;
-      create_frame(314, 1294, 301, 563);
+      create_frame(314, 1294, 312, 563);
       break;
     }
     move_done = false;
@@ -117,11 +123,22 @@ void UserFrame::control_frame(
     if (get_height() >= 314 && get_width() >= 1294) {
       frame_commend = 4;
       move_done = true;
-      create_frame(314, 1294, 301, 563);
+      create_frame(314, 1294, 312, 563);
       break;
     }
     move_done = false;
     break;
+  case 5:
+    frame_commend = 0;
+    if (get_width() <= 575) {
+      frame_commend = 4;
+      move_done = true;
+      create_frame(314, 575, 671, 563);
+      break;
+    }
+    move_done = false;
+    break;
+    
   default:
     frame_commend = 4;
     move_done = true;
@@ -141,3 +158,87 @@ void UserFrame::check_which_change_frame_need_call(int frame_commend) {
     change_frame_up();
   }
 }
+
+void UserFrame::load_text(GameText game_text)
+{
+  _game_text = game_text;
+}
+
+int UserFrame::get_current_selection()
+{
+  return _current_selection;
+}
+
+void UserFrame::set_choose(bool enable, int head, int text_len)
+{
+  _enable = enable;
+  _head = head;
+  _text_len = text_len;
+  _game_text.set_enable(_enable);
+  _game_text.set_text_index(_head,_text_len);
+  if (_enable && _game_text._mode != talk_mode)
+  {
+    // _current_selection = 0;
+    int x= _game_text.get_positon_x(_current_selection);
+    int y= _game_text.get_positon_y(_current_selection);
+    heart.SetTopLeft(x-78,y+21);
+  }
+}
+
+void UserFrame::print()
+{
+  if (_enable){
+    _game_text.print();
+  }
+}
+
+void UserFrame::choose_updata(UINT nChar)
+{
+  if (_enable)
+  {
+    if (_game_text._mode == act_item_mode)
+    {
+      if ( nChar == VK_LEFT && (_current_selection%2) != 0)
+      {
+        _current_selection -=1;
+      }
+      if (nChar == VK_RIGHT && (_current_selection%2) != 1 && _current_selection+1 <=_game_text.get_vector_len()-1)
+      {
+        _current_selection +=1;
+      }
+      if (nChar == VK_DOWN && (_current_selection+2<=_game_text.get_vector_len()-1))
+      {
+        _current_selection +=2;
+      }
+      if (nChar == VK_UP && (_current_selection/2) != 0)
+      {
+        _current_selection -=2;
+      }
+    }
+    if (_game_text._mode == target_mode)
+    {
+      if (nChar == VK_DOWN && _current_selection < _game_text.get_vector_len()-1)
+      {
+        _current_selection +=1;
+      }
+      if (nChar == VK_UP && _current_selection != 0)
+      {
+        _current_selection -=1;
+      }
+    }
+  }
+}
+
+int UserFrame::get_text_vector_len()
+{
+  return _game_text.get_vector_len();
+}
+
+void UserFrame::show_select_heart()
+{
+  if (_enable && _game_text._mode != talk_mode)
+  {
+    heart.ShowBitmap();
+  }
+}
+

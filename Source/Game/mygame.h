@@ -36,10 +36,18 @@
  *      2. Replace the demonstration of animation as a new bouncing ball.
  *      3. Use ShowInitProgress(percent) to display loading progress.
  */
+
+#include "stdafx.h"
+
 #include "ButtonFrame.h"
-#include "frame.h"
 #include "move.h"
 #include "user_frame.h"
+#include "menu.h"
+#include "game_text.h"
+#include "first_stage_sub_stage/show_menu.h"
+#include "first_stage_sub_stage/show_normal_mode.h"
+#include "barrage.h"
+#include "monster_frame.h"
 #include "Fight.h"
 
 namespace game_framework {
@@ -106,25 +114,19 @@ private:
   UserFrame user_frame;
   ButtonFrame button_frame;
   Move heart_test;
+  Menu menu;
+  GameText game_text;
+  ShowNormalMode show_normal_mode;
+  Barrage barrage;
+  MonsterFrame monster_frame;
+  
+  
+  int stage_go = 0;
 
-  int test_index = 0;
-
-  CMovingBitmap menuTop, menuBottom;
-  int currentStage = 1;
-  bool isMenu = true;
   ButtonFrame gameButtonFrame;
   Fight gameFight;
 
-  void WholeMenu();
-  void MenuState();
-  void ShowMenuImg();
-  void Stage1OFF();
-  void Stage2OFF();
-  void Stage3OFF();
-  void Stage1ON();
-  void Stage2ON();
-  void Stage3ON();
-  void MenuOff();
+  CMovingBitmap green_line;
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -8,7 +8,7 @@
 //! 設定遊戲畫面的解析度（高度）
 #define SIZE_Y				 1080
 //! 是否以全螢幕方式開啟遊戲
-#define OPEN_AS_FULLSCREEN	 true		
+#define OPEN_AS_FULLSCREEN	 false
 //! 是否顯示loading(OnInit)的進度
 #define SHOW_LOAD_PROGRESS   true		
 // 遊戲畫面預設的背景顏色(黑色)

@@ -21,6 +21,8 @@ private:
     // fight, act, item, mercy buttons
     game_framework::CMovingBitmap _buttons[4] ;
 
+    bool _enable = false;
+
 public:
     ButtonFrame()=default;
     ~ButtonFrame()=default;
@@ -41,7 +43,7 @@ public:
 
     // REQUIRED
     // depending on key in, decide what target is, then do the function on OnShow
-    void choose_update(UINT nChar, UINT nRepCnt, UINT nFlags);
+    void choose_update(UINT nChar);
     
     // to get private member, isChange
     bool GetIsChange();
@@ -55,4 +57,6 @@ public:
     // REQUIRED
     // set all the buttons off
     void all_button_off();
+
+    void set_updata_enable(bool enable);
 };
