@@ -26,7 +26,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   {
   case 1:
     show_normal_mode.init(&user_frame,&gameButtonFrame,
-      &monster_frame,&heart_test,&gameFight);
+      &monster_frame,&heart_test,&gameFight,&migosp);
     break;
   case 2:
     switch (gameButtonFrame.get_current_selection())
@@ -141,9 +141,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     gameButtonFrame.choose_update(nChar);
     user_frame.choose_updata(nChar);
     gameFight.ToStop(nChar);
+    migosp.act_after_stage_control_updata(nChar,&stage_go);
   }
-
-
   
   //stage_control don't touch here
   if (nChar == VK_RETURN || nChar == 0x5A)
@@ -209,5 +208,10 @@ void CGameStateRun::OnShow()
     gameFight.show_fight_img();
     gameFight.MovingBar();
 
+    std::string str = std::to_string(stage_go);
+    Text stage(50,str,RGB(255,255,255),600,100,100);
+    stage.set_enable(true);
+    stage.print();
+    
   }
 }

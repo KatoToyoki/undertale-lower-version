@@ -119,6 +119,7 @@ private:
   ShowNormalMode show_normal_mode;
   Barrage barrage;
   MonsterFrame monster_frame;
+  Migosp migosp;
   
   
   int stage_go = 0;

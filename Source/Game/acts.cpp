@@ -11,7 +11,7 @@ GameText Acts::get_act_name_list()
     vector<Text> text_vector = {};
     for (Act act : _act_vector)
     {
-        Text text(45,act.name,RGB(255,255,255),750,0,0);
+        Text text(60,act.name,RGB(255,255,255),600,0,0);
         text_vector.push_back(text);
     }
     GameText data(text_vector, act_item_mode);
@@ -23,9 +23,9 @@ vector<Act> Acts::get_act_list()
     return _act_vector;
 }
 
-Act Acts::get_act_by_index(int index)
+Act* Acts::get_act_by_index(int index)
 {
-    return _act_vector[index];
+    return &_act_vector[index];
 }
 
 

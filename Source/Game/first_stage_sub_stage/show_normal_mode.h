@@ -2,6 +2,7 @@
 
 #include "../ButtonFrame.h"
 #include "../Fight.h"
+#include "../migosp.h"
 #include "../monster_frame.h"
 #include "../user_frame.h"
 #include "../sub_stage.h"
@@ -11,7 +12,8 @@ class ShowNormalMode : public SubStage
 public:
     void init(UserFrame *user_frame,
         ButtonFrame *button_frame,MonsterFrame *monster_frame,
-        Move *heart_test,Fight *game_fight);
+        Move *heart_test,Fight *game_fight,
+        Migosp *enemy);
     void end();
 
     void choose_fight_taget();
@@ -27,4 +29,5 @@ public:
     MonsterFrame *_monster_frame;
     Move *_heart_test;
     Fight *_game_fight;
+    Migosp *_enemy;
 };
