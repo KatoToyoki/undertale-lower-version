@@ -30,8 +30,6 @@ Migosp::Migosp()
 		0,
 		{0,3}
     };
-	std::vector<Text> text_vector_pet = {text0,text1,text2,text2,text2,text2,text2};
-	act_after = GameText(text_vector,talk_mode);
 	Act act_pet = {
         "pet",
         act_after,
@@ -53,7 +51,7 @@ void Migosp::set_act_init(int current_selection)
 	if (current_selection == check )
 	{
 		act->index = 0;
-		act->act_after_len_list={0,3};
+		act->act_after_len_list={0,1,1};
 		act->cost_round = 1;
 	}
 	if (current_selection == talk)
@@ -65,8 +63,8 @@ void Migosp::set_act_init(int current_selection)
 	if (current_selection == pet)
 	{
 		act->index = 0;
-		act->act_after_len_list={0,3,1,2};
-		act->cost_round = 1;
+		act->act_after_len_list={0,1,1,1};
+		act->cost_round = 3;
 	}
 }
 
@@ -89,9 +87,10 @@ void Migosp::act_after_stage_control_updata(UINT nChar, int* stage)
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _act_after_enable)
 	{
 		Act* act = acts.get_act_by_index(_current_selection);
-		if (times > act->cost_round)
+		if (times < act->cost_round-1)
 		{
 			times+=1;
+			act->index+=act->act_after_len_list[times];
 			*stage-=1;
 		}
 	}
@@ -100,7 +99,6 @@ void Migosp::act_after_stage_control_updata(UINT nChar, int* stage)
 int Migosp::get_now_act_after_index()
 {
 	Act* act = acts.get_act_by_index(_current_selection);
-	act->index+=act->act_after_len_list[times];
 	return act->index;
 }
 
