@@ -9,7 +9,9 @@ void ShowNormalMode::init(UserFrame *user_frame,
                           ButtonFrame *button_frame,
                           MonsterFrame *monster_frame,
                           Move *heart_test,
-                          Fight *game_fight,Migosp *enemy)//宣告於OnMove()
+                          Fight *game_fight,
+                          Migosp *enemy,
+                          Items *items)//宣告於OnMove()
 {
 	_user_frame = user_frame;
 	_user_frame->control_frame(to_talk);
@@ -28,6 +30,9 @@ void ShowNormalMode::init(UserFrame *user_frame,
 
 	_enemy = enemy;
 	_enemy->set_game_text_enable(false);
+
+	_items = items;
+	_items->set_control_updata(false);
 	
 	// _ememy.print_text(text, true);
 	Text text(60, "* Monster_say_someting", RGB(255,255,255),500, 465,613);
@@ -67,8 +72,7 @@ void ShowNormalMode::choose_fight()
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
 	
-	_game_fight->set_fight_img_enable(true);
-	// fight.check();
+	_game_fight->set_fight_img_enable(true);//set fight work dont false
 	_user_frame->set_choose(true,0,1);
 }
 
@@ -91,12 +95,6 @@ void ShowNormalMode::choose_act()
 {
 	// _enemy.name_print(false);
 	
-	// _enemy.print_act_vector_text(true);
-	
-	// Text text(60, "* act", RGB(255,255,255),500, 465,613);
-	// std::vector<Text> text_vector = {text,text,text,text};
-	// GameText game_text = GameText(text_vector,act_item_mode);
-	
 	_user_frame->load_text(_enemy->acts.get_act_name_list());
 	_user_frame->set_choose(true,0,_user_frame->get_text_vector_len());
 	_enemy->set_act_init(_user_frame->get_current_selection());
@@ -105,20 +103,11 @@ void ShowNormalMode::choose_act()
 void ShowNormalMode::choose_act_after()
 {
 	_user_frame->set_choose(false);
-	// _enemy.print_act_vector_text(false);
 	_button_frame->all_button_off();
 
-	// _enemy.print_select_act_text(true);
-	// Text text0(60, "* Migosp - AT 7 DF 5", RGB(255,255,255),600, 465,613);
-	// Text text1(60, "* It seems evil,but it's just ", RGB(255,255,255),600, 465,613);
-	// Text text2(60, "  with the wrong crowd...", RGB(255,255,255),600, 465,613);
-	// std::vector<Text> text_vector = {text0,text1,text2};
-	// GameText game_text = GameText(text_vector,talk_mode);
-	// _user_frame->load_text(game_text);
 	_user_frame->load_text(_enemy->get_act_after_game_text());
 	_enemy->set_game_text_enable(true);
 	_user_frame->set_choose(true,_enemy->get_now_act_after_index(),_enemy->get_now_act_after_text_len());
-	// _user_frame->set_choose(true,0,3);
 }
 
 void ShowNormalMode::choose_item()
@@ -126,7 +115,17 @@ void ShowNormalMode::choose_item()
 	_button_frame->set_updata_enable(false);
 	// _ememy.print_saying(???,false);
 
-	// _item.print_item_vecter(true);
-	// _item.choose_updata(true);
+	_user_frame->load_text(_items->get_item_list());
+	_user_frame->set_choose(true,0,_user_frame->get_text_vector_len());
+	_items->set_item_cost_round_init(_user_frame->get_current_selection());
 }
 
+void ShowNormalMode::choose_item_after()
+{
+	_user_frame->set_choose(false);
+	_button_frame->all_button_off();
+	
+	_user_frame->load_text(_items->get_item_after_game_text());
+	_items->set_control_updata(true);
+	_user_frame->set_choose(true,_items->get_now_item_after_index(),_items->get_now_item_after_text_len());
+}

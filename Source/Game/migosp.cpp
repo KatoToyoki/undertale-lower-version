@@ -3,6 +3,11 @@
 
 Migosp::Migosp()
 {
+	set_acts();
+}
+
+void Migosp::set_acts()
+{
 	Text text0(60, "* Migosp - AT 7 DF 5", RGB(255,255,255),600, 465,613);
 	Text text1(60, "* It seems evil,but it's just ", RGB(255,255,255),600, 465,613);
 	Text text2(60, "  with the wrong crowd...", RGB(255,255,255),600, 465,613);
@@ -40,8 +45,9 @@ Migosp::Migosp()
     };
 	vector<Act> act_vecter = {act_check,act_talk,act_pet};
 	acts = Acts (act_vecter) ;
-    
+	
 }
+
 
 void Migosp::set_act_init(int current_selection)
 {
@@ -51,7 +57,7 @@ void Migosp::set_act_init(int current_selection)
 	if (current_selection == check )
 	{
 		act->index = 0;
-		act->act_after_len_list={0,1,1};
+		act->act_after_len_list={0,3};
 		act->cost_round = 1;
 	}
 	if (current_selection == talk)

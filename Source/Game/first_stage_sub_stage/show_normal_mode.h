@@ -2,6 +2,7 @@
 
 #include "../ButtonFrame.h"
 #include "../Fight.h"
+#include "../items.h"
 #include "../migosp.h"
 #include "../monster_frame.h"
 #include "../user_frame.h"
@@ -13,7 +14,7 @@ public:
     void init(UserFrame *user_frame,
         ButtonFrame *button_frame,MonsterFrame *monster_frame,
         Move *heart_test,Fight *game_fight,
-        Migosp *enemy);
+        Migosp *enemy, Items *items);
     void end();
 
     void choose_fight_taget();
@@ -22,6 +23,7 @@ public:
     void choose_act();
     void choose_act_after();
     void choose_item();
+    void choose_item_after();
     void choose_mercy(){};
 
     UserFrame *_user_frame;
@@ -30,4 +32,5 @@ public:
     Move *_heart_test;
     Fight *_game_fight;
     Migosp *_enemy;
+    Items *_items;
 };

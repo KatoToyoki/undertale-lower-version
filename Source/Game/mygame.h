@@ -120,6 +120,7 @@ private:
   Barrage barrage;
   MonsterFrame monster_frame;
   Migosp migosp;
+  Items items;
   
   
   int stage_go = 0;

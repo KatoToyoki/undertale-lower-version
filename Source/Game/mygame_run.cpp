@@ -26,7 +26,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   {
   case 1:
     show_normal_mode.init(&user_frame,&gameButtonFrame,
-      &monster_frame,&heart_test,&gameFight,&migosp);
+      &monster_frame,&heart_test,&gameFight,&migosp,&items);
     break;
   case 2:
     switch (gameButtonFrame.get_current_selection())
@@ -55,7 +55,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       show_normal_mode.choose_act();
       break;
     case 2:
-      show_normal_mode.choose_item();
+      show_normal_mode.choose_item_after();
       break;
     case 3:
       show_normal_mode.choose_mercy();
@@ -76,7 +76,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       show_normal_mode.choose_act_after();
       break;
     case 2:
-      show_normal_mode.choose_item();
+      // show_normal_mode.choose_item_after();
+      stage_go+=1;
       break;
     case 3:
       show_normal_mode.choose_mercy();
@@ -142,6 +143,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     user_frame.choose_updata(nChar);
     gameFight.ToStop(nChar);
     migosp.act_after_stage_control_updata(nChar,&stage_go);
+    items.item_after_stage_control_updata(nChar,&stage_go);
   }
   
   //stage_control don't touch here

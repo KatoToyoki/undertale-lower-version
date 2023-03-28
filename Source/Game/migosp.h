@@ -14,7 +14,6 @@ public:
     Migosp();
     
     GameText get_act_after_game_text();
-    void set_acts();
     void set_act_init(int current_selection);
     void set_game_text_enable(bool enable);
     
@@ -30,5 +29,7 @@ private:
     int times = 0;
     int _current_selection;
     int *_stege;
+    
+    void set_acts();
     
 };
