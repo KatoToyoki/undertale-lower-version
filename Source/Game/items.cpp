@@ -114,11 +114,26 @@ void Items::set_items_init()
         {0,3,3,2,3,1,2, 2,2,2,2, 1,2,1, 1,1,2}
     };
     
+    text_vector= {
+        Text (60,"* You eat the tem flake",RGB(255,255,255),600,0,0),
+        Text (60,"* You recovered 2 HP!",RGB(255,255,255),600,0,0),
+    };
+    GameText tem_game_text(text_vector, talk_mode);
+    Item temmie_flakes ={
+        "tem flake",
+        1,
+        2,
+         0,
+        tem_game_text,
+        1,
+        {0,2}
+    };
+    
 	vector<Item> item_vector = {
 	    nice_cream,
 	    bisicle,
-	    instant_noodles
-	    
+	    instant_noodles,
+	    temmie_flakes
 	};
     items = item_vector;
 }
