@@ -184,12 +184,13 @@ Text Items::get_and_set_ramdon_text(std::string str)
     return game_text._data[random_num];
 }
 
-void Items::set_item_cost_round_init(int current_selection)
+void Items::set_item_cost_round_init(int current_selection, int button_selection)
 {
     check_and_del_item();
 	_current_selection = current_selection;
     times = 0;
     set_items(_current_selection);
+    _button_selection = button_selection;
 }
 
 void Items::set_control_updata(bool enable)
@@ -282,5 +283,5 @@ void Items::check_and_del_item()
 
 bool Items::is_items_empty()
 {
-    return (items[0].cost_round == 0 && *_stage == 2);
+    return (items[0].cost_round == 0 && *_stage == 2 && _button_selection == 2);
 }

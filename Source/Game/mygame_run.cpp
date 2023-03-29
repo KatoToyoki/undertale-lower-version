@@ -129,6 +129,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 
   gameFight.load_img();
   gameFight.set_fight_img_enable(false);
+
 }
 
 
