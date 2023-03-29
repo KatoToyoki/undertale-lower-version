@@ -147,7 +147,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   }
   
   //stage_control don't touch here
-  if (nChar == VK_RETURN || nChar == 0x5A)
+  if ((nChar == VK_RETURN || nChar == 0x5A) && !items.is_items_empty())
   {
     stage_go+=1;
     user_frame._current_selection = 0;
@@ -157,6 +157,13 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     stage_go-=1;
     user_frame._current_selection = 0;
   }
+  //go init
+  if (nChar == 0x51)
+  {
+    stage_go = 1;
+    user_frame._current_selection = 0;
+  }
+  
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)

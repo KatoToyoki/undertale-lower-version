@@ -33,6 +33,7 @@ void ShowNormalMode::init(UserFrame *user_frame,
 
 	_items = items;
 	_items->set_control_updata(false);
+	_items->set_item_cost_round_init(_user_frame->get_current_selection());
 	
 	// _ememy.print_text(text, true);
 	Text text(60, "* Monster_say_someting", RGB(255,255,255),500, 465,613);
