@@ -1,8 +1,7 @@
 #pragma once
 
 #include <string>
-
-#include "mygame.h"
+#include "../Library/gameutil.h"
 
 class Charactor
 {
@@ -19,8 +18,9 @@ private:
     int hp_max = 20;
     int hp = 20;
     int one_hp_pixel = 3;
-    int hp_bar_positon_x = 859;
-    int hp_bar_positon_y = 900;
+    int hp_bar_position_x = 859;
+    int hp_bar_position_y = 900;
+    int max_bar_position_x = hp_bar_position_x + (one_hp_pixel * hp_max);
 
     game_framework::CMovingBitmap hp_bar;
     game_framework::CMovingBitmap hp_bar_red;

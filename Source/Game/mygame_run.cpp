@@ -22,6 +22,7 @@ CGameStateRun::~CGameStateRun() {}
 void CGameStateRun::OnBeginState() {}
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
+  charactor.updata_hp_bar_by_hp();
   switch (stage_go)
   {
   case 1:
@@ -130,6 +131,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameFight.load_img();
   gameFight.set_fight_img_enable(false);
 
+  charactor.set_hp_img();
 }
 
 
@@ -152,11 +154,13 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   {
     stage_go+=1;
     user_frame._current_selection = 0;
+    charactor.change_hp(5);
   }
   if ((nChar == 0x58 || nChar == VK_SHIFT) && stage_go !=1)
   {
     stage_go-=1;
     user_frame._current_selection = 0;
+    charactor.change_hp(-5);
   }
   //go init
   if (nChar == 0x51)
@@ -217,6 +221,8 @@ void CGameStateRun::OnShow()
     gameButtonFrame.show_button();
     gameFight.show_fight_img();
     gameFight.MovingBar();
+
+    charactor.show_charactor_data();
 
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);

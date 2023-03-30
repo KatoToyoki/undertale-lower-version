@@ -34,17 +34,14 @@ private:
     int times = 0;
     int *_stage;
     int _current_selection = 0;
-    void set_items(int current_selection);
     bool _enable = false;
     int _button_selection;
 
     Item* get_item_by_index(int current_selection);
-    int random_num_to_select_text(int min, int max);
+    int generate_random_num(int min, int max);
     Text get_and_set_ramdon_text(std::string str);
     void set_items_init();
+    void set_items(int current_selection);
 
     void check_and_del_item();
-    
-
-    GameText nice_cream_random_text_list;
 };
