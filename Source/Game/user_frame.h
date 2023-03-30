@@ -18,7 +18,7 @@ public:
 
   void control_frame(int frame_command_control);
 
-  bool get_move() const { return move_done; }
+  bool get_move_done() const { return move_done; }
   int get_current_selection();
   int get_text_vector_len();
   
