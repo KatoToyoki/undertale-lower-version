@@ -44,7 +44,7 @@ private:
   void change_frame_up();
   void check_which_change_frame_need_call(int frame_commend);
   
-  bool move_done = false;
+  bool move_done = true;
   bool _enable = false;
   int _head = 0,_text_len = 1;
   GameText _game_text;

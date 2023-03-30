@@ -34,14 +34,16 @@ void ShowNormalMode::init(UserFrame *user_frame,
 	_items = items;
 	_items->set_control_updata(false);
 	_items->set_item_cost_round_init(_user_frame->get_current_selection(),_button_frame->get_current_selection());
-	
-	// _ememy.print_text(text, true);
-	Text text(60, "* Monster_say_someting", RGB(255,255,255),500, 465,613);
-	std::vector<Text> text_vector = {text,text,text,text};
-	GameText game_text = GameText(text_vector,talk_mode);
-	_user_frame->load_text(game_text);
-	_user_frame->set_choose(true,0,3);
-	
+
+	if (_user_frame->get_move())
+	{
+		// _ememy.print_text(text, true);
+		Text text(60, "* Monster_say_someting", RGB(255,255,255),500, 465,613);
+		std::vector<Text> text_vector = {text,text,text,text};
+		GameText game_text = GameText(text_vector,talk_mode);
+		_user_frame->load_text(game_text);
+		_user_frame->set_choose(true,0,3);
+	}
 }
 
 void ShowNormalMode::end()
