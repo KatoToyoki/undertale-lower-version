@@ -79,6 +79,12 @@ public:
     std::string GetMinusHP();
     int GetAttackCount();
     int GetDurationMinusHP();
+
+    int test=0;
+
+    void Test1();
+    void Test2();
+    void Test3();
     
     // the setters
     

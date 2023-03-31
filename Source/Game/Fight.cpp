@@ -82,24 +82,30 @@ void Fight::show_fight_img()
         fightBar.SetTopLeft(240,593);
         fightScope.UnshowBitmap();
         fightBar.UnshowBitmap();
+
+        test=0;
         
     }
     
     if((_isAttack==true || IfMiss()==true) && _enable)
     {
-      attack();
-      if(GetDurationMinusHP()>0 && GetAttackCount()<=1)
-      {
-        RevealMinusHP();
-        ShowHPBar();
-      }
-      else if(GetDurationMinusHP()==0)
-      {
-        ResetDurationMinusHP();
-        ResetMinusHP();
-        ResetIsAttack();
-        UnshowHPBar();
-      }
+        if(test==1)
+        {
+            attack();
+            if(GetDurationMinusHP()>0 && GetAttackCount()<=1)
+                RevealMinusHP();
+                ShowHPBar();
+            }
+            else if(GetDurationMinusHP()==0)
+            {
+                ResetDurationMinusHP();
+                ResetMinusHP();
+                ResetIsAttack();
+                UnshowHPBar();
+            }
+        }
+      
+        
     }
 }
 
@@ -155,11 +161,12 @@ void Fight::ToStop(UINT nChar)
 {
     if(nChar==VK_RETURN && _enable)
         // minusHP.compare("MISS")==0
-        {
+    {
         _isBarStop=true;
         _isAttack=true;
         attackCount+=1;
-        }
+        test+=1;
+    }
 }
 
 bool Fight::IfMiss()
@@ -205,3 +212,5 @@ void Fight::UnshowHPBar()
     HPFrame.UnshowBitmap();
     _enable=false;
 }
+
+
