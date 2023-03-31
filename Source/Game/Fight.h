@@ -72,6 +72,8 @@ private:
     // this is to let items stay on screen for a while, not just quickly disappear
     int durationMinusHP=100;
 
+    game_framework::CMovingBitmap greenLineRight;
+
 protected:
     
 public:

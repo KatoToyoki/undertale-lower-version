@@ -63,6 +63,9 @@ void Fight::load_img()
     
     HPFrame.LoadBitmapByString({"resources/hp_bar_frame.bmp"}, RGB(255, 255, 255));
     HPFrame.SetTopLeft(618,374);
+
+    greenLineRight.LoadBitmapByString({"resources/green_line_right.bmp"}, RGB(255, 255, 255));
+    greenLineRight.SetTopLeft(1185,20);
 }
 
 void Fight::show_fight_img()
@@ -139,8 +142,6 @@ void Fight::Minus(double range)
     {
         minusPosition-=displacement;
     }
-    //monsterHP-=(int)(test*range);
-    //minusPosition-=(int)(1300-(minusPosition*range));
     
     minusHP="-"+(std::to_string(damage));
 }
@@ -222,6 +223,7 @@ void Fight::ShowHPBar()
     HP.ShowBitmap();
     HPminus.ShowBitmap();
     HPFrame.ShowBitmap();
+    greenLineRight.ShowBitmap();
 }
 
 void Fight::MovingHPBar()
