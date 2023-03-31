@@ -80,11 +80,13 @@ public:
     int GetAttackCount();
     int GetDurationMinusHP();
 
-    int test=0;
+    int t=0;
 
     void Test1();
     void Test2();
     void Test3();
+    void Test4();
+    void Test5();
     
     // the setters
     

@@ -71,6 +71,10 @@ void Fight::show_fight_img()
     {
         fightScope.ShowBitmap();
         fightBar.ShowBitmap();
+        Test1();
+        Test2();
+        Test3();
+        Test4();
     }
     else if (!_enable)
     {
@@ -83,13 +87,13 @@ void Fight::show_fight_img()
         fightScope.UnshowBitmap();
         fightBar.UnshowBitmap();
 
-        test=0;
+        t=0;
         
     }
     
     if((_isAttack==true || IfMiss()==true) && _enable)
     {
-        if(test==1)
+        if(t==1)
         {
             attack();
             if(GetDurationMinusHP()>0 && GetAttackCount()<=1)
@@ -106,7 +110,7 @@ void Fight::show_fight_img()
         }
       
         
-    }
+    
 }
 
 void Fight::attack()
@@ -165,7 +169,11 @@ void Fight::ToStop(UINT nChar)
         _isBarStop=true;
         _isAttack=true;
         attackCount+=1;
-        test+=1;
+        t=1;
+    }
+    else if(nChar==VK_F1)
+    {
+        _enable=true;
     }
 }
 
@@ -213,4 +221,45 @@ void Fight::UnshowHPBar()
     _enable=false;
 }
 
+void Fight::Test1()
+{
+    CDC *pDC = game_framework::CDDraw::GetBackCDC();
+    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+    game_framework::CTextDraw::Print(pDC, 0, 0, to_string(monsterHP));
+    game_framework::CDDraw::ReleaseBackCDC();
+}
 
+void Fight::Test2()
+{
+    std::string b=to_string(fightBar.GetLeft());
+    CDC *pDC = game_framework::CDDraw::GetBackCDC();
+    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+    game_framework::CTextDraw::Print(pDC, 0, 50, b);
+    game_framework::CDDraw::ReleaseBackCDC();
+}
+
+void Fight::Test3()
+{
+    //std::string a=to_string(monsterHP);
+
+    CDC *pDC = game_framework::CDDraw::GetBackCDC();
+    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+    game_framework::CTextDraw::Print(pDC, 0, 90, to_string(minusPosition));
+    game_framework::CDDraw::ReleaseBackCDC();
+}
+
+void Fight::Test4()
+{
+    CDC *pDC = game_framework::CDDraw::GetBackCDC();
+    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+    game_framework::CTextDraw::Print(pDC, 0, 140, to_string(attackCount));
+    game_framework::CDDraw::ReleaseBackCDC();
+}
+
+void Fight::Test5()
+{
+    CDC *pDC = game_framework::CDDraw::GetBackCDC();
+    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+    game_framework::CTextDraw::Print(pDC, 0, 200, to_string(t));
+    game_framework::CDDraw::ReleaseBackCDC();
+}
