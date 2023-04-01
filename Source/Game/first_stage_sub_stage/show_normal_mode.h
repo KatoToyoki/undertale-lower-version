@@ -26,6 +26,9 @@ public:
     void choose_item_after();
     void choose_mercy(){};
 
+    void monster_frame_no_battle();
+    void monster_frame_battle();
+
     UserFrame *_user_frame;
     ButtonFrame *_button_frame;
     MonsterFrame *_monster_frame;

@@ -50,6 +50,8 @@
 #include "charactor.h"
 #include "monster_frame.h"
 #include "Fight.h"
+#include "../Library/audio.h"
+
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -104,6 +106,7 @@ public:
   void OnMouseMove(UINT nFlags, CPoint point);   // 處理滑鼠的動作
   void OnRButtonDown(UINT nFlags, CPoint point); // 處理滑鼠的動作
   void OnRButtonUp(UINT nFlags, CPoint point);   // 處理滑鼠的動作
+  
 
 protected:
   void OnMove(); // 移動遊戲元素
@@ -123,6 +126,7 @@ private:
   Migosp migosp;
   Items items;
   Charactor charactor;
+  
   
   
   int stage_go = 0;

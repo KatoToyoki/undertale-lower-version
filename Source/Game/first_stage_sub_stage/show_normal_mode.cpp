@@ -29,11 +29,16 @@ void ShowNormalMode::init(UserFrame *user_frame,
 	_game_fight->set_fight_img_enable(false);
 
 	_enemy = enemy;
-	_enemy->set_game_text_enable(false);
+	_enemy->set_act_game_text_enable(false);
 
 	_items = items;
 	_items->set_control_updata(false);
 	_items->set_item_cost_round_init(_user_frame->get_current_selection(),_button_frame->get_current_selection());
+//s	
+	_enemy->set_monster_frame_game_text_enable(false);
+	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
+	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),enter_talk);
+	
 
 	if (_user_frame->get_move_done())
 	{
@@ -101,15 +106,21 @@ void ShowNormalMode::choose_act()
 	_user_frame->load_text(_enemy->acts.get_act_name_list());
 	_user_frame->set_choose(true,0,_user_frame->get_text_vector_len());
 	_enemy->set_act_init(_user_frame->get_current_selection());
+	
+    _monster_frame->set_enable(false);
+	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
+	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
+	//
 }
 
 void ShowNormalMode::choose_act_after()
 {
+	// _enemy->set_monster_frame_game_text_enable(false);
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
 
 	_user_frame->load_text(_enemy->get_act_after_game_text());
-	_enemy->set_game_text_enable(true);
+	_enemy->set_act_game_text_enable(true);
 	_user_frame->set_choose(true,_enemy->get_now_act_after_index(),_enemy->get_now_act_after_text_len());
 }
 
@@ -125,10 +136,22 @@ void ShowNormalMode::choose_item()
 
 void ShowNormalMode::choose_item_after()
 {
+	_enemy->set_monster_frame_game_text_enable(false);
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
 	
 	_user_frame->load_text(_items->get_item_after_game_text());
 	_items->set_control_updata(true);
 	_user_frame->set_choose(true,_items->get_now_item_after_index(),_items->get_now_item_after_text_len());
+}
+
+void ShowNormalMode::monster_frame_no_battle()
+{
+	
+}
+
+void ShowNormalMode::monster_frame_battle()
+{
+    _enemy->set_monster_frame_game_text_enable(true);
+    _monster_frame->set_enable(true,_enemy->get_now_monster_frame_after_index(),_enemy->get_now_monster_frame_after_text_len());
 }

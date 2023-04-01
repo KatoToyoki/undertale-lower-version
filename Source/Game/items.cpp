@@ -168,10 +168,7 @@ void Items::set_items(int current_selection)
 
 int Items::generate_random_num(int min, int max)
 {
-    int _max = max;
-    int _min = min;
-    int random_num = rand() % (_max - _min + 1) + _min;
-    return random_num;
+    return ( rand() % ((max-1) - min + 1) + min );
 }
 
 Text Items::get_and_set_ramdon_text(std::string str)
@@ -192,7 +189,7 @@ Text Items::get_and_set_ramdon_text(std::string str)
         game_text = GameText (text_vector,talk_mode);
     }
     
-    int random_num = generate_random_num(0,game_text.get_vector_len()-1);
+    int random_num = generate_random_num(0,game_text.get_vector_len());
     return game_text._data[random_num];
 }
 

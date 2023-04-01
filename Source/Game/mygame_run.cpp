@@ -96,8 +96,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     user_frame.control_frame(talk_to_papyrus_normal_battle);
     heart_test.move_control(user_frame.get_corner(),true);
 
-    monster_frame.set_enable(true,0,2);
-    
+    show_normal_mode.monster_frame_battle();
     break;
   }
 }
@@ -121,17 +120,15 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 
   monster_frame.load_img();
   monster_frame.set_img_position(1190,307);
-  
-	Text data(33, "Mmm, cha", RGB(0,0,0),30, 1234,333);
-	Text data2(33, "cha cha!", RGB(0,0,0),30, 1234,382);
-  vector<Text> vector = {data,data2};
-  GameText game_text(vector,monster_mode);
-  monster_frame.load_game_text(game_text);
+
+  // monster_frame.load_game_text_and_mode(migosp.get_monster_frame_game_text());
 
   gameFight.load_img();
   gameFight.set_fight_img_enable(false);
 
   charactor.set_hp_img();
+  migosp.set_img();
+
 }
 
 
@@ -146,6 +143,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     user_frame.choose_updata(nChar);
     gameFight.ToStop(nChar);
     migosp.act_after_stage_control_updata(nChar,&stage_go);
+    migosp.monster_frame_stage_control_updata(nChar,&stage_go);
     items.item_after_stage_control_updata(nChar,&stage_go);
   }
   
@@ -223,6 +221,7 @@ void CGameStateRun::OnShow()
     gameFight.MovingBar();
 
     charactor.show_charactor_data();
+    migosp.show_img();
 
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
