@@ -204,7 +204,7 @@ int Migosp::get_now_monster_frame_after_index()
 
 int Migosp::get_now_monster_frame_after_text_len()
 {
-    return _monster_text_vector[_current_selection].round_len_list[act_times+1];
+    return _monster_text_vector[_current_selection].round_len_list[monster_times+1];
 }
 
 int Migosp::get_now_monster_frame_mode()
