@@ -27,7 +27,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   {
   case 1:
     show_normal_mode.init(&user_frame,&gameButtonFrame,
-      &monster_frame,&heart_test,&gameFight,&migosp,&items);
+      &monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
     break;
   case 2:
     switch (gameButtonFrame.get_current_selection())
@@ -156,6 +156,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     migosp.act_after_stage_control_updata(nChar,&stage_go);
     migosp.monster_frame_stage_control_updata(nChar,&stage_go,&monster_frame);
     items.item_after_stage_control_updata(nChar,&stage_go);
+    charactor.change_hp_updata(nChar);
   }
   
   //stage_control don't touch here
@@ -163,13 +164,11 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   {
     stage_go+=1;
     user_frame._current_selection = 0;
-    charactor.change_hp(5);
   }
   if ((nChar == 0x58 || nChar == VK_SHIFT) && stage_go !=1)
   {
     stage_go-=1;
     user_frame._current_selection = 0;
-    charactor.change_hp(-5);
   }
   //go init
   if (nChar == 0x51)
@@ -227,12 +226,13 @@ void CGameStateRun::OnShow()
     green_line.ShowBitmap();
     monster_frame.show_monster_frame_and_print();
     
+    migosp.show_img();
+    
     gameButtonFrame.show_button();
     gameFight.show_fight_img();
     gameFight.MovingBar();
 
     charactor.show_charactor_data();
-    migosp.show_img();
 
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);

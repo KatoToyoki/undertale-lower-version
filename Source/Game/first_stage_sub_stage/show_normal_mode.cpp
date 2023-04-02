@@ -11,7 +11,8 @@ void ShowNormalMode::init(UserFrame *user_frame,
                           Move *heart_test,
                           Fight *game_fight,
                           Migosp *enemy,
-                          Items *items)//宣告於OnMove()
+                          Items *items,
+                          Charactor *charactor)//宣告於OnMove()
 {
 	_user_frame = user_frame;
 	_user_frame->control_frame(to_talk);
@@ -40,6 +41,9 @@ void ShowNormalMode::init(UserFrame *user_frame,
 	_enemy->set_monster_frame_game_text_enable(false);
 	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),enter_talk);
+
+	_charactor = charactor;
+	_charactor->change_hp(false);
 	
 
 	if (_user_frame->get_move_done())
@@ -143,6 +147,8 @@ void ShowNormalMode::choose_item()
     _monster_frame->set_enable(false);
 	_enemy->set_monster_frame_init(0);
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
+	
+	_charactor->change_hp(true,_items->get_selection_heal_num());
 }
 
 void ShowNormalMode::choose_item_after()
@@ -154,6 +160,8 @@ void ShowNormalMode::choose_item_after()
 	_user_frame->load_text(_items->get_item_after_game_text());
 	_items->set_control_updata(true);
 	_user_frame->set_choose(true,_items->get_now_item_after_index(),_items->get_now_item_after_text_len());
+
+	_charactor->change_hp(false);
 }
 
 void ShowNormalMode::monster_frame_no_battle()

@@ -35,17 +35,31 @@ void Charactor::show_charactor_data()
   HP_num.print();
 }
 
-void Charactor::change_hp(int heal_or_damege)
+void Charactor::change_hp(bool enable, int heal_or_damege)
 {
-  hp += heal_or_damege;
-  if (hp > hp_max)
-  {
-    hp = hp_max;
-  }
+  _heal_or_damege = heal_or_damege;
+  change_hp_enable = enable;
 }
 
 void Charactor::updata_hp_bar_by_hp()
 {
   int move_red_bar_position = max_bar_position_x - (one_hp_pixel * (hp_max - hp));
   hp_bar_red.SetTopLeft(move_red_bar_position,hp_bar_position_y);
+}
+
+void Charactor::change_hp_updata(UINT nChar)
+{
+  if ((nChar == VK_RETURN || nChar == 0x5A) && change_hp_enable)
+  {
+    hp += _heal_or_damege;
+    if (hp > hp_max)
+    {
+      hp = hp_max;
+    }
+    if (hp <= 0)
+    {
+      hp = 0;
+    }
+    
+  }
 }
