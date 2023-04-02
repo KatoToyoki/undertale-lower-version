@@ -30,6 +30,9 @@ public:
     void set_img_position(int x, int y);
     void set_enable(bool enable,int head =0 , int text_len =1);
     
+    bool get_monster_saying_is_done() { return  _monster_saying_is_done ;}
+    
+    bool _monster_saying_is_done = true;
 private:
     game_framework::CMovingBitmap monster_frame_img;
     bool _enable = false;

@@ -212,9 +212,10 @@ int Migosp::get_now_monster_frame_mode()
     return _monster_text_vector[_current_selection].mode;
 }
 
-void Migosp::monster_frame_stage_control_updata(UINT nChar, int* stage)
+void Migosp::monster_frame_stage_control_updata(UINT nChar, int* stage,MonsterFrame *monster_frame)
 {
 	_stege = stage;
+	_monster_frame = monster_frame;
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable)
 	{
 		MonsterText *monster_text = &_monster_text_vector[_current_selection];
@@ -233,7 +234,7 @@ void Migosp::set_monster_frame_game_text_enable(bool enable)
 	if (_monster_frame_enable)
 	{
 		MonsterText *monster_text = &_monster_text_vector[_current_selection];
-		if (monster_text->cost_round == 0)
+		if (monster_text->mode == no_enter_talk )
 		{
 			*_stege+=1;
 		}

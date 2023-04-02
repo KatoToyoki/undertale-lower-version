@@ -87,16 +87,25 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     
     break;
   case 5:
+    user_frame.set_choose(false);
+    show_normal_mode.monster_frame_no_battle();
+    stage_go+=1;
+    break;
+  case 6:
+    show_normal_mode.monster_frame_battle();
+    user_frame.control_frame(talk_to_papyrus_normal_battle);
+    break;
+  case 7:
     //maybe battle mode
+    // monster_frame.set_enable(!monster_frame.get_monster_saying_is_done());
+    
+    user_frame.control_frame(talk_to_papyrus_normal_battle);
     barrage.set_show_enable(true);
     barrage.damege_hit(&heart_test);
     barrage.right_move(1);
     
-    user_frame.set_choose(false);
-    user_frame.control_frame(talk_to_papyrus_normal_battle);
     heart_test.move_control(user_frame.get_corner(),true);
 
-    show_normal_mode.monster_frame_battle();
     break;
   }
 }
@@ -143,7 +152,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     user_frame.choose_updata(nChar);
     gameFight.ToStop(nChar);
     migosp.act_after_stage_control_updata(nChar,&stage_go);
-    migosp.monster_frame_stage_control_updata(nChar,&stage_go);
+    migosp.monster_frame_stage_control_updata(nChar,&stage_go,&monster_frame);
     items.item_after_stage_control_updata(nChar,&stage_go);
   }
   

@@ -42,15 +42,19 @@ void MonsterFrame::show_monster_frame_and_print()
     {
       monster_frame_img.ShowBitmap();
       _game_text.print();
+      _monster_saying_is_done = false;
     }
   }
   else if (_enable && _mode == enter_talk)
   {
       monster_frame_img.ShowBitmap();
       _game_text.print();
+      _monster_saying_is_done = false;
   }
   else
   {
     _time_count = 0;
+    _monster_saying_is_done = true;
   }
 }
+

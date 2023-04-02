@@ -33,7 +33,7 @@ public:
     void set_monster_frame_init(int current_selection);
     void set_monster_frame_game_text_enable(bool enable);
     
-    void monster_frame_stage_control_updata(UINT nChar, int *stage);
+    void monster_frame_stage_control_updata(UINT nChar, int *stage,MonsterFrame *monster_frame);
 
     int get_now_monster_frame_after_index();
     int get_now_monster_frame_after_text_len();
@@ -52,6 +52,7 @@ private:
     int monster_times = 0;
     int _current_selection;
     int *_stege;
+    MonsterFrame *_monster_frame;
     
     void set_acts();
 
