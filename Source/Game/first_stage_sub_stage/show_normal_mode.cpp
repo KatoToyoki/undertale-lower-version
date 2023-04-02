@@ -21,6 +21,8 @@ void ShowNormalMode::init(UserFrame *user_frame,
 
 	_monster_frame = monster_frame;
     _monster_frame->set_enable(false);
+    _monster_frame->_monster_saying_is_done = true;
+    
 
 	_heart_test = heart_test;
     _heart_test->move_control(_user_frame->get_corner(),false);
@@ -79,9 +81,14 @@ void ShowNormalMode::choose_fight()
 	_user_frame->control_frame(to_talk);
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
+    _monster_frame->set_enable(false);
 	
 	_game_fight->set_fight_img_enable(true);//set fight work dont false
 	_user_frame->set_choose(true,0,1);
+	
+    _monster_frame->set_enable(false);
+	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
+	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 }
 
 void ShowNormalMode::choose_act_target()
@@ -132,6 +139,10 @@ void ShowNormalMode::choose_item()
 	_user_frame->load_text(_items->get_item_list());
 	_user_frame->set_choose(true,0,_user_frame->get_text_vector_len());
 	_items->set_item_cost_round_init(_user_frame->get_current_selection(),_button_frame->get_current_selection());
+	
+    _monster_frame->set_enable(false);
+	_enemy->set_monster_frame_init(0);
+	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 }
 
 void ShowNormalMode::choose_item_after()

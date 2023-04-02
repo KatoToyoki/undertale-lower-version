@@ -38,23 +38,20 @@ void MonsterFrame::show_monster_frame_and_print()
   if (_enable && _mode == no_enter_talk)
   {
     _time_count +=time_count;
-    if (_time_count <=1500)
+    if (_time_count <=1000)
     {
       monster_frame_img.ShowBitmap();
       _game_text.print();
-      _monster_saying_is_done = false;
     }
   }
-  else if (_enable && _mode == enter_talk)
+  else if (_enable && _mode == enter_talk && _monster_saying_is_done)
   {
       monster_frame_img.ShowBitmap();
       _game_text.print();
-      _monster_saying_is_done = false;
   }
   else
   {
     _time_count = 0;
-    _monster_saying_is_done = true;
   }
 }
 

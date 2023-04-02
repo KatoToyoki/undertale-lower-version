@@ -127,7 +127,7 @@ void Move::shine_two_second()
 {
 	time_count += game_framework::CSpecialEffect::GetEllipseTime();
 	
-	if (time_count >= 700)
+	if (time_count >= 400)
 	{
 		_shine_mode = false;
 	}

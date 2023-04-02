@@ -84,7 +84,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       show_normal_mode.choose_mercy();
       break;
     }
-    
     break;
   case 5:
     items.set_control_updata(false);
@@ -100,8 +99,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     break;
   case 7:
     //maybe battle mode
-    // monster_frame.set_enable(!monster_frame.get_monster_saying_is_done());
     
+    monster_frame._monster_saying_is_done = false;
     user_frame.control_frame(talk_to_papyrus_normal_battle);
     barrage.set_show_enable(true);
     barrage.damege_hit(&heart_test);
