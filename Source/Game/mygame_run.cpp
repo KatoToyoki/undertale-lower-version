@@ -87,6 +87,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     
     break;
   case 5:
+    items.set_control_updata(false);
     user_frame.set_choose(false);
     show_normal_mode.monster_frame_no_battle();
     stage_go+=1;
