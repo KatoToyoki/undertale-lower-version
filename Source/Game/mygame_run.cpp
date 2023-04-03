@@ -27,10 +27,15 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   switch (stage_go)
   {
   case 1:
+    stage_go_enable_add = true;
+    stage_go_enable_sub = false;
+    
     show_normal_mode.init(&user_frame,&gameButtonFrame,
       &monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
     break;
   case 2:
+    stage_go_enable_add = true;
+    stage_go_enable_sub = true;
     switch (gameButtonFrame.get_current_selection())
     {
     case 0:
@@ -52,20 +57,30 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
     case 0:
       show_normal_mode.choose_fight();
+      // stage_go_enable_add = false;
+      // stage_go_enable_sub = false;
       break;
     case 1:
       show_normal_mode.choose_act();
+      stage_go_enable_add = true;
+      stage_go_enable_sub = true;
       break;
     case 2:
       show_normal_mode.choose_item_after();
+      stage_go_enable_add = true;
+      stage_go_enable_sub = false;
       break;
     case 3:
       show_normal_mode.choose_mercy();
+      stage_go_enable_add = false;
+      stage_go_enable_sub = false;
       break;
     }
     
     break;
   case 4:
+    stage_go_enable_add = false;
+    stage_go_enable_sub = false;
     switch (gameButtonFrame.get_current_selection())
     {
     case 0:
@@ -76,6 +91,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       break;
     case 1:
       show_normal_mode.choose_act_after();
+      stage_go_enable_add = true;
+      stage_go_enable_sub = false;
       break;
     case 2:
       // show_normal_mode.choose_item_after();
@@ -87,6 +104,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     }
     break;
   case 5:
+    stage_go_enable_add = true;
+    stage_go_enable_sub = false;
     items.set_control_updata(false);
 	  migosp.set_act_game_text_enable(false);
     user_frame.set_choose(false);
@@ -95,11 +114,15 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go+=1;
     break;
   case 6:
+    stage_go_enable_add = true;
+    stage_go_enable_sub = false;
     show_normal_mode.monster_frame_battle();
     user_frame.control_frame(talk_to_papyrus_normal_battle);
     break;
   case 7:
     //maybe battle mode
+    stage_go_enable_add = false;
+    stage_go_enable_sub = false;
     
     monster_frame._monster_saying_is_done = false;
     user_frame.control_frame(talk_to_papyrus_normal_battle);
@@ -163,12 +186,16 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   }
   
   //stage_control don't touch here
-  if ((nChar == VK_RETURN || nChar == 0x5A) && !items.is_items_empty())
+  if ((nChar == VK_RETURN || nChar == 0x5A) && !items.is_items_empty() && stage_go_enable_add)
   {
     stage_go+=1;
     user_frame._current_selection = 0;
+    if (stage_go == 8)
+    {
+      stage_go = 1;
+    }
   }
-  if ((nChar == 0x58 || nChar == VK_SHIFT) && stage_go !=1)
+  if ((nChar == 0x58 || nChar == VK_SHIFT) && stage_go_enable_sub)
   {
     stage_go-=1;
     user_frame._current_selection = 0;
