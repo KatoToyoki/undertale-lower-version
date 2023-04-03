@@ -39,4 +39,6 @@ public:
     Migosp *_enemy;
     Items *_items;
     Charactor *_charactor;
+
+    int last_act_selection = 0;
 };

@@ -4,12 +4,24 @@
 Migosp::Migosp()
 {
 	set_acts();
+	_current_selection = 0;
+	monster_name = GameText({
+		Text (60, "* Migosp", RGB(255,255,255),500, 465,613)},
+		target_mode);
 }
 void Migosp::set_img()
 {
 	enemy_img.LoadBitmapByString({"resources/migosp_0.bmp","resources/migosp_1.bmp"},RGB(255,255,255));
 	enemy_img.SetTopLeft(993,316);
 	enemy_img.SetAnimation(300,false);
+
+	enemy_targe_choose_hp.LoadBitmapByString({"resources/enemy_target_mode_hp.bmp"},RGB(255,255,255));
+	enemy_targe_choose_hp_red.LoadBitmapByString({"resources/enemy_target_mode_hp_red.bmp"},RGB(255,255,255));
+	enemy_targe_choose_hp_black.LoadBitmapByString({"resources/enemy_target_mode_hp_black.bmp"},RGB(255,255,255));
+
+	enemy_targe_choose_hp.SetTopLeft(hp_bar_x,hp_bar_y);
+	enemy_targe_choose_hp_red.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
+	enemy_targe_choose_hp_black.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
 }
 
 void Migosp::show_img()
@@ -17,7 +29,27 @@ void Migosp::show_img()
 	enemy_img.ShowBitmap();
 }
 
+void Migosp::set_enemy_targe_choose_hp_bar(bool enable)
+{
+	_choose_targe_hp_bar_enable = enable;
+}
 
+void Migosp::show_enemy_targe_choose_hp_bar()
+{
+	if (_choose_targe_hp_bar_enable)
+	{
+		enemy_targe_choose_hp.ShowBitmap();
+		enemy_targe_choose_hp_red.ShowBitmap();
+		enemy_targe_choose_hp_black.ShowBitmap();
+	}
+}
+
+void Migosp::updata_hp_bar_by_hp()
+{
+	const float hp_percent = static_cast<float>(hp) / static_cast<float>(hp_max);
+	const int hp_bar_percent_width = static_cast<int>(hp_percent * enemy_targe_choose_hp.GetWidth());
+	enemy_targe_choose_hp_red.SetTopLeft(hp_bar_x + hp_bar_percent_width,hp_bar_y);
+}
 
 void Migosp::set_acts()
 {
@@ -64,22 +96,24 @@ void Migosp::set_acts()
 
 void Migosp::set_act_init(int current_selection)//monster frame那邊的init有隨機性所以多寫了set去把東西包起來
 {
+	set_next_round_text();
+	
 	act_times = 0;
 	_current_selection = current_selection;
-	Act* act = acts.get_act_by_index(current_selection);
-	if (current_selection == check )
+	Act* act = acts.get_act_by_index(_current_selection);
+	if (_current_selection == check )
 	{
 		act->index = 0;
 		act->act_after_len_list={0,3};
 		act->cost_round = 1;
 	}
-	if (current_selection == talk)
+	if (_current_selection == talk)
 	{
 		act->index = 0;
 		act->act_after_len_list={0,0};
 		act->cost_round = 0;
 	}
-	if (current_selection == pet)
+	if (_current_selection == pet)
 	{
 		act->index = 0;
 		act->act_after_len_list={0,1,1,1};
@@ -178,17 +212,27 @@ MonsterText Migosp::get_random_game_text(std::string name)
 void Migosp::set_monster_frame()
 {
 	MonsterText neutral = get_random_game_text("neutral");
+	
+	Text data(33, "suus", RGB(0,0,0),30, 1234,333);
+	Text data2(33, "sus", RGB(0,0,0),30, 1234,382);
+	MonsterText sus = {
+		"sus",
+		no_enter_talk,
+		0,
+		GameText ({data,data2},monster_mode),
+		1,
+		{0,2}
+	};
 	_monster_text_vector = {//這邊跟act selection 跑
 		neutral,
 		neutral,
-		neutral
+		sus
 	};
 }
 
 void Migosp::set_monster_frame_init(int current_selection)
 {
 	monster_times = 0;
-	_current_selection = current_selection;
 	set_monster_frame();
 }
 
@@ -240,3 +284,35 @@ void Migosp::set_monster_frame_game_text_enable(bool enable)
 		}
 	}
 }
+
+void Migosp::set_next_round_text()
+{
+	Act* act = acts.get_act_by_index(_current_selection);
+	if (hp < 50)
+	{
+		GameText game_text ({
+			Text (60, "* Migosp refuses to give up.", RGB(255,255,255),600, 465,613)
+		}, talk_mode);
+		
+		act->act_next_round = game_text;
+	}
+}
+
+GameText Migosp::get_next_round_game_text()
+{
+	Act* act = acts.get_act_by_index(_current_selection);
+	return act->act_next_round;
+}
+
+int Migosp::get_next_round_index()
+{
+	return 0;
+}
+
+int Migosp::get_next_round_text_len()
+{
+	Act* act = acts.get_act_by_index(_current_selection);
+	return act->act_next_round.get_vector_len();
+}
+
+

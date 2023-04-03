@@ -23,6 +23,7 @@ void CGameStateRun::OnBeginState() {}
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
   charactor.updata_hp_bar_by_hp();
+  migosp.updata_hp_bar_by_hp();
   switch (stage_go)
   {
   case 1:
@@ -229,6 +230,7 @@ void CGameStateRun::OnShow()
     monster_frame.show_monster_frame_and_print();
     
     migosp.show_img();
+    migosp.show_enemy_targe_choose_hp_bar();
     
     gameButtonFrame.show_button();
     gameFight.show_fight_img();
