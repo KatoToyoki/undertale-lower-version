@@ -39,6 +39,15 @@ void Charactor::change_hp(bool enable, int heal_or_damege)
 {
   _heal_or_damege = heal_or_damege;
   change_hp_enable = enable;
+  
+  if (_heal_or_damege < 0 && change_hp_enable)
+  {
+    hp += _heal_or_damege;
+    if (hp <= 0)
+    {
+      hp = 0;
+    }
+  }
 }
 
 void Charactor::updata_hp_bar_by_hp()
@@ -56,10 +65,5 @@ void Charactor::change_hp_updata(UINT nChar)
     {
       hp = hp_max;
     }
-    if (hp <= 0)
-    {
-      hp = 0;
-    }
-    
   }
 }

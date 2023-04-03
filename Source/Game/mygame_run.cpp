@@ -103,8 +103,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     monster_frame._monster_saying_is_done = false;
     user_frame.control_frame(talk_to_papyrus_normal_battle);
     barrage.set_show_enable(true);
-    barrage.damege_hit(&heart_test);
     barrage.right_move(1);
+
+    charactor.change_hp( (heart_test.time_count>=400)
+      ,barrage.damege_hit(&heart_test)*(-1));
     
     heart_test.move_control(user_frame.get_corner(),true);
 
