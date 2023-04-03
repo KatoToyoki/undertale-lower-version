@@ -186,21 +186,141 @@ MonsterText Migosp::get_random_game_text(std::string name)
 			1,
 			{0,2}
 		};
-		data = Text(33, "Mmm, cha", RGB(0,0,0),30, 1234,333);
-		data2 = Text(33, "cha cha!", RGB(0,0,0),30, 1234,382);
+		data = Text(33, "I DON'T", RGB(0,0,0),30, 1234,333);
+		data2 = Text(33, "CARE", RGB(0,0,0),30, 1234,382);
 		MonsterText neutral_2 = {
 			"neutral",
-			enter_talk,
+			no_enter_talk,
 			0,
-			GameText ({data2,data},monster_mode),
-			2,
-			{0,1,1}
+			GameText ({data,data2},monster_mode),
+			1,
+			{0,2}
+		};
+		data = Text(33, "HEED THE", RGB(0,0,0),30, 1234,333);
+		data2 = Text(33, "SWARM", RGB(0,0,0),30, 1234,382);
+		MonsterText neutral_3 = {
+			"neutral",
+			no_enter_talk,
+			0,
+			GameText ({data,data2},monster_mode),
+			1,
+			{0,2}
+		};
+		data = Text(33, "OBEY THE", RGB(0,0,0),30, 1234,333);
+		data2 = Text(33, "OVERMIND", RGB(0,0,0),30, 1234,382);
+		Text data3 = Text(33, "..", RGB(0,0,0),30, 1234,382);
+		MonsterText neutral_4 = {
+			"neutral",
+			no_enter_talk,
+			0,
+			GameText ({data,data2},monster_mode),
+			1,
+			{0,2}
+		};
+		data = Text(33, "LEGION!", RGB(0,0,0),30, 1234,333);
+		data2 = Text(33, "WE ARE", RGB(0,0,0),30, 1234,382);
+		data3 = Text(33, "LOGION", RGB(0,0,0),30, 1234,382);
+		MonsterText neutral_5 = {
+			"neutral",
+			no_enter_talk,
+			0,
+			GameText ({data,data2,data3},monster_mode),
+			1,
+			{0,3}
+		};
+		data = Text(33, "FILTHY", RGB(0,0,0),30, 1234,333);
+		data2 = Text(33, "SINGLE", RGB(0,0,0),30, 1234,333);
+		data3 = Text(33, "MINDER", RGB(0,0,0),30, 1234,382);
+		Text data4 = Text(33, "...", RGB(0,0,0),30, 1234,382);
+		MonsterText neutral_6 = {
+			"neutral",
+			no_enter_talk,
+			0,
+			GameText ({data,data2,data3,data4},monster_mode),
+			1,
+			{0,4}
+		};
+		data = Text(33, "IN", RGB(0,0,0),30, 1234,333);
+		data2 = Text(33, "UNISOM,", RGB(0,0,0),30, 1234,382);
+		data3 = Text(33, "NOW", RGB(0,0,0),30, 1234,382);
+		MonsterText neutral_7 = {
+			"neutral",
+			no_enter_talk,
+			0,
+			GameText ({data,data2,data3},monster_mode),
+			1,
+			{0,3}
+		};
+		data = Text(33, "Swing", RGB(0,0,0),30, 1234,333);
+		data2 = Text(33, "your", RGB(0,0,0),30, 1234,333);
+		data3 = Text(33, "arms,", RGB(0,0,0),30, 1234,382);
+		data4 = Text(33, "baby", RGB(0,0,0),30, 1234,382);
+		MonsterText neutral_8 = {
+			"neutral",
+			no_enter_talk,
+			0,
+			GameText ({data,data2,data3,data4},monster_mode),
+			1,
+			{0,4}
+		};
+		data = Text(33, "Bein' me", RGB(0,0,0),30, 1234,333);
+		data2 = Text(33, "is the", RGB(0,0,0),30, 1234,382);
+		data3 = Text(33, "best!", RGB(0,0,0),30, 1234,382);
+		MonsterText neutral_9 = {
+			"neutral",
+			no_enter_talk,
+			0,
+			GameText ({data,data2,data3},monster_mode),
+			1,
+			{0,3}
+		};
+		data = Text(33, "Nothin'", RGB(0,0,0),30, 1234,333);
+		data2 = Text(33, "like", RGB(0,0,0),30, 1234,333);
+		data3 = Text(33, "alone", RGB(0,0,0),30, 1234,382);
+		data4 = Text(33, "time!", RGB(0,0,0),30, 1234,382);
+		MonsterText neutral_10 = {
+			"neutral",
+			no_enter_talk,
+			0,
+			GameText ({data,data2,data3,data4},monster_mode),
+			1,
+			{0,4}
+		};
+		data = Text(33, "La la~", RGB(0,0,0),30, 1234,333);
+		data2 = Text(33, "Just be", RGB(0,0,0),30, 1234,382);
+		data3 = Text(30, "yourself~", RGB(0,0,0),30, 1234,382);
+		MonsterText neutral_11 = {
+			"neutral",
+			no_enter_talk,
+			0,
+			GameText ({data,data2,data3},monster_mode),
+			1,
+			{0,3}
+		};
+		data = Text(33, "Hiya~", RGB(0,0,0),30, 1234,333);
+		MonsterText neutral_12 = {
+			"neutral",
+			no_enter_talk,
+			0,
+			GameText ({data},monster_mode),
+			1,
+			{0,1}
 		};
 		
 		
 		vector<MonsterText> game_text_vector =  {
 			neutral_1,
-			neutral_2
+			neutral_2,
+			neutral_3,
+			neutral_4,
+			neutral_5,
+			neutral_6,
+			neutral_7,
+			neutral_8,
+			neutral_9,
+			neutral_10,
+			neutral_11,
+			neutral_12
 		};
 		int random_num = generate_random_num(0,game_text_vector.size());
 		return game_text_vector[random_num];
@@ -213,20 +333,10 @@ void Migosp::set_monster_frame()
 {
 	MonsterText neutral = get_random_game_text("neutral");
 	
-	Text data(33, "suus", RGB(0,0,0),30, 1234,333);
-	Text data2(33, "sus", RGB(0,0,0),30, 1234,382);
-	MonsterText sus = {
-		"sus",
-		no_enter_talk,
-		0,
-		GameText ({data,data2},monster_mode),
-		1,
-		{0,2}
-	};
-	_monster_text_vector = {//這邊跟act selection 跑
+	_monster_text_vector = {//這邊跟act selection 跑數量要對
 		neutral,
 		neutral,
-		sus
+		neutral
 	};
 }
 
