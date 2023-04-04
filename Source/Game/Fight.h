@@ -102,7 +102,7 @@ public:
     
     // REQUIRED
     // put OnMove, set if the image will be revealed
-    void set_fight_img_enable(bool enable);
+    void set_fight_enable(bool enable);
 
     // reset all these to its default state so that when a new round it could start like a new turn
     void ResetDurationMinusHP();

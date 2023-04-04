@@ -27,7 +27,7 @@ int Fight::GetDurationMinusHP()
     return durationMinusHP;
 }
 
-void Fight::set_fight_img_enable(bool enable)
+void Fight::set_fight_enable(bool enable)
 {
     _enable=enable;
 }
@@ -79,7 +79,7 @@ void Fight::show_fight_img()
         Test3();
         Test4();
         Test5();
-        Test6();
+        
     }
     else if (!_enable)
     {
@@ -114,6 +114,15 @@ void Fight::show_fight_img()
             ResetMinusHP();
             ResetIsAttack();
             UnshowHPBar();
+            
+        }
+        
+    }
+    else if(IfMiss()==true && _enable)
+    {
+        if(GetDurationMinusHP()>0)
+        {
+            RevealMinusHP();
         }
         
     }
@@ -149,6 +158,7 @@ void Fight::Minus(double range)
 
 void Fight::attack()
 {
+    
     if((fightBar.GetLeft()>=theStart && fightBar.GetLeft()<thirdFront) || (fightBar.GetLeft()>=thirdBehind && fightBar.GetLeft()<theEnd))
     {
         Minus(0.15);
@@ -165,11 +175,7 @@ void Fight::attack()
     {
         Minus(0.24);
     }
-    else if(fightBar.GetLeft()>=theEnd)
-    {
-        minusHP="MISS";
-        _isAttack=true;
-    }
+    
     MovingHPBar();
     t+=1;
 }
@@ -188,29 +194,29 @@ void Fight::MovingBar()
 void Fight::ToStop(UINT nChar)
 {
     if(nChar==VK_RETURN && _enable)
-        // minusHP.compare("MISS")==0
     {
         _isBarStop=true;
         _isAttack=true;
         attackCount+=1;
         t+=1;
     }
-    else if(nChar==VK_F1)
-    {
-        _enable=true;
-    }
 }
 
 bool Fight::IfMiss()
 {
-    return ((minusHP.compare("MISS")==0) || (fightBar.GetLeft()>=1520));
+    return (fightBar.GetLeft()>=1520);
 }
 
 void Fight::RevealMinusHP()
 {
+    if(minusHP=="")
+    {
+        minusHP="MISS";
+        attackCount=1;
+    }
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "Determination Mono Web", RGB(255, 255, 255), 800);
-    game_framework::CTextDraw::Print(pDC, 900, 280, minusHP);
+    game_framework::CTextDraw::Print(pDC, 900, 300, minusHP);
     game_framework::CDDraw::ReleaseBackCDC();
     if(durationMinusHP!=0)
     {
@@ -285,7 +291,7 @@ void Fight::Test5()
 {
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-    game_framework::CTextDraw::Print(pDC, 0, 200, "minusHPbar position"+to_string(HPminus.GetLeft()));
+    game_framework::CTextDraw::Print(pDC, 0, 200, "fightbar position"+to_string(fightBar.GetLeft()));
     game_framework::CDDraw::ReleaseBackCDC();
 }
 
@@ -293,6 +299,6 @@ void Fight::Test6()
 {
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-    game_framework::CTextDraw::Print(pDC, 0, 250, to_string(durationMinusHP));
+    game_framework::CTextDraw::Print(pDC, 0, 250, "minusHP "+minusHP);
     game_framework::CDDraw::ReleaseBackCDC();
 }
