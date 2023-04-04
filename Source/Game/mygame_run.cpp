@@ -74,7 +74,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       show_normal_mode.choose_mercy_after();
       stage_go_enable_add = true;
       stage_go_enable_sub = false;
-      stage_go+=1;
+      if (!migosp.is_mercy()) { stage_go += 1; }
       break;
     }
     
@@ -190,6 +190,10 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   }
   
   //stage_control don't touch here
+  if ((nChar == VK_RETURN || nChar == 0x5A) && migosp.is_mercy() && gameButtonFrame.get_current_selection() ==3 && stage_go == 3) {
+    GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
+  }
+  
   if ((nChar == VK_RETURN || nChar == 0x5A) && !items.is_items_empty() && stage_go_enable_add)
   {
     stage_go+=1;
@@ -211,9 +215,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     user_frame._current_selection = 0;
   }
   
-  if ((nChar == VK_RETURN || nChar == 0x5A) && migosp.is_mercy() && gameButtonFrame.get_current_selection() ==3 && stage_go == 4) {
-    GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
-  }
   
 }
 

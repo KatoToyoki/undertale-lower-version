@@ -187,6 +187,10 @@ void Migosp::set_act_game_text_enable(bool enable)
 	if (_act_after_enable )
 	{
 		Act* act = acts.get_act_by_index(_current_selection);
+		if (_current_selection == talk)
+		{
+			_is_mercy = true;
+		}
 		if (act->cost_round == 0)
 		{
 			*_stege+=1;
@@ -194,7 +198,7 @@ void Migosp::set_act_game_text_enable(bool enable)
 	}
 }
 
-void Migosp::act_after_stage_control_updata(UINT nChar, int* stage)
+void Migosp::act_after_stage_control_updata(UINT nChar, int* stage)//更改mercy目前在這裡但之後可稜會修?
 {
 	_stege = stage;
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _act_after_enable)
