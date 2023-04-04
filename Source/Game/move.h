@@ -18,6 +18,7 @@ public:
     }
     void load_img();
     void move_control(Corner corner,bool enable);
+    void set_show_img_enable(bool enable);
     void set_heart_postion(int x, int y);
     void show_heart_img();
 
@@ -31,6 +32,7 @@ private:
     void move_act(Vec2 force);
 
     float move_num;
-    bool _enable = false;
+    bool _enable_img = false;
+    bool _enable_move = false;
     bool _shine_mode = false;
 };

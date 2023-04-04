@@ -452,7 +452,7 @@ void Migosp::set_monster_frame_game_text_enable(bool enable)
 	if (_monster_frame_enable)
 	{
 		MonsterText *monster_text = &_monster_text_vector[_current_selection];
-		if (monster_text->mode == no_enter_talk )
+		if (monster_text->mode == no_enter_talk && _monster_frame->_time_count > 800)
 		{
 			*_stege+=1;
 		}

@@ -27,6 +27,7 @@ void ShowNormalMode::init(UserFrame *user_frame,
 
 	_heart_test = heart_test;
     _heart_test->move_control(_user_frame->get_corner(),false);
+    _heart_test->set_show_img_enable(false);
 	_heart_test->set_heart_postion(935,698);
 
 	_game_fight = game_fight;

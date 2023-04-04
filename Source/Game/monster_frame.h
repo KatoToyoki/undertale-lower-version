@@ -31,11 +31,11 @@ public:
     void set_enable(bool enable,int head =0 , int text_len =1);
     
     bool _monster_saying_is_done = true;
+    DWORD _time_count = 0;
 private:
     game_framework::CMovingBitmap monster_frame_img;
     bool _enable = false;
     GameText _game_text;
 
-    DWORD _time_count = 0;
     int _mode = 0;
 };

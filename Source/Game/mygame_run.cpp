@@ -112,6 +112,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 	  migosp.set_act_game_text_enable(false);
     user_frame.set_choose(false);
     
+    heart_test.set_show_img_enable(true);
     show_normal_mode.monster_frame_no_battle();
     stage_go+=1;
     break;
@@ -120,6 +121,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_sub = false;
     show_normal_mode.monster_frame_battle();
     user_frame.control_frame(talk_to_normal_battle);
+    heart_test.set_show_img_enable(true);
     
     battel_mode_timer = 0;
     break;
@@ -129,13 +131,14 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_sub = false;
     
     monster_frame._monster_saying_is_done = false;
-    user_frame.control_frame(talk_to_papyrus_normal_battle);
+    user_frame.control_frame(talk_to_normal_battle);
     migosp.set_barrage_enable(true);
 
     charactor.change_hp( (heart_test.time_count>=400)
       ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
     
     heart_test.move_control(user_frame.get_corner(),true);
+    heart_test.set_show_img_enable(true);
 
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
     if (battel_mode_timer >= 1300)

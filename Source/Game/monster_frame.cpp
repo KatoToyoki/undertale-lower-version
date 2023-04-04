@@ -38,7 +38,7 @@ void MonsterFrame::show_monster_frame_and_print()
   if (_enable && _mode == no_enter_talk)
   {
     _time_count +=time_count;
-    if (_time_count <=1000)
+    if (_time_count <=800)
     {
       monster_frame_img.ShowBitmap();
       _game_text.print();
