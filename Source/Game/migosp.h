@@ -56,6 +56,7 @@ public:
     Acts acts;
     vector<MonsterText> _monster_text_vector;
     int hp = 100;
+    game_framework::CMovingBitmap enemy_barrage;
 ///
 private:
     bool _act_after_enable = false;
@@ -80,6 +81,7 @@ private:
     game_framework::CMovingBitmap enemy_targe_choose_hp;
     game_framework::CMovingBitmap enemy_targe_choose_hp_red;
     game_framework::CMovingBitmap enemy_targe_choose_hp_black;
+    
     
 
     ///可能新增一堆 控制顯示字的enable或判斷之類的??

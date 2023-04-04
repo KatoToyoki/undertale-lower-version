@@ -9,6 +9,7 @@ public:
     void set_color(COLORREF color);
     void set_positon(int x,int y);
     void set_enable(bool enable);
+    void type_mode();
     void print();
     int _x,_y;
 private:

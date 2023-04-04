@@ -6,12 +6,12 @@
 
 void Menu::load_img_set_postion()
 {
-  menuTop.LoadBitmapByString({"resources/menu_top.bmp"});
+  menuTop.LoadBitmapByString({"resources/menu_top.bmp"},RGB(0,0,0));
   menuTop.SetTopLeft(727, 0);
-  menuBottom.LoadBitmapByString({"resources/menu_bottom.bmp"});
+  menuBottom.LoadBitmapByString({"resources/menu_bottom.bmp"},RGB(0,0,0));
   menuBottom.SetTopLeft(599, 560);
 
-  stage1 = Text(40,"stage1",RGB(255,255,255),800,430,320);
+  stage1 = Text(40,"Stage1",RGB(255,255,255),800,430,320);
   stage2 = Text(40,"Stage2",RGB(255,255,255),800,880,320);
   stage3 = Text(40, "Stage3",RGB(255,255,255),800,1330,320);
   //45

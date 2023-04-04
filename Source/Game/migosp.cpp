@@ -11,7 +11,7 @@ Migosp::Migosp()
 }
 void Migosp::set_img()
 {
-	enemy_img.LoadBitmapByString({"resources/migosp_0.bmp","resources/migosp_1.bmp"},RGB(255,255,255));
+	enemy_img.LoadBitmapByString({"resources/migosp_0.bmp","resources/migosp_1.bmp"},RGB(0,0,0));
 	enemy_img.SetTopLeft(993,316);
 	enemy_img.SetAnimation(300,false);
 
@@ -22,6 +22,21 @@ void Migosp::set_img()
 	enemy_targe_choose_hp.SetTopLeft(hp_bar_x,hp_bar_y);
 	enemy_targe_choose_hp_red.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
 	enemy_targe_choose_hp_black.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
+
+	enemy_barrage.LoadBitmapByString({
+ "resources/std_hand_up.bmp",
+   "resources/hand_up.bmp","resources/std.bmp",
+      "resources/hand_up.bmp","resources/std.bmp",
+	"resources/hand_down.bmp","resources/std.bmp",
+	"resources/hand_down.bmp","resources/std.bmp",
+	"resources/act_0.bmp","resources/act_1.bmp",
+	"resources/act_2.bmp","resources/act_3.bmp",
+	"resources/act_4.bmp","resources/act_5.bmp",
+	"resources/std.bmp"
+	},RGB(0,0,0));
+	
+	enemy_barrage.SetTopLeft(933,799);
+	enemy_barrage.SetAnimation(300,false);
 }
 
 void Migosp::show_img()

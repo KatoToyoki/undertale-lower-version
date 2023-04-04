@@ -45,6 +45,12 @@ void Barrage::load_img(std::string bmp_name)
     }
 }
 
+void Barrage::loda_CMoving_Bitmap(game_framework::CMovingBitmap img)
+{
+    barrage_img = img;
+}
+
+
 void Barrage::set_show_enable(bool enable)
 {
     _enable = enable;

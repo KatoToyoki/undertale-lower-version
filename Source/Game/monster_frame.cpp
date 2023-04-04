@@ -6,7 +6,7 @@
 
 void MonsterFrame::load_img()
 {
-  monster_frame_img.LoadBitmapByString({"resources/monster_frame.bmp"},RGB(255,255,255));
+  monster_frame_img.LoadBitmapByString({"resources/monster_frame.bmp"},RGB(0,0,0));
 
 }
 
