@@ -24,7 +24,7 @@ public:
     void shine_two_second();
     
     game_framework::CMovingBitmap heart;
-	DWORD time_count =0;
+	DWORD time_count =1000;
 private:
     Vec2 check_range(Corner corner,Vec2 force);
     Vec2 normalize(Vec2 force);

@@ -280,5 +280,5 @@ void Items::check_and_del_item()
 
 bool Items::is_items_empty()
 {
-    return (items[0].cost_round == 0 && *_stage == 2 && _button_selection == 2);
+    return (items[0].cost_round == 0 && *_stage == 1 && _button_selection == 2);
 }

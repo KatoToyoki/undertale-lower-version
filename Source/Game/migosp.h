@@ -1,5 +1,6 @@
 #pragma once
 #include "acts.h"
+#include "barrage.h"
 #include "monster_frame.h"
 #include "../Library/gamecore.h"
 
@@ -23,6 +24,11 @@ public:
     void updata_hp_bar_by_hp();
     void set_enemy_targe_choose_hp_bar(bool enable);
     void show_enemy_targe_choose_hp_bar();
+/// barrage
+    void set_barrage();
+    void set_barrage_enable(bool enable);
+    void show_barrage();
+    Barrage get_barrage();
 /// act
     GameText get_act_after_game_text();
     void set_act_init(int current_selection);
@@ -62,12 +68,14 @@ private:
     bool _act_after_enable = false;
     bool _monster_frame_enable = false;
     bool _choose_targe_hp_bar_enable = false;
+    bool _barrage_enable = false;
     int act_times = 0;
     int monster_times = 0;
     int _current_selection =0;
     int *_stege;
     MonsterFrame *_monster_frame;
     GameText monster_name;
+    Barrage barrage;
     
     void set_acts();
     void set_monster_frame();

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "migosp.h"
 
+#include "barrage.h"
+
 Migosp::Migosp()
 {
 	set_acts();
@@ -58,6 +60,30 @@ void Migosp::show_enemy_targe_choose_hp_bar()
 		enemy_targe_choose_hp_black.ShowBitmap();
 	}
 }
+
+void Migosp::set_barrage()
+{
+  barrage = Barrage(2,blue);
+  barrage.loda_CMoving_Bitmap(enemy_barrage);
+}
+
+void Migosp::set_barrage_enable(bool enable)
+{
+    barrage.set_show_enable(enable);
+}
+
+void Migosp::show_barrage()
+{
+    barrage.show_img();
+}
+
+Barrage Migosp::get_barrage()
+{
+	return barrage;
+}
+
+
+
 
 void Migosp::updata_hp_bar_by_hp()
 {

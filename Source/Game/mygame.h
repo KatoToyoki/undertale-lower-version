@@ -121,13 +121,10 @@ private:
   Menu menu;
   GameText game_text;
   ShowNormalMode show_normal_mode;
-  Barrage barrage;
   MonsterFrame monster_frame;
   Migosp migosp;
   Items items;
   Charactor charactor;
-  
-  
   
   int stage_go = 0;
   bool stage_go_enable_add = true;

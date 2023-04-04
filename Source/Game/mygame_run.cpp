@@ -126,11 +126,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     
     monster_frame._monster_saying_is_done = false;
     user_frame.control_frame(talk_to_papyrus_normal_battle);
-    barrage.set_show_enable(true);
-    // barrage.right_move(1);
+    migosp.set_barrage_enable(true);
 
     charactor.change_hp( (heart_test.time_count>=400)
-      ,barrage.damege_hit(&heart_test)*(-1));
+      ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
     
     heart_test.move_control(user_frame.get_corner(),true);
 
@@ -141,6 +140,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
   migosp.set_img();
+  migosp.set_barrage();
   
   user_frame.load_img();
   user_frame.create_frame(314, 1294, 312, 563);
@@ -150,10 +150,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameButtonFrame.SetInit();
 
   menu.load_img_set_postion();
-  barrage = Barrage(2,blue);
-  // barrage.load_img("enter");
-  // barrage.set_positon(700,700);
-  barrage.loda_CMoving_Bitmap(migosp.enemy_barrage);
   
   green_line.LoadBitmapByString({"resources/green_line.bmp"},RGB(255,255,255));
   green_line.SetTopLeft(274,20);
@@ -161,13 +157,10 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   monster_frame.load_img();
   monster_frame.set_img_position(1190,307);
 
-  // monster_frame.load_game_text_and_mode(migosp.get_monster_frame_game_text());
-
   gameFight.load_img();
   gameFight.set_fight_img_enable(false);
 
   charactor.set_hp_img();
-
 }
 
 
@@ -249,8 +242,6 @@ void CGameStateRun::OnShow()
     //all show thing put here no any if else
     heart_test.show_heart_img();
 
-    barrage.show_img();
-    
     user_frame.show_frame();
     user_frame.show_select_heart();
     user_frame.print();//print all thing in user_frame by load_text(GameText) in OnMove and set_enable)
@@ -260,6 +251,7 @@ void CGameStateRun::OnShow()
     
     migosp.show_img();
     migosp.show_enemy_targe_choose_hp_bar();
+    migosp.show_barrage();
     
     gameButtonFrame.show_button();
     gameFight.show_fight_img();

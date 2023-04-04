@@ -42,6 +42,8 @@ void ShowNormalMode::init(UserFrame *user_frame,
 	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
 	_enemy->set_act_init(last_act_selection);// 這邊set next round 可能只會抓到0
 	_enemy->set_enemy_targe_choose_hp_bar(false);
+	_enemy->set_barrage_enable(false);
+	
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),enter_talk);
 
 	_charactor = charactor;
