@@ -57,8 +57,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
     case 0:
       show_normal_mode.choose_fight();
-      // stage_go_enable_add = false;
-      // stage_go_enable_sub = false;
+      stage_go_enable_add = true;
+      stage_go_enable_sub = false;
       break;
     case 1:
       show_normal_mode.choose_act();
