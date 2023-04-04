@@ -20,6 +20,7 @@ public:
     void move_control(Corner corner,bool enable);
     void set_show_img_enable(bool enable);
     void set_heart_postion(int x, int y);
+    void set_shine_mode(bool enable);
     void show_heart_img();
 
     void shine_two_second();

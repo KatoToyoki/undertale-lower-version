@@ -24,6 +24,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 {
   charactor.updata_hp_bar_by_hp();
   migosp.updata_hp_bar_by_hp();
+  if (charactor.get_current_hp() == 0)
+  {
+    GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
+  }
   switch (stage_go)
   {
   case 1:
@@ -59,6 +63,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       show_normal_mode.choose_fight();
       stage_go_enable_add = true;
       stage_go_enable_sub = false;
+      if (gameFight.GetDurationMinusHP()<=0)
+      {
+        stage_go+=2;
+      }
       break;
     case 1:
       show_normal_mode.choose_act();
@@ -110,16 +118,19 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_sub = false;
     items.set_control_updata(false);
 	  migosp.set_act_game_text_enable(false);
+    migosp.set_enemy_img_init_or_damege(init);
     user_frame.set_choose(false);
     
     heart_test.set_show_img_enable(true);
+    heart_test.set_shine_mode(false);
     show_normal_mode.monster_frame_no_battle();
     stage_go+=1;
     break;
   case 6:
-    stage_go_enable_add = true;
+    stage_go_enable_add = false;
     stage_go_enable_sub = false;
     heart_test.set_show_img_enable(true);
+    heart_test.set_shine_mode(false);
     show_normal_mode.monster_frame_battle();
     user_frame.control_frame(talk_to_normal_battle);
     
@@ -170,7 +181,8 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   monster_frame.set_img_position(1190,307);
 
   gameFight.load_img();
-  gameFight.set_fight_img_enable(false);
+  gameFight.set_fight_enable(false);
+  gameFight.set_monster(&migosp);
 
   charactor.set_hp_img();
 }
@@ -191,6 +203,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     items.item_after_stage_control_updata(nChar,&stage_go);
     charactor.change_hp_updata(nChar);
   }
+
+
   
   //stage_control don't touch here
   if ((nChar == VK_RETURN || nChar == 0x5A) && migosp.is_mercy() && gameButtonFrame.get_current_selection() ==3 && stage_go == 3) {
@@ -201,24 +215,12 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   {
     stage_go+=1;
     user_frame._current_selection = 0;
-    if (stage_go == 8)
-    {
-      stage_go = 1;
-    }
   }
   if ((nChar == 0x58 || nChar == VK_SHIFT) && stage_go_enable_sub)
   {
     stage_go-=1;
     user_frame._current_selection = 0;
   }
-  //go init
-  if (nChar == 0x51)
-  {
-    stage_go = 1;
-    user_frame._current_selection = 0;
-  }
-  
-  
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)

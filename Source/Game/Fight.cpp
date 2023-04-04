@@ -27,7 +27,7 @@ int Fight::GetDurationMinusHP()
     return durationMinusHP;
 }
 
-void Fight::set_fight_img_enable(bool enable)
+void Fight::set_fight_enable(bool enable)
 {
     _enable=enable;
 }
@@ -63,90 +63,155 @@ void Fight::load_img()
     
     HPFrame.LoadBitmapByString({"resources/hp_bar_frame.bmp"}, RGB(255, 255, 255));
     HPFrame.SetTopLeft(618,374);
+
+    greenLineRight.LoadBitmapByString({"resources/green_line_right.bmp"}, RGB(255, 255, 255));
+    greenLineRight.SetTopLeft(1185,20);
+
+    attack_red.LoadBitmapByString({"resources/attack_0.bmp",
+"resources/attack_1.bmp",
+    "resources/attack_2.bmp",
+    "resources/attack_3.bmp",
+    "resources/attack_4.bmp",
+    "resources/attack_5.bmp",
+    "resources/attack_6.bmp"
+        }
+    ,RGB(0,0,0));
+	attack_red.SetTopLeft(1050,316);
+	attack_red.SetAnimation(150,false);
 }
+void Fight::set_monster(Migosp* enemy)
+{
+    _enemy = enemy;
+}
+
 
 void Fight::show_fight_img()
 {
+    // if put here, it will never change ...
+    // Test1();
+    
     if (_enable)
     {
         fightScope.ShowBitmap();
         fightBar.ShowBitmap();
+       
+        Test2();
     }
     else if (!_enable)
     {
         _isBarStop = false;
         _isAttack = false;
         _isHPBarStop = false;
+        _isMiss=false;
         minusHP ="";
         attackCount = 0;
+        fightBarthisRound=0;
+        attackThisRound=0;
         fightBar.SetTopLeft(240,593);
         fightScope.UnshowBitmap();
         fightBar.UnshowBitmap();
-        
     }
     
-    if((_isAttack==true || IfMiss()==true) && _enable)
+    if((_isAttack || _isMiss) && _enable)
     {
-      attack();
-      if(GetDurationMinusHP()>0 && GetAttackCount()<=1)
-      {
-        RevealMinusHP();
-        ShowHPBar();
-      }
-      else if(GetDurationMinusHP()==0)
-      {
-        ResetDurationMinusHP();
-        ResetMinusHP();
-        ResetIsAttack();
-        UnshowHPBar();
-      }
+        if(attackThisRound==1)
+        {
+            attack();
+        }
+
+        MovingHPBar();
+        attack_red.ShowBitmap();
+        _enemy->set_enemy_img_init_or_damege(damege);
+        
+        if(GetDurationMinusHP()>0 && GetAttackCount()<=1){
+            RevealMinusHP();
+            ShowHPBar();
+        }
+        else if(GetDurationMinusHP()==0){
+            ResetDurationMinusHP();
+            ResetMinusHP();
+            ResetIsAttack();
+            ResetIsMiss();
+            UnshowHPBar();
+        }
     }
+    else if((attackThisRound>0 || fightBarthisRound>0) && _enable)
+    {
+        _enable=false;
+        // if put here, you can check if enable change or not
+        // reveal correctly
+        Test1();
+    }
+}
+
+void Fight::ResetIsMiss()
+{
+    _isMiss=false;
+}
+
+int Fight::Minus(double range)
+{
+    int damage=(int)(test*range);
+    int displacement=(int)(MPF*range);
+    if(damage>monsterHP)
+    {
+        monsterHP=0;
+    }
+    else
+    {
+        monsterHP-=damage;
+    }
+
+    if(minusPosition-displacement<610)
+    {
+        minusPosition=610;
+    }
+    else
+    {
+        minusPosition-=displacement;
+    }
+    
+    minusHP="-"+(std::to_string(damage));
+
+    return damage;
 }
 
 void Fight::attack()
 {
     if((fightBar.GetLeft()>=theStart && fightBar.GetLeft()<thirdFront) || (fightBar.GetLeft()>=thirdBehind && fightBar.GetLeft()<theEnd))
     {
-        monsterHP-=(int)(test*0.15);
-        minusPosition=(int)(1300-(minusPosition*0.15));
-        MovingHPBar();
-        minusHP="-"+(std::to_string((int)(test*0.15)));
+        Minus(0.15);
     }
     else if((fightBar.GetLeft()>=thirdFront && fightBar.GetLeft()<secondFront) || (fightBar.GetLeft()>=secondBehind && fightBar.GetLeft()<thirdBehind))
     {
-        monsterHP-=(int)(test*0.18);
-        minusPosition=(int)(1300-(minusPosition*0.18));
-        MovingHPBar();
-        minusHP="-"+(std::to_string((int)(test*0.18)));
+        Minus(0.18);
     }
     else if((fightBar.GetLeft()>=secondFront && fightBar.GetLeft()<firstFront) || (fightBar.GetLeft()>=firstBehind && fightBar.GetLeft()<secondBehind))
     {
-        monsterHP-=(int)(test*0.21);
-        minusPosition=(int)(1300-(minusPosition*0.21));
-        MovingHPBar();
-        minusHP="-"+(std::to_string((int)(test*0.21)));
+        Minus(0.21);
     }
     else if(fightBar.GetLeft()>=firstFront && fightBar.GetLeft()<firstBehind)
     {
-        monsterHP-=(int)(test*0.24);
-        minusPosition=(int)(1300-(minusPosition*0.24));
-        MovingHPBar();
-        minusHP="-"+(std::to_string((int)(test*0.24)));
+        Minus(0.24);
     }
-    else if(fightBar.GetLeft()>=theEnd)
-    {
-        minusHP="MISS";
-        _isAttack=true;
-    }
+    
+    MovingHPBar();
+    attackThisRound+=1;
 }
 
 void Fight::MovingBar()
 {
-    if (_enable)
+    if (_enable && fightBarthisRound==0)
     {
-        if(fightBar.GetLeft()<1560 && _isBarStop==false){
+        if(fightBar.GetLeft()<1560 && _isBarStop==false ){
             fightBar.SetTopLeft(fightBar.GetLeft()+16,590);
             attackCount=0;
+        }
+        else if(fightBar.GetLeft()>=theEnd || fightBar.GetLeft()<=theStart)
+        {
+            _isMiss=true;
+            fightBarthisRound+=1;
+            minusHP="MISS";
         }
     }
 }
@@ -154,24 +219,24 @@ void Fight::MovingBar()
 void Fight::ToStop(UINT nChar)
 {
     if(nChar==VK_RETURN && _enable)
-        // minusHP.compare("MISS")==0
-        {
+    {
         _isBarStop=true;
         _isAttack=true;
         attackCount+=1;
-        }
+        attackThisRound+=1;
+    }
 }
 
-bool Fight::IfMiss()
+bool Fight::GetIsMiss()
 {
-    return ((minusHP.compare("MISS")==0) || (fightBar.GetLeft()>=1520));
+    return _isMiss;
 }
 
 void Fight::RevealMinusHP()
 {
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "Determination Mono Web", RGB(255, 255, 255), 800);
-    game_framework::CTextDraw::Print(pDC, 900, 280, minusHP);
+    game_framework::CTextDraw::Print(pDC, 900, 300, minusHP);
     game_framework::CDDraw::ReleaseBackCDC();
     if(durationMinusHP!=0)
     {
@@ -184,12 +249,13 @@ void Fight::ShowHPBar()
     HP.ShowBitmap();
     HPminus.ShowBitmap();
     HPFrame.ShowBitmap();
+    greenLineRight.ShowBitmap();
 }
 
 void Fight::MovingHPBar()
 {
     if(HPminus.GetLeft()-10>minusPosition && _isHPBarStop==false){
-        HPminus.SetTopLeft(HPminus.GetLeft()-4,374);
+        HPminus.SetTopLeft(HPminus.GetLeft()-5,374);
     }
     else if(HPminus.GetLeft()-4<=minusPosition)
     {
@@ -203,5 +269,32 @@ void Fight::UnshowHPBar()
     HP.UnshowBitmap();
     HPminus.UnshowBitmap();
     HPFrame.UnshowBitmap();
-    _enable=false;
+}
+
+// temp functions ==================================================
+
+void Fight::Test1()
+{
+    std::string aa="";
+    if(_enable==true)
+    {
+        aa="True";
+    }
+    else
+    {
+        aa="False";
+    }
+    CDC *pDC = game_framework::CDDraw::GetBackCDC();
+    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+    game_framework::CTextDraw::Print(pDC, 0, 0, "enable "+aa);
+    game_framework::CDDraw::ReleaseBackCDC();
+}
+
+void Fight::Test2()
+{
+    std::string b=to_string(fightBar.GetLeft());
+    CDC *pDC = game_framework::CDDraw::GetBackCDC();
+    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+    game_framework::CTextDraw::Print(pDC, 0, 50, "durationMinusHP "+to_string(durationMinusHP));
+    game_framework::CDDraw::ReleaseBackCDC();
 }

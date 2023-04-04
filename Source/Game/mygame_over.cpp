@@ -43,9 +43,12 @@ void CGameStateOver::OnInit()
 	ShowInitProgress(100, "OK!");
 
 	Sleep(1000);
+	
+	game_over.LoadBitmapByString({"resources/gameover.bmp"},RGB(0,0,0));
+	game_over.SetTopLeft(497,81);
 }
 
 void CGameStateOver::OnShow()
 {
-
+	game_over.ShowBitmap();
 }

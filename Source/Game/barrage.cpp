@@ -37,7 +37,7 @@ void Barrage::load_img(std::string bmp_name)
 {
     if (_mode == white)
     {
-        barrage_img.LoadBitmapByString({"resources/"+bmp_name+".bmp"});
+        barrage_img.LoadBitmapByString({"resources/"+bmp_name+".bmp"},RGB(0,0,0));
     }
     else
     {

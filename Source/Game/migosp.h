@@ -10,6 +10,11 @@ enum migosp_act_selection
     talk,
     pet
 };
+enum enemy_img_state
+{
+    init,
+    damege
+};
 
 
 class Migosp
@@ -24,6 +29,7 @@ public:
     void updata_hp_bar_by_hp();
     void set_enemy_targe_choose_hp_bar(bool enable);
     void show_enemy_targe_choose_hp_bar();
+    void set_enemy_img_init_or_damege(int index);
 
 /// mercy
     GameText get_mercy_game_text() { return mercy_text;}
@@ -96,6 +102,8 @@ private:
     int hp_bar_y = 630;
 
     game_framework::CMovingBitmap enemy_img;
+    game_framework::CMovingBitmap enemy_img_init;
+    game_framework::CMovingBitmap enemy_img_damege;
     game_framework::CMovingBitmap enemy_targe_choose_hp;
     game_framework::CMovingBitmap enemy_targe_choose_hp_red;
     game_framework::CMovingBitmap enemy_targe_choose_hp_black;

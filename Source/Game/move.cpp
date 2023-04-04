@@ -111,6 +111,10 @@ void Move::set_heart_postion(int x, int y)
 {
 	heart.SetTopLeft(x,y);
 }
+void Move::set_shine_mode(bool enable)
+{
+	_shine_mode = enable;
+}
 
 void Move::show_heart_img()
 {

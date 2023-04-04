@@ -32,7 +32,7 @@ void ShowNormalMode::init(UserFrame *user_frame,
 	_heart_test->time_count = 1000;
 
 	_game_fight = game_fight;
-	_game_fight->set_fight_img_enable(false);
+	_game_fight->set_fight_enable(false);
 
 	_enemy = enemy;
 	_enemy->set_act_game_text_enable(false);
@@ -73,7 +73,7 @@ void ShowNormalMode::choose_fight_taget()
 	_user_frame->set_choose(true,0,1);
 	_enemy->set_enemy_targe_choose_hp_bar(true);
 	
-	_game_fight->set_fight_img_enable(false);
+	_game_fight->set_fight_enable(false);
 }
 void ShowNormalMode::choose_fight()
 {
@@ -82,8 +82,9 @@ void ShowNormalMode::choose_fight()
 	_button_frame->all_button_off();
 	_enemy->set_enemy_targe_choose_hp_bar(false);
 	
-	_game_fight->set_fight_img_enable(true);//set fight work dont false
-	
+	_game_fight->set_fight_enable(true);
+	// fight.check();
+	_user_frame->set_choose(true,0,1);
     _monster_frame->set_enable(false);
 	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());

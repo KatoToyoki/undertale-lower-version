@@ -24,6 +24,13 @@ void Migosp::set_img()
 	enemy_img.LoadBitmapByString({"resources/migosp_0.bmp","resources/migosp_1.bmp"},RGB(0,0,0));
 	enemy_img.SetTopLeft(993,316);
 	enemy_img.SetAnimation(300,false);
+	
+	enemy_img_init.LoadBitmapByString({"resources/migosp_0.bmp","resources/migosp_1.bmp"},RGB(0,0,0));
+	enemy_img_init.SetTopLeft(993,316);
+	enemy_img_init.SetAnimation(300,false);
+
+	enemy_img_damege.LoadBitmapByString({"resources/migosp_hit.bmp"},RGB(0,0,0));
+	enemy_img_damege.SetTopLeft(993,316);
 
 	enemy_targe_choose_hp.LoadBitmapByString({"resources/enemy_target_mode_hp.bmp"},RGB(255,255,255));
 	enemy_targe_choose_hp_red.LoadBitmapByString({"resources/enemy_target_mode_hp_red.bmp"},RGB(255,255,255));
@@ -48,6 +55,19 @@ void Migosp::set_img()
 	enemy_barrage.SetTopLeft(933,799);
 	enemy_barrage.SetAnimation(250,false);
 }
+
+void Migosp::set_enemy_img_init_or_damege(int index)
+{
+	if (index == init)
+	{
+		enemy_img = enemy_img_init;
+	}
+	if (index == damege)
+	{
+		enemy_img = enemy_img_damege;
+	}
+}
+
 
 void Migosp::show_img()
 {

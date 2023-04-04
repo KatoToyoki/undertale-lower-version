@@ -1,8 +1,9 @@
 #pragma once
 #include "stdafx.h"
+
+#include "migosp.h"
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
-#include <iostream>
 
 /*
  * range : 431~1540
@@ -25,6 +26,11 @@ enum fightRange
 enum MonsterFull
 {
     test=100
+};
+
+enum MinusPositionFull
+{
+    MPF=682 //618+681=1299 = 1300
 };
 
 class Fight
@@ -67,6 +73,20 @@ private:
     // this is to let items stay on screen for a while, not just quickly disappear
     int durationMinusHP=100;
 
+    // to avoid the green line be covered
+    game_framework::CMovingBitmap greenLineRight;
+
+    // for the miss condition
+    bool _isMiss=false;
+
+    // to not let attack continue executing
+    int attackThisRound=0;
+
+    // to let fight bar move once in one round
+    int fightBarthisRound=0;
+
+    game_framework::CMovingBitmap attack_red;
+    Migosp *_enemy;
 protected:
     
 public:
@@ -79,21 +99,24 @@ public:
     std::string GetMinusHP();
     int GetAttackCount();
     int GetDurationMinusHP();
-    
+
     // the setters
     
     // REQUIRED
     // put OnMove, set if the image will be revealed
-    void set_fight_img_enable(bool enable);
+    void set_fight_enable(bool enable);
 
     // reset all these to its default state so that when a new round it could start like a new turn
     void ResetDurationMinusHP();
     void ResetMinusHP();
     void ResetIsAttack();
+    void ResetIsMiss();
+
     
     // REQUIRED
     // load and set img for init
     void load_img();
+    void set_monster(Migosp *enemy);
     
     // REQUIRED
     // put OnShow, can modify enable to control if img will reveal or not
@@ -102,6 +125,9 @@ public:
     // REQUIRED
     // depending on the position, return the value of how much will HP be subtracted
     void attack();
+
+    // to get what damage the enemy will receive
+    int Minus(double range);
     
     // to let attack bar gradually moving
     void MovingBar();
@@ -110,7 +136,7 @@ public:
     void ToStop(UINT nChar);
 
     // in order to do the miss condition
-    bool IfMiss();
+    bool GetIsMiss();
 
     // to show how much attack enemy received
     void RevealMinusHP();
@@ -125,6 +151,8 @@ public:
     // to let HP bar unshow, and let enable to be false
     void UnshowHPBar();
 
-    // just end the fight, set some variable default to be prepared for new round
-    void EndFight();
+    // temp functions===================
+    // to print the value out immediately
+    void Test1();
+    void Test2();
 };
