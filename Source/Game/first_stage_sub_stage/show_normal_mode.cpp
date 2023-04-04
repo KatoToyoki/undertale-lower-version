@@ -16,6 +16,7 @@ void ShowNormalMode::init(UserFrame *user_frame,
 {
 	_user_frame = user_frame;
 	_user_frame->control_frame(to_talk);
+	_user_frame->set_choose(false);
 
 	_button_frame = button_frame;
 	_button_frame->set_updata_enable(true);
@@ -33,6 +34,7 @@ void ShowNormalMode::init(UserFrame *user_frame,
 
 	_enemy = enemy;
 	_enemy->set_act_game_text_enable(false);
+	_enemy->check_change_mercy_name_to_yellow_by_is_mercy();
 
 	_items = items;
 	_items->set_control_updata(false);
@@ -156,4 +158,23 @@ void ShowNormalMode::monster_frame_battle()
 {
     _enemy->set_monster_frame_game_text_enable(true);
     _monster_frame->set_enable(true,_enemy->get_now_monster_frame_after_index(),_enemy->get_now_monster_frame_after_text_len());
+}
+
+void ShowNormalMode::choose_mercy()
+{
+	_user_frame->load_text(_enemy->get_mercy_game_text());
+	_user_frame->set_choose(true,0,1);
+	
+    _monster_frame->set_enable(false);
+	_enemy->set_monster_frame_init(0);//目前蟑螂都一樣所以先設0?
+	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
+}
+
+void ShowNormalMode::choose_mercy_after()
+{
+	if (_enemy->is_mercy())
+	{
+		_user_frame->load_text(_enemy->get_mercy_win_game_text());
+		_user_frame->set_choose(true,0,2);
+	}
 }

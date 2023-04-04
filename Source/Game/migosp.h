@@ -24,6 +24,13 @@ public:
     void updata_hp_bar_by_hp();
     void set_enemy_targe_choose_hp_bar(bool enable);
     void show_enemy_targe_choose_hp_bar();
+
+/// mercy
+    GameText get_mercy_game_text() { return mercy_text;}
+    GameText get_mercy_win_game_text() { return mercy_win_text;}
+    void check_change_mercy_name_to_yellow_by_is_mercy();
+    bool is_mercy();
+    
 /// barrage
     void set_barrage();
     void set_barrage_enable(bool enable);
@@ -69,12 +76,15 @@ private:
     bool _monster_frame_enable = false;
     bool _choose_targe_hp_bar_enable = false;
     bool _barrage_enable = false;
+    bool _is_mercy = false;
     int act_times = 0;
     int monster_times = 0;
     int _current_selection =0;
     int *_stege;
     MonsterFrame *_monster_frame;
     GameText monster_name;
+    GameText mercy_text;
+    GameText mercy_win_text;
     Barrage barrage;
     
     void set_acts();

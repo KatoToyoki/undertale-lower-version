@@ -129,6 +129,7 @@ private:
   int stage_go = 0;
   bool stage_go_enable_add = true;
   bool stage_go_enable_sub = true;
+  int battel_mode_timer = 0;
 
   ButtonFrame gameButtonFrame;
   Fight gameFight;

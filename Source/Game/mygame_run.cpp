@@ -71,9 +71,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go_enable_sub = false;
       break;
     case 3:
-      show_normal_mode.choose_mercy();
-      stage_go_enable_add = false;
+      show_normal_mode.choose_mercy_after();
+      stage_go_enable_add = true;
       stage_go_enable_sub = false;
+      stage_go+=1;
       break;
     }
     
@@ -95,11 +96,12 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go_enable_sub = false;
       break;
     case 2:
-      // show_normal_mode.choose_item_after();
       stage_go+=1;
       break;
     case 3:
-      show_normal_mode.choose_mercy();
+      stage_go_enable_add = true;
+      stage_go_enable_sub = false;
+      stage_go+=1;
       break;
     }
     break;
@@ -117,7 +119,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
     show_normal_mode.monster_frame_battle();
-    user_frame.control_frame(talk_to_papyrus_normal_battle);
+    user_frame.control_frame(talk_to_normal_battle);
+    
+    battel_mode_timer = 0;
     break;
   case 7:
     //maybe battle mode
@@ -133,6 +137,11 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     
     heart_test.move_control(user_frame.get_corner(),true);
 
+	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
+    if (battel_mode_timer >= 1300)
+    {
+      stage_go = 1;
+    }
     break;
   }
 }
@@ -200,6 +209,10 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   {
     stage_go = 1;
     user_frame._current_selection = 0;
+  }
+  
+  if ((nChar == VK_RETURN || nChar == 0x5A) && migosp.is_mercy() && gameButtonFrame.get_current_selection() ==3 && stage_go == 4) {
+    GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
   
 }

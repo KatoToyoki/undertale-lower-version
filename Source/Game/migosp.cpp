@@ -10,6 +10,14 @@ Migosp::Migosp()
 	monster_name = GameText({
 		Text (60, "* Migosp", RGB(255,255,255),500, 465,613)},
 		target_mode);
+	mercy_text = GameText({
+		Text (60, "* Spare", RGB(255,255,255),500, 465,613)},
+		target_mode);
+	mercy_win_text = GameText({
+		Text (60, "* YOU WON!", RGB(255,255,255),500, 465,613),
+		Text (60, "* You earned 0 XP and 3 gold.", RGB(255,255,255),500, 465,613)},
+		talk_mode);
+	_is_mercy = false;
 }
 void Migosp::set_img()
 {
@@ -38,7 +46,7 @@ void Migosp::set_img()
 	},RGB(0,0,0));
 	
 	enemy_barrage.SetTopLeft(933,799);
-	enemy_barrage.SetAnimation(300,false);
+	enemy_barrage.SetAnimation(250,false);
 }
 
 void Migosp::show_img()
@@ -82,14 +90,25 @@ Barrage Migosp::get_barrage()
 	return barrage;
 }
 
-
-
-
 void Migosp::updata_hp_bar_by_hp()
 {
 	const float hp_percent = static_cast<float>(hp) / static_cast<float>(hp_max);
 	const int hp_bar_percent_width = static_cast<int>(hp_percent * enemy_targe_choose_hp.GetWidth());
 	enemy_targe_choose_hp_red.SetTopLeft(hp_bar_x + hp_bar_percent_width,hp_bar_y);
+}
+
+void Migosp::check_change_mercy_name_to_yellow_by_is_mercy()
+{
+	if (_is_mercy)
+	{
+		monster_name._data[0].set_color(RGB(255,255,45));
+		mercy_text._data[0].set_color(RGB(255,255,45));
+	}
+}
+
+bool Migosp::is_mercy()
+{
+	return (_is_mercy );
 }
 
 void Migosp::set_acts()

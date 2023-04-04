@@ -26,7 +26,8 @@ public:
     void choose_act_after();
     void choose_item();
     void choose_item_after();
-    void choose_mercy(){};
+    void choose_mercy();
+    void choose_mercy_after();
 
     void monster_frame_no_battle();
     void monster_frame_battle();
