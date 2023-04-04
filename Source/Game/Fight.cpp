@@ -74,15 +74,18 @@ void Fight::show_fight_img()
     {
         fightScope.ShowBitmap();
         fightBar.ShowBitmap();
+        MovingBar();
         Test1();
         Test2();
         Test3();
         Test4();
         Test5();
         
+        
     }
     else if (!_enable)
     {
+        
         _isBarStop = false;
         _isAttack = false;
         _isHPBarStop = false;
@@ -91,19 +94,22 @@ void Fight::show_fight_img()
         fightBar.SetTopLeft(240,593);
         fightScope.UnshowBitmap();
         fightBar.UnshowBitmap();
-
-        t=0;
+        thisRound=0;
+        attackThisRound=0;
         
     }
     
-    if((_isAttack==true || IfMiss()==true) && _enable)
+    //if((_isAttack==true || IfMiss()==true) && _enable)
+    if((_isAttack==true || _isMiss) && _enable)
     {
-        if(t==1)
+        
+        if(attackThisRound==1)
         {
             attack();
-            
         }
+
         MovingHPBar();
+       
         
         if(GetDurationMinusHP()>0 && GetAttackCount()<=1){
             RevealMinusHP();
@@ -113,21 +119,36 @@ void Fight::show_fight_img()
             ResetDurationMinusHP();
             ResetMinusHP();
             ResetIsAttack();
+            ResetIsMiss();
             UnshowHPBar();
+            /*
+            if(true)
+            {
+                fightBar.SetTopLeft(240,593);
+                _enable=false;
+                Test6();
+            }
+            */
             
         }
-        
-    }
-    else if(IfMiss()==true && _enable)
-    {
-        if(GetDurationMinusHP()>0)
+        else if(attackThisRound>0 || thisRound>0)
         {
-            RevealMinusHP();
+            fightBar.SetTopLeft(240,593);
+            _enable=false;
+            Test6();
         }
+
+        
         
     }
     
 }
+
+void Fight::ResetIsMiss()
+{
+    _isMiss=false;
+}
+
 
 void Fight::Minus(double range)
 {
@@ -158,7 +179,6 @@ void Fight::Minus(double range)
 
 void Fight::attack()
 {
-    
     if((fightBar.GetLeft()>=theStart && fightBar.GetLeft()<thirdFront) || (fightBar.GetLeft()>=thirdBehind && fightBar.GetLeft()<theEnd))
     {
         Minus(0.15);
@@ -177,16 +197,21 @@ void Fight::attack()
     }
     
     MovingHPBar();
-    t+=1;
+    attackThisRound+=1;
 }
 
 void Fight::MovingBar()
 {
-    if (_enable)
+    if (_enable && thisRound==0)
     {
-        if(fightBar.GetLeft()<1560 && _isBarStop==false){
+        if(fightBar.GetLeft()<1560 && _isBarStop==false && thisRound==0){
             fightBar.SetTopLeft(fightBar.GetLeft()+16,590);
             attackCount=0;
+        }
+        else if(fightBar.GetLeft()>=1520)
+        {
+            _isMiss=true;
+            thisRound+=1;
         }
     }
 }
@@ -198,13 +223,14 @@ void Fight::ToStop(UINT nChar)
         _isBarStop=true;
         _isAttack=true;
         attackCount+=1;
-        t+=1;
+        attackThisRound+=1;
     }
 }
 
 bool Fight::IfMiss()
 {
-    return (fightBar.GetLeft()>=1520);
+    //return (fightBar.GetLeft()>=1520);
+    return _isMiss;
 }
 
 void Fight::RevealMinusHP()
@@ -212,7 +238,7 @@ void Fight::RevealMinusHP()
     if(minusHP=="")
     {
         minusHP="MISS";
-        attackCount=1;
+        //attackCount=1;
     }
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "Determination Mono Web", RGB(255, 255, 255), 800);
@@ -221,6 +247,10 @@ void Fight::RevealMinusHP()
     if(durationMinusHP!=0)
     {
         durationMinusHP-=1;
+    }
+    else if(durationMinusHP<=1)
+    {
+        _isMiss=false;
     }
 }
 
@@ -249,14 +279,14 @@ void Fight::UnshowHPBar()
     HP.UnshowBitmap();
     HPminus.UnshowBitmap();
     HPFrame.UnshowBitmap();
-    _enable=false;
+    // _enable=false;
 }
 
 void Fight::Test1()
 {
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-    game_framework::CTextDraw::Print(pDC, 0, 0, "minusHP "+to_string(monsterHP));
+    game_framework::CTextDraw::Print(pDC, 0, 0, "this round"+to_string(thisRound));
     game_framework::CDDraw::ReleaseBackCDC();
 }
 
@@ -272,18 +302,35 @@ void Fight::Test2()
 void Fight::Test3()
 {
     //std::string a=to_string(monsterHP);
-
+    std::string aa="";
+    if(_isAttack==true)
+    {
+        aa="True";
+    }
+    else
+    {
+        aa="False";
+    }
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-    game_framework::CTextDraw::Print(pDC, 0, 90, "minusPosition "+to_string(minusPosition));
+    game_framework::CTextDraw::Print(pDC, 0, 90, "isAttack "+aa);
     game_framework::CDDraw::ReleaseBackCDC();
 }
 
 void Fight::Test4()
 {
+    std::string aa="";
+    if(_isMiss==true)
+    {
+        aa="True";
+    }
+    else
+    {
+        aa="False";
+    }
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-    game_framework::CTextDraw::Print(pDC, 0, 140, "attackCount "+to_string(attackCount));
+    game_framework::CTextDraw::Print(pDC, 0, 140, "isMiss "+aa);
     game_framework::CDDraw::ReleaseBackCDC();
 }
 
@@ -291,14 +338,23 @@ void Fight::Test5()
 {
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-    game_framework::CTextDraw::Print(pDC, 0, 200, "fightbar position"+to_string(fightBar.GetLeft()));
+    game_framework::CTextDraw::Print(pDC, 0, 200, "attack this"+to_string(attackThisRound));
     game_framework::CDDraw::ReleaseBackCDC();
 }
 
 void Fight::Test6()
 {
+    std::string aa="";
+    if(_enable==true)
+    {
+        aa="True";
+    }
+    else
+    {
+        aa="False";
+    }
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-    game_framework::CTextDraw::Print(pDC, 0, 250, "minusHP "+minusHP);
+    game_framework::CTextDraw::Print(pDC, 0, 250, "enable "+aa);
     game_framework::CDDraw::ReleaseBackCDC();
 }

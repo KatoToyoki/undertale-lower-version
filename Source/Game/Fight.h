@@ -74,6 +74,7 @@ private:
 
     game_framework::CMovingBitmap greenLineRight;
 
+    bool _isMiss=false;
 protected:
     
 public:
@@ -87,7 +88,7 @@ public:
     int GetAttackCount();
     int GetDurationMinusHP();
 
-    int t=0; 
+    int attackThisRound=0; 
 
     void Test1();
     void Test2();
@@ -97,6 +98,9 @@ public:
     void Test6();
 
     void Minus(double range);
+    void ResetIsMiss();
+
+    int thisRound=0;
     
     // the setters
     
