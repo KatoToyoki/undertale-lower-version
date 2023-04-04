@@ -119,9 +119,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   case 6:
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
+    heart_test.set_show_img_enable(true);
     show_normal_mode.monster_frame_battle();
     user_frame.control_frame(talk_to_normal_battle);
-    heart_test.set_show_img_enable(true);
     
     battel_mode_timer = 0;
     break;
