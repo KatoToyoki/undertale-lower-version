@@ -127,7 +127,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   monster_frame.load_game_text(game_text);
 
   gameFight.load_img();
-  gameFight.set_fight_img_enable(false);
+  gameFight.set_fight_enable(false);
 }
 
 
@@ -155,6 +155,12 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   {
     stage_go-=1;
     user_frame._current_selection = 0;
+    
+  }
+
+  if(nChar==VK_F1)
+  {
+    stage_go=1;
   }
 }
 
