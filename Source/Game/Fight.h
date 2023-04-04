@@ -2,7 +2,6 @@
 #include "stdafx.h"
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
-#include <iostream>
 
 /*
  * range : 431~1540
@@ -72,9 +71,17 @@ private:
     // this is to let items stay on screen for a while, not just quickly disappear
     int durationMinusHP=100;
 
+    // to avoid the green line be covered
     game_framework::CMovingBitmap greenLineRight;
 
+    // for the miss condition
     bool _isMiss=false;
+
+    // to not let attack continue executing
+    int attackThisRound=0;
+
+    // to let fight bar move once in one round
+    int fightBarthisRound=0;
 protected:
     
 public:
@@ -88,20 +95,6 @@ public:
     int GetAttackCount();
     int GetDurationMinusHP();
 
-    int attackThisRound=0; 
-
-    void Test1();
-    void Test2();
-    void Test3();
-    void Test4();
-    void Test5();
-    void Test6();
-
-    void Minus(double range);
-    void ResetIsMiss();
-
-    int thisRound=0;
-    
     // the setters
     
     // REQUIRED
@@ -112,6 +105,8 @@ public:
     void ResetDurationMinusHP();
     void ResetMinusHP();
     void ResetIsAttack();
+    void ResetIsMiss();
+
     
     // REQUIRED
     // load and set img for init
@@ -124,6 +119,9 @@ public:
     // REQUIRED
     // depending on the position, return the value of how much will HP be subtracted
     void attack();
+
+    // to get what damage the enemy will receive
+    int Minus(double range);
     
     // to let attack bar gradually moving
     void MovingBar();
@@ -132,7 +130,7 @@ public:
     void ToStop(UINT nChar);
 
     // in order to do the miss condition
-    bool IfMiss();
+    bool GetIsMiss();
 
     // to show how much attack enemy received
     void RevealMinusHP();
@@ -147,6 +145,8 @@ public:
     // to let HP bar unshow, and let enable to be false
     void UnshowHPBar();
 
-    // just end the fight, set some variable default to be prepared for new round
-    void EndFight();
+    // temp functions===================
+    // to print the value out immediately
+    void Test1();
+    void Test2();
 };

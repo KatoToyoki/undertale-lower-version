@@ -213,7 +213,7 @@ void CGameStateRun::OnShow()
     
     gameButtonFrame.show_button();
     gameFight.show_fight_img();
-    //gameFight.MovingBar();
+    gameFight.MovingBar();
 
   }
 }
