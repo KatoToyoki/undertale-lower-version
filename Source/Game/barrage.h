@@ -24,6 +24,7 @@ public:
     void set_positon(int x, int y);
     void set_show_enable(bool enable);
     void show_img();
+    void UnshowIMG();
 
     void switch_mode();
     int damege_hit(Move *heart);

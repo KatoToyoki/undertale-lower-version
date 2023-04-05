@@ -117,7 +117,8 @@ private:
   Menu menu;
   GameText game_text;
   ShowNormalMode show_normal_mode;
-  Barrage barrage;
+  //Barrage barrage;
+  Barrage boneRed1,boneRed2,boneRed3;
   MonsterFrame monster_frame;
   
   

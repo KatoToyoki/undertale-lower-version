@@ -86,9 +86,22 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     break;
   case 5:
     //maybe battle mode
+    boneRed1.set_show_enable(true);
+    boneRed1.damege_hit(&heart_test);
+    boneRed1.left_move(3);
+
+    boneRed2.set_show_enable(true);
+    boneRed2.damege_hit(&heart_test);
+    boneRed2.left_move(3);
+
+    boneRed3.set_show_enable(true);
+    boneRed3.damege_hit(&heart_test);
+    boneRed3.left_move(3);
+    /*
     barrage.set_show_enable(true);
     barrage.damege_hit(&heart_test);
     barrage.right_move(1);
+    */
     
     user_frame.set_choose(false);
     user_frame.control_frame(talk_to_papyrus_normal_battle);
@@ -110,9 +123,24 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameButtonFrame.SetInit();
 
   menu.load_img_set_postion();
+
+  // set temp bone barrage =====================================
+  boneRed1=Barrage(3,white);
+  boneRed1.load_img("bone1");
+  boneRed1.set_positon(1000,795);
+
+  boneRed2=Barrage(3,white);
+  boneRed2.load_img("bone2");
+  boneRed2.set_positon(1150,783);
+
+  boneRed3=Barrage(3,white);
+  boneRed3.load_img("bone3");
+  boneRed3.set_positon(1300,774);
+  /*
   barrage = Barrage(2,blue);
   barrage.load_img("enter");
   barrage.set_positon(700,700);
+  */
   // game_framework::CSpecialEffect::SetCurrentTime();
   green_line.LoadBitmapByString({"resources/green_line.bmp"},RGB(255,255,255));
   green_line.SetTopLeft(274,20);
@@ -202,7 +230,11 @@ void CGameStateRun::OnShow()
     //all show thing put here no any if else
     heart_test.show_heart_img();
 
-    barrage.show_img();
+    //barrage.show_img();
+    boneRed1.show_img();
+    boneRed2.show_img();
+    boneRed3.show_img();
+
     
     user_frame.show_frame();
     user_frame.show_select_heart();
