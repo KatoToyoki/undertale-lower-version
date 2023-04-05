@@ -120,7 +120,7 @@ private:
   ShowNormalMode show_normal_mode;
   // Barrage barrage;
   // Barrage boneRed1,boneRed2,boneRed3;
-  BarrageMode boneRed;
+  BarrageMode boneRed=BarrageMode(3);
   MonsterFrame monster_frame;
   
   

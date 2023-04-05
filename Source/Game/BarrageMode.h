@@ -15,7 +15,6 @@ struct SetData
     int initX=0,initY=0;
 };
 
-
 class BarrageMode
 {
 private:
@@ -29,6 +28,7 @@ public:
     BarrageMode(int quantity)
     {
         _quantity=quantity;
+        
     }
     ~BarrageMode()=default;
     
@@ -40,5 +40,4 @@ public:
     void ShowBarrage();
     void UnshowBarrage();
     void MovingBarrage(Move *heart, int speed);
-    
 };
