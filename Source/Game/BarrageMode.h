@@ -5,6 +5,7 @@
 #include "../Library/gamecore.h"
 #include "barrage.h"
 #include <vector>
+#include <cstdlib>
 
 struct SetData
 {
@@ -14,33 +15,29 @@ struct SetData
     int initX=0,initY=0;
 };
 
+
 class BarrageMode
 {
 private:
     bool _enable;
     int _quantity=0;
-    // Barrage *enemyBarrage;
+    int xPosition[50],yPosition[50];
     std::vector<Barrage> enemyBarrage;
-    //SetData *allData;
     std::vector<SetData> allData;
 
 public:
     BarrageMode(int quantity)
     {
         _quantity=quantity;
-        //enemyBarrage= new Barrage[quantity];
-        //allData = new SetData[quantity];
     }
-    ~BarrageMode()
-    {
-        //delete [] enemyBarrage;
-        //delete [] allData;
-    }
+    ~BarrageMode()=default;
     
-    void RevealBarrage(Move *heart, Barrage *current, int speed);
-    void SetUp(Barrage *current, SetData *data);
+    void Init();
+    void SetAllData();
+    void NewSetup(SetData data);
+    void RandomBarrage();
     void ShowBarrage();
     void UnshowBarrage();
-
-    void SetAllData();
+    void MovingBarrage(Move *heart, Barrage current, int speed);
+    
 };

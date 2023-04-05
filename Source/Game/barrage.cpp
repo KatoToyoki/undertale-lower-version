@@ -66,7 +66,6 @@ void Barrage::UnshowIMG()
     }
 }
 
-
 void Barrage::switch_mode()
 {
     if (_mode == white)
@@ -85,6 +84,7 @@ int Barrage::damege_hit(Move *heart)
     {
         heart->time_count = 0;
         heart->shine_two_second();
+        barrage_img.SetTopLeft(0,0);
         return _damege;
     }
     if (_mode == blue)
@@ -96,6 +96,7 @@ int Barrage::damege_hit(Move *heart)
             {
                 heart->time_count = 0;
                 heart->shine_two_second();
+                barrage_img.SetTopLeft(0,0);
                 return  _damege;
             }
         }
