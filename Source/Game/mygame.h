@@ -49,6 +49,7 @@
 #include "barrage.h"
 #include "monster_frame.h"
 #include "Fight.h"
+#include "BarrageMode.h"
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -117,8 +118,9 @@ private:
   Menu menu;
   GameText game_text;
   ShowNormalMode show_normal_mode;
-  //Barrage barrage;
-  Barrage boneRed1,boneRed2,boneRed3;
+  // Barrage barrage;
+  // Barrage boneRed1,boneRed2,boneRed3;
+  BarrageMode boneRed;
   MonsterFrame monster_frame;
   
   

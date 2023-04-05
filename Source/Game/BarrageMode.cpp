@@ -72,6 +72,14 @@ void BarrageMode::RandomBarrage()
     }
 }
 
+void BarrageMode::NormalBarrage()
+{
+    for(int i=0;i<_quantity;i++)
+    {
+        NewSetup(allData[i]);
+    }
+}
+
 void BarrageMode::ShowBarrage()
 {
     for(int i=0;i<_quantity;i++)
@@ -88,9 +96,17 @@ void BarrageMode::UnshowBarrage()
     }
 }
 
-void BarrageMode::MovingBarrage(Move *heart, Barrage current, int speed)
+void BarrageMode::MovingBarrage(Move *heart, int speed)
 {
+    for(int i=0;i<_quantity;i++)
+    {
+        enemyBarrage[i].set_show_enable(true);
+        enemyBarrage[i].damege_hit(heart);
+        enemyBarrage[i].left_move(speed);
+    }
+    /*
     current.set_show_enable(true);
     current.damege_hit(heart);
     current.left_move(speed);
+    */
 }

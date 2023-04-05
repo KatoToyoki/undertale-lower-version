@@ -36,8 +36,9 @@ public:
     void SetAllData();
     void NewSetup(SetData data);
     void RandomBarrage();
+    void NormalBarrage();
     void ShowBarrage();
     void UnshowBarrage();
-    void MovingBarrage(Move *heart, Barrage current, int speed);
+    void MovingBarrage(Move *heart, int speed);
     
 };
