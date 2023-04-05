@@ -12,6 +12,7 @@ void BarrageMode::Init()
     yPosition[2]=774;
     
     SetAllData();
+    PushEmpty();
 }
 
 void BarrageMode::SetAllData()
@@ -40,13 +41,24 @@ void BarrageMode::SetAllData()
     allData.push_back(current);
 }
 
-void BarrageMode::NewSetup(SetData data)
+void BarrageMode::PushEmpty()
+{
+    Barrage temp=Barrage(0,white);
+    for(int i=0;i<_quantity;i++)
+    {
+        enemyBarrage.push_back(temp);
+    }
+}
+
+Barrage BarrageMode::Setup(SetData data)
 {
     Barrage current;
-    current=Barrage(data.damage,data.mode);
     current.load_img(data.imgPath);
+    current.SetDamage(data.damage);
+    current.SetMode(data.mode);
     current.set_positon(data.initX,data.initY);
-    enemyBarrage.push_back(current);
+
+    return current;
 }
 
 void BarrageMode::RandomBarrage()
@@ -57,17 +69,17 @@ void BarrageMode::RandomBarrage()
         int temp = rand();
         if(temp%3==0)
         {
-            NewSetup(allData[_quantity-_quantity]);
+            enemyBarrage[i]=Setup(allData[_quantity-_quantity]);
             enemyBarrage[i].set_positon(xPosition[i],allData[_quantity-_quantity].initY);
         }
         else if(temp%3==1)
         {
-            NewSetup(allData[_quantity-1]);
+            enemyBarrage[i]=Setup(allData[_quantity-1]);
             enemyBarrage[i].set_positon(xPosition[i],allData[_quantity-1].initY);
         }
         else if(_quantity>=3)
         {
-            NewSetup(allData[_quantity-2]);
+            enemyBarrage[i]=Setup(allData[_quantity-2]);
             enemyBarrage[i].set_positon(xPosition[i],allData[_quantity-2].initY);
         }
     }
@@ -77,7 +89,7 @@ void BarrageMode::NormalBarrage()
 {
     for(int i=0;i<_quantity;i++)
     {
-        NewSetup(allData[i]);
+        enemyBarrage[i]=Setup(allData[i]);
     }
 }
 

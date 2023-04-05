@@ -23,15 +23,18 @@ public:
 
     void set_positon(int x, int y);
     void set_show_enable(bool enable);
+    void SetDamage(int damage);
+    void SetMode(barrage_mode mode);
+    
     void show_img();
     void UnshowIMG();
-
+    
     void switch_mode();
     int damege_hit(Move *heart);
 
 private:
     game_framework::CMovingBitmap barrage_img;
-    int _damege;
+    int _damage;
     bool _enable = false;
     barrage_mode _mode;
 };

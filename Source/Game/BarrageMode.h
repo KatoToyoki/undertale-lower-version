@@ -28,13 +28,13 @@ public:
     BarrageMode(int quantity)
     {
         _quantity=quantity;
-        
     }
     ~BarrageMode()=default;
     
     void Init();
     void SetAllData();
-    void NewSetup(SetData data);
+    void PushEmpty();
+    Barrage Setup(SetData data);
     void RandomBarrage();
     void NormalBarrage();
     void ShowBarrage();

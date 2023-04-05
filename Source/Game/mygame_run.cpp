@@ -27,6 +27,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   case 1:
     show_normal_mode.init(&user_frame,&gameButtonFrame,
       &monster_frame,&heart_test,&gameFight);
+
+    boneRed.RandomBarrage();
     break;
   case 2:
     switch (gameButtonFrame.get_current_selection())
@@ -113,7 +115,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 
   // enemy attack path generate
   boneRed.Init();
-  boneRed.RandomBarrage();
   
   // game_framework::CSpecialEffect::SetCurrentTime();
   green_line.LoadBitmapByString({"resources/green_line.bmp"},RGB(255,255,255));
