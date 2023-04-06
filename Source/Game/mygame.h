@@ -154,6 +154,9 @@ protected:
 private:
   int counter; // 倒數之計數器
   CMovingBitmap game_over;
+  Text heart;
+  Text stay;
+  Text press_q;
 };
 
 } // namespace game_framework

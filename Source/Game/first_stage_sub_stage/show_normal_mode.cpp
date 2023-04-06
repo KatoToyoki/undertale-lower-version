@@ -47,6 +47,7 @@ void ShowNormalMode::init(UserFrame *user_frame,
 	_enemy->set_act_init(last_act_selection);// 這邊set next round 可能只會抓到0
 	_enemy->set_enemy_targe_choose_hp_bar(false);
 	_enemy->set_barrage_enable(false);
+	_enemy->hp = _game_fight->get_current_monster_hp();
 	
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),enter_talk);
 
@@ -89,7 +90,7 @@ void ShowNormalMode::choose_fight()
 	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 
-	_enemy->hp = 50;
+	// _enemy->hp = 10;
 }
 
 void ShowNormalMode::choose_act_target()

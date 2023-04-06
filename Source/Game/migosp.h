@@ -35,6 +35,7 @@ public:
     GameText get_mercy_game_text() { return mercy_text;}
     GameText get_mercy_win_game_text() { return mercy_win_text;}
     void check_change_mercy_name_to_yellow_by_is_mercy();
+    void set_mercy(bool enable) { _is_mercy = enable; }
     bool is_mercy();
     
 /// barrage

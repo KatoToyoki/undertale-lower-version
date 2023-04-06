@@ -91,7 +91,7 @@ void Migosp::show_enemy_targe_choose_hp_bar()
 
 void Migosp::set_barrage()
 {
-  barrage = Barrage(2,blue);
+  barrage = Barrage(7,white);
   barrage.loda_CMoving_Bitmap(enemy_barrage);
 }
 
@@ -139,6 +139,18 @@ void Migosp::set_acts()
 	std::vector<Text> text_vector = {text0,text1,text2};
 	GameText act_after = GameText(text_vector,talk_mode);
 
+	text0 = Text (60, "* Migosp curls up", RGB(255,255,255),600, 465,613);
+	text1 = Text (60, "  in your lab", RGB(255,255,255),600, 465,613);
+	text2 = Text (60, "  as it is pet by you.", RGB(255,255,255),600, 465,613);
+	Text text3(60, "* It gets so comfortable", RGB(255,255,255),600, 465,613);
+	Text text4(60, "  it falls asleep...", RGB(255,255,255),600, 465,613);
+	Text text5(60, "* Zzzzz...", RGB(255,255,255),600, 465,613);
+	Text text6(60, "* ...", RGB(255,255,255),600, 465,613);
+	Text text7(60, "* Then it wakes up!", RGB(255,255,255),600, 465,613);
+	Text text8(60, "* It's so excited!", RGB(255,255,255),600, 465,613);
+	text_vector = {text0,text1,text2,text3,text4,text5,text6,text7,text8};
+	GameText act_after_pet = GameText(text_vector,talk_mode);
+
 	text0 = Text (60, "* Migosp doesn't have a care", RGB(255,255,255),600, 465,613);
 	text1 = Text (60, "  in the world.", RGB(255,255,255),600, 465,613);
 	text_vector = {text0,text1};
@@ -162,11 +174,11 @@ void Migosp::set_acts()
     };
 	Act act_pet = {
         "pet",
-        act_after,
+        act_after_pet,
 		act_next_round,
 		0,
-		2,
-		{0,2,3}
+		5,
+		{0,3,2,1,1,2}
     };
 	vector<Act> act_vecter = {act_check,act_talk,act_pet};
 	acts = Acts (act_vecter) ;
@@ -196,8 +208,8 @@ void Migosp::set_act_init(int current_selection)//monster frame那邊的init有�
 	if (_current_selection == pet)
 	{
 		act->index = 0;
-		act->act_after_len_list={0,1,1,1};
-		act->cost_round = 3;
+		act->act_after_len_list={0,3,2,1,1,2};
+		act->cost_round = 5;
 	}
 }
 

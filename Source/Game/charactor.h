@@ -17,8 +17,8 @@ private:
     std::string name = "Frisk";
     int level = 1;
     int exp = 0;
-    int hp_max = 50;
-    int hp = 10;
+    int hp_max = 20;
+    int hp = 20;
     int one_hp_pixel = 3;
     int hp_bar_position_x = 859;
     int hp_bar_position_y = 900;

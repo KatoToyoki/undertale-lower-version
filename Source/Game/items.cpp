@@ -146,7 +146,7 @@ void Items::set_items(int current_selection)
         Text nice_cream_ramdon = get_and_set_ramdon_text("NiceCream");
         vector<Text> text_vector= {
             nice_cream_ramdon,
-            Text (60,"* You recovered 11 HP!",RGB(255,255,255),600,0,0),
+            Text (60,"* You recovered 15 HP!",RGB(255,255,255),600,0,0),
         };
         GameText nice_cream_gmae_text(text_vector, talk_mode);
        item->item_after_game_text = nice_cream_gmae_text;
