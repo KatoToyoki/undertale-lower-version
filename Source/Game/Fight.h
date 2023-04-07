@@ -1,5 +1,7 @@
 #pragma once
 #include "stdafx.h"
+
+#include "migosp.h"
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
 
@@ -59,9 +61,6 @@ private:
     // this is the transition of int minus HP in order to be displayed on screen
     std::string minusHP="";
 
-    // this is to control if "enter" was pressed multiple times, it only do once in one round 
-    int attackCount=0;
-
     // this is the black(minus) HP initial position.
     int minusPosition=1300;
    
@@ -82,6 +81,9 @@ private:
 
     // to let fight bar move once in one round
     int fightBarthisRound=0;
+
+    game_framework::CMovingBitmap attack_red;
+    Migosp *_enemy;
 protected:
     
 public:
@@ -92,8 +94,8 @@ public:
     bool GetEnable();
     bool GetIsAttack();
     std::string GetMinusHP();
-    int GetAttackCount();
     int GetDurationMinusHP();
+    int get_current_monster_hp() { return monsterHP; }
 
     // the setters
     
@@ -111,6 +113,7 @@ public:
     // REQUIRED
     // load and set img for init
     void load_img();
+    void set_monster(Migosp *enemy);
     
     // REQUIRED
     // put OnShow, can modify enable to control if img will reveal or not
@@ -144,4 +147,14 @@ public:
 
     // to let HP bar unshow, and let enable to be false
     void UnshowHPBar();
+<<<<<<< HEAD
+=======
+
+    bool is_hp_zero() { return (monsterHP == 0); }
+
+    // temp functions===================
+    // to print the value out immediately
+    void Test1();
+    void Test2();
+>>>>>>> main
 };

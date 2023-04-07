@@ -21,7 +21,7 @@ GameText::GameText(std::vector<Text> data,mode mode_command)
         }
         if (mode_command == monster_mode)
         {
-            text.set_positon(1234,333 + (i%3)*50 );
+            text.set_positon(1234,333 + (i%4)*50 );
         }
         i+=1;
             
@@ -66,7 +66,7 @@ void GameText::print_text()
         }
         else
         {
-            _data[i].set_positon(1234,333 + (((i-print_index)%3)*50) );
+            _data[i].set_positon(1234,333 + (((i-print_index)%4)*50) );
         }
         _data[i].print();
     }

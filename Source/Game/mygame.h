@@ -47,9 +47,15 @@
 #include "first_stage_sub_stage/show_menu.h"
 #include "first_stage_sub_stage/show_normal_mode.h"
 #include "barrage.h"
+#include "charactor.h"
 #include "monster_frame.h"
 #include "Fight.h"
+<<<<<<< HEAD
 #include "BarrageMode.h"
+=======
+#include "../Library/audio.h"
+
+>>>>>>> main
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -104,6 +110,7 @@ public:
   void OnMouseMove(UINT nFlags, CPoint point);   // 處理滑鼠的動作
   void OnRButtonDown(UINT nFlags, CPoint point); // 處理滑鼠的動作
   void OnRButtonUp(UINT nFlags, CPoint point);   // 處理滑鼠的動作
+  
 
 protected:
   void OnMove(); // 移動遊戲元素
@@ -118,11 +125,19 @@ private:
   Menu menu;
   GameText game_text;
   ShowNormalMode show_normal_mode;
+<<<<<<< HEAD
   BarrageMode boneRed=BarrageMode(3);
+=======
+>>>>>>> main
   MonsterFrame monster_frame;
-  
+  Migosp migosp;
+  Items items;
+  Charactor charactor;
   
   int stage_go = 0;
+  bool stage_go_enable_add = true;
+  bool stage_go_enable_sub = true;
+  int battel_mode_timer = 0;
 
   ButtonFrame gameButtonFrame;
   Fight gameFight;
@@ -146,6 +161,10 @@ protected:
   void OnShow(); // 顯示這個狀態的遊戲畫面
 private:
   int counter; // 倒數之計數器
+  CMovingBitmap game_over;
+  Text heart;
+  Text stay;
+  Text press_q;
 };
 
 } // namespace game_framework

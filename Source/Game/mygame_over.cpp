@@ -19,7 +19,11 @@ CGameStateOver::CGameStateOver(CGame *g): CGameState(g)
 
 void CGameStateOver::OnMove()
 {
-	GotoGameState(GAME_STATE_INIT);
+	GotoGameState(GAME_STATE_OVER);
+	if ( GetKeyState(0x51)&0x8000)
+	{
+		exit(0);
+	}
 }
 
 void CGameStateOver::OnBeginState()
@@ -43,9 +47,18 @@ void CGameStateOver::OnInit()
 	ShowInitProgress(100, "OK!");
 
 	Sleep(1000);
+	
+	game_over.LoadBitmapByString({"resources/gameover.bmp"},RGB(0,0,0));
+	game_over.SetTopLeft(497,81);
+	heart = Text (60,"Heart!",RGB(255,255,255),100,600,739);
+	stay = Text (60,"Stay determined...",RGB(255,255,255),100,600,820);
+	press_q = Text (50,"PRESS Q TO EXIT",RGB(255,255,255),100,600,920);
 }
 
 void CGameStateOver::OnShow()
 {
-
+	game_over.ShowBitmap();
+	heart.print();
+	stay.print();
+	press_q.print();
 }

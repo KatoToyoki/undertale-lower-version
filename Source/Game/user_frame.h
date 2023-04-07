@@ -18,7 +18,7 @@ public:
 
   void control_frame(int frame_command_control);
 
-  bool get_move() const { return move_done; }
+  bool get_move_done() const { return move_done; }
   int get_current_selection();
   int get_text_vector_len();
   
@@ -44,7 +44,7 @@ private:
   void change_frame_up();
   void check_which_change_frame_need_call(int frame_commend);
   
-  bool move_done = false;
+  bool move_done = true;
   bool _enable = false;
   int _head = 0,_text_len = 1;
   GameText _game_text;

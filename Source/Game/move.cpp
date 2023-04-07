@@ -9,6 +9,10 @@ void Move::load_img()
     heart.SetTopLeft(1000,700);
 }
 
+void Move::set_show_img_enable(bool enable)
+{
+	_enable_img = enable;
+}
 
 Vec2 Move::check_range(Corner corner,Vec2 force)
 {
@@ -51,9 +55,9 @@ Vec2 Move::check_range(Corner corner,Vec2 force)
 void Move::move_control(Corner corner,bool enable)
 {
     
-	_enable = enable;
+	_enable_move = enable;
     Vec2 force = {0 ,0};
-	if (_enable){
+	if (_enable_move){
 		if ( GetKeyState(VK_UP)&0x8000)
 		{
 			force.x+=0;
@@ -107,10 +111,14 @@ void Move::set_heart_postion(int x, int y)
 {
 	heart.SetTopLeft(x,y);
 }
+void Move::set_shine_mode(bool enable)
+{
+	_shine_mode = enable;
+}
 
 void Move::show_heart_img()
 {
-	if (_enable)
+	if (_enable_img)
 	{
 		if (_shine_mode)
 		{
@@ -127,7 +135,7 @@ void Move::shine_two_second()
 {
 	time_count += game_framework::CSpecialEffect::GetEllipseTime();
 	
-	if (time_count >= 700)
+	if (time_count >= 400)
 	{
 		_shine_mode = false;
 	}

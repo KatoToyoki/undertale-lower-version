@@ -40,7 +40,3 @@ void Text::print()
         game_framework::CDDraw::ReleaseBackCDC();
     }
 }
-
-
-
-
