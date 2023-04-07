@@ -96,7 +96,7 @@ void Fight::show_fight_img()
         fightScope.ShowBitmap();
         fightBar.ShowBitmap();
        
-        // Test2();
+        Test2();
     }
     else if (!_enable)
     {
@@ -301,6 +301,6 @@ void Fight::Test2()
     std::string b=to_string(fightBar.GetLeft());
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-    game_framework::CTextDraw::Print(pDC, 0, 50, "durationMinusHP "+to_string(monsterHP));
+    game_framework::CTextDraw::Print(pDC, 0, 50, "durationMinusHP "+to_string(durationMinusHP));
     game_framework::CDDraw::ReleaseBackCDC();
 }

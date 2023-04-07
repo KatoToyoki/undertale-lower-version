@@ -24,6 +24,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 {
   charactor.updata_hp_bar_by_hp();
   migosp.updata_hp_bar_by_hp();
+
+  
   if (charactor.get_current_hp() == 0)
   {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
@@ -285,10 +287,10 @@ void CGameStateRun::OnShow()
 
     charactor.show_charactor_data();
 
-    // std::string str = std::to_string(stage_go);
-    // Text stage(50,str,RGB(255,255,255),600,100,100);
-    // stage.set_enable(true);
-    // stage.print();
+    std::string str = std::to_string(stage_go);
+    Text stage(50,str,RGB(255,255,255),600,100,100);
+    stage.set_enable(true);
+    stage.print();
     
   }
 }
