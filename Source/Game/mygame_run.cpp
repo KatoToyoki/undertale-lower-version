@@ -33,9 +33,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   case 1:
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
-    
-    show_normal_mode.init(&user_frame,&gameButtonFrame,
-      &monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
+    boneRed.RandomBarrage();
+    show_normal_mode.init(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
+
     break;
   case 2:
     stage_go_enable_add = true;
@@ -146,6 +146,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     user_frame.control_frame(talk_to_normal_battle);
     migosp.set_barrage_enable(true);
 
+    // to do enemy attack
+    // boneRed.MovingBarrage(&heart_test,3);
+
     charactor.change_hp( (heart_test.time_count>=400)
       ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
     
@@ -180,7 +183,12 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameButtonFrame.SetInit();
 
   menu.load_img_set_postion();
+
+  // enemy attack path generate
+  boneRed.Init();
   
+  // game_framework::CSpecialEffect::SetCurrentTime();
+
   green_line.LoadBitmapByString({"resources/green_line.bmp"},RGB(255,255,255));
   green_line.SetTopLeft(274,20);
 
@@ -211,8 +219,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     charactor.change_hp_updata(nChar);
   }
 
-
-  
   //stage_control don't touch here
   if ((nChar == VK_RETURN || nChar == 0x5A) && ((migosp.is_mercy() && gameButtonFrame.get_current_selection() ==3 && stage_go == 3) || gameFight.is_hp_zero())) {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
@@ -267,6 +273,9 @@ void CGameStateRun::OnShow()
   } else {
     //all show thing put here no any if else
     heart_test.show_heart_img();
+    
+    // enemy attack path
+    boneRed.ShowBarrage();
 
     user_frame.show_frame();
     user_frame.show_select_heart();
@@ -285,10 +294,10 @@ void CGameStateRun::OnShow()
 
     charactor.show_charactor_data();
 
-    // std::string str = std::to_string(stage_go);
-    // Text stage(50,str,RGB(255,255,255),600,100,100);
-    // stage.set_enable(true);
-    // stage.print();
+    std::string str = std::to_string(stage_go);
+    Text stage(50,str,RGB(255,255,255),600,100,100);
+    stage.set_enable(true);
+    stage.print();
     
   }
 }

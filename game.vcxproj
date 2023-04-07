@@ -245,6 +245,7 @@
     </ClCompile>
     <ClCompile Include="Source\Game\acts.cpp" />
     <ClCompile Include="Source\Game\barrage.cpp" />
+    <ClCompile Include="Source\Game\BarrageMode.cpp" />
     <ClCompile Include="Source\Game\ButtonFrame.cpp" />
     <ClCompile Include="Source\Game\charactor.cpp" />
     <ClCompile Include="Source\Game\Fight.cpp" />
@@ -279,6 +280,7 @@
     <ClInclude Include="Source\Core\StdAfx.h" />
     <ClInclude Include="Source\Game\acts.h" />
     <ClInclude Include="Source\Game\barrage.h" />
+    <ClInclude Include="Source\Game\BarrageMode.h" />
     <ClInclude Include="Source\Game\ButtonFrame.h" />
     <ClInclude Include="Source\Game\charactor.h" />
     <ClInclude Include="Source\Game\config.h" />
