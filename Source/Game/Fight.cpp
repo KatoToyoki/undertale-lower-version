@@ -55,18 +55,36 @@ void Fight::load_img()
     fightBar.LoadBitmapByString({"resources/fight_bar.bmp"});
     fightBar.SetTopLeft(240,593);
 
+    //374 ori
     HP.LoadBitmapByString({"resources/hp_bar_hp.bmp"});
-    HP.SetTopLeft(618,374);
+    HP.SetTopLeft(618,200);
 
     HPminus.LoadBitmapByString({"resources/hp_bar_minushp.bmp"});
-    HPminus.SetTopLeft(1300,374);
+    HPminus.SetTopLeft(1300,200);
     
     HPFrame.LoadBitmapByString({"resources/hp_bar_frame.bmp"}, RGB(255, 255, 255));
-    HPFrame.SetTopLeft(618,374);
+    HPFrame.SetTopLeft(618,200);
 
     greenLineRight.LoadBitmapByString({"resources/green_line_right.bmp"}, RGB(255, 255, 255));
     greenLineRight.SetTopLeft(1185,20);
+
+    attack_red.LoadBitmapByString({"resources/attack_0.bmp",
+"resources/attack_1.bmp",
+    "resources/attack_2.bmp",
+    "resources/attack_3.bmp",
+    "resources/attack_4.bmp",
+    "resources/attack_5.bmp",
+    "resources/attack_6.bmp"
+        }
+    ,RGB(0,0,0));
+	attack_red.SetTopLeft(1050,316);
+	attack_red.SetAnimation(150,false);
 }
+void Fight::set_monster(Migosp* enemy)
+{
+    _enemy = enemy;
+}
+
 
 void Fight::show_fight_img()
 {
@@ -78,7 +96,7 @@ void Fight::show_fight_img()
         fightScope.ShowBitmap();
         fightBar.ShowBitmap();
        
-        Test2();
+        // Test2();
     }
     else if (!_enable)
     {
@@ -103,6 +121,11 @@ void Fight::show_fight_img()
         }
 
         MovingHPBar();
+        if (_isAttack)
+        {
+            attack_red.ShowBitmap();
+            _enemy->set_enemy_img_init_or_damege(damege);
+        }
         
         if(GetDurationMinusHP()>0 && GetAttackCount()<=1){
             RevealMinusHP();
@@ -121,7 +144,7 @@ void Fight::show_fight_img()
         _enable=false;
         // if put here, you can check if enable change or not
         // reveal correctly
-        Test1();
+        // Test1();
     }
 }
 
@@ -199,7 +222,7 @@ void Fight::MovingBar()
 
 void Fight::ToStop(UINT nChar)
 {
-    if(nChar==VK_RETURN && _enable)
+    if((nChar==VK_RETURN || nChar == 0x5A) && _enable)
     {
         _isBarStop=true;
         _isAttack=true;
@@ -215,9 +238,10 @@ bool Fight::GetIsMiss()
 
 void Fight::RevealMinusHP()
 {
+    //300 ori
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "Determination Mono Web", RGB(255, 255, 255), 800);
-    game_framework::CTextDraw::Print(pDC, 900, 300, minusHP);
+    game_framework::CTextDraw::Print(pDC, 900, 126, minusHP);
     game_framework::CDDraw::ReleaseBackCDC();
     if(durationMinusHP!=0)
     {
@@ -236,11 +260,12 @@ void Fight::ShowHPBar()
 void Fight::MovingHPBar()
 {
     if(HPminus.GetLeft()-10>minusPosition && _isHPBarStop==false){
-        HPminus.SetTopLeft(HPminus.GetLeft()-5,374);
+        //374 ori
+        HPminus.SetTopLeft(HPminus.GetLeft()-5,200);
     }
     else if(HPminus.GetLeft()-4<=minusPosition)
     {
-        HPminus.SetTopLeft(minusPosition,374);
+        HPminus.SetTopLeft(minusPosition,200);
         _isHPBarStop=true;
     }
 }
@@ -276,6 +301,6 @@ void Fight::Test2()
     std::string b=to_string(fightBar.GetLeft());
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-    game_framework::CTextDraw::Print(pDC, 0, 50, "durationMinusHP "+to_string(durationMinusHP));
+    game_framework::CTextDraw::Print(pDC, 0, 50, "durationMinusHP "+to_string(monsterHP));
     game_framework::CDDraw::ReleaseBackCDC();
 }

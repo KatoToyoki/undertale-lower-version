@@ -246,13 +246,16 @@
     <ClCompile Include="Source\Game\acts.cpp" />
     <ClCompile Include="Source\Game\barrage.cpp" />
     <ClCompile Include="Source\Game\ButtonFrame.cpp" />
+    <ClCompile Include="Source\Game\charactor.cpp" />
     <ClCompile Include="Source\Game\Fight.cpp" />
     <ClCompile Include="Source\Game\first_stage.cpp" />
     <ClCompile Include="Source\Game\first_stage_sub_stage\show_menu.cpp" />
     <ClCompile Include="Source\Game\first_stage_sub_stage\show_normal_mode.cpp" />
     <ClCompile Include="Source\Game\frame.cpp" />
     <ClCompile Include="Source\Game\game_text.cpp" />
+    <ClCompile Include="Source\Game\items.cpp" />
     <ClCompile Include="Source\Game\menu.cpp" />
+    <ClCompile Include="Source\Game\migosp.cpp" />
     <ClCompile Include="Source\Game\move.cpp" />
     <ClCompile Include="Source\Game\monster_frame.cpp" />
     <ClCompile Include="Source\Game\mygame_initialize.cpp" />
@@ -277,6 +280,7 @@
     <ClInclude Include="Source\Game\acts.h" />
     <ClInclude Include="Source\Game\barrage.h" />
     <ClInclude Include="Source\Game\ButtonFrame.h" />
+    <ClInclude Include="Source\Game\charactor.h" />
     <ClInclude Include="Source\Game\config.h" />
     <ClInclude Include="Source\Game\Fight.h" />
     <ClInclude Include="Source\Game\first_stage.h" />
@@ -284,7 +288,9 @@
     <ClInclude Include="Source\Game\first_stage_sub_stage\show_normal_mode.h" />
     <ClInclude Include="Source\Game\frame.h" />
     <ClInclude Include="Source\Game\game_text.h" />
+    <ClInclude Include="Source\Game\items.h" />
     <ClInclude Include="Source\Game\menu.h" />
+    <ClInclude Include="Source\Game\migosp.h" />
     <ClInclude Include="Source\Game\monster_frame.h" />
     <ClInclude Include="Source\Game\move.h" />
     <ClInclude Include="Source\Game\mygame.h" />
