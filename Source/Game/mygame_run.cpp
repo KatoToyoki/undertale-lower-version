@@ -114,11 +114,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     }
     break;
   case 5:
-    //maybe battle mode
-    
-    // to do enemy attack
-    boneRed.MovingBarrage(&heart_test,3);
-    
     gameFight.set_fight_enable(false);
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
@@ -150,6 +145,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     monster_frame._monster_saying_is_done = false;
     user_frame.control_frame(talk_to_normal_battle);
     // migosp.set_barrage_enable(true);
+
+    // to do enemy attack
+    boneRed.MovingBarrage(&heart_test,3);
 
     charactor.change_hp( (heart_test.time_count>=400)
       ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
