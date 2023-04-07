@@ -285,10 +285,10 @@ void CGameStateRun::OnShow()
 
     charactor.show_charactor_data();
 
-    // std::string str = std::to_string(stage_go);
-    // Text stage(50,str,RGB(255,255,255),600,100,100);
-    // stage.set_enable(true);
-    // stage.print();
+    std::string str = std::to_string(stage_go);
+    Text stage(50,str,RGB(255,255,255),600,100,100);
+    stage.set_enable(true);
+    stage.print();
     
   }
 }

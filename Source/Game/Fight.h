@@ -61,9 +61,6 @@ private:
     // this is the transition of int minus HP in order to be displayed on screen
     std::string minusHP="";
 
-    // this is to control if "enter" was pressed multiple times, it only do once in one round 
-    int attackCount=0;
-
     // this is the black(minus) HP initial position.
     int minusPosition=1300;
    
@@ -97,7 +94,6 @@ public:
     bool GetEnable();
     bool GetIsAttack();
     std::string GetMinusHP();
-    int GetAttackCount();
     int GetDurationMinusHP();
     int get_current_monster_hp() { return monsterHP; }
 
