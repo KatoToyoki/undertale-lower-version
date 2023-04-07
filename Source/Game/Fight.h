@@ -147,14 +147,6 @@ public:
 
     // to let HP bar unshow, and let enable to be false
     void UnshowHPBar();
-<<<<<<< HEAD
-=======
 
     bool is_hp_zero() { return (monsterHP == 0); }
-
-    // temp functions===================
-    // to print the value out immediately
-    void Test1();
-    void Test2();
->>>>>>> main
 };

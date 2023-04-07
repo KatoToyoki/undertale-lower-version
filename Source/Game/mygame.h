@@ -50,12 +50,10 @@
 #include "charactor.h"
 #include "monster_frame.h"
 #include "Fight.h"
-<<<<<<< HEAD
 #include "BarrageMode.h"
-=======
+
 #include "../Library/audio.h"
 
->>>>>>> main
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -125,10 +123,8 @@ private:
   Menu menu;
   GameText game_text;
   ShowNormalMode show_normal_mode;
-<<<<<<< HEAD
   BarrageMode boneRed=BarrageMode(3);
-=======
->>>>>>> main
+
   MonsterFrame monster_frame;
   Migosp migosp;
   Items items;

@@ -33,15 +33,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   case 1:
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
-    
-    show_normal_mode.init(&user_frame,&gameButtonFrame,
-<<<<<<< HEAD
-      &monster_frame,&heart_test,&gameFight);
-
     boneRed.RandomBarrage();
-=======
-      &monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
->>>>>>> main
+    show_normal_mode.init(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
+
     break;
   case 2:
     stage_go_enable_add = true;
@@ -120,20 +114,17 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     }
     break;
   case 5:
-<<<<<<< HEAD
     //maybe battle mode
     
     // to do enemy attack
     boneRed.MovingBarrage(&heart_test,3);
     
-=======
     gameFight.set_fight_enable(false);
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
     items.set_control_updata(false);
 	  migosp.set_act_game_text_enable(false);
     migosp.set_enemy_img_init_or_damege(init);
->>>>>>> main
     user_frame.set_choose(false);
     
     heart_test.set_show_img_enable(true);
@@ -158,7 +149,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     
     monster_frame._monster_saying_is_done = false;
     user_frame.control_frame(talk_to_normal_battle);
-    migosp.set_barrage_enable(true);
+    // migosp.set_barrage_enable(true);
 
     charactor.change_hp( (heart_test.time_count>=400)
       ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
@@ -194,15 +185,12 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameButtonFrame.SetInit();
 
   menu.load_img_set_postion();
-<<<<<<< HEAD
 
   // enemy attack path generate
   boneRed.Init();
   
   // game_framework::CSpecialEffect::SetCurrentTime();
-=======
-  
->>>>>>> main
+
   green_line.LoadBitmapByString({"resources/green_line.bmp"},RGB(255,255,255));
   green_line.SetTopLeft(274,20);
 
@@ -287,13 +275,10 @@ void CGameStateRun::OnShow()
   } else {
     //all show thing put here no any if else
     heart_test.show_heart_img();
-
-<<<<<<< HEAD
+    
     // enemy attack path
     boneRed.ShowBarrage();
-    
-=======
->>>>>>> main
+
     user_frame.show_frame();
     user_frame.show_select_heart();
     user_frame.print();//print all thing in user_frame by load_text(GameText) in OnMove and set_enable)
