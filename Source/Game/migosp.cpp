@@ -91,7 +91,7 @@ void Migosp::show_enemy_targe_choose_hp_bar()
 
 void Migosp::set_barrage()
 {
-  barrage = Barrage(10,white);
+  barrage = Barrage(3,white);
   barrage.loda_CMoving_Bitmap(enemy_barrage);
 }
 

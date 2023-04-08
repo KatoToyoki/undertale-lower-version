@@ -17,11 +17,6 @@ std::string Fight::GetMinusHP()
     return minusHP;
 }
 
-int Fight::GetAttackCount()
-{
-    return attackCount;
-}
-
 int Fight::GetDurationMinusHP()
 {
     return durationMinusHP;
@@ -96,7 +91,7 @@ void Fight::show_fight_img()
         fightScope.ShowBitmap();
         fightBar.ShowBitmap();
        
-        Test2();
+        // Test2();
     }
     else if (!_enable)
     {
@@ -105,7 +100,6 @@ void Fight::show_fight_img()
         _isHPBarStop = false;
         _isMiss=false;
         minusHP ="";
-        attackCount = 0;
         fightBarthisRound=0;
         attackThisRound=0;
         fightBar.SetTopLeft(240,593);
@@ -127,7 +121,7 @@ void Fight::show_fight_img()
             _enemy->set_enemy_img_init_or_damege(damege);
         }
         
-        if(GetDurationMinusHP()>0 && GetAttackCount()<=1){
+        if(GetDurationMinusHP()>0){
             RevealMinusHP();
             ShowHPBar();
         }
@@ -209,7 +203,6 @@ void Fight::MovingBar()
     {
         if(fightBar.GetLeft()<1560 && _isBarStop==false ){
             fightBar.SetTopLeft(fightBar.GetLeft()+16,590);
-            attackCount=0;
         }
         else if(fightBar.GetLeft()>=theEnd || fightBar.GetLeft()<=theStart)
         {
@@ -226,7 +219,6 @@ void Fight::ToStop(UINT nChar)
     {
         _isBarStop=true;
         _isAttack=true;
-        attackCount+=1;
         attackThisRound+=1;
     }
 }
@@ -275,32 +267,4 @@ void Fight::UnshowHPBar()
     HP.UnshowBitmap();
     HPminus.UnshowBitmap();
     HPFrame.UnshowBitmap();
-}
-
-// temp functions ==================================================
-
-void Fight::Test1()
-{
-    std::string aa="";
-    if(_enable==true)
-    {
-        aa="True";
-    }
-    else
-    {
-        aa="False";
-    }
-    CDC *pDC = game_framework::CDDraw::GetBackCDC();
-    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-    game_framework::CTextDraw::Print(pDC, 0, 0, "enable "+aa);
-    game_framework::CDDraw::ReleaseBackCDC();
-}
-
-void Fight::Test2()
-{
-    std::string b=to_string(fightBar.GetLeft());
-    CDC *pDC = game_framework::CDDraw::GetBackCDC();
-    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-    game_framework::CTextDraw::Print(pDC, 0, 50, "durationMinusHP "+to_string(durationMinusHP));
-    game_framework::CDDraw::ReleaseBackCDC();
 }

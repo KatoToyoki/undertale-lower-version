@@ -50,6 +50,8 @@
 #include "charactor.h"
 #include "monster_frame.h"
 #include "Fight.h"
+#include "BarrageMode.h"
+
 #include "../Library/audio.h"
 
 
@@ -121,6 +123,8 @@ private:
   Menu menu;
   GameText game_text;
   ShowNormalMode show_normal_mode;
+  BarrageMode boneRed=BarrageMode(3);
+
   MonsterFrame monster_frame;
   Migosp migosp;
   Items items;
