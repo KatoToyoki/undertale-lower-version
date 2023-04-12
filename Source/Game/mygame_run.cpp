@@ -239,6 +239,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   }
 }
 
+
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
   
@@ -297,10 +298,14 @@ void CGameStateRun::OnShow()
 
     charactor.show_charactor_data();
 
-    std::string str = std::to_string(stage_go);
+    std::string str = std::to_string(heart_test.jump_time_count);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.set_enable(true);
     stage.print();
+    std::string str2 = std::to_string(heart_test.jump_time_count_max_down);
+    Text stage2(50,str2,RGB(255,255,255),600,100,200);
+    stage2.set_enable(true);
+    stage2.print();
     
   }
 }

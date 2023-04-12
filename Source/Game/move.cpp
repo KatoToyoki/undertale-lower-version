@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "move.h"
 
+#include <iostream>
+
+#include "BarrageMode.h"
+#include "stdio.h"
+
 #include "../Library/gamecore.h"
 
 void Move::load_img()
@@ -47,6 +52,8 @@ Vec2 Move::check_range(Corner corner,Vec2 force)
 		force_new.y = (float) (border_bottom - heart.GetTop());
 		_enable_blue_heart_jump = true;
 		jump_time_count = 0;
+		jump_time_count_max_up = 300;
+		jump_time_count_max_down = 0;
 	}
 	
 	if (heart.GetTop() + (int)(force.y * move_num_y) <=border_top )
@@ -74,9 +81,19 @@ void Move::move_control(Corner corner,bool enable)
 		}
 		else if (_heart_mode == heart_blue)
 		{
-			double time = ( 200 - (int) jump_time_count );
-			move_num_x = 8.5;
-			move_num_y =(float) (time * 9.8 )/150;
+			DWORD time;
+			if (_enable_blue_heart_jump)
+			{
+				time = (jump_time_count_max_up - jump_time_count)/40;
+			}
+			else
+			{
+				time = (jump_time_count_max_down - jump_time_count)/30;
+			}
+
+			float v = (time * time * 0.3f);
+			move_num_x = 7.5;
+			move_num_y =(v);
 			force = blue_mode();
 		}
 		
@@ -119,13 +136,15 @@ Vec2 Move::blue_mode()
     Vec2 force = {0 ,1};
 		if ( GetKeyState(VK_UP)&0x8000 && _enable_blue_heart_jump)
 		{
-			if (jump_time_count > 200)
+			if (jump_time_count > 250)
 			{
 				_enable_blue_heart_jump = false;
+				jump_time_count_max_down = jump_time_count+50;
 			}
 			else
 			{
 				jump_time_count += game_framework::CSpecialEffect::GetEllipseTime();
+				jump_time_count_max_down = jump_time_count+100;
 				force.x+=0;
 				force.y-=2;
 			}
@@ -147,7 +166,7 @@ Vec2 Move::blue_mode()
 			force.y+=0;
 		}
 
-		if (!_enable_blue_heart_jump && jump_time_count>0 )
+		if (!_enable_blue_heart_jump && jump_time_count>10 )
 		{
 			jump_time_count -= game_framework::CSpecialEffect::GetEllipseTime();
 		}

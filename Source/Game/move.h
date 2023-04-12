@@ -36,7 +36,8 @@ public:
     game_framework::CMovingBitmap heart;
 	DWORD shine_time_count =1000;
 	DWORD jump_time_count =0;
-	DWORD jump_time_count_max =200;
+	DWORD jump_time_count_max_up =300;
+	DWORD jump_time_count_max_down =250;
 private:
     Vec2 check_range(Corner corner,Vec2 force);
     Vec2 normalize(Vec2 force);
@@ -49,7 +50,7 @@ private:
     bool _enable_img = false;
     bool _enable_move = false;
     bool _shine_mode = false;
-    bool _enable_blue_heart_jump = true;
+    bool _enable_blue_heart_jump = false;
     
     HeartMode _heart_mode = heart_red;
 };
