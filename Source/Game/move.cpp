@@ -5,14 +5,22 @@
 
 void Move::load_img()
 {
-    heart.LoadBitmapByString({"resources/heart.bmp"},RGB(255,255,255));
+    heart.LoadBitmapByString({"resources/heart.bmp","resources/heart_blue.bmp"},RGB(255,255,255));
     heart.SetTopLeft(1000,700);
+	heart.SetFrameIndexOfBitmap(heart_red);
 }
 
 void Move::set_show_img_enable(bool enable)
 {
 	_enable_img = enable;
 }
+
+void Move::set_heart_mode(HeartMode heart_mode)
+{
+	_heart_mode = heart_mode;
+	heart.SetFrameIndexOfBitmap(heart_mode);
+}
+
 
 Vec2 Move::check_range(Corner corner,Vec2 force)
 {
@@ -21,28 +29,27 @@ Vec2 Move::check_range(Corner corner,Vec2 force)
 	int border_top = corner._leftTop.y;
 	int border_bottom = corner._rightBottom.y - heart.GetHeight() ;
 	Vec2 force_new = force;
-	force_new.x = force.x * move_num;
-	force_new.y = force.y * move_num;
+	force_new.x = force.x * move_num_x;
+	force_new.y = force.y * move_num_y;
 	
-	int move_step =(int) (force.x * move_num);
-	
-	
-	if (heart.GetLeft() + move_step >= border_right )
+	if (heart.GetLeft() + (int)(force.x * move_num_x) >= border_right )
 	{
 		force_new.x = (float) (border_right - heart.GetLeft());
 	}
 
-	if (heart.GetLeft() + (int)(force.x * move_num) <= border_left )
+	if (heart.GetLeft() + (int)(force.x * move_num_x) <= border_left )
 	{
 		force_new.x = (float) (border_left - heart.GetLeft());
 	}
 
-	if (heart.GetTop() + (int)(force.y * move_num) >=border_bottom )
+	if (heart.GetTop() + (int)(force.y * move_num_y) >=border_bottom ) //timer = 0 , timer++ if up press, if timer>contain num press up not work
 	{
 		force_new.y = (float) (border_bottom - heart.GetTop());
+		_enable_blue_heart_jump = true;
+		jump_time_count = 0;
 	}
 	
-	if (heart.GetTop() + (int)(force.y * move_num) <=border_top )
+	if (heart.GetTop() + (int)(force.y * move_num_y) <=border_top )
 	{
 		force_new.y = (float) (border_top - heart.GetTop());
 	}
@@ -54,10 +61,33 @@ Vec2 Move::check_range(Corner corner,Vec2 force)
 
 void Move::move_control(Corner corner,bool enable)
 {
-    
 	_enable_move = enable;
     Vec2 force = {0 ,0};
+	
 	if (_enable_move){
+		if (_heart_mode == heart_red)
+		{
+			move_num_x = 8.5;
+			move_num_y = 8.5;
+			force = red_mode();
+			force = normalize(force);
+		}
+		else if (_heart_mode == heart_blue)
+		{
+			double time = ( 200 - (int) jump_time_count );
+			move_num_x = 8.5;
+			move_num_y =(float) (time * 9.8 )/150;
+			force = blue_mode();
+		}
+		
+		force = check_range(corner, force);
+		move_act(force);
+	}
+}
+
+Vec2 Move::red_mode()
+{
+    Vec2 force = {0 ,0};
 		if ( GetKeyState(VK_UP)&0x8000)
 		{
 			force.x+=0;
@@ -81,11 +111,47 @@ void Move::move_control(Corner corner,bool enable)
 			force.x+=1;
 			force.y+=0;
 		}
+	return force;
+}
 
-		force = normalize(force);
-		force = check_range(corner, force);
-		move_act(force);
-	}
+Vec2 Move::blue_mode()
+{
+    Vec2 force = {0 ,1};
+		if ( GetKeyState(VK_UP)&0x8000 && _enable_blue_heart_jump)
+		{
+			if (jump_time_count > 200)
+			{
+				_enable_blue_heart_jump = false;
+			}
+			else
+			{
+				jump_time_count += game_framework::CSpecialEffect::GetEllipseTime();
+				force.x+=0;
+				force.y-=2;
+			}
+		}
+		else
+		{
+			_enable_blue_heart_jump = false;
+		}
+		
+		if ( GetKeyState(VK_LEFT)&0x8000)
+		{
+			force.x-=1;
+			force.y+=0;
+		}
+		
+		if ( GetKeyState(VK_RIGHT)&0x8000)
+		{
+			force.x+=1;
+			force.y+=0;
+		}
+
+		if (!_enable_blue_heart_jump && jump_time_count>0 )
+		{
+			jump_time_count -= game_framework::CSpecialEffect::GetEllipseTime();
+		}
+	return force;
 }
 
 Vec2 Move::normalize(const Vec2 force)
@@ -133,9 +199,9 @@ void Move::show_heart_img()
 
 void Move::shine_two_second()
 {
-	time_count += game_framework::CSpecialEffect::GetEllipseTime();
+	shine_time_count += game_framework::CSpecialEffect::GetEllipseTime();
 	
-	if (time_count >= 400)
+	if (shine_time_count >= 400)
 	{
 		_shine_mode = false;
 	}
