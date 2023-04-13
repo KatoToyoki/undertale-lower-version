@@ -1,11 +1,6 @@
 #include "stdafx.h"
 #include "move.h"
 
-#include <iostream>
-
-#include "BarrageMode.h"
-#include "stdio.h"
-
 #include "../Library/gamecore.h"
 
 void Move::load_img()
@@ -226,8 +221,8 @@ void Move::shine_two_second()
 	}
 	else
 	{
-		game_framework::CSpecialEffect::DelayFromSetCurrentTime(10);
-		_shine_mode = !_shine_mode;
+		// game_framework::CSpecialEffect::DelayFromSetCurrentTime(10);
+		if (shine_time_count % 10 > 5) {_shine_mode = !_shine_mode;}
 	}
 }
 

@@ -116,6 +116,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     }
     break;
   case 5:
+    gameButtonFrame.all_button_off();
     gameFight.set_fight_enable(false);
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
@@ -161,7 +162,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
     if (battel_mode_timer >= 1300)
     {
-      // stage_go = 1;
+      stage_go = 1;
     }
     break;
   }
@@ -237,6 +238,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     stage_go-=1;
     user_frame._current_selection = 0;
   }
+  
 }
 
 
@@ -298,14 +300,9 @@ void CGameStateRun::OnShow()
 
     charactor.show_charactor_data();
 
-    std::string str = std::to_string(heart_test.jump_time_count);
+    std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.set_enable(true);
     stage.print();
-    std::string str2 = std::to_string(heart_test.jump_time_count_max_down);
-    Text stage2(50,str2,RGB(255,255,255),600,100,200);
-    stage2.set_enable(true);
-    stage2.print();
-    
   }
 }
