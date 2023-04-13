@@ -30,6 +30,7 @@ void ShowNormalMode::init(UserFrame *user_frame,
     _heart_test->set_show_img_enable(false);
 	_heart_test->set_heart_postion(935,698);
 	_heart_test->shine_time_count = 1000;
+	_heart_test->set_heart_jump_enable_and_init(false);
 
 	_game_fight = game_fight;
 	_game_fight->set_fight_enable(false);

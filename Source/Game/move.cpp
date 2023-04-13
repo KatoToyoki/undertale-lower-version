@@ -221,8 +221,14 @@ void Move::shine_two_second()
 	}
 	else
 	{
-		// game_framework::CSpecialEffect::DelayFromSetCurrentTime(10);
 		if (shine_time_count % 10 > 5) {_shine_mode = !_shine_mode;}
 	}
 }
 
+void Move::set_heart_jump_enable_and_init(bool enable)
+{
+	_enable_blue_heart_jump = enable;
+	jump_time_count = 150;
+	jump_time_count_max_up = 300;
+	jump_time_count_max_down = 200;
+}
