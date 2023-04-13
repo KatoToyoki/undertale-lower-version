@@ -5,6 +5,7 @@ void BarrageMode::Init()
 {
     SetAllData();
     PushEmpty();
+    recordXYDamageSpeed();
 }
 
 void BarrageMode::PushEmpty()
@@ -16,6 +17,7 @@ void BarrageMode::PushEmpty()
         xPosition.push_back(0);
         yPosition.push_back(0);
         allDamage.push_back(0);
+        allSpeed.push_back(0);
     }
 }
 
@@ -75,15 +77,5 @@ void BarrageMode::UnshowBarrage()
     for(int i=0;i<_quantity;i++)
     {
         enemyBarrage[i].UnshowIMG();
-    }
-}
-
-void BarrageMode::MovingBarrage(Move *heart, int speed)
-{
-    for(int i=0;i<_quantity;i++)
-    {
-        enemyBarrage[i].set_show_enable(true);
-        enemyBarrage[i].damege_hit(heart,disappear);
-        enemyBarrage[i].left_move(speed);
     }
 }

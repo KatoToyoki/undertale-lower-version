@@ -27,7 +27,7 @@ void RoundX::SetAllData()
     allData.push_back(current);
 }
 
-void RoundX::PushXYDamage()
+void RoundX::recordXYDamageSpeed()
 {
     xPosition[0]=1000;
     xPosition[1]=1150;
@@ -37,4 +37,19 @@ void RoundX::PushXYDamage()
     yPosition[1]=783;
     yPosition[2]=774;
 
+    for(int i=0;i<_quantity;i++)
+    {
+        allSpeed[i]=3;
+    }
+
+}
+
+void RoundX::MovingBarrage(Move* heart)
+{
+    for(int i=0;i<_quantity;i++)
+    {
+        enemyBarrage[i].set_show_enable(true);
+        enemyBarrage[i].damege_hit(heart,disappear);
+        enemyBarrage[i].left_move(allSpeed[i]);
+    }
 }

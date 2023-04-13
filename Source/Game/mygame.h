@@ -51,9 +51,13 @@
 #include "monster_frame.h"
 #include "Fight.h"
 #include "BarrageMode.h"
-#include "papyrus_rounds/RoundX.h"
 
 #include "../Library/audio.h"
+
+// ============================================
+#include "papyrus_rounds/RoundX.h"
+#include "papyrus_rounds/Round0.h"
+
 
 
 namespace game_framework {
@@ -124,8 +128,9 @@ private:
   Menu menu;
   GameText game_text;
   ShowNormalMode show_normal_mode;
-  // BarrageMode boneRed=BarrageMode(3);
+
   RoundX roundX=RoundX(3);
+  Round0 round0=Round0(15);
 
 
   MonsterFrame monster_frame;
