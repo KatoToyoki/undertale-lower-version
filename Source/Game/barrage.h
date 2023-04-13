@@ -11,6 +11,12 @@ enum barrage_mode
     blue
 };
 
+enum isDisappear
+{
+    appear,
+    disappear
+};
+
 class Barrage
 {
 public:
@@ -31,7 +37,7 @@ public:
     void UnshowIMG();
     
     void switch_mode();
-    int damege_hit(Move *heart);
+    int damege_hit(Move *heart, int command=appear);
 
 private:
     game_framework::CMovingBitmap barrage_img;

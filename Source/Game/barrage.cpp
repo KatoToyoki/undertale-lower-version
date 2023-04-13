@@ -97,13 +97,19 @@ void Barrage::switch_mode()
     }
 }
 
-int Barrage::damege_hit(Move *heart)
+int Barrage::damege_hit(Move *heart, int command)
 {
+    
+    
     if (_mode == white && barrage_img.IsOverlap(barrage_img,heart->heart))
     {
         heart->time_count = 0;
         heart->shine_two_second();
-        barrage_img.SetTopLeft(0,0);
+        
+        if(command==disappear)
+        {
+            barrage_img.SetTopLeft(0,0);
+        }
         return _damage;
     }
     if (_mode == blue)
@@ -115,7 +121,11 @@ int Barrage::damege_hit(Move *heart)
             {
                 heart->time_count = 0;
                 heart->shine_two_second();
-                barrage_img.SetTopLeft(0,0);
+                
+                if(command==disappear)
+                {
+                    barrage_img.SetTopLeft(0,0);
+                }
                 return  _damage;
             }
         }

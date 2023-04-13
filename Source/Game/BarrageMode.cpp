@@ -3,6 +3,9 @@
 
 void BarrageMode::Init()
 {
+    SetAllData();
+    PushEmpty();
+    
     xPosition[0]=1000;
     xPosition[1]=1150;
     xPosition[2]=1300;
@@ -10,9 +13,6 @@ void BarrageMode::Init()
     yPosition[0]=795;
     yPosition[1]=783;
     yPosition[2]=774;
-    
-    SetAllData();
-    PushEmpty();
 }
 
 void BarrageMode::SetAllData()
@@ -47,6 +47,8 @@ void BarrageMode::PushEmpty()
     for(int i=0;i<_quantity;i++)
     {
         enemyBarrage.push_back(temp);
+        xPosition.push_back(0);
+        yPosition.push_back(0);
     }
 }
 
@@ -114,7 +116,7 @@ void BarrageMode::MovingBarrage(Move *heart, int speed)
     for(int i=0;i<_quantity;i++)
     {
         enemyBarrage[i].set_show_enable(true);
-        enemyBarrage[i].damege_hit(heart);
+        enemyBarrage[i].damege_hit(heart,disappear);
         enemyBarrage[i].left_move(speed);
     }
 }

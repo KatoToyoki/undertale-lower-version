@@ -144,7 +144,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     
     monster_frame._monster_saying_is_done = false;
     user_frame.control_frame(talk_to_normal_battle);
-    // migosp.set_barrage_enable(true);
+    //migosp.set_barrage_enable(true);
 
     // to do enemy attack
     boneRed.MovingBarrage(&heart_test,3);

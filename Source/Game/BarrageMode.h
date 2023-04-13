@@ -28,7 +28,8 @@ private:
     // for random should check this
     // it can check the ith barrage should placed in the ith x or y
     // so that it won't many barrages in the same position
-    int xPosition[50],yPosition[50];
+    
+    std::vector<int> xPosition,yPosition;
 
     // to put all barrages setting in this mode
     std::vector<Barrage> enemyBarrage;
