@@ -139,7 +139,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     user_frame.control_frame(talk_to_normal_battle);
     
     battel_mode_timer = 0;
-    heart_test.set_heart_mode(heart_blue);
+
+    show_normal_mode.set_heart_mode(heart_blue);
     break;
   case 7:
     //maybe battle mode

@@ -173,3 +173,11 @@ void ShowNormalMode::choose_mercy_after()
 		_user_frame->set_choose(true,0,2);
 	}
 }
+
+void ShowNormalMode::set_heart_mode(HeartMode mode)
+{
+    _heart_test->set_heart_mode(mode);
+    _button_frame->set_heart_mode(mode);
+    _user_frame->set_heart_mode(mode);
+}
+

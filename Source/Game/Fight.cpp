@@ -115,11 +115,6 @@ void Fight::show_fight_img()
         }
 
         MovingHPBar();
-        if (_isAttack)
-        {
-            attack_red.ShowBitmap();
-            _enemy->set_enemy_img_init_or_damege(damege);
-        }
         
         if(GetDurationMinusHP()>0){
             RevealMinusHP();
@@ -131,6 +126,11 @@ void Fight::show_fight_img()
             ResetIsAttack();
             ResetIsMiss();
             UnshowHPBar();
+        }
+        if (_isAttack && !_isMiss)
+        {
+            attack_red.ShowBitmap();
+            _enemy->set_enemy_img_init_or_damege(damege);
         }
     }
     else if((attackThisRound>0 || fightBarthisRound>0) && _enable)

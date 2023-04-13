@@ -4,11 +4,12 @@
 #include "../Library/gamecore.h"
 
 enum command{toLeft=-1,toRight=1};
-enum status { toOff, toOn, selected,allOff };
+enum status { toOff, toOn,toOnB, selected,allOff };
 enum activities { fight, act, item, mercy };
 
 class ButtonFrame {
 private:
+    int heart_mode = 0;
     // default is fight
     int _current_selection = fight;
     
@@ -59,4 +60,5 @@ public:
     void all_button_off();
 
     void set_updata_enable(bool enable);
+    void set_heart_mode (int mode);
 };
