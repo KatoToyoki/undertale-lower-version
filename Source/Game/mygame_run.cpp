@@ -33,7 +33,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   case 1:
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
-    boneRed.RandomBarrage();
+    // ===========================================================
+    //boneRed.RandomBarrage();
+    roundX.RandomBarrage();
+    
     show_normal_mode.init(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
 
     break;
@@ -147,7 +150,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     //migosp.set_barrage_enable(true);
 
     // to do enemy attack
-    boneRed.MovingBarrage(&heart_test,3);
+    // ===========================================================
+    // boneRed.MovingBarrage(&heart_test,3);
+    roundX.MovingBarrage(&heart_test,3);
 
     charactor.change_hp( (heart_test.time_count>=400)
       ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
@@ -184,8 +189,11 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 
   menu.load_img_set_postion();
 
+  // ===========================================================
   // enemy attack path generate
-  boneRed.Init();
+  //boneRed.Init();
+  roundX.Init();
+  roundX.PushXYDamage();
   
   // game_framework::CSpecialEffect::SetCurrentTime();
 
@@ -273,9 +281,11 @@ void CGameStateRun::OnShow()
   } else {
     //all show thing put here no any if else
     heart_test.show_heart_img();
-    
+
+    // ===========================================================
     // enemy attack path
-    boneRed.ShowBarrage();
+    //boneRed.ShowBarrage();
+    roundX.ShowBarrage();
 
     user_frame.show_frame();
     user_frame.show_select_heart();

@@ -25,18 +25,19 @@ private:
     // how many barrages the enemy attack mode will hava
     int _quantity=0;
 
+protected:
     // for random should check this
     // it can check the ith barrage should placed in the ith x or y
     // so that it won't many barrages in the same position
     
-    std::vector<int> xPosition,yPosition;
+    std::vector<int> xPosition,yPosition, allDamage;
 
     // to put all barrages setting in this mode
     std::vector<Barrage> enemyBarrage;
 
     // the init data (to be used with struct SetData)
     std::vector<SetData> allData;
-
+    
 public:
     BarrageMode(int quantity)
     {
@@ -51,7 +52,9 @@ public:
 
     // it supposed to be pure virtual function
     // because each mode have different condition
-    void SetAllData();
+    virtual void SetAllData()=0;
+
+    virtual void PushXYDamage()=0;
 
     // depends on quantity, push empty barrage in vector enemyBarrage
     void PushEmpty();

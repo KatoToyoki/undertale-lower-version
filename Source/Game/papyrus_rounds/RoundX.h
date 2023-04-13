@@ -1,9 +1,14 @@
 #pragma once
-#include <vector>
 #include "../BarrageMode.h"
 
-class RoundX
+class RoundX : public BarrageMode
 {
+private:
 public:
+    RoundX(int quantity):BarrageMode(quantity){}
     
+    ~RoundX()=default;
+    
+    virtual void SetAllData() override;
+    virtual void PushXYDamage() override;
 };
