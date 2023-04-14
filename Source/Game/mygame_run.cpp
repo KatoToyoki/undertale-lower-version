@@ -34,7 +34,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
     // ===========================================================
-    round0.NormalBarrage();
+    round1.NormalBarrage();
     
     show_normal_mode.init(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
 
@@ -150,7 +150,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 
     // to do enemy attack
     // ===========================================================
-    round0.MovingBarrage(&heart_test);
+    round1.MovingBarrage(&heart_test);
 
     charactor.change_hp( (heart_test.time_count>=400)
       ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
@@ -189,7 +189,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 
   // ===========================================================
   // enemy attack path generate
-  round0.Init();
+  round1.Init();
   
   // game_framework::CSpecialEffect::SetCurrentTime();
 
@@ -280,7 +280,7 @@ void CGameStateRun::OnShow()
 
     // ===========================================================
     // enemy attack path
-    round0.ShowBarrage();
+    round1.ShowBarrage();
     
 
     user_frame.show_frame();
@@ -305,6 +305,7 @@ void CGameStateRun::OnShow()
     stage.set_enable(true);
     stage.print();
 
-    round0.Test2();
+    // temp print
+    // round0.Test2();
   }
 }
