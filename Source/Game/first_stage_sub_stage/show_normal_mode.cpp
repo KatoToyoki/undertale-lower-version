@@ -12,7 +12,7 @@ void ShowNormalMode::init(UserFrame *user_frame,
                           Fight *game_fight,
                           Migosp *enemy,
                           Items *items,
-                          Charactor *charactor)//宣告於OnMove()
+                          Character *charactor)//宣告於OnMove()
 {
 	_user_frame = user_frame;
 	_user_frame->control_frame(to_talk);

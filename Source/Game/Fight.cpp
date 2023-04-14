@@ -127,7 +127,7 @@ void Fight::show_fight_img()
             ResetIsMiss();
             UnshowHPBar();
         }
-        if (_isAttack && !_isMiss)
+        if (!GetIsMiss())
         {
             attack_red.ShowBitmap();
             _enemy->set_enemy_img_init_or_damege(damege);
