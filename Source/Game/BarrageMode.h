@@ -26,6 +26,8 @@ private:
 protected:
     // how many barrages the enemy attack mode will hava
     int _quantity=0;
+
+    bool isAttackEnd=false;
     
     // for random should check this
     // it can check the ith barrage should placed in the ith x or y
@@ -80,6 +82,8 @@ public:
 
     // to let enemy attack you, each round may be different, so it's pure virtual
     virtual void MovingBarrage(Move *heart)=0;
+
+    bool GetIsAttackEnd();
 
     // test print function, will be deleted afterwards
     void Test2()

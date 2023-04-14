@@ -79,3 +79,8 @@ void BarrageMode::UnshowBarrage()
         enemyBarrage[i].UnshowIMG();
     }
 }
+
+bool BarrageMode::GetIsAttackEnd()
+{
+    return isAttackEnd;
+}

@@ -36,21 +36,21 @@ void Round2::SetAllData()
     current.damage=3;
     current.mode=blue;
     current.imgPath="h135bone";
-    current.initX=1990;
+    current.initX=1800;
     current.initY=727;
     allData.push_back(current);
 
     current.damage=3;
     current.mode=blue;
     current.imgPath="h135bone";
-    current.initX=2220;
+    current.initX=2100;
     current.initY=727;
     allData.push_back(current);
 
     current.damage=3;
     current.mode=blue;
     current.imgPath="h135bone";
-    current.initX=2550;
+    current.initX=2400;
     current.initY=727;
     allData.push_back(current);
 }
@@ -74,5 +74,10 @@ void Round2::MovingBarrage(Move* heart)
         enemyBarrage[i].set_show_enable(true);
         enemyBarrage[i].damege_hit(heart,disappear);
         enemyBarrage[i].left_move(allSpeed[i]);
+    }
+
+    if(enemyBarrage[_quantity-1].GetOnePosition(IMGleft)<665)
+    {
+        isAttackEnd = true;
     }
 }

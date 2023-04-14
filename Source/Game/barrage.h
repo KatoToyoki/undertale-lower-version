@@ -17,6 +17,12 @@ enum isDisappear
     disappear
 };
 
+enum imgDirection
+{
+    IMGleft,
+    IMGtop,
+};
+
 class Barrage
 {
 public:
@@ -38,6 +44,8 @@ public:
     
     void switch_mode();
     int damege_hit(Move *heart, int command=appear);
+
+    int GetOnePosition(int direction);
 
 private:
     game_framework::CMovingBitmap barrage_img;

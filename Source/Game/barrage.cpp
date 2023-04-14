@@ -133,3 +133,17 @@ int Barrage::damege_hit(Move *heart, int command)
     heart->shine_two_second();
     return 0;
 }
+
+int Barrage::GetOnePosition(int direction)
+{
+    switch (direction)
+    {
+    case IMGleft:
+        return barrage_img.GetLeft();
+        break;
+    case IMGtop:
+        return barrage_img.GetTop();
+        break;
+    }
+    return 0;
+}

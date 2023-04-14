@@ -52,4 +52,9 @@ void RoundX::MovingBarrage(Move* heart)
         enemyBarrage[i].damege_hit(heart,disappear);
         enemyBarrage[i].left_move(allSpeed[i]);
     }
+
+    if(enemyBarrage[_quantity-1].GetOnePosition(IMGleft)<665)
+    {
+        isAttackEnd = true;
+    }
 }

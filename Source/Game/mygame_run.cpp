@@ -157,9 +157,14 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     
     heart_test.move_control(user_frame.get_corner(),true);
     heart_test.set_show_img_enable(true);
-
+    /*
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
     if (battel_mode_timer >= 1300)
+    {
+      stage_go = 1;
+    }
+    */
+    if (round2.GetIsAttackEnd())
     {
       stage_go = 1;
     }
