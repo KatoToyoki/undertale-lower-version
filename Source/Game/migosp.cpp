@@ -113,28 +113,31 @@ void Migosp::set_acts()
 
 void Migosp::set_act_init(int current_selection)//monster frame那邊的init有隨機性所以多寫了set去把東西包起來
 {
-	set_next_round_text();
-	
-	act_times = 0;
-	_current_selection = current_selection;
-	Act* act = acts.get_act_by_index(_current_selection);
-	if (_current_selection == check_m )
+	if(!_act_after_enable)
 	{
-		act->index = 0;
-		act->act_after_len_list={0,3};
-		act->cost_round = 1;
-	}
-	if (_current_selection == talk_m)
-	{
-		act->index = 0;
-		act->act_after_len_list={0,0};
-		act->cost_round = 0;
-	}
-	if (_current_selection == pet_m)
-	{
-		act->index = 0;
-		act->act_after_len_list={0,3,2,1,1,2};
-		act->cost_round = 5;
+		set_next_round_text();
+		
+		act_times = 0;
+		_current_selection = current_selection;
+		Act* act = acts.get_act_by_index(_current_selection);
+		if (_current_selection == check_m )
+		{
+			act->index = 0;
+			act->act_after_len_list={0,3};
+			act->cost_round = 1;
+		}
+		if (_current_selection == talk_m)
+		{
+			act->index = 0;
+			act->act_after_len_list={0,0};
+			act->cost_round = 0;
+		}
+		if (_current_selection == pet_m)
+		{
+			act->index = 0;
+			act->act_after_len_list={0,3,2,1,1,2};
+			act->cost_round = 5;
+		}
 	}
 }
 

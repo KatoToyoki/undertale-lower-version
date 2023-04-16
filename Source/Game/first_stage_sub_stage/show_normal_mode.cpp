@@ -37,15 +37,13 @@ void ShowNormalMode::init(UserFrame *user_frame,
 
 	_enemy = enemy;
 	_enemy->set_act_game_text_enable(false);
+	_enemy->set_monster_frame_game_text_enable(false);
 	_enemy->check_change_mercy_name_to_yellow_by_is_mercy();
 
 	_items = items;
 	_items->set_control_updata(false);
 	_items->set_item_cost_round_init(_user_frame->get_current_selection(),_button_frame->get_current_selection());
 //s	
-	_enemy->set_monster_frame_game_text_enable(false);
-	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
-	_enemy->set_act_init(last_act_selection);// 這邊set next round 可能只會抓到0
 	_enemy->set_enemy_targe_choose_hp_bar(false);
 	_enemy->set_barrage_enable(false);
 	_enemy->hp = _game_fight->get_current_monster_hp();
@@ -55,7 +53,6 @@ void ShowNormalMode::init(UserFrame *user_frame,
 	_charactor = charactor;
 	_charactor->change_hp(false);
 	
-
 	if (_user_frame->get_move_done())
 	{
 		_user_frame->load_text(_enemy->get_next_round_game_text());
@@ -83,7 +80,8 @@ void ShowNormalMode::choose_fight()
 	
 	_game_fight->set_fight_enable(true);
 	_user_frame->set_choose(true,0,1);
-	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
+	
+	_enemy->set_monster_frame_game_text_enable(true);
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 }
 
@@ -100,10 +98,7 @@ void ShowNormalMode::choose_act()
 	
 	_user_frame->load_text(_enemy->acts.get_act_name_list());
 	_user_frame->set_choose(true,0,_user_frame->get_text_vector_len());
-	_enemy->set_act_init(_user_frame->get_current_selection());
 	
-	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
-	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 	//
 	last_act_selection = _user_frame->get_current_selection();	
 }
@@ -116,6 +111,9 @@ void ShowNormalMode::choose_act_after()
 	_user_frame->load_text(_enemy->get_act_after_game_text());
 	_enemy->set_act_game_text_enable(true);
 	_user_frame->set_choose(true,_enemy->get_now_act_after_index(),_enemy->get_now_act_after_text_len());
+	
+	_enemy->set_monster_frame_game_text_enable(true);
+	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 }
 
 void ShowNormalMode::choose_item()
@@ -125,9 +123,7 @@ void ShowNormalMode::choose_item()
 	_user_frame->load_text(_items->get_item_list());
 	_user_frame->set_choose(true,0,_user_frame->get_text_vector_len());
 	_items->set_item_cost_round_init(_user_frame->get_current_selection(),_button_frame->get_current_selection());
-	
-	_enemy->set_monster_frame_init(0);//目前蟑螂都一樣所以先設0?
-	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
+
 	
 	_charactor->change_hp(true,_items->get_selection_heal_num());
 }
@@ -142,6 +138,9 @@ void ShowNormalMode::choose_item_after()
 	_user_frame->set_choose(true,_items->get_now_item_after_index(),_items->get_now_item_after_text_len());
 
 	_charactor->change_hp(false);
+	
+	_enemy->set_monster_frame_game_text_enable(true);
+	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 }
 
 void ShowNormalMode::monster_frame_no_battle()
@@ -161,7 +160,6 @@ void ShowNormalMode::choose_mercy()
 	_user_frame->set_choose(true,0,1);
 	
     _monster_frame->set_enable(false);
-	_enemy->set_monster_frame_init(0);//目前蟑螂都一樣所以先設0?
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 }
 
@@ -180,4 +178,3 @@ void ShowNormalMode::set_heart_mode(HeartMode mode)
     _button_frame->set_heart_mode(mode);
     _user_frame->set_heart_mode(mode);
 }
-

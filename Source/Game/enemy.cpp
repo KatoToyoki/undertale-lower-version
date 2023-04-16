@@ -130,8 +130,11 @@ GameText Enemy::get_act_after_game_text()
 
 void Enemy::set_monster_frame_init(int current_selection)
 {
-	monster_times = 0;
-	set_monster_frame();
+	if (!_monster_frame_enable)
+	{
+		monster_times = 0;
+		set_monster_frame();
+	}
 }
 
 GameText Enemy::get_monster_frame_game_text()

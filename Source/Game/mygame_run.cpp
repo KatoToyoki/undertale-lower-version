@@ -24,6 +24,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 {
   charactor.updata_hp_bar_by_hp();
   migosp.updata_hp_bar_by_hp();
+  
+	migosp.set_act_init(user_frame.get_current_selection());
+	migosp.set_monster_frame_init(user_frame.get_current_selection());
 
   
   if (charactor.get_current_hp() == 0)
@@ -114,6 +117,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go+=1;
       break;
     }
+	  migosp.set_monster_frame_game_text_enable(true);
     break;
   case 5:
     gameButtonFrame.all_button_off();
@@ -232,14 +236,16 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   if ((nChar == VK_RETURN || nChar == 0x5A) && !items.is_items_empty() && user_frame.get_move_done() && stage_go_enable_add)
   {
     stage_go+=1;
-    user_frame._current_selection = 0;
   }
   if ((nChar == 0x58 || nChar == VK_SHIFT) && stage_go_enable_sub)
   {
     stage_go-=1;
-    user_frame._current_selection = 0;
   }
   
+  if (stage_go <4 && stage_go >1 && ((nChar == 0x5A || nChar == VK_RETURN) || (nChar == 0x58 || nChar == VK_SHIFT)))
+  {
+    user_frame._current_selection = 0;
+  }
 }
 
 
@@ -303,7 +309,7 @@ void CGameStateRun::OnShow()
 
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
-    stage.set_enable(true);
     stage.print();
+
   }
 }
