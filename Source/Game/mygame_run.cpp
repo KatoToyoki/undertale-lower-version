@@ -145,25 +145,32 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     battel_mode_timer = 0;
 
     show_normal_mode.set_heart_mode(heart_blue);
+    if (migosp.get_now_monster_frame_mode() == enter_talk)
+    {
+      stage_go_enable_add = true;
+    }
     break;
   case 7:
     //maybe battle mode
     stage_go_enable_add = false;
     stage_go_enable_sub = false;
-    
-    monster_frame._monster_saying_is_done = false;
+
     user_frame.control_frame(talk_to_normal_battle);
-    migosp.set_barrage_enable(true);
+    if (user_frame.get_move_done())
+    {
+      monster_frame._monster_saying_is_done = false;
+      migosp.set_barrage_enable(true);
 
-    // to do enemy attack
-    // boneRed.MovingBarrage(&heart_test,3);
+      // to do enemy attack
+      // boneRed.MovingBarrage(&heart_test,3);
 
-    charactor.change_hp( (heart_test.shine_time_count>=400)
-      ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
-    
-    heart_test.move_control(user_frame.get_corner(),true);
+      charactor.change_hp( (heart_test.shine_time_count>=400)
+        ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
+      
+      heart_test.move_control(user_frame.get_corner(),true);
+    }
+
     heart_test.set_show_img_enable(true);
-
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
     if (battel_mode_timer >= 1300)
     {

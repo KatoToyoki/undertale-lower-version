@@ -70,10 +70,10 @@ public:
     int hp = 100;
     game_framework::CMovingBitmap enemy_barrage;
     
+    bool _monster_frame_enable = false;
 protected:
     
     bool _act_after_enable = false;
-    bool _monster_frame_enable = false;
     bool _choose_targe_hp_bar_enable = false;
     bool _barrage_enable = false;
     bool _is_mercy = false;
