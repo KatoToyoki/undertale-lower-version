@@ -157,7 +157,7 @@ MonsterText Migosp::get_random_game_text(std::string name)
 		Text data2(33, "cha cha!", RGB(0,0,0),30, 1234,382);
 		MonsterText neutral_1 = {
 			"neutral",
-			no_enter_talk,
+			enter_talk,
 			0,
 			GameText ({data,data2},monster_mode),
 			1,
@@ -167,7 +167,7 @@ MonsterText Migosp::get_random_game_text(std::string name)
 		data2 = Text(33, "CARE", RGB(0,0,0),30, 1234,382);
 		MonsterText neutral_2 = {
 			"neutral",
-			no_enter_talk,
+			pass_talk,
 			0,
 			GameText ({data,data2},monster_mode),
 			1,

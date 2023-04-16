@@ -7,7 +7,6 @@
 void MonsterFrame::load_img()
 {
   monster_frame_img.LoadBitmapByString({"resources/monster_frame.bmp"},RGB(0,0,0));
-
 }
 
 void MonsterFrame::load_game_text_and_mode(GameText game_text,int mode)
@@ -48,6 +47,10 @@ void MonsterFrame::show_monster_frame_and_print()
   {
       monster_frame_img.ShowBitmap();
       _game_text.print();
+  }
+  else if (_enable && _mode == pass_talk)
+  {
+    _time_count +=time_count;
   }
   else
   {

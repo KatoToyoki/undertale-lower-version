@@ -8,7 +8,8 @@
 enum monster_frame_mode
 {
     no_enter_talk,
-    enter_talk
+    enter_talk,
+    pass_talk
 };
 
 struct MonsterText

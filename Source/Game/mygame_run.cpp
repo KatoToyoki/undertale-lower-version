@@ -119,7 +119,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go+=1;
       break;
     }
-	  migosp.set_monster_frame_game_text_enable(true);
     break;
   case 5:
     gameButtonFrame.all_button_off();
@@ -127,7 +126,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
     items.set_control_updata(false);
-	  migosp.set_act_game_text_enable(false);
     migosp.set_enemy_img_init_or_damege(init);
     user_frame.set_choose(false);
     

@@ -183,6 +183,10 @@ void Enemy::set_monster_frame_game_text_enable(bool enable)
 		{
 			*_stege+=1;
 		}
+		if(monster_text->mode == pass_talk && _monster_frame->_time_count > 0)
+		{
+			*_stege+=1;
+		}
 	}
 }
 
