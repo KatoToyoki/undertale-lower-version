@@ -24,10 +24,12 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 {
   charactor.updata_hp_bar_by_hp();
   migosp.updata_hp_bar_by_hp();
-  
-	migosp.set_act_init(user_frame.get_current_selection());
-	migosp.set_monster_frame_init(user_frame.get_current_selection());
 
+  if (gameButtonFrame.get_current_selection() != 2)
+  {
+    migosp.set_act_init(user_frame.get_current_selection());
+    migosp.set_monster_frame_init(user_frame.get_current_selection());
+  }
   
   if (charactor.get_current_hp() == 0)
   {
