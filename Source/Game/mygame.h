@@ -129,6 +129,7 @@ private:
   Migosp migosp;
   Items items;
   Character charactor;
+  Enemy *enemy;
   
   int stage_go = 0;
   bool stage_go_enable_add = true;

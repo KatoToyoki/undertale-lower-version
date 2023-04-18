@@ -22,27 +22,20 @@ CGameStateRun::~CGameStateRun() {}
 void CGameStateRun::OnBeginState() {}
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
-  charactor.updata_hp_bar_by_hp();
-  migosp.updata_hp_bar_by_hp();
-
-  if (gameButtonFrame.get_current_selection() != 2)
-  {
-    migosp.set_act_init(user_frame.get_current_selection());
-    migosp.set_monster_frame_init(user_frame.get_current_selection());
-  }
-  
   if (charactor.get_current_hp() == 0)
   {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
   switch (stage_go)
   {
+  case 0:
+    show_normal_mode.load_data(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
+    break;
   case 1:
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
     boneRed.RandomBarrage();
-    show_normal_mode.init(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
-
+    show_normal_mode.init();
     break;
   case 2:
     stage_go_enable_add = true;
@@ -121,26 +114,16 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     }
     break;
   case 5:
-    gameButtonFrame.all_button_off();
-    gameFight.set_fight_enable(false);
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
-    items.set_control_updata(false);
-    migosp.set_enemy_img_init_or_damege(init);
-    user_frame.set_choose(false);
     
-    heart_test.set_show_img_enable(true);
-    heart_test.set_shine_mode(false);
     show_normal_mode.monster_frame_no_battle();
     stage_go+=1;
     break;
   case 6:
     stage_go_enable_add = false;
     stage_go_enable_sub = false;
-    heart_test.set_show_img_enable(true);
-    heart_test.set_shine_mode(false);
     show_normal_mode.monster_frame_battle();
-    user_frame.control_frame(talk_to_normal_battle);
     
     battel_mode_timer = 0;
 
@@ -184,6 +167,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go = 8;
     show_normal_mode.choose_mercy_after();
   }
+  show_normal_mode.updata();
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定

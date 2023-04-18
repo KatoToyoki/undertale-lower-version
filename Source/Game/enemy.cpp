@@ -40,7 +40,7 @@ void Enemy::show_enemy_targe_choose_hp_bar()
 
 void Enemy::set_enemy_img_init_or_damege(int index)
 {
-	if (index == init)
+	if (index == init_img)
 	{
 		enemy_img = enemy_img_init;
 	}

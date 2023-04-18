@@ -26,6 +26,7 @@ public:
 
     MonsterText get_random_game_text(std::string name) override;
     int get_next_round_index() override;
+    frame_command get_monster_battle_mode() override { return talk_to_normal_battle; }
     
     void check_mercy() override;
     

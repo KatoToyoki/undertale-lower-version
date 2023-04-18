@@ -12,11 +12,8 @@
 class ShowNormalMode : public SubStage
 {
 public:
-    void init(UserFrame *user_frame,
-        ButtonFrame *button_frame,MonsterFrame *monster_frame,
-        Move *heart_test,Fight *game_fight,
-        Migosp *enemy, Items *items,
-        Character *charactor);
+    void updata();
+    void init();
     void end();
 
     void choose_fight_taget();
@@ -34,13 +31,18 @@ public:
 
 
     void set_heart_mode(HeartMode mode);
+    void load_data(UserFrame *user_frame,
+        ButtonFrame *button_frame,MonsterFrame *monster_frame,
+        Move *heart_test,Fight *game_fight,
+        Enemy *enemy, Items *items,
+        Character *charactor);
 
     UserFrame *_user_frame;
     ButtonFrame *_button_frame;
     MonsterFrame *_monster_frame;
     Move *_heart_test;
     Fight *_game_fight;
-    Migosp *_enemy;
+    Enemy *_enemy;
     Items *_items;
     Character *_charactor;
 
