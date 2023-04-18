@@ -51,6 +51,7 @@
 #include "monster_frame.h"
 #include "Fight.h"
 #include "BarrageMode.h"
+#include "greater_dog.h"
 
 #include "../Library/audio.h"
 
@@ -127,6 +128,7 @@ private:
 
   MonsterFrame monster_frame;
   Migosp migosp;
+  GreaterDog greater_dog;
   Items items;
   Character charactor;
   Enemy *enemy;

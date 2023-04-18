@@ -29,7 +29,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   switch (stage_go)
   {
   case 0:
-    enemy = &migosp;
+    if (menu.get_current_stage() == 1) {enemy = &migosp;}
+    if (menu.get_current_stage() == 2) {enemy = &greater_dog;}
     show_normal_mode.load_data(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,enemy,&items,&charactor);
     break;
   case 1:
@@ -174,6 +175,8 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
   migosp.set_img();
   migosp.set_barrage();
+  greater_dog.set_img();
+  greater_dog.set_barrage();
   
   user_frame.load_img();
   user_frame.create_frame(314, 1294, 312, 563);
