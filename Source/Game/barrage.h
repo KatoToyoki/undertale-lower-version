@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include "Character.h"
 #include "move.h"
 #include "../Library/gameutil.h"
 
@@ -31,7 +32,7 @@ public:
     void UnshowIMG();
     
     void switch_mode();
-    int damege_hit(Move *heart);
+    void damege_hit(Move *heart,Character *character);
 
 private:
     game_framework::CMovingBitmap barrage_img;

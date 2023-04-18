@@ -147,8 +147,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       // to do enemy attack
       // boneRed.MovingBarrage(&heart_test,3);
 
-      charactor.change_hp( (heart_test.shine_time_count>=400)
-        ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
+      migosp.get_barrage().damege_hit(&heart_test,&charactor);
       
       heart_test.move_control(user_frame.get_corner(),true);
     }
@@ -157,7 +156,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
     if (battel_mode_timer >= 1300)
     {
-      stage_go = 1;
+      // stage_go = 1;
     }
     break;
   }

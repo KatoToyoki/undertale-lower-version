@@ -111,10 +111,10 @@ void BarrageMode::UnshowBarrage()
 
 void BarrageMode::MovingBarrage(Move *heart, int speed)
 {
-    for(int i=0;i<_quantity;i++)
-    {
-        enemyBarrage[i].set_show_enable(true);
-        enemyBarrage[i].damege_hit(heart);//koko
-        enemyBarrage[i].left_move(speed);
-    }
+    // for(int i=0;i<_quantity;i++)
+    // {
+    //     enemyBarrage[i].set_show_enable(true);
+    //     enemyBarrage[i].damege_hit(heart);//koko
+    //     enemyBarrage[i].left_move(speed);
+    // }
 }
