@@ -53,7 +53,8 @@ void ShowNormalMode::init()//宣告於OnMove()
 	_enemy->check_change_mercy_name_to_yellow_by_is_mercy();
 
 	_items->set_control_updata(false);
-	_items->set_item_cost_round_init(_user_frame->get_current_selection(),_button_frame->get_current_selection());
+	_items->set_item_cost_round_init(0,_button_frame->get_current_selection());
+	
 //s	
 	_enemy->set_enemy_targe_choose_hp_bar(false);
 	_enemy->set_barrage_enable(false);
@@ -155,6 +156,10 @@ void ShowNormalMode::monster_frame_no_battle()
     _items->set_control_updata(false);
 	_user_frame->set_choose(false);
     _enemy->set_enemy_img_init_or_damege(init_img);
+	if (_button_frame->get_current_selection() == 2)
+	{
+		_items->set_item_cost_round_init(_user_frame->get_current_selection(),_button_frame->get_current_selection());
+	}
 }
 
 void ShowNormalMode::monster_frame_battle()

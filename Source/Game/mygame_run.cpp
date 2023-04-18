@@ -29,7 +29,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   switch (stage_go)
   {
   case 0:
-    show_normal_mode.load_data(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
+    enemy = &migosp;
+    show_normal_mode.load_data(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,enemy,&items,&charactor);
     break;
   case 1:
     stage_go_enable_add = true;
@@ -82,7 +83,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       show_normal_mode.choose_mercy_after();
       stage_go_enable_add = true;
       stage_go_enable_sub = false;
-      if (!migosp.is_mercy()) { stage_go += 1; }
+      if (!enemy->is_mercy()) { stage_go += 1; }
       break;
     }
     
@@ -128,7 +129,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     battel_mode_timer = 0;
 
     show_normal_mode.set_heart_mode(heart_blue);
-    if (migosp.get_now_monster_frame_mode() == enter_talk)
+    if (enemy->get_now_monster_frame_mode() == enter_talk)
     {
       stage_go_enable_add = true;
     }
@@ -138,16 +139,16 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_add = false;
     stage_go_enable_sub = false;
 
-    user_frame.control_frame(talk_to_normal_battle);
+    user_frame.control_frame(enemy->get_monster_battle_mode());
     if (user_frame.get_move_done())
     {
       monster_frame._monster_saying_is_done = false;
-      migosp.set_barrage_enable(true);
+      enemy->set_barrage_enable(true);
 
       // to do enemy attack
       // boneRed.MovingBarrage(&heart_test,3);
 
-      migosp.get_barrage().damege_hit(&heart_test,&charactor);
+      enemy->get_barrage().damege_hit(&heart_test,&charactor);
       
       heart_test.move_control(user_frame.get_corner(),true);
     }
@@ -156,13 +157,13 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
     if (battel_mode_timer >= 1300)
     {
-      // stage_go = 1;
+      stage_go = 1;
     }
     break;
   }
   if (gameFight.is_hp_zero())
   {
-    migosp.set_mercy(true);
+    enemy->set_mercy(true);
     stage_go = 8;
     show_normal_mode.choose_mercy_after();
   }
@@ -207,19 +208,19 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   if (menu.get_menu()) {
     menu.choose(nChar);
   } else{
-    //need OnKeyDown can put here no any if else
+    //need OnKeyDown can put here
 
     gameButtonFrame.choose_update(nChar);
     user_frame.choose_updata(nChar);
     gameFight.ToStop(nChar);
-    migosp.act_after_stage_control_updata(nChar,&stage_go);
-    migosp.monster_frame_stage_control_updata(nChar,&stage_go,&monster_frame);
+    enemy->act_after_stage_control_updata(nChar,&stage_go);
+    enemy->monster_frame_stage_control_updata(nChar,&stage_go,&monster_frame);
     items.item_after_stage_control_updata(nChar,&stage_go);
-    charactor.change_hp_updata(nChar);
+    if (stage_go!= 7) {charactor.change_hp_updata(nChar);}
   }
 
   //stage_control don't touch here
-  if ((nChar == VK_RETURN || nChar == 0x5A) && ((migosp.is_mercy() && gameButtonFrame.get_current_selection() ==3 && stage_go == 3) || gameFight.is_hp_zero())) {
+  if ((nChar == VK_RETURN || nChar == 0x5A) && ((enemy->is_mercy() && gameButtonFrame.get_current_selection() ==3 && stage_go == 3) || gameFight.is_hp_zero())) {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
   
@@ -287,9 +288,9 @@ void CGameStateRun::OnShow()
     green_line.ShowBitmap();
     monster_frame.show_monster_frame_and_print();
     
-    migosp.show_img();
-    migosp.show_barrage();
-    migosp.show_enemy_targe_choose_hp_bar();
+    enemy->show_img();
+    enemy->show_barrage();
+    enemy->show_enemy_targe_choose_hp_bar();
     
     gameButtonFrame.show_button();
     gameFight.show_fight_img();
