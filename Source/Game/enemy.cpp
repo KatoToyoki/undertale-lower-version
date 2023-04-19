@@ -6,16 +6,6 @@ int Enemy::generate_random_num(int min, int max)
     return ( rand() % ((max-1) - min + 1) + min );
 }
 
-void Enemy::set_hp_img()
-{
-	enemy_targe_choose_hp.LoadBitmapByString({"resources/enemy_target_mode_hp.bmp"},RGB(255,255,255));
-	enemy_targe_choose_hp_red.LoadBitmapByString({"resources/enemy_target_mode_hp_red.bmp"},RGB(255,255,255));
-	enemy_targe_choose_hp_black.LoadBitmapByString({"resources/enemy_target_mode_hp_black.bmp"},RGB(255,255,255));
-
-	enemy_targe_choose_hp.SetTopLeft(hp_bar_x,hp_bar_y);
-	enemy_targe_choose_hp_red.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
-	enemy_targe_choose_hp_black.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
-}
 
 
 void Enemy::show_img()

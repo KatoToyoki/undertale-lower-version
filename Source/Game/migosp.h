@@ -18,6 +18,7 @@ class Migosp : public Enemy
 public:
     Migosp();
     void set_img() override;
+    void set_hp_img() override;
     void set_barrage() override;
     void set_acts() override;
     void set_act_init(int current_selection) override;

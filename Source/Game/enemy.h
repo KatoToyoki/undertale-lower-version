@@ -14,7 +14,7 @@ enum enemy_img_state
 class Enemy
 {
 public:
-    void set_hp_img();
+    virtual void set_hp_img() = 0;
     virtual void set_img() = 0;
     void show_img();
     int generate_random_num(int min, int max);

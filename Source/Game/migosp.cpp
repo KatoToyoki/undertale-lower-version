@@ -50,6 +50,17 @@ void Migosp::set_img()
 	
 }
 
+void Migosp::set_hp_img()
+{
+	enemy_targe_choose_hp.LoadBitmapByString({"resources/enemy_target_mode_hp.bmp"},RGB(255,255,255));
+	enemy_targe_choose_hp_red.LoadBitmapByString({"resources/enemy_target_mode_hp_red.bmp"},RGB(255,255,255));
+	enemy_targe_choose_hp_black.LoadBitmapByString({"resources/enemy_target_mode_hp_black.bmp"},RGB(255,255,255));
+
+	enemy_targe_choose_hp.SetTopLeft(hp_bar_x,hp_bar_y);
+	enemy_targe_choose_hp_red.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
+	enemy_targe_choose_hp_black.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
+}
+
 void Migosp::set_barrage()
 {
   barrage = Barrage(3,white);
