@@ -151,17 +151,20 @@ void Items::set_items(int current_selection)
         GameText nice_cream_gmae_text(text_vector, talk_mode);
        item->item_after_game_text = nice_cream_gmae_text;
    }
-    if (item->name == "Bisicle" && item->useable_times == 1)
+    for (Item &item_in : items)
     {
-       item->name = "Unisicle";
-        vector<Text> text_vector= {
-            Text (60,"* You eat the Unsicle",RGB(255,255,255),600,0,0),
-            Text (60,"* You recovered 11 HP!",RGB(255,255,255),600,0,0),
-        };
-        GameText game_text(text_vector, talk_mode);
-        item->item_after_game_text = game_text;
-        item->item_after_len_list = {0,2};
-        item->index = 0;
+        if (item_in.name == "Bisicle" && item_in.useable_times == 1)
+        {
+           item_in.name = "Unisicle";
+            vector<Text> text_vector= {
+                Text (60,"* You eat the Unsicle",RGB(255,255,255),600,0,0),
+                Text (60,"* You recovered 11 HP!",RGB(255,255,255),600,0,0),
+            };
+            GameText game_text(text_vector, talk_mode);
+            item->item_after_game_text = game_text;
+            item->item_after_len_list = {0,2};
+            item->index = 0;
+        }
     }
 }
 

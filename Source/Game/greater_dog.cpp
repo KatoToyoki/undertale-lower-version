@@ -49,9 +49,10 @@ void GreaterDog::set_hp_img()
 	enemy_targe_choose_hp_red.LoadBitmapByString({"resources/enemy_target_mode_hp_red.bmp"},RGB(255,255,255));
 	enemy_targe_choose_hp_black.LoadBitmapByString({"resources/enemy_target_mode_hp_black.bmp"},RGB(255,255,255));
 
-	enemy_targe_choose_hp.SetTopLeft(hp_bar_x+150,hp_bar_y);
-	enemy_targe_choose_hp_red.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth()+150,hp_bar_y);
-	enemy_targe_choose_hp_black.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth()+150,hp_bar_y);
+	hp_bar_x = 1034;
+	enemy_targe_choose_hp.SetTopLeft(hp_bar_x,hp_bar_y);
+	enemy_targe_choose_hp_red.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
+	enemy_targe_choose_hp_black.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
 }
 
 void GreaterDog::set_barrage()
@@ -227,7 +228,7 @@ void GreaterDog::set_next_round_text()
 	if (hp < 50)
 	{
 		GameText game_text ({
-			Text (60, "* Migosp refuses to give up.", RGB(255,255,255),600, 465,613)
+			Text (60, "* Greater Dog is panting slowly.", RGB(255,255,255),600, 465,613)
 		}, talk_mode);
 		
 		act->act_next_round = game_text;
