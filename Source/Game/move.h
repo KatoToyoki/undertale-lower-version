@@ -36,9 +36,9 @@ public:
     
     game_framework::CMovingBitmap heart;
 	DWORD shine_time_count =1000;
-	DWORD jump_time_count =0;
-	DWORD jump_time_count_max_up =300;
-	DWORD jump_time_count_max_down =250;
+	DWORD jump_time_count;
+	DWORD jump_time_count_max_up;
+	DWORD jump_time_count_max_down;
 private:
     Vec2 check_range(Corner corner,Vec2 force);
     Vec2 normalize(Vec2 force);

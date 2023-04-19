@@ -118,8 +118,12 @@ void UserFrame::control_frame(
     break;
   case 3: // change long battle to talk
     frame_commend = 2;
-    if (get_width() >= 1294) {
+    if (get_width() >= 1294-10) {
       frame_commend = 3;
+      if (get_height() == 227)
+      {
+        create_frame(228, 1294, 312, 649);
+      }
     }
     if (get_height() >= 314 && get_width() >= 1294) {
       frame_commend = 4;
