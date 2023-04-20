@@ -332,8 +332,5 @@ void CGameStateRun::OnShow()
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
 
-    std::string str1 = std::to_string(enemy->pet_times);
-    Text stage1(50,str1,RGB(255,255,255),600,100,200);
-    stage1.print();
   }
 }

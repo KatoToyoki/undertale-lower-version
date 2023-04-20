@@ -221,7 +221,7 @@ void GreaterDog::set_act_init(int current_selection)//monster frame那邊的init
 			case 4:
 				set_dog_init_pet(act,after_play_pet_2_afb);
 				break;
-			case 5:
+			default:
 				set_dog_init_pet(act,after_play_pet_plus_afb);
 				break;
 			}
@@ -240,7 +240,18 @@ void GreaterDog::set_act_init(int current_selection)//monster frame那邊的init
 		}
 		if (_current_selection == play_d)
 		{
-			set_act_init(act,0,{0,2},1);
+			switch (play_times)
+			{
+			case 0:
+				set_dog_init_play(act,not_excited);
+				break;
+			case 1:
+				set_dog_init_play(act,excited);
+				break;
+			default:
+				set_dog_init_play(act,after_excited_plus);
+				break;
+			}
 		}
 		if (_current_selection == ignore_d)
 		{
@@ -292,12 +303,19 @@ void GreaterDog::set_dog_init_pet(Act *act,dog_act_pet num)
 
 void GreaterDog::set_dog_init_play(Act *act, dog_act_play num)
 {
-	// switch (num)
-	// {
-	// 	
-	// }
+	switch (num)
+	{
+	case not_excited:
+		set_act_init(act,0,{0,2},1);
+		break;
+	case excited:
+		set_act_init(act,2,{0,3,1,3,2},4);
+		break;
+	case after_excited_plus:
+		set_act_init(act,10,{0,2},1);
+		break;
+	}
 }
-
 
 void GreaterDog::act_choose_count(UINT nChar)
 {
@@ -317,6 +335,7 @@ void GreaterDog::act_choose_count(UINT nChar)
 		}
 		if (_current_selection == play_d)
 		{
+			play_times+=1;
 		}
 		if (_current_selection == ignore_d)
 		{

@@ -76,7 +76,6 @@ public:
     game_framework::CMovingBitmap enemy_barrage;
     
     bool _monster_frame_enable = false;
-    int pet_times = 0;
 protected:
     
     bool _act_after_enable = false;

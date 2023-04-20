@@ -54,5 +54,7 @@ public:
 private:
     int ignore_times = 0;
     int beckon_times = 0;
+    int pet_times = 0;
+    int play_times = 0;
     bool is_beckon = false;
 };
