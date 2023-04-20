@@ -102,6 +102,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       break;
     case 1:
       show_normal_mode.choose_act_after();
+      if (enemy->is_game_over() && stage_go < 8)
+      {
+          stage_go = 8;
+      }
       stage_go_enable_add = true;
       stage_go_enable_sub = false;
       break;
@@ -161,12 +165,34 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go = 1;
     }
     break;
+  case 8:
+    user_frame.control_frame(to_talk);
+    stage_go_enable_add = false;
+    stage_go_enable_sub = false;
+    if (user_frame.get_move_done())
+    {
+      show_normal_mode.choose_act_after();
+      stage_go_enable_add = true;
+      stage_go_enable_sub = false;
+    }
+    break;
+  case 9:
+    user_frame.control_frame(to_talk);
+    gameButtonFrame.choose_update(false);
+    gameButtonFrame.all_button_off();
+    if (user_frame.get_move_done())
+    {
+      enemy->set_mercy(true);
+      show_normal_mode.choose_mercy_after();
+      stage_go_enable_add = true;
+      stage_go_enable_sub = false;
+    }
+    break;
   }
+  
   if (gameFight.is_hp_zero())
   {
-    enemy->set_mercy(true);
-    stage_go = 8;
-    show_normal_mode.choose_mercy_after();
+    stage_go = 9;
   }
   show_normal_mode.updata();
 }
@@ -219,11 +245,12 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     enemy->act_after_stage_control_updata(nChar,&stage_go);
     enemy->monster_frame_stage_control_updata(nChar,&stage_go,&monster_frame);
     items.item_after_stage_control_updata(nChar,&stage_go);
+    if (stage_go == 3) {enemy->act_choose_count(nChar);}
     if (stage_go!= 7) {charactor.change_hp_updata(nChar);}
   }
 
   //stage_control don't touch here
-  if ((nChar == VK_RETURN || nChar == 0x5A) && ((enemy->is_mercy() && gameButtonFrame.get_current_selection() ==3 && stage_go == 3) || gameFight.is_hp_zero())) {
+  if ((nChar == VK_RETURN || nChar == 0x5A) && ((enemy->is_mercy() && gameButtonFrame.get_current_selection() ==3 && stage_go == 3) || gameFight.is_hp_zero() || stage_go == 9)) {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
   
@@ -305,5 +332,8 @@ void CGameStateRun::OnShow()
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
 
+    std::string str1 = std::to_string(enemy->pet_times);
+    Text stage1(50,str1,RGB(255,255,255),600,100,200);
+    stage1.print();
   }
 }

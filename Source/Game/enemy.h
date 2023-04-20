@@ -11,11 +11,13 @@ enum enemy_img_state
     damege
 };
 
+
 class Enemy
 {
 public:
     virtual void set_hp_img() = 0;
     virtual void set_img() = 0;
+    bool is_game_over() {return  _is_gameover;}
     void show_img();
     int generate_random_num(int min, int max);
     GameText get_monster_name() { return  monster_name; }
@@ -44,6 +46,7 @@ public:
     void set_act_game_text_enable(bool enable);
     
     void act_after_stage_control_updata(UINT nChar, int *stage);
+    virtual void act_choose_count(UINT nChar) = 0;
 
     int get_now_act_after_index();
     int get_now_act_after_text_len();
@@ -73,12 +76,14 @@ public:
     game_framework::CMovingBitmap enemy_barrage;
     
     bool _monster_frame_enable = false;
+    int pet_times = 0;
 protected:
     
     bool _act_after_enable = false;
     bool _choose_targe_hp_bar_enable = false;
     bool _barrage_enable = false;
     bool _is_mercy = false;
+    bool _is_gameover = false;
     int act_times = 0;
     int monster_times = 0;
     int _current_selection =0;

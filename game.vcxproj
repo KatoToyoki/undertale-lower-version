@@ -251,7 +251,6 @@
     <ClCompile Include="Source\Game\enemy.cpp" />
     <ClCompile Include="Source\Game\Fight.cpp" />
     <ClCompile Include="Source\Game\first_stage.cpp" />
-    <ClCompile Include="Source\Game\first_stage_sub_stage\show_menu.cpp" />
     <ClCompile Include="Source\Game\first_stage_sub_stage\show_normal_mode.cpp" />
     <ClCompile Include="Source\Game\frame.cpp" />
     <ClCompile Include="Source\Game\game_text.cpp" />
@@ -289,7 +288,6 @@
     <ClInclude Include="Source\Game\enemy.h" />
     <ClInclude Include="Source\Game\Fight.h" />
     <ClInclude Include="Source\Game\first_stage.h" />
-    <ClInclude Include="Source\Game\first_stage_sub_stage\show_menu.h" />
     <ClInclude Include="Source\Game\first_stage_sub_stage\show_normal_mode.h" />
     <ClInclude Include="Source\Game\frame.h" />
     <ClInclude Include="Source\Game\game_text.h" />

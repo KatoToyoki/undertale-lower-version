@@ -176,7 +176,7 @@ void ShowNormalMode::choose_mercy()
 	_user_frame->load_text(_enemy->get_mercy_game_text());
 	_user_frame->set_choose(true,0,1);
 	
-    _monster_frame->set_enable(false);
+	_enemy->set_monster_frame_game_text_enable(true);
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 }
 
