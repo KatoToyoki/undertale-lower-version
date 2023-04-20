@@ -57,4 +57,6 @@ private:
     int pet_times = 0;
     int play_times = 0;
     bool is_beckon = false;
+    bool is_play_afb = false;//play過在b之後
+    bool is_pet_afb = false;//pet過在b之後
 };

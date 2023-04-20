@@ -204,26 +204,35 @@ void GreaterDog::set_act_init(int current_selection)//monster frame那邊的init
 		}
 		if (_current_selection == pet_d)
 		{
-			switch (pet_times)
+			if (is_play_afb)
 			{
-			case 0:
-				set_dog_init_pet(act,before_beckon);
-				break;
-			case 1:
-				set_dog_init_pet(act,after_ignore_or_beckon);
-				break;
-			case 2:
+				switch (pet_times)
+				{
+				case 0:
+					set_dog_init_pet(act,after_play_pet_1_afb);
+					break;
+				case 1 :
+					set_dog_init_pet(act,after_play_pet_2_afb);
+					break;
+				default:
+					set_dog_init_pet(act,after_play_pet_plus_afb);
+					break;
+				}
+			}
+			else if (!is_play_afb && is_pet_afb)
+			{
 				set_dog_init_pet(act,before_play_afb);
-				break;
-			case 3:
-				set_dog_init_pet(act,after_play_pet_1_afb);
-				break;
-			case 4:
-				set_dog_init_pet(act,after_play_pet_2_afb);
-				break;
-			default:
-				set_dog_init_pet(act,after_play_pet_plus_afb);
-				break;
+				pet_times=0;
+			}
+			else if (is_beckon)
+			{
+				set_dog_init_pet(act,after_ignore_or_beckon);
+				pet_times=0;
+			}
+			else
+			{
+				set_dog_init_pet(act,before_beckon);
+				pet_times=0;
 			}
 		}
 		if (_current_selection == beckon_d)
@@ -240,17 +249,22 @@ void GreaterDog::set_act_init(int current_selection)//monster frame那邊的init
 		}
 		if (_current_selection == play_d)
 		{
-			switch (play_times)
+			if (is_pet_afb)
 			{
-			case 0:
+				switch (play_times)
+				{
+				case 0:
+					set_dog_init_play(act,excited);
+					break;
+				default:
+					set_dog_init_play(act,after_excited_plus);
+					break;
+				}
+			}
+			else
+			{
 				set_dog_init_play(act,not_excited);
-				break;
-			case 1:
-				set_dog_init_play(act,excited);
-				break;
-			default:
-				set_dog_init_play(act,after_excited_plus);
-				break;
+				play_times=0;
 			}
 		}
 		if (_current_selection == ignore_d)
@@ -321,12 +335,13 @@ void GreaterDog::act_choose_count(UINT nChar)
 {
 	if ((nChar == VK_RETURN || nChar == 0x5A) && !_act_after_enable)
 	{
-		if (_current_selection == check_d )
-		{
-		}
 		if (_current_selection == pet_d)
 		{
 			pet_times+=1;
+			if(is_beckon)
+			{
+				is_pet_afb = true;
+			}
 		}
 		if (_current_selection == beckon_d)
 		{
@@ -336,6 +351,10 @@ void GreaterDog::act_choose_count(UINT nChar)
 		if (_current_selection == play_d)
 		{
 			play_times+=1;
+			if (is_pet_afb)
+			{
+				is_play_afb = true;
+			}
 		}
 		if (_current_selection == ignore_d)
 		{
@@ -349,11 +368,9 @@ void GreaterDog::act_choose_count(UINT nChar)
 	}
 }
 
-
-
 void GreaterDog::check_mercy()
 {
-	if (_current_selection == pet_d)
+	if (is_play_afb && pet_times>1)
 	{
 		_is_mercy = true;
 	}
