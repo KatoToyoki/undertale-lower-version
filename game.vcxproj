@@ -247,7 +247,8 @@
     <ClCompile Include="Source\Game\barrage.cpp" />
     <ClCompile Include="Source\Game\BarrageMode.cpp" />
     <ClCompile Include="Source\Game\ButtonFrame.cpp" />
-    <ClCompile Include="Source\Game\charactor.cpp" />
+    <ClCompile Include="Source\Game\Character.cpp" />
+    <ClCompile Include="Source\Game\enemy.cpp" />
     <ClCompile Include="Source\Game\Fight.cpp" />
     <ClCompile Include="Source\Game\first_stage.cpp" />
     <ClCompile Include="Source\Game\first_stage_sub_stage\show_menu.cpp" />
@@ -282,8 +283,9 @@
     <ClInclude Include="Source\Game\barrage.h" />
     <ClInclude Include="Source\Game\BarrageMode.h" />
     <ClInclude Include="Source\Game\ButtonFrame.h" />
-    <ClInclude Include="Source\Game\charactor.h" />
+    <ClInclude Include="Source\Game\Character.h" />
     <ClInclude Include="Source\Game\config.h" />
+    <ClInclude Include="Source\Game\enemy.h" />
     <ClInclude Include="Source\Game\Fight.h" />
     <ClInclude Include="Source\Game\first_stage.h" />
     <ClInclude Include="Source\Game\first_stage_sub_stage\show_menu.h" />

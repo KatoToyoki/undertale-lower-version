@@ -11,6 +11,7 @@ void ButtonFrame::LoadSetIMG()
     _buttons[fight].LoadBitmapByString({
         "resources/fight_off.bmp",
         "resources/fight_on.bmp",
+        "resources/fight_on_b.bmp",
         "resources/fight_selected.bmp",
     });
     _buttons[fight].SetTopLeft(312,975);
@@ -18,6 +19,7 @@ void ButtonFrame::LoadSetIMG()
     _buttons[act].LoadBitmapByString({
         "resources/act_off.bmp",
         "resources/act_on.bmp",
+        "resources/act_on_b.bmp",
         "resources/act_selected.bmp",
     });
     _buttons[act].SetTopLeft(658,975);
@@ -25,6 +27,7 @@ void ButtonFrame::LoadSetIMG()
     _buttons[item].LoadBitmapByString({
         "resources/item_off.bmp",
         "resources/item_on.bmp",
+        "resources/item_on_b.bmp",
         "resources/item_selected.bmp",
     });
     _buttons[item].SetTopLeft(1014,975);
@@ -32,6 +35,7 @@ void ButtonFrame::LoadSetIMG()
     _buttons[mercy].LoadBitmapByString({
         "resources/mercy_off.bmp",
         "resources/mercy_on.bmp",
+        "resources/mercy_on_b.bmp",
         "resources/mercy_selected.bmp",
     });
     _buttons[mercy].SetTopLeft(1360,975);
@@ -39,7 +43,7 @@ void ButtonFrame::LoadSetIMG()
 
 void ButtonFrame::SetInit()
 {
-    _buttons[fight].SetFrameIndexOfBitmap(toOn);
+    _buttons[fight].SetFrameIndexOfBitmap(toOn+heart_mode);
     _buttons[act].SetFrameIndexOfBitmap(toOff);
     _buttons[item].SetFrameIndexOfBitmap(toOff);
     _buttons[mercy].SetFrameIndexOfBitmap(toOff);                  
@@ -104,7 +108,7 @@ void ButtonFrame::ChangeState()
     }
     _buttons[_current_selection].SetFrameIndexOfBitmap(toOff);
     _current_selection+=target; 
-    _buttons[_current_selection].SetFrameIndexOfBitmap(toOn);
+    _buttons[_current_selection].SetFrameIndexOfBitmap(toOn+heart_mode);
     isChange=false;
 }
 
@@ -125,7 +129,12 @@ void ButtonFrame::set_updata_enable(bool enable)
 {
     if (_enable)
     {
-        _buttons[_current_selection].SetFrameIndexOfBitmap(toOn);
+        _buttons[_current_selection].SetFrameIndexOfBitmap(toOn+heart_mode);
     }
     _enable = enable;
+}
+
+void ButtonFrame::set_heart_mode(int mode)
+{
+    heart_mode = mode;
 }

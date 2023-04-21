@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "charactor.h"
+#include "Character.h"
 
 #include "text.h"
 
-void Charactor::set_hp_img()
+void Character::set_hp_img()
 {
   hp_bar.LoadBitmapByString({"resources/char_hp.bmp"});
   hp_bar_red.LoadBitmapByString({"resources/char_hp_red.bmp"});
@@ -14,7 +14,7 @@ void Charactor::set_hp_img()
   hp_bar_black.SetTopLeft(max_bar_position_x,hp_bar_position_y);
 }
 
-void Charactor::show_charactor_data()
+void Character::show_charactor_data()
 {
   Text name_text(50,name,RGB(255,255,255),600,311,890);
   Text LV(50,"LV " + std::to_string(level),RGB(255,255,255),600,514,890);
@@ -35,7 +35,7 @@ void Charactor::show_charactor_data()
   HP_num.print();
 }
 
-void Charactor::change_hp(bool enable, int heal_or_damege)
+void Character::change_hp(bool enable, int heal_or_damege)
 {
   _heal_or_damege = heal_or_damege;
   change_hp_enable = enable;
@@ -50,13 +50,13 @@ void Charactor::change_hp(bool enable, int heal_or_damege)
   }
 }
 
-void Charactor::updata_hp_bar_by_hp()
+void Character::updata_hp_bar_by_hp()
 {
   int move_red_bar_position = max_bar_position_x - (one_hp_pixel * (hp_max - hp));
   hp_bar_red.SetTopLeft(move_red_bar_position,hp_bar_position_y);
 }
 
-void Charactor::change_hp_updata(UINT nChar)
+void Character::change_hp_updata(UINT nChar)
 {
   if ((nChar == VK_RETURN || nChar == 0x5A) && change_hp_enable)
   {

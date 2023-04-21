@@ -24,6 +24,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 {
   charactor.updata_hp_bar_by_hp();
   migosp.updata_hp_bar_by_hp();
+
+  
   if (charactor.get_current_hp() == 0)
   {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
@@ -114,6 +116,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     }
     break;
   case 5:
+    gameButtonFrame.all_button_off();
     gameFight.set_fight_enable(false);
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
@@ -136,6 +139,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     user_frame.control_frame(talk_to_normal_battle);
     
     battel_mode_timer = 0;
+
+    show_normal_mode.set_heart_mode(heart_blue);
     break;
   case 7:
     //maybe battle mode
@@ -149,7 +154,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     // to do enemy attack
     // boneRed.MovingBarrage(&heart_test,3);
 
-    charactor.change_hp( (heart_test.time_count>=400)
+    charactor.change_hp( (heart_test.shine_time_count>=400)
       ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
     
     heart_test.move_control(user_frame.get_corner(),true);
@@ -234,7 +239,9 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     stage_go-=1;
     user_frame._current_selection = 0;
   }
+  
 }
+
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
@@ -298,6 +305,5 @@ void CGameStateRun::OnShow()
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.set_enable(true);
     stage.print();
-    
   }
 }

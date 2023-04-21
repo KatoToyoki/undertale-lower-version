@@ -99,9 +99,9 @@ void Barrage::switch_mode()
 
 int Barrage::damege_hit(Move *heart)
 {
-    if (_mode == white && barrage_img.IsOverlap(barrage_img,heart->heart))
+    if (_mode == white && barrage_img.IsOverlap(barrage_img,heart->heart) && heart -> shine_time_count >=400)
     {
-        heart->time_count = 0;
+        heart->shine_time_count = 0;
         heart->shine_two_second();
         barrage_img.SetTopLeft(0,0);
         return _damage;
@@ -111,9 +111,9 @@ int Barrage::damege_hit(Move *heart)
         if (GetKeyState(VK_UP)&0x8000 || GetKeyState(VK_DOWN)&0x8000 ||
             GetKeyState(VK_LEFT)&0x8000 || GetKeyState(VK_RIGHT)&0x8000)
         {
-            if (barrage_img.IsOverlap(barrage_img,heart->heart))
+            if (barrage_img.IsOverlap(barrage_img,heart->heart) && heart -> shine_time_count >=400 )
             {
-                heart->time_count = 0;
+                heart->shine_time_count = 0;
                 heart->shine_two_second();
                 barrage_img.SetTopLeft(0,0);
                 return  _damage;
