@@ -59,6 +59,7 @@
 #include "papyrus_rounds/Round0.h"
 #include "papyrus_rounds/Round1.h"
 #include "papyrus_rounds/Round2.h"
+#include "papyrus_rounds/Round3.h"
 
 
 
@@ -135,6 +136,7 @@ private:
   Round0 round0=Round0(15);
   Round1 round1=Round1(3);
   Round2 round2=Round2(7);
+  Round3 round3=Round3(7);
 
 
   MonsterFrame monster_frame;
