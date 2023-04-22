@@ -3,8 +3,10 @@
 
 void BarrageMode::Init()
 {
-    SetAllData();
+    
     PushEmpty();
+    SetAllData();
+    //HandleJsonData("RoundXData");
     recordXYDamageSpeed();
 }
 
@@ -18,6 +20,7 @@ void BarrageMode::PushEmpty()
         yPosition.push_back(0);
         allDamage.push_back(0);
         allSpeed.push_back(0);
+        
     }
 }
 
@@ -137,9 +140,9 @@ void BarrageMode::HandleMultImg(nlohmann::basic_json<> imgArr, std::vector<std::
     FormatImgPath(img);
 }
 
-void BarrageMode::HandleJsonData(std::string round,std::vector<SetData>& all){
+void BarrageMode::HandleJsonData(std::string round){
     json data;
-    std::ifstream file("AllRounds.json");
+    std::ifstream file("Source/Game/papyrus_rounds/AllRounds.json");
     file >> data;
     
     for (const auto& round : data[round]) {
@@ -171,6 +174,6 @@ void BarrageMode::HandleJsonData(std::string round,std::vector<SetData>& all){
                 HandleMultImg(imgPathArray,temp.imgPath);
             }
         }
-        all.push_back(temp);
+        allData.push_back(temp);
     }
 }

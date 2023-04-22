@@ -106,7 +106,7 @@ public:
 
     void HandleMultImg(nlohmann::basic_json<> imgArr, std::vector<std::string>& img);
     
-    void HandleJsonData(std::string round,std::vector<SetData>& all);
+    void HandleJsonData(std::string round);
     
     // test print function, will be deleted afterwards
     void Test2()

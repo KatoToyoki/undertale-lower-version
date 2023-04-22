@@ -3,7 +3,7 @@
 
 void RoundX::SetAllData()
 {
-    HandleJsonData("RoundX",allData);
+    HandleJsonData("RoundXData");
     
     /*
     SetData current;
@@ -62,7 +62,7 @@ void RoundX::MovingBarrage(Move* heart)
     for(int i=0;i<_quantity;i++)
     {
         enemyBarrage[i].set_show_enable(true);
-        enemyBarrage[i].left_move(allSpeed[i]);
+        enemyBarrage[i].left_move(allData[i].speed);
     }
 
     if(enemyBarrage[_quantity-1].GetOnePosition(IMGleft)<665)
