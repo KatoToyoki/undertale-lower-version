@@ -1,9 +1,6 @@
 #pragma once
 #include "../BarrageMode.h"
-#include <iostream>
-#include <fstream>
-#include "../Library/json.hpp"
-using json = nlohmann::json;
+
 
 class RoundX : public BarrageMode
 {

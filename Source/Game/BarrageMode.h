@@ -6,6 +6,11 @@
 #include "barrage.h"
 #include <vector>
 #include <cstdlib>
+#include <fstream>
+#include "../Library/json.hpp"
+#include <string>
+
+using json = nlohmann::json;
 
 // to set init data ( resetting can use it as well)
 struct SetData
@@ -95,6 +100,13 @@ public:
     // meanwhile, MovingBarrage just do move, detection is not its job
     int GetMinusHP_M(Move *heart, int command=appear);
 
+    std::string HandleJsonString(std::string str);
+
+    void FormatImgPath(std::vector<std::string> &imgArr);
+
+    void HandleMultImg(nlohmann::basic_json<> imgArr, std::vector<std::string>& img);
+    
+    void HandleJsonData(std::string round,std::vector<SetData>& all);
     
     // test print function, will be deleted afterwards
     void Test2()

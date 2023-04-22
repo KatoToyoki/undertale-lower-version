@@ -3,6 +3,9 @@
 
 void RoundX::SetAllData()
 {
+    HandleJsonData("RoundX",allData);
+    
+    /*
     SetData current;
     
     current.damage=3;
@@ -31,6 +34,7 @@ void RoundX::SetAllData()
     current.initY=774;
     allData.push_back(current);
     current.imgPath.clear();
+    */
 }
 
 void RoundX::recordXYDamageSpeed()
@@ -43,10 +47,13 @@ void RoundX::recordXYDamageSpeed()
     yPosition[1]=783;
     yPosition[2]=774;
 
+    /*
     for(int i=0;i<_quantity;i++)
     {
         allSpeed[i]=3;
     }
+
+    */
 
 }
 
