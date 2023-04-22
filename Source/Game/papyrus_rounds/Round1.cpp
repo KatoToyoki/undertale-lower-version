@@ -9,24 +9,30 @@ void Round1::SetAllData()
     
     current.damage=3;
     current.mode=white;
-    current.imgPath="h45bone";
+    current.imgPath.push_back("resources/h45bone.bmp");
+    //current.imgPath="h45bone";
     current.initX=1250;
     current.initY=819;
     allData.push_back(current);
+    current.imgPath.clear();
 
     current.damage=3;
     current.mode=white;
-    current.imgPath="h45bone";
+    current.imgPath.push_back("resources/h45bone.bmp");
+    //current.imgPath="h45bone";
     current.initX=1550;
     current.initY=819;
     allData.push_back(current);
+    current.imgPath.clear();
 
     current.damage=3;
     current.mode=white;
-    current.imgPath="h90bone";
+    current.imgPath.push_back("resources/h90bone.bmp");
+    //current.imgPath="h90bone";
     current.initX=1850;
     current.initY=774;
     allData.push_back(current);
+    current.imgPath.clear();
 }
 
 void Round1::recordXYDamageSpeed()

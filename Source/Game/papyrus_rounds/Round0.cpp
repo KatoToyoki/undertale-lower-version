@@ -7,112 +7,144 @@ void Round0::SetAllData()
     
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h210boneB";
+    current.imgPath.push_back("resources/h210boneB.bmp");
+
+    //current.imgPath="h210boneB";
     current.initX=1000;
     current.initY=654;
     allData.push_back(current);
+    current.imgPath.clear();
 
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h110boneB";
+
+    current.imgPath.push_back("resources/h110boneB.bmp");
+    //current.imgPath="h110boneB";
     current.initX=1100;
     current.initY=754;
     allData.push_back(current);
+    current.imgPath.clear();
     
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h163boneB";
+    current.imgPath.push_back("resources/h163boneB.bmp");
+    //current.imgPath="h163boneB";
     current.initX=1200;
     current.initY=701;
     allData.push_back(current);
+    current.imgPath.clear();
 
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h110boneB";
+    current.imgPath.push_back("resources/h110boneB.bmp");
+    //current.imgPath="h110boneB";
     current.initX=1300;
     current.initY=754;
     allData.push_back(current);
+    current.imgPath.clear();
 
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h210boneB";
+    current.imgPath.push_back("resources/h210boneB.bmp");
+    //current.imgPath="h210boneB";
     current.initX=1400;
     current.initY=575;
     allData.push_back(current);
+    current.imgPath.clear();
 
     //
     
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h143boneB";
+    current.imgPath.push_back("resources/h143boneB.bmp");
+    //current.imgPath="h143boneB";
     current.initX=1550;
     current.initY=721;
     allData.push_back(current);
+    current.imgPath.clear();
 
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h210boneB";
+    current.imgPath.push_back("resources/h210boneB.bmp");
+    //current.imgPath="h210boneB";
     current.initX=1650;
     current.initY=654;
     allData.push_back(current);
+    current.imgPath.clear();
     
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h169boneB";
+    current.imgPath.push_back("resources/h169boneB.bmp");
+    //current.imgPath="h169boneB";
     current.initX=1750;
     current.initY=695;
     allData.push_back(current);
+    current.imgPath.clear();
 
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h234boneB";
+    current.imgPath.push_back("resources/h234boneB.bmp");
+    //current.imgPath="h234boneB";
     current.initX=1850;
     current.initY=630;
     allData.push_back(current);
+    current.imgPath.clear();
 
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h204boneB";
+    current.imgPath.push_back("resources/h204boneB.bmp");
+    //current.imgPath="h204boneB";
     current.initX=1950;
     current.initY=660;
     allData.push_back(current);
+    current.imgPath.clear();
 
     //
     
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h210boneB";
+    current.imgPath.push_back("resources/h210boneB.bmp");
+    //current.imgPath="h210boneB";
     current.initX=2050;
     current.initY=575;
     allData.push_back(current);
+    current.imgPath.clear();
 
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h169boneB";
+    current.imgPath.push_back("resources/h169boneB.bmp");
+    //current.imgPath="h169boneB";
     current.initX=2150;
     current.initY=575;
     allData.push_back(current);
+    current.imgPath.clear();
 
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h204boneB";
+    current.imgPath.push_back("resources/h204boneB.bmp");
+    //current.imgPath="h204boneB";
     current.initX=2250;
     current.initY=575;
     allData.push_back(current);
+    current.imgPath.clear();
 
     current.damage=3;
     current.mode=blue;
-    current.imgPath="h234boneB";
+    current.imgPath.push_back("resources/h234boneB.bmp");
+    //current.imgPath="h234boneB";
     current.initX=2350;
     current.initY=630;
     allData.push_back(current);
+    current.imgPath.clear();
     
     current.damage=3;
     current.mode=white;
-    current.imgPath="h45bone";
+    current.imgPath.push_back("resources/h45bone.bmp");
+    //current.imgPath="h45bone";
     current.initX=600;
     current.initY=819;
     allData.push_back(current);
+    current.imgPath.clear();
 }
 
 void Round0::recordXYDamageSpeed()

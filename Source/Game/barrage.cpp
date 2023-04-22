@@ -40,13 +40,18 @@ void Barrage::load_img(std::string bmp_name)
     if (_mode == white)
     {
         barrage_img.LoadBitmapByString({"resources/"+bmp_name+".bmp"},RGB(255,255,255));
-        barrage_img.LoadBitmapByString({"resources/"+bmp_name+".bmp"},RGB(0,0,0));
     }
     else
     {
         barrage_img.LoadBitmapByString({"resources/"+bmp_name+".bmp"},RGB(255,255,255));
     }
 }
+
+void Barrage::LoadMultImg(std::vector<std::string> imgArr)
+{
+    barrage_img.LoadBitmapByString(imgArr,RGB(255,255,255));
+}
+
 
 void Barrage::loda_CMoving_Bitmap(game_framework::CMovingBitmap img)
 {

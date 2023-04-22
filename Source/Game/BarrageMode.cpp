@@ -24,7 +24,8 @@ void BarrageMode::PushEmpty()
 Barrage BarrageMode::Setup(SetData data)
 {
     Barrage current;
-    current.load_img(data.imgPath);
+    current.LoadMultImg(data.imgPath);
+    //current.load_img(data.imgPath);
     current.SetDamage(data.damage);
     current.SetMode(data.mode);
     current.set_positon(data.initX,data.initY);

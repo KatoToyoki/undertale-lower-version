@@ -13,7 +13,8 @@ struct SetData
     int damage=0;
     int speed=0;
     barrage_mode mode=white;
-    std::string imgPath;
+    //std::string imgPath;
+    std::vector<std::string> imgPath;
     int initX=0,initY=0;
 };
 
