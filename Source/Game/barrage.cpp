@@ -99,7 +99,6 @@ void Barrage::switch_mode()
 
 int Barrage::damege_hit(Move *heart, int command)
 {
-
     if (_mode == white && barrage_img.IsOverlap(barrage_img,heart->heart) && heart -> shine_time_count >=400)
     {
         heart->shine_time_count = 0;

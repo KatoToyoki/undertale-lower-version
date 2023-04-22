@@ -88,19 +88,15 @@ bool BarrageMode::GetIsAttackEnd()
 
 int BarrageMode::GetMinusHP_M(Move *heart, int command)
 {
-    
     for(int i=0;i<_quantity;i++)
     {
-        if(dd!=0)
-        {
-            dd=0;
-        }
+        damageToCharacter=0;
         enemyBarrage[i].set_show_enable(true);
-        dd= enemyBarrage[i].damege_hit(heart,command);
-        aa+=dd;
-        if(dd!=0)
+        damageToCharacter = enemyBarrage[i].damege_hit(heart,command);
+        
+        if(damageToCharacter!=0)
         {
-            return dd;
+            return damageToCharacter;
         }
     }
 

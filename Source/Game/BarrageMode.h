@@ -23,6 +23,10 @@ private:
     // currently not be used right now, if it really don't use can deleted
     bool _enable;
 
+    // the return value of the damage that character will receive
+    // without this, the return only DO ONCE, the last barrages will not be detected even if it is overlay
+    int damageToCharacter=0;
+
 protected:
     // how many barrages the enemy attack mode will hava
     int _quantity=0;
@@ -81,21 +85,22 @@ public:
     void UnshowBarrage();
 
     // to let enemy attack you, each round may be different, so it's pure virtual
-    virtual int MovingBarrage(Move *heart)=0;
+    virtual void MovingBarrage(Move *heart)=0;
 
     bool GetIsAttackEnd();
 
+    // to return the damage that character will receive
+    // i separated this with MovingBarrage because Character must call this function to get the damage
+    // meanwhile, MovingBarrage just do move, detection is not its job
     int GetMinusHP_M(Move *heart, int command=appear);
 
-
-    int dd=0;
-    int aa=0;
+    
     // test print function, will be deleted afterwards
     void Test2()
     {
         CDC *pDC = game_framework::CDDraw::GetBackCDC();
         game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        game_framework::CTextDraw::Print(pDC, 100, 200, "Q "+to_string(aa));
+        game_framework::CTextDraw::Print(pDC, 100, 200, "Q "+to_string(damageToCharacter));
         game_framework::CDDraw::ReleaseBackCDC();
     }
 };

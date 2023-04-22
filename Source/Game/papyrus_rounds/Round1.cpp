@@ -37,21 +37,16 @@ void Round1::recordXYDamageSpeed()
     }
 }
 
-int Round1::MovingBarrage(Move* heart)
+void Round1::MovingBarrage(Move* heart)
 {
     for(int i=0;i<_quantity;i++)
     {
         enemyBarrage[i].set_show_enable(true);
-        // enemyBarrage[i].damege_hit(heart,disappear);
         enemyBarrage[i].left_move(allSpeed[i]);
-        // GetMinusHP_M(heart,disappear);
-        
     }
 
     if(enemyBarrage[_quantity-1].GetOnePosition(IMGleft)<665)
     {
         isAttackEnd = true;
     }
-
-    return 0;
 }
