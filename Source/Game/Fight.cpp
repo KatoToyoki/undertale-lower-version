@@ -83,9 +83,6 @@ void Fight::set_monster(Migosp* enemy)
 
 void Fight::show_fight_img()
 {
-    Test1();
-    Test2();
-    
     if (_enable)
     {
         fightScope.ShowBitmap();

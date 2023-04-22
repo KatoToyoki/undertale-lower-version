@@ -12,7 +12,7 @@ void RoundX::SetAllData()
     current.initY=795;
     allData.push_back(current);
     
-    current.damage=322;
+    current.damage=3;
     current.mode=white;
     current.imgPath="h81bone";
     current.initX=1150;
@@ -49,7 +49,6 @@ void RoundX::MovingBarrage(Move* heart)
     for(int i=0;i<_quantity;i++)
     {
         enemyBarrage[i].set_show_enable(true);
-        enemyBarrage[i].damege_hit(heart,disappear);
         enemyBarrage[i].left_move(allSpeed[i]);
     }
 
