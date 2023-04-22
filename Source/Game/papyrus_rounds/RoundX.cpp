@@ -57,3 +57,10 @@ void RoundX::MovingBarrage(Move* heart)
         isAttackEnd = true;
     }
 }
+
+void RoundX::test()
+{
+    std::ifstream file("AllRounds.json");
+    file >> roundXData;
+}
+

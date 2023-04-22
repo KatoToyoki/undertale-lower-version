@@ -12,5 +12,6 @@ public:
     virtual void SetAllData() override;
     virtual void recordXYDamageSpeed() override;
     virtual void MovingBarrage(Move *heart) override;
+
     
 };

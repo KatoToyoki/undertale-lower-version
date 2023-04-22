@@ -1,0 +1,40 @@
+{
+  "RoundXData": [
+    {
+      "damage": 3,
+      "speed": 3,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path1":"h69bone"
+        }
+      ],
+      "initX":1000,
+      "initY":795
+    },
+    {
+      "damage": 3,
+      "speed": 3,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path1":"h81bone"
+        }
+      ],
+      "initX":1150,
+      "initY":783
+    },
+    {
+      "damage": 3,
+      "speed": 3,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path1":"h90bone"
+        }
+      ],
+      "initX":1300,
+      "initY":774
+    }
+  ]
+}
