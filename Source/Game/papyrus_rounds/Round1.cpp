@@ -5,42 +5,7 @@
 
 void Round1::SetAllData()
 {
-    SetData current;
-    
-    current.damage=3;
-    current.mode=white;
-    current.imgPath.push_back("resources/h45bone.bmp");
-    //current.imgPath="h45bone";
-    current.initX=1250;
-    current.initY=819;
-    allData.push_back(current);
-    current.imgPath.clear();
-
-    current.damage=3;
-    current.mode=white;
-    current.imgPath.push_back("resources/h45bone.bmp");
-    //current.imgPath="h45bone";
-    current.initX=1550;
-    current.initY=819;
-    allData.push_back(current);
-    current.imgPath.clear();
-
-    current.damage=3;
-    current.mode=white;
-    current.imgPath.push_back("resources/h90bone.bmp");
-    //current.imgPath="h90bone";
-    current.initX=1850;
-    current.initY=774;
-    allData.push_back(current);
-    current.imgPath.clear();
-}
-
-void Round1::recordXYDamageSpeed()
-{
-    for(int i=0; i<_quantity; i++)
-    {
-        allSpeed[i]=3;
-    }
+    HandleJsonData("Round1Data");
 }
 
 void Round1::MovingBarrage(Move* heart)
@@ -48,10 +13,10 @@ void Round1::MovingBarrage(Move* heart)
     for(int i=0;i<_quantity;i++)
     {
         enemyBarrage[i].set_show_enable(true);
-        enemyBarrage[i].left_move(allSpeed[i]);
+        enemyBarrage[i].left_move(allData[i].speed);
     }
 
-    if(enemyBarrage[_quantity-1].GetOnePosition(IMGleft)<665)
+    if(LeaveAtLeft()||LastOneDisappear())
     {
         isAttackEnd = true;
     }

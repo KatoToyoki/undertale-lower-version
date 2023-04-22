@@ -3,80 +3,7 @@
 
 void Round3::SetAllData()
 {
-    SetData current;
-    
-    current.damage=3;
-    current.mode=white;
-    current.imgPath.push_back("resources/h135bone.bmp");
-    //current.imgPath="h135bone";
-    current.initX=650;
-    current.initY=729;
-    allData.push_back(current);
-    current.imgPath.clear();
-
-    current.damage=3;
-    current.mode=white;
-    current.imgPath.push_back("resources/h221bone.bmp");
-    //current.imgPath="h221bone";
-    current.initX=550;
-    current.initY=575;
-    allData.push_back(current);
-    current.imgPath.clear();
-
-    current.damage=3;
-    current.mode=white;
-    current.imgPath.push_back("resources/h45bone.bmp");
-    //current.imgPath="h45bone";
-    current.initX=450;
-    current.initY=819;
-    allData.push_back(current);
-    current.imgPath.clear();
-
-    current.damage=3;
-    current.mode=white;
-    current.imgPath.push_back("resources/h45bone.bmp");
-    //current.imgPath="h45bone";
-    current.initX=350;
-    current.initY=819;
-    allData.push_back(current);
-    current.imgPath.clear();
-
-    current.damage=3;
-    current.mode=white;
-    current.imgPath.push_back("resources/h45bone.bmp");
-    //current.imgPath="h45bone";
-    current.initX=250;
-    current.initY=819;
-    allData.push_back(current);
-    current.imgPath.clear();
-
-    current.damage=3;
-    current.mode=white;
-    current.imgPath.push_back("resources/h111bone.bmp");
-    //current.imgPath="h111bone";
-    current.initX=150;
-    current.initY=753;
-    allData.push_back(current);
-    current.imgPath.clear();
-
-    current.damage=3;
-    current.mode=white;
-    current.imgPath.push_back("resources/h221bone.bmp");
-    //current.imgPath="h221bone";
-    current.initX=50;
-    current.initY=575;
-    allData.push_back(current);
-    current.imgPath.clear();
-
-    //135 221(up) 45 45 45 111 221(up)
-}
-
-void Round3::recordXYDamageSpeed()
-{
-    for(int i=0; i<_quantity; i++)
-    {
-        allSpeed[i]=4;
-    }
+    HandleJsonData("Round3Data");
 }
 
 void Round3::MovingBarrage(Move* heart)
@@ -85,10 +12,10 @@ void Round3::MovingBarrage(Move* heart)
     {
         enemyBarrage[i].set_show_enable(true);
         enemyBarrage[i].damege_hit(heart,disappear);
-        enemyBarrage[i].right_move(allSpeed[i]);
+        enemyBarrage[i].right_move(allData[i].speed);
     }
 
-    if(enemyBarrage[_quantity-1].GetOnePosition(IMGleft)>1270)
+    if(LeaveAtRight()||LastOneDisappear())
     {
         isAttackEnd = true;
     }

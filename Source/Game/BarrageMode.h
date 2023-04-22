@@ -39,12 +39,6 @@ protected:
 
     bool isAttackEnd=false;
     
-    // for random should check this
-    // it can check the ith barrage should placed in the ith x or y
-    // so that it won't many barrages in the same position
-    
-    std::vector<int> xPosition,yPosition, allDamage, allSpeed;
-
     // to put all barrages setting in this mode
     std::vector<Barrage> enemyBarrage;
 
@@ -69,10 +63,6 @@ public:
 
     // depends on quantity, push empty barrage in vector enemyBarrage
     void PushEmpty();
-
-    // each round may be different, so it's pure virtual
-    // if you may need to let x, y, damage, speed stored in array and use index to read them, use this
-    virtual void recordXYDamageSpeed()=0;
 
     // set each barrage in vector enemyBarrage
     Barrage Setup(SetData data);
@@ -100,13 +90,26 @@ public:
     // meanwhile, MovingBarrage just do move, detection is not its job
     int GetMinusHP_M(Move *heart, int command=appear);
 
+    // when getting a string from json, you will get "sth"
+    // need this in order to get rid of two "  
     std::string HandleJsonString(std::string str);
 
+    // in json file, it only have the name of img,
+    // not including path and .bmp, so it will add all for you
     void FormatImgPath(std::vector<std::string> &imgArr);
 
+    // you may have multiple img in one CMovingBitmap,
+    // it will iterate all paths, and stored for you
     void HandleMultImg(nlohmann::basic_json<> imgArr, std::vector<std::string>& img);
-    
+
+    // to get data from json file, need to input which round so that it can find the name in json
     void HandleJsonData(std::string round);
+
+    bool LeaveAtRight();
+
+    bool LeaveAtLeft();
+
+    bool LastOneDisappear();
     
     // test print function, will be deleted afterwards
     void Test2()

@@ -10,6 +10,5 @@ public:
     ~Round0()=default;
     
     virtual void SetAllData() override;
-    virtual void recordXYDamageSpeed() override;
     virtual void MovingBarrage(Move *heart) override;
 };
