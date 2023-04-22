@@ -85,6 +85,8 @@ public:
 
     bool GetIsAttackEnd();
 
+    int GetMinusHP_M(Move *heart);
+
     // test print function, will be deleted afterwards
     void Test2()
     {

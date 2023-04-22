@@ -3,7 +3,7 @@
 #include <string>
 #include "../Library/gameutil.h"
 
-class Charactor
+class Character
 {
 public:
     void change_hp(bool enable,int heal_or_damege = 0);

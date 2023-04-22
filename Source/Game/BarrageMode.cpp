@@ -82,5 +82,18 @@ void BarrageMode::UnshowBarrage()
 
 bool BarrageMode::GetIsAttackEnd()
 {
+    
     return isAttackEnd;
+}
+
+int BarrageMode::GetMinusHP_M(Move *heart)
+{
+    int damage=0;
+    for(int i=0;i<_quantity;i++)
+    {
+        //enemyBarrage[i].set_show_enable(true);
+        damage+=enemyBarrage[i].damege_hit(heart);
+    }
+
+    return damage;
 }

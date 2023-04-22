@@ -47,7 +47,7 @@
 #include "first_stage_sub_stage/show_menu.h"
 #include "first_stage_sub_stage/show_normal_mode.h"
 #include "barrage.h"
-#include "charactor.h"
+#include "Character.h"
 #include "monster_frame.h"
 #include "Fight.h"
 #include "BarrageMode.h"
@@ -142,7 +142,7 @@ private:
   MonsterFrame monster_frame;
   Migosp migosp;
   Items items;
-  Charactor charactor;
+  Character charactor;
   
   int stage_go = 0;
   bool stage_go_enable_add = true;

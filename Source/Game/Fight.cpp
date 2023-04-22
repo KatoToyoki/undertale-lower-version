@@ -83,10 +83,15 @@ void Fight::set_monster(Migosp* enemy)
 
 void Fight::show_fight_img()
 {
+    // if put here, it will never change ...
+    // Test1();
+    
     if (_enable)
     {
         fightScope.ShowBitmap();
         fightBar.ShowBitmap();
+       
+        // Test2();
     }
     else if (!_enable)
     {
@@ -110,11 +115,6 @@ void Fight::show_fight_img()
         }
 
         MovingHPBar();
-        if (_isAttack)
-        {
-            attack_red.ShowBitmap();
-            _enemy->set_enemy_img_init_or_damege(damege);
-        }
         
         if(GetDurationMinusHP()>0){
             RevealMinusHP();
@@ -127,10 +127,18 @@ void Fight::show_fight_img()
             ResetIsMiss();
             UnshowHPBar();
         }
+        if (!GetIsMiss())
+        {
+            attack_red.ShowBitmap();
+            _enemy->set_enemy_img_init_or_damege(damege);
+        }
     }
     else if((attackThisRound>0 || fightBarthisRound>0) && _enable)
     {
         _enable=false;
+        // if put here, you can check if enable change or not
+        // reveal correctly
+        // Test1();
     }
 }
 

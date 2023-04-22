@@ -12,7 +12,7 @@ void ShowNormalMode::init(UserFrame *user_frame,
                           Fight *game_fight,
                           Migosp *enemy,
                           Items *items,
-                          Charactor *charactor)//宣告於OnMove()
+                          Character *charactor)//宣告於OnMove()
 {
 	_user_frame = user_frame;
 	_user_frame->control_frame(to_talk);
@@ -29,7 +29,8 @@ void ShowNormalMode::init(UserFrame *user_frame,
     _heart_test->move_control(_user_frame->get_corner(),false);
     _heart_test->set_show_img_enable(false);
 	_heart_test->set_heart_postion(935,698);
-	_heart_test->time_count = 1000;
+	_heart_test->shine_time_count = 1000;
+	_heart_test->set_heart_jump_enable_and_init(false);
 
 	_game_fight = game_fight;
 	_game_fight->set_fight_enable(false);
@@ -73,24 +74,17 @@ void ShowNormalMode::choose_fight_taget()
 	_user_frame->load_text(_enemy->get_monster_name());
 	_user_frame->set_choose(true,0,1);
 	_enemy->set_enemy_targe_choose_hp_bar(true);
-	
-	_game_fight->set_fight_enable(false);
 }
 void ShowNormalMode::choose_fight()
 {
-	_user_frame->control_frame(to_talk);
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
 	_enemy->set_enemy_targe_choose_hp_bar(false);
 	
 	_game_fight->set_fight_enable(true);
-	// fight.check();
 	_user_frame->set_choose(true,0,1);
-    _monster_frame->set_enable(false);
 	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
-
-	// _enemy->hp = 10;
 }
 
 void ShowNormalMode::choose_act_target()
@@ -108,7 +102,6 @@ void ShowNormalMode::choose_act()
 	_user_frame->set_choose(true,0,_user_frame->get_text_vector_len());
 	_enemy->set_act_init(_user_frame->get_current_selection());
 	
-    _monster_frame->set_enable(false);
 	_enemy->set_monster_frame_init(_user_frame->get_current_selection());
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 	//
@@ -133,7 +126,6 @@ void ShowNormalMode::choose_item()
 	_user_frame->set_choose(true,0,_user_frame->get_text_vector_len());
 	_items->set_item_cost_round_init(_user_frame->get_current_selection(),_button_frame->get_current_selection());
 	
-    _monster_frame->set_enable(false);
 	_enemy->set_monster_frame_init(0);//目前蟑螂都一樣所以先設0?
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 	
@@ -142,7 +134,6 @@ void ShowNormalMode::choose_item()
 
 void ShowNormalMode::choose_item_after()
 {
-	_enemy->set_monster_frame_game_text_enable(false);
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
 	
@@ -182,3 +173,11 @@ void ShowNormalMode::choose_mercy_after()
 		_user_frame->set_choose(true,0,2);
 	}
 }
+
+void ShowNormalMode::set_heart_mode(HeartMode mode)
+{
+    _heart_test->set_heart_mode(mode);
+    _button_frame->set_heart_mode(mode);
+    _user_frame->set_heart_mode(mode);
+}
+

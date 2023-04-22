@@ -24,6 +24,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 {
   charactor.updata_hp_bar_by_hp();
   migosp.updata_hp_bar_by_hp();
+
+  
   if (charactor.get_current_hp() == 0)
   {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
@@ -33,11 +35,11 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   case 1:
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
+    show_normal_mode.init(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
+
     // ===========================================================
     round1.NormalBarrage();
     
-    show_normal_mode.init(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
-
     break;
   case 2:
     stage_go_enable_add = true;
@@ -116,6 +118,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     }
     break;
   case 5:
+    gameButtonFrame.all_button_off();
     gameFight.set_fight_enable(false);
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
@@ -138,6 +141,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     user_frame.control_frame(talk_to_normal_battle);
     
     battel_mode_timer = 0;
+
+    show_normal_mode.set_heart_mode(heart_blue);
     break;
   case 7:
     //maybe battle mode
@@ -146,24 +151,24 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     
     monster_frame._monster_saying_is_done = false;
     user_frame.control_frame(talk_to_normal_battle);
-    //migosp.set_barrage_enable(true);
+    // migosp.set_barrage_enable(true);
 
     // to do enemy attack
     // ===========================================================
     round1.MovingBarrage(&heart_test);
 
-    charactor.change_hp( (heart_test.time_count>=400)
+    // let migosp stop attacking me even when its barrage doesn't appear
+    /*
+    charactor.change_hp( (heart_test.shine_time_count>=400)
       ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
+    */
+
+    charactor.change_hp( (heart_test.shine_time_count>=400)
+      ,round1.GetMinusHP_M(&heart_test)*(-1));
     
     heart_test.move_control(user_frame.get_corner(),true);
     heart_test.set_show_img_enable(true);
-    /*
-	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
-    if (battel_mode_timer >= 1300)
-    {
-      stage_go = 1;
-    }
-    */
+  
     if (round1.GetIsAttackEnd())
     {
       stage_go = 1;
@@ -243,7 +248,9 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     stage_go-=1;
     user_frame._current_selection = 0;
   }
+  
 }
+
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
@@ -286,7 +293,6 @@ void CGameStateRun::OnShow()
     // ===========================================================
     // enemy attack path
     round1.ShowBarrage();
-    
 
     user_frame.show_frame();
     user_frame.show_select_heart();
