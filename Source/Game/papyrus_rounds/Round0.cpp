@@ -137,7 +137,7 @@ void Round0::recordXYDamageSpeed()
     allSpeed[14]=9;
 }
 
-void Round0::MovingBarrage(Move* heart)
+int Round0::MovingBarrage(Move* heart)
 {
     for(int i=0;i<_quantity-1;i++)
     {
@@ -157,4 +157,6 @@ void Round0::MovingBarrage(Move* heart)
     {
         isAttackEnd = true;
     }
+
+    return 0;
 }

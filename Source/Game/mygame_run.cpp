@@ -153,18 +153,17 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     user_frame.control_frame(talk_to_normal_battle);
     // migosp.set_barrage_enable(true);
 
-    // to do enemy attack
-    // ===========================================================
-    round1.MovingBarrage(&heart_test);
-
     // let migosp stop attacking me even when its barrage doesn't appear
     /*
     charactor.change_hp( (heart_test.shine_time_count>=400)
       ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
     */
 
+    // to do enemy attack
+    // ===========================================================
+    round1.MovingBarrage(&heart_test);
     charactor.change_hp( (heart_test.shine_time_count>=400)
-      ,round1.GetMinusHP_M(&heart_test)*(-1));
+      ,round1.GetMinusHP_M(&heart_test,disappear)*(-1));
     
     heart_test.move_control(user_frame.get_corner(),true);
     heart_test.set_show_img_enable(true);
@@ -315,5 +314,7 @@ void CGameStateRun::OnShow()
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.set_enable(true);
     stage.print();
+
+    round1.Test2();
   }
 }

@@ -81,18 +81,21 @@ public:
     void UnshowBarrage();
 
     // to let enemy attack you, each round may be different, so it's pure virtual
-    virtual void MovingBarrage(Move *heart)=0;
+    virtual int MovingBarrage(Move *heart)=0;
 
     bool GetIsAttackEnd();
 
-    int GetMinusHP_M(Move *heart);
+    int GetMinusHP_M(Move *heart, int command=appear);
 
+
+    int dd=0;
+    int aa=0;
     // test print function, will be deleted afterwards
     void Test2()
     {
         CDC *pDC = game_framework::CDDraw::GetBackCDC();
         game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        game_framework::CTextDraw::Print(pDC, 100, 200, "Q "+to_string(_quantity));
+        game_framework::CTextDraw::Print(pDC, 100, 200, "Q "+to_string(aa));
         game_framework::CDDraw::ReleaseBackCDC();
     }
 };
