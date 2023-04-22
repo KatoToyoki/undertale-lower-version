@@ -6,49 +6,49 @@ void Round3::SetAllData()
     SetData current;
     
     current.damage=3;
-    current.mode=blue;
+    current.mode=white;
     current.imgPath="h135bone";
     current.initX=650;
     current.initY=729;
     allData.push_back(current);
 
     current.damage=3;
-    current.mode=blue;
+    current.mode=white;
     current.imgPath="h221bone";
     current.initX=550;
     current.initY=575;
     allData.push_back(current);
 
     current.damage=3;
-    current.mode=blue;
+    current.mode=white;
     current.imgPath="h45bone";
     current.initX=450;
     current.initY=819;
     allData.push_back(current);
 
     current.damage=3;
-    current.mode=blue;
+    current.mode=white;
     current.imgPath="h45bone";
     current.initX=350;
     current.initY=819;
     allData.push_back(current);
 
     current.damage=3;
-    current.mode=blue;
+    current.mode=white;
     current.imgPath="h45bone";
     current.initX=250;
     current.initY=819;
     allData.push_back(current);
 
     current.damage=3;
-    current.mode=blue;
+    current.mode=white;
     current.imgPath="h111bone";
     current.initX=150;
     current.initY=753;
     allData.push_back(current);
 
     current.damage=3;
-    current.mode=blue;
+    current.mode=white;
     current.imgPath="h221bone";
     current.initX=50;
     current.initY=575;

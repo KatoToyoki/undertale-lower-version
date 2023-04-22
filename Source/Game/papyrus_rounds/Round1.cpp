@@ -8,21 +8,21 @@ void Round1::SetAllData()
     SetData current;
     
     current.damage=3;
-    current.mode=blue;
+    current.mode=white;
     current.imgPath="h45bone";
     current.initX=1250;
     current.initY=819;
     allData.push_back(current);
 
     current.damage=3;
-    current.mode=blue;
+    current.mode=white;
     current.imgPath="h45bone";
     current.initX=1550;
     current.initY=819;
     allData.push_back(current);
 
     current.damage=3;
-    current.mode=blue;
+    current.mode=white;
     current.imgPath="h90bone";
     current.initX=1850;
     current.initY=774;
