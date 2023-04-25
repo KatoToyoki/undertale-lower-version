@@ -9,7 +9,6 @@ void BarrageMode::Init()
 
 void BarrageMode::PushEmpty()
 {
-    
     Barrage temp=Barrage(0,white);
     for(int i=0;i<_quantity;i++)
     {
@@ -17,7 +16,76 @@ void BarrageMode::PushEmpty()
     }
 }
 
-Barrage BarrageMode::Setup(SetData data)
+std::string BarrageMode::HandleJsonString(std::string str){
+    std::string temp=str;
+    temp=temp.erase(0,0);
+    temp=temp.erase(temp.size(),1);
+
+    return temp;
+}
+
+void BarrageMode::FormatImgPath(std::vector<std::string> &imgArr){
+    int a=imgArr.size();
+    for(int i=0;i<a;i++){
+        imgArr[i]="resources/"+imgArr[i]+".bmp";
+    }
+}
+
+void BarrageMode::HandleMultImg(nlohmann::basic_json<> imgArr, std::vector<std::string>& img){
+    for (auto& imgPathElement : imgArr) {
+        int i=0;
+        while (true){
+            if(imgPathElement.contains("path"+std::to_string(i))){
+                img.push_back(HandleJsonString(imgPathElement["path"+std::to_string(i)]));
+                i++;
+            }
+            else{
+                break;
+            }
+        }
+    }
+    FormatImgPath(img);
+}
+
+void BarrageMode::HandleJsonData(std::string round){
+    json data;
+    std::ifstream file("Source/Game/papyrus_rounds/AllRounds.json");
+    file >> data;
+    
+    for (const auto& round : data[round]) {
+        DataSet temp;
+
+        for (const auto& element : round.items()) {
+            if(element.key()=="damage"){
+                temp.damage=element.value();
+            }
+            else if(element.key()=="speed"){
+                temp.speed=element.value();
+            }
+            else if(element.key()=="initX"){
+                temp.initX=element.value();
+            }
+            else if(element.key()=="initY"){
+                temp.initY=element.value();
+            }
+            else if(element.key()=="barrage_mode"){
+                if(HandleJsonString(element.value())=="white"){
+                    temp.mode=white;
+                }
+                else{
+                    temp.mode=blue;
+                }
+            }
+            else if(element.key()=="imgPath"){
+                auto& imgPathArray = round["imgPath"];
+                HandleMultImg(imgPathArray,temp.imgPath);
+            }
+        }
+        allData.push_back(temp);
+    }
+}
+
+Barrage BarrageMode::Setup(DataSet data)
 {
     Barrage current;
     current.LoadMultImg(data.imgPath);
@@ -96,75 +164,6 @@ int BarrageMode::GetMinusHP_M(Move *heart, int command)
     }
 
     return 0;
-}
-
-std::string BarrageMode::HandleJsonString(std::string str){
-    std::string temp=str;
-    temp=temp.erase(0,0);
-    temp=temp.erase(temp.size(),1);
-
-    return temp;
-}
-
-void BarrageMode::FormatImgPath(std::vector<std::string> &imgArr){
-    int a=imgArr.size();
-    for(int i=0;i<a;i++){
-        imgArr[i]="resources/"+imgArr[i]+".bmp";
-    }
-}
-
-void BarrageMode::HandleMultImg(nlohmann::basic_json<> imgArr, std::vector<std::string>& img){
-    for (auto& imgPathElement : imgArr) {
-        int i=0;
-        while (true){
-            if(imgPathElement.contains("path"+std::to_string(i))){
-                img.push_back(HandleJsonString(imgPathElement["path"+std::to_string(i)]));
-                i++;
-            }
-            else{
-                break;
-            }
-        }
-    }
-    FormatImgPath(img);
-}
-
-void BarrageMode::HandleJsonData(std::string round){
-    json data;
-    std::ifstream file("Source/Game/papyrus_rounds/AllRounds.json");
-    file >> data;
-    
-    for (const auto& round : data[round]) {
-        SetData temp;
-
-        for (const auto& element : round.items()) {
-            if(element.key()=="damage"){
-                temp.damage=element.value();
-            }
-            else if(element.key()=="speed"){
-                temp.speed=element.value();
-            }
-            else if(element.key()=="initX"){
-                temp.initX=element.value();
-            }
-            else if(element.key()=="initY"){
-                temp.initY=element.value();
-            }
-            else if(element.key()=="barrage_mode"){
-                if(HandleJsonString(element.value())=="white"){
-                    temp.mode=white;
-                }
-                else{
-                    temp.mode=blue;
-                }
-            }
-            else if(element.key()=="imgPath"){
-                auto& imgPathArray = round["imgPath"];
-                HandleMultImg(imgPathArray,temp.imgPath);
-            }
-        }
-        allData.push_back(temp);
-    }
 }
 
 bool BarrageMode::LeaveAtRight()

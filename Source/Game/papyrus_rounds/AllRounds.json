@@ -429,6 +429,68 @@
         }
       ]
     }
+  ],
+  "Round4Data": [
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":650,
+      "initY":729,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h135bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":360,
+      "initY":729,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h135bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":100,
+      "initY":729,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h135bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":-95,
+      "initY":686,
+      "barrage_mode": "blue",
+      "imgPath": [
+        {
+          "path0":"h178boneB"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 8,
+      "initX":1270,
+      "initY":795,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h69bone"
+        }
+      ]
+    }
   ]
 
 }
