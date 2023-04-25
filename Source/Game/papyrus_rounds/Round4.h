@@ -11,5 +11,5 @@ public:
     
     virtual void SetAllData() override;
     virtual void MovingBarrage(Move *heart) override;
-    void LastOneFast(Move* heart);
+    void LastWave(Move* heart);
 };

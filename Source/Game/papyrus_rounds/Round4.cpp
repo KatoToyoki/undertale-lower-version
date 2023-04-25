@@ -6,7 +6,7 @@ void Round4::SetAllData()
     HandleJsonData("Round4Data");
 }
 
-void Round4::LastOneFast(Move* heart)
+void Round4::LastWave(Move* heart)
 {
     enemyBarrage[_quantity-1].set_show_enable(true);
     enemyBarrage[_quantity-1].damege_hit(heart,disappear);
@@ -23,7 +23,7 @@ void Round4::MovingBarrage(Move* heart)
         enemyBarrage[i].right_move(allData[i].speed);
         if(enemyBarrage[_quantity-2].GetOnePosition(IMGleft)>1250)
         {
-            LastOneFast(heart);
+            LastWave(heart);
             break;
         }
     }

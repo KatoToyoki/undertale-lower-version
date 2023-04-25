@@ -62,6 +62,7 @@
 #include "papyrus_rounds/Round3.h"
 #include "papyrus_rounds/Round4.h"
 #include "papyrus_rounds/Round5.h"
+#include "papyrus_rounds/Round6.h"
 
 
 
@@ -141,6 +142,7 @@ private:
   Round3 round3=Round3(7);
   Round4 round4=Round4(5);
   Round5 round5=Round5(11);
+  Round6 round6=Round6(14);
 
 
   MonsterFrame monster_frame;
