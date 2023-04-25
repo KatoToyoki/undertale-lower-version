@@ -13,10 +13,11 @@ void Round6::MovingBarrage(Move* heart)
         enemyBarrage[i].set_show_enable(true);
         enemyBarrage[i].damege_hit(heart,disappear);
         enemyBarrage[i].right_move(allData[i].speed);
-        if(enemyBarrage[8].GetOnePosition(IMGleft)>1110)
-        {
-            SecondWave(heart);
-        }
+    }
+
+    if(enemyBarrage[8].GetOnePosition(IMGleft)>1110)
+    {
+        SecondWave(heart);
     }
 }
 
@@ -24,7 +25,7 @@ void Round6::SecondWave(Move* heart)
 {
     enemyBarrage[9].set_show_enable(true);
     enemyBarrage[9].damege_hit(heart,disappear);
-    enemyBarrage[9].left_move(1);
+    enemyBarrage[9].left_move(allData[9].speed);
 
     if(enemyBarrage[9].GetOnePosition(IMGleft)<750)
     {
