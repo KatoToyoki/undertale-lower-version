@@ -1209,6 +1209,140 @@
         }
       ]
     }
+  ],
+  "Round10Data": [
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":1270,
+      "initY":819,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h45bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":1560,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h153bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":1560,
+      "initY":819,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h45bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":1870,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h135bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":1870,
+      "initY":795,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h69bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2200,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2200,
+      "initY":774,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h90bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2530,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h87bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2530,
+      "initY":753,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2860,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h69bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2860,
+      "initY":729,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h135bone"
+        }
+      ]
+    }
   ]
 
 }

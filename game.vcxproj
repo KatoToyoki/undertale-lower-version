@@ -265,6 +265,7 @@
     <ClCompile Include="Source\Game\mygame_run.cpp" />
     <ClCompile Include="Source\Game\papyrus_rounds\Round0.cpp" />
     <ClCompile Include="Source\Game\papyrus_rounds\Round1.cpp" />
+    <ClCompile Include="Source\Game\papyrus_rounds\Round10.cpp" />
     <ClCompile Include="Source\Game\papyrus_rounds\Round2.cpp" />
     <ClCompile Include="Source\Game\papyrus_rounds\Round3.cpp" />
     <ClCompile Include="Source\Game\papyrus_rounds\Round4.cpp" />
@@ -311,6 +312,7 @@
     <ClInclude Include="Source\Game\mygame.h" />
     <ClInclude Include="Source\Game\papyrus_rounds\Round0.h" />
     <ClInclude Include="Source\Game\papyrus_rounds\Round1.h" />
+    <ClInclude Include="Source\Game\papyrus_rounds\Round10.h" />
     <ClInclude Include="Source\Game\papyrus_rounds\Round2.h" />
     <ClInclude Include="Source\Game\papyrus_rounds\Round3.h" />
     <ClInclude Include="Source\Game\papyrus_rounds\Round4.h" />
