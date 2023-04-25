@@ -38,7 +38,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     show_normal_mode.init(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
 
     // ===========================================================
-    round8.NormalBarrage();
+    round9.NormalBarrage();
     
     break;
   case 2:
@@ -161,14 +161,14 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 
     // to do enemy attack
     // ===========================================================
-    round8.MovingBarrage(&heart_test);
+    round9.MovingBarrage(&heart_test);
     charactor.change_hp( (heart_test.shine_time_count>=400)
-      ,round8.GetMinusHP_M(&heart_test,disappear)*(-1));
+      ,round9.GetMinusHP_M(&heart_test,disappear)*(-1));
     
     heart_test.move_control(user_frame.get_corner(),true);
     heart_test.set_show_img_enable(true);
   
-    if (round8.GetIsAttackEnd())
+    if (round9.GetIsAttackEnd())
     {
       stage_go = 1;
     }
@@ -198,7 +198,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 
   // ===========================================================
   // enemy attack path generate
-  round8.Init();
+  round9.Init();
   
   // game_framework::CSpecialEffect::SetCurrentTime();
 
@@ -291,7 +291,7 @@ void CGameStateRun::OnShow()
 
     // ===========================================================
     // enemy attack path
-    round8.ShowBarrage();
+    round9.ShowBarrage();
 
     user_frame.show_frame();
     user_frame.show_select_heart();

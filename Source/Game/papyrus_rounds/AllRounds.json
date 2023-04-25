@@ -1111,6 +1111,104 @@
         }
       ]
     }
+  ],
+  "Round9Data": [
+    {
+      "damage": 3,
+      "speed": 6,
+      "initX":650,
+      "initY":819,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h45bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 6,
+      "initX":1270,
+      "initY":819,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h45bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":650,
+      "initY":819,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h45bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":1270,
+      "initY":819,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h45bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":650,
+      "initY":819,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h45bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":1270,
+      "initY":819,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h45bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":650,
+      "initY":819,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h45bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":1270,
+      "initY":819,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h45bone"
+        }
+      ]
+    }
   ]
 
 }

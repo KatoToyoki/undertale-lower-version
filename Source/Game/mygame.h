@@ -65,6 +65,7 @@
 #include "papyrus_rounds/Round6.h"
 #include "papyrus_rounds/Round7.h"
 #include "papyrus_rounds/Round8.h"
+#include "papyrus_rounds/Round9.h"
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -145,6 +146,7 @@ private:
   Round6 round6=Round6(14);
   Round7 round7=Round7(20);
   Round8 round8=Round8(6);
+  Round9 round9=Round9(8);
 
   MonsterFrame monster_frame;
   Migosp migosp;
