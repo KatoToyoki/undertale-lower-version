@@ -1343,6 +1343,188 @@
         }
       ]
     }
+  ],
+  "Round11Data": [
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":1270,
+      "initY":729,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h135bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":1620,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h90bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":1620,
+      "initY":729,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h135bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":1930,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":1930,
+      "initY":753,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":2260,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h135bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":2260,
+      "initY":774,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h90bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":2570,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h153bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":2570,
+      "initY":795,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h69bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":2880,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h194bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":2880,
+      "initY":842,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h22bone"
+        }
+      ]
+    },
+    {
+      "damage": 0,
+      "speed": 5,
+      "initX":3305,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"bone_top"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":3305,
+      "initY":472,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h221bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":3305,
+      "initY":792,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h221bone"
+        }
+      ]
+    },
+    {
+      "damage": 0,
+      "speed": 5,
+      "initX":3305,
+      "initY":855,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"bone_bottom"
+        }
+      ]
+    }
   ]
 
 }

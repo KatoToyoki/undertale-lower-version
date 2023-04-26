@@ -48,6 +48,8 @@ public:
 
     int GetOnePosition(int direction);
 
+    bool GetIsOverlay(Move *heart);
+
 private:
     game_framework::CMovingBitmap barrage_img;
     int _damage;

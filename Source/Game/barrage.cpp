@@ -150,3 +150,8 @@ int Barrage::GetOnePosition(int direction)
     }
     return 0;
 }
+
+bool Barrage::GetIsOverlay(Move* heart)
+{
+    return barrage_img.IsOverlap(barrage_img,heart->heart);
+}
