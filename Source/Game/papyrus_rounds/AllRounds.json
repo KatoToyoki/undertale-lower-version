@@ -1525,6 +1525,32 @@
         }
       ]
     }
+  ],
+  "test": [
+    {
+      "damage": 0,
+      "speed": 5,
+      "initX":1270,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"bone_top"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":1270,
+      "initY":472,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h221bone"
+        }
+      ]
+    }
   ]
 
 }
