@@ -195,12 +195,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 
   menu.load_img_set_postion();
 
-  // ===========================================================
-  // enemy attack path generate
-  //papyrusRound.Init();
-  
-  // game_framework::CSpecialEffect::SetCurrentTime();
-
   green_line.LoadBitmapByString({"resources/green_line.bmp"},RGB(255,255,255));
   green_line.SetTopLeft(274,20);
 

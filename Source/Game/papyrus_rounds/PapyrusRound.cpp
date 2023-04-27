@@ -8,8 +8,6 @@ void PapyrusRound::SetAllData()
     enemyBarrage.clear();
     enemyBarrage.shrink_to_fit();
 
-    _q++;
-    
     if(currentRound==-1)
     {
         HandleJsonData("RoundXData");    
@@ -74,7 +72,7 @@ void PapyrusRound::PincerAttack(int start,int end,Move* heart, int wave, int app
 
 void PapyrusRound::CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart)
 {
-    if(barrage.GetIsOverlay(heart))
+    if(barrage.GetIsOverlay(heart)||DetectLeft(barrage,vanish))
     {
         cover.set_positon(0,0);
     }
@@ -239,6 +237,9 @@ void PapyrusRound::SelectRound(Move *heart,int selection)
         break;
     case 17:
         round17(heart);
+        break;
+    case 18:
+        round18(heart);
         break;
     case 19:
         round19(heart);
@@ -545,9 +546,28 @@ void PapyrusRound::round17(Move* heart)
     DetectRoundEnd(leftAtLeft);
 }
 
+void PapyrusRound::round18(Move* heart)
+{
+    for(int i=0;i<_quantity;i++)
+    {
+        GoLeft(enemyBarrage[i],heart,allData[i].speed+2);
+    }
+
+    CompoundBarrage(enemyBarrage[11],enemyBarrage[12],heart);
+    CompoundBarrage(enemyBarrage[14],enemyBarrage[13],heart);
+    CompoundBarrage(enemyBarrage[15],enemyBarrage[16],heart);
+    CompoundBarrage(enemyBarrage[18],enemyBarrage[17],heart);
+
+    UpDownBarrage(enemyBarrage[12],allData[12].initY-50,allData[12].initY+50,4);
+    UpDownBarrage(enemyBarrage[13],allData[13].initY-50,allData[13].initY+50,4);
+    UpDownBarrage(enemyBarrage[16],allData[16].initY-50,allData[16].initY+50,4);
+    UpDownBarrage(enemyBarrage[17],allData[17].initY-50,allData[17].initY+50,4);
+    
+    DetectRoundEnd(leftAtLeft);
+}
+
 void PapyrusRound::round19(Move* heart)
 {
     PincerAttack(0,_quantity,heart,4,normal);
     DetectRoundEnd(leftAtLeft);
 }
-

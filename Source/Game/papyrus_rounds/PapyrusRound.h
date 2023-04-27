@@ -24,7 +24,6 @@ enum DirectionOfNext
 class PapyrusRound: public BarrageMode
 {
 private:
-    int _q=0;
     int currentRound=-1;
     int UDBdirection=0;
     bool isSet=false;
@@ -66,7 +65,7 @@ public:
     void round15(Move *heart);
     void round16(Move *heart);
     void round17(Move *heart);
-    
+    void round18(Move *heart);
     void round19(Move *heart);
 
     void Test()

@@ -51,11 +51,6 @@ public:
     {
         _quantity=q;
     }
-
-    // it will init everything you need,
-    // set xPosition, yPosition depends on each mode
-    // kind of virtual function
-    void Init();
     
     // depends on quantity, push empty barrage in vector enemyBarrage
     void PushEmpty();

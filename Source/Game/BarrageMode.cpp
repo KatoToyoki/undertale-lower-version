@@ -1,12 +1,6 @@
 #include "stdafx.h"
 #include "BarrageMode.h"
 
-void BarrageMode::Init()
-{
-    //SetAllData();
-    PushEmpty();
-}
-
 void BarrageMode::PushEmpty()
 {
     Barrage temp=Barrage(0,white);
