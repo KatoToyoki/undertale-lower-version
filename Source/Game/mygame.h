@@ -126,6 +126,7 @@ private:
   GameText game_text;
   ShowNormalMode show_normal_mode;
 
+  
   PapyrusRound papyrusRound;
 
   MonsterFrame monster_frame;

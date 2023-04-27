@@ -1803,6 +1803,128 @@
         }
       ]
     }
+  ],
+  "Round13Data": [
+    {
+      "damage": 3,
+      "speed": 6,
+      "initX": 1270,
+      "initY": 686,
+      "barrage_mode": "blue",
+      "imgPath": [
+        {
+          "path0": "h178boneB"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 6,
+      "initX": 1440,
+      "initY": 832,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h32bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 6,
+      "initX": 1610,
+      "initY": 686,
+      "barrage_mode": "blue",
+      "imgPath": [
+        {
+          "path0": "h178boneB"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 6,
+      "initX": 1780,
+      "initY": 832,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h32bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 6,
+      "initX": 1950,
+      "initY": 686,
+      "barrage_mode": "blue",
+      "imgPath": [
+        {
+          "path0": "h178boneB"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 6,
+      "initX": 2120,
+      "initY": 832,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h32bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 6,
+      "initX": 2290,
+      "initY": 686,
+      "barrage_mode": "blue",
+      "imgPath": [
+        {
+          "path0": "h178boneB"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 6,
+      "initX": 2460,
+      "initY": 832,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h32bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX": 2830,
+      "initY": 686,
+      "barrage_mode": "blue",
+      "imgPath": [
+        {
+          "path0": "h178boneB"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX": 3000,
+      "initY": 832,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h32bone"
+        }
+      ]
+    }
   ]
 
 }
