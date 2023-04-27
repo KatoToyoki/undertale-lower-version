@@ -20,7 +20,7 @@ public:
     virtual void SetAllData() override;
     virtual void MovingBarrage(Move *heart) override;
 
-    void UpDownBarrage(Barrage& barrage, int upLimit, int downLimit);
+    void UpDownBarrage(Barrage& barrage, int upLimit, int downLimit,int speed);
     void CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart);
     
 };

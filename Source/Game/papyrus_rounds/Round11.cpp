@@ -5,7 +5,8 @@ void Round11::SetAllData()
 {
     HandleJsonData("Round11Data");
 }
-
+// 18 17 16 15
+// 14 13 12 11
 void Round11::MovingBarrage(Move* heart)
 {
     for(int i=0;i<_quantity;i++)
@@ -16,10 +17,14 @@ void Round11::MovingBarrage(Move* heart)
         
         CompoundBarrage(enemyBarrage[11],enemyBarrage[12],heart);
         CompoundBarrage(enemyBarrage[14],enemyBarrage[13],heart);
+        CompoundBarrage(enemyBarrage[15],enemyBarrage[16],heart);
+        CompoundBarrage(enemyBarrage[18],enemyBarrage[17],heart);
     }
     
-    UpDownBarrage(enemyBarrage[12],422,522);
-    UpDownBarrage(enemyBarrage[13],742,842);
+    UpDownBarrage(enemyBarrage[12],422,522,2);
+    UpDownBarrage(enemyBarrage[13],742,842,2);
+    UpDownBarrage(enemyBarrage[16],385,485,4);
+    UpDownBarrage(enemyBarrage[17],703,803,4);
     
     if(LeaveAtLeft()||LastOneDisappear())
     {
@@ -27,14 +32,14 @@ void Round11::MovingBarrage(Move* heart)
     }
 }
 
-void Round11::UpDownBarrage(Barrage& barrage, int upLimit, int downLimit)
+void Round11::UpDownBarrage(Barrage& barrage, int upLimit, int downLimit, int speed)
 {
     switch (direction)
     {
     case goUp:
         if(barrage.GetOnePosition(IMGtop)>=upLimit)
         {
-            barrage.up_move(2);
+            barrage.up_move(speed);
         }
         else if(barrage.GetOnePosition(IMGtop)<upLimit)
         {
@@ -45,7 +50,7 @@ void Round11::UpDownBarrage(Barrage& barrage, int upLimit, int downLimit)
     case goDown:
         if(barrage.GetOnePosition(IMGtop)<=downLimit)
         {
-            barrage.down_move(2);
+            barrage.down_move(speed);
         }
         else if(barrage.GetOnePosition(IMGtop)>downLimit)
         {

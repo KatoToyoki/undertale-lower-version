@@ -150,7 +150,7 @@ private:
   Round8 round8=Round8(6);
   Round9 round9=Round9(8);
   Round10 round10=Round10(11);
-  Round11 round11=Round11(15);
+  Round11 round11=Round11(19);
 
   MonsterFrame monster_frame;
   Migosp migosp;

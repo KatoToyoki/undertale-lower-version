@@ -1524,13 +1524,11 @@
           "path0":"bone_bottom"
         }
       ]
-    }
-  ],
-  "test": [
+    },
     {
       "damage": 0,
       "speed": 5,
-      "initX":1270,
+      "initX":3565,
       "initY":575,
       "barrage_mode": "white",
       "imgPath": [
@@ -1542,12 +1540,36 @@
     {
       "damage": 3,
       "speed": 5,
-      "initX":1270,
-      "initY":472,
+      "initX":3565,
+      "initY":435,
       "barrage_mode": "white",
       "imgPath": [
         {
           "path0":"h221bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 5,
+      "initX":3565,
+      "initY":753,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h221bone"
+        }
+      ]
+    },
+    {
+      "damage": 0,
+      "speed": 5,
+      "initX":3565,
+      "initY":855,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"bone_bottom"
         }
       ]
     }
