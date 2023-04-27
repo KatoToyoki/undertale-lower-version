@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "BarrageMode.h"
 
+void BarrageMode::SetQuantity(int q)
+{
+    _quantity=q;
+}
+
 void BarrageMode::PushEmpty()
 {
     Barrage temp=Barrage(0,white);

@@ -67,21 +67,4 @@ public:
     void round17(Move *heart);
     void round18(Move *heart);
     void round19(Move *heart);
-
-    void Test()
-    {
-        std::string a;
-        if(isAttackEnd==true)
-        {
-            a="True";
-        }
-        else{
-            a="False";
-        }
-        
-        CDC *pDC = game_framework::CDDraw::GetBackCDC();
-        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        game_framework::CTextDraw::Print(pDC, 100, 200, a);
-        game_framework::CDDraw::ReleaseBackCDC();
-    }
 };

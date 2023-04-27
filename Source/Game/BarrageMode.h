@@ -35,6 +35,7 @@ protected:
     // how many barrages the enemy attack mode will hava
     int _quantity=0;
 
+    // to know if this round is ended, because you may need to go to other stage
     bool isAttackEnd=false;
     
     // to put all barrages setting in this mode
@@ -47,10 +48,10 @@ public:
     BarrageMode()=default;
     ~BarrageMode()=default;
 
-    void SetQuantity(int q)
-    {
-        _quantity=q;
-    }
+    // from derived class, you may need to know
+    // the quantity of barrages in current round, then set it
+    // so for loop would know when to stop
+    void SetQuantity(int q);
     
     // depends on quantity, push empty barrage in vector enemyBarrage
     void PushEmpty();
@@ -99,14 +100,8 @@ public:
     bool LeaveAtLeft();
     bool LastOneDisappear();
 
+    // reveal imgs in right time
+    // detect for you automatically
+    // if it's not attacking, unshow the img
     void RevealBarrage();
-    
-    // test print function, will be deleted afterwards
-    void Test2()
-    {
-        CDC *pDC = game_framework::CDDraw::GetBackCDC();
-        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        game_framework::CTextDraw::Print(pDC, 100, 200, "Q "+to_string(damageToCharacter));
-        game_framework::CDDraw::ReleaseBackCDC();
-    }
 };
