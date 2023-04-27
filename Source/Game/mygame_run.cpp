@@ -160,7 +160,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 
     // to do enemy attack
     // ===========================================================
-    papyrusRound.SelectRound(&heart_test);
+    papyrusRound.SelectRound(&heart_test,7);
     charactor.change_hp( (heart_test.shine_time_count>=400)
       ,papyrusRound.GetMinusHP_M(&heart_test,disappear)*(-1));
     

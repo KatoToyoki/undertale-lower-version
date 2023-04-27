@@ -40,53 +40,6 @@ void PapyrusRound::GoRight(Barrage& barrage, Move* heart, int speed)
     barrage.right_move(speed);
 }
 
-void PapyrusRound::PincerAttack(int range, Move* heart, int wave, int appearance)
-{
-    int q=0;
-    switch (appearance)
-    {
-    case normal:
-        for(int i=0;i<=range;i+=2)
-        {
-            if(DetectCertainPoint(enemyBarrage[i],940,back)||DetectLeft(enemyBarrage[i],vanish))
-            {
-                q+=2;
-            }
-        }
-
-        for(int i=0;i<q;i++)
-        {
-            if(i%2==0)
-            {
-                GoRight(enemyBarrage[i],heart,allData[i].speed);
-            }
-            else
-            {
-                GoLeft(enemyBarrage[i],heart,allData[i].speed);
-            }
-        }
-        break;
-    case compound:
-        // 0 1 2 3 | 4 5 6 7
-        for(int i=0;i<=range;i+=4)
-        {
-            if(DetectCertainPoint(enemyBarrage[i],940,back)||DetectLeft(enemyBarrage[i],vanish))
-            {
-                q+=4;
-            }
-        }
-
-        for(int i=0;i<q;i+=4)
-        {
-            GoRight(enemyBarrage[i],heart,allData[i].speed);
-            GoRight(enemyBarrage[i+1],heart,allData[i+1].speed);
-            GoLeft(enemyBarrage[i+2],heart,allData[i+2].speed);
-            GoLeft(enemyBarrage[i+3],heart,allData[i+3].speed);
-        }
-        break;
-    }
-}
-
 void PapyrusRound::CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart)
 {
     if(barrage.GetIsOverlay(heart))
@@ -179,8 +132,14 @@ bool PapyrusRound::DetectCertainPoint(Barrage& barrage,int point ,int position)
     return false;
 }
 
-void PapyrusRound::SelectRound(Move *heart)
+void PapyrusRound::SelectRound(Move *heart,int selection)
 {
+    // for test
+    if(selection!=-99)
+    {
+        currentRound=selection;
+    }
+    
     if(!isSet)
     {
         SetAllData();
@@ -193,6 +152,27 @@ void PapyrusRound::SelectRound(Move *heart)
         break;
     case 0:
         round0(heart);
+        break;
+    case 1:
+        round1(heart);
+        break;
+    case 2:
+        round2(heart);
+        break;
+    case 3:
+        round3(heart);
+        break;
+    case 4:
+        round4(heart);
+        break;
+    case 5:
+        round5(heart);
+        break;
+    case 6:
+        round6(heart);
+        break;
+    case 7:
+        round7(heart);
         break;
     }
 }
@@ -222,3 +202,128 @@ void PapyrusRound::round0(Move *heart)
     DetectRoundEnd(leftAtRight);
 }
 
+void PapyrusRound::round1(Move* heart)
+{
+    for(int i=0;i<_quantity;i++)
+    {
+        GoLeft(enemyBarrage[i],heart,allData[i].speed);
+    }
+
+    DetectRoundEnd(leftAtLeft);
+}
+
+void PapyrusRound::round2(Move* heart)
+{
+    for(int i=0;i<_quantity;i++)
+    {
+        GoLeft(enemyBarrage[i],heart,allData[i].speed);
+    }
+
+    DetectRoundEnd(leftAtLeft);
+}
+
+void PapyrusRound::round3(Move* heart)
+{
+    for(int i=0;i<_quantity;i++)
+    {
+        GoRight(enemyBarrage[i],heart,allData[i].speed);
+    }
+
+    DetectRoundEnd(leftAtRight);
+}
+
+void PapyrusRound::round4(Move* heart)
+{
+    bool temp=false;
+    for(int i=0;i<_quantity-1;i++)
+    {
+        GoRight(enemyBarrage[i],heart,allData[i].speed);
+        if(DetectCertainPoint(enemyBarrage[_quantity-2],1250,back))
+        {
+            temp=true;
+        }
+    }
+    
+    if(temp)
+    {
+        GoLeft(enemyBarrage[_quantity-1],heart,allData[_quantity-1].speed);
+    }
+
+    DetectRoundEnd(leftAtLeft);
+}
+
+void PapyrusRound::round5(Move* heart)
+{
+    bool secondWave=false, thirdWave=false;
+
+    for(int i=0;i<2;i++)
+    {
+        GoRight(enemyBarrage[i],heart,allData[i].speed);
+        if(DetectCertainPoint(enemyBarrage[0],950,back)||DetectLeft(enemyBarrage[0],vanish))
+        {
+            secondWave=true;
+        }
+    }
+
+    if(secondWave)
+    {
+        GoLeft(enemyBarrage[2],heart,allData[2].speed);
+        if(DetectCertainPoint(enemyBarrage[2],990,front)||DetectLeft(enemyBarrage[2],vanish))
+        {
+            thirdWave=true;
+        }
+    }
+
+    if(thirdWave)
+    {
+        for(int i=3;i<_quantity;i++)
+        {
+            GoRight(enemyBarrage[i],heart,allData[i].speed);
+        }
+    }
+
+    DetectRoundEnd(leftAtRight);
+}
+
+void PapyrusRound::round6(Move* heart)
+{
+    bool secondWave=false, thirdWave=false;
+
+    for(int i=0;i<9;i++)
+    {
+        GoRight(enemyBarrage[i],heart,allData[i].speed);
+        if(DetectCertainPoint(enemyBarrage[8],1110,back)||DetectLeft(enemyBarrage[8],vanish))
+        {
+            secondWave=true;
+        }
+    }
+
+    if(secondWave)
+    {
+        GoLeft(enemyBarrage[9],heart,allData[9].speed);
+        if(DetectCertainPoint(enemyBarrage[9],750,front)||DetectLeft(enemyBarrage[9],vanish))
+        {
+            thirdWave=true;
+        }
+    }
+
+    if(thirdWave)
+    {
+        GoRight(enemyBarrage[10],heart,allData[10].speed);
+        GoRight(enemyBarrage[11],heart,allData[11].speed);
+        GoLeft(enemyBarrage[12],heart,allData[12].speed);
+        GoLeft(enemyBarrage[13],heart,allData[13].speed);
+    }
+
+    DetectRoundEnd(leftAtRight);
+}
+
+void PapyrusRound::round7(Move* heart)
+{
+    for(int i=0;i<_quantity;i++)
+    {
+        GoLeft(enemyBarrage[i],heart,allData[i].speed);
+    }
+
+    DetectRoundEnd(leftAtLeft);
+}
