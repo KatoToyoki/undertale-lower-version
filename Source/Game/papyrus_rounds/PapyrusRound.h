@@ -24,13 +24,17 @@ enum DirectionOfNext
 class PapyrusRound: public BarrageMode
 {
 private:
-    int current_round;
+    int _q;
+    int currentRound=-1;
     int UDBdirection=0;
+    bool isSet=false;
 public:
     PapyrusRound()=default;
     ~PapyrusRound()=default;
-
-    void SelectRound();
+    
+    void SetAllData();
+    
+    void SelectRound(Move *heart);
 
     void GoRight(Barrage& barrage, Move *heart, int speed);
     void GoLeft(Barrage& barrage, Move *heart, int speed);
@@ -42,8 +46,9 @@ public:
     void DetectRoundEnd(int direction);
     bool DetectLeft(Barrage& barrage,int direction);
     bool DetectCertainPoint(Barrage& barrage,int point,int position);
+
     
-    void roundX();
-    void round0();
-    void round1();
+    void roundX(Move *heart);
+    void round0(Move *heart);
+    void round1(Move *heart);
 };

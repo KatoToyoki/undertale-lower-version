@@ -3,7 +3,7 @@
 
 void BarrageMode::Init()
 {
-    SetAllData();
+    //SetAllData();
     PushEmpty();
 }
 
@@ -179,4 +179,16 @@ bool BarrageMode::LeaveAtLeft()
 bool BarrageMode::LastOneDisappear()
 {
     return enemyBarrage[_quantity-1].GetOnePosition(IMGtop)==0;
+}
+
+void BarrageMode::RevealBarrage()
+{
+    if(isAttackEnd)
+    {
+        UnshowBarrage();
+    }
+    else
+    {
+        ShowBarrage();
+    }
 }

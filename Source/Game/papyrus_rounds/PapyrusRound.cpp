@@ -1,6 +1,28 @@
 #include "stdafx.h"
 #include "PapyrusRound.h"
 
+void PapyrusRound::SetAllData()
+{
+    allData.clear();
+    allData.shrink_to_fit();
+    enemyBarrage.clear();
+    enemyBarrage.shrink_to_fit();
+    
+    if(currentRound==-1)
+    {
+        HandleJsonData("RoundXData");    
+    }
+    else
+    {
+        HandleJsonData("Round"+to_string(currentRound)+"Data");
+    }
+    
+    SetQuantity(allData.size());
+    PushEmpty();
+    NormalBarrage();
+    isSet=true;
+}
+
 void PapyrusRound::GoLeft(Barrage& barrage, Move* heart, int speed)
 {
     barrage.set_show_enable(true);
@@ -106,6 +128,7 @@ void PapyrusRound::DetectRoundEnd(int direction)
         if(LeaveAtLeft()||LastOneDisappear())
         {
             isAttackEnd = true;
+            
         }
         break;
     case leftAtRight:
@@ -148,3 +171,46 @@ bool PapyrusRound::DetectCertainPoint(Barrage& barrage,int point ,int position)
     
     return false;
 }
+
+void PapyrusRound::SelectRound(Move *heart)
+{
+    if(!isSet)
+    {
+        SetAllData();
+    }
+    
+    switch (currentRound)
+    {
+    case -1:
+        roundX(heart);
+        break;
+    case 0:
+        break;
+    }
+}
+
+void PapyrusRound::roundX(Move *heart)
+{
+    for(int i=0;i<_quantity;i++)
+    {
+        GoLeft(enemyBarrage[i],heart,allData[i].speed);
+    }
+
+    DetectRoundEnd(leftAtLeft);
+}
+
+void PapyrusRound::round0(Move *heart)
+{
+    for(int i=0;i<_quantity-1;i++)
+    {
+        GoLeft(enemyBarrage[i],heart,allData[i].speed);
+    }
+
+    if(DetectCertainPoint(enemyBarrage[_quantity-2],665,front)||DetectCertainPoint(enemyBarrage[_quantity-3],665,front))
+    {
+        GoRight(enemyBarrage[_quantity-1],heart,allData[_quantity-1].speed);
+    }
+
+    DetectRoundEnd(leftAtRight);
+}
+

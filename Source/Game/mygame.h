@@ -55,6 +55,7 @@
 #include "../Library/audio.h"
 
 // ============================================
+/*
 #include "papyrus_rounds/RoundX.h"
 #include "papyrus_rounds/Round0.h"
 #include "papyrus_rounds/Round1.h"
@@ -68,6 +69,9 @@
 #include "papyrus_rounds/Round9.h"
 #include "papyrus_rounds/Round10.h"
 #include "papyrus_rounds/Round11.h"
+*/
+
+#include "papyrus_rounds/PapyrusRound.h"
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -137,7 +141,7 @@ private:
   Menu menu;
   GameText game_text;
   ShowNormalMode show_normal_mode;
-
+  /*
   RoundX roundX=RoundX(3);
   Round0 round0=Round0(15);
   Round1 round1=Round1(3);
@@ -151,7 +155,10 @@ private:
   Round9 round9=Round9(8);
   Round10 round10=Round10(11);
   Round11 round11=Round11(19);
+*/
 
+  PapyrusRound papyrusRound;
+  
   MonsterFrame monster_frame;
   Migosp migosp;
   Items items;
