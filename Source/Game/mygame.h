@@ -158,7 +158,7 @@ private:
 */
 
   PapyrusRound papyrusRound;
-  
+
   MonsterFrame monster_frame;
   Migosp migosp;
   Items items;

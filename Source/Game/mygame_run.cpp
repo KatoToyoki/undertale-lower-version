@@ -197,7 +197,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 
   // ===========================================================
   // enemy attack path generate
-  papyrusRound.Init();
+  //papyrusRound.Init();
   
   // game_framework::CSpecialEffect::SetCurrentTime();
 

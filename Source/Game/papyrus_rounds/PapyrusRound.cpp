@@ -7,6 +7,8 @@ void PapyrusRound::SetAllData()
     allData.shrink_to_fit();
     enemyBarrage.clear();
     enemyBarrage.shrink_to_fit();
+
+    _q++;
     
     if(currentRound==-1)
     {
@@ -21,6 +23,7 @@ void PapyrusRound::SetAllData()
     PushEmpty();
     NormalBarrage();
     isSet=true;
+    isAttackEnd=false;
 }
 
 void PapyrusRound::GoLeft(Barrage& barrage, Move* heart, int speed)
@@ -127,6 +130,8 @@ void PapyrusRound::DetectRoundEnd(int direction)
     case leftAtLeft:
         if(LeaveAtLeft()||LastOneDisappear())
         {
+            currentRound+=1;
+            isSet=false;
             isAttackEnd = true;
             
         }
@@ -134,6 +139,8 @@ void PapyrusRound::DetectRoundEnd(int direction)
     case leftAtRight:
         if(LeaveAtRight()||LastOneDisappear())
         {
+            currentRound+=1;
+            isSet=false;
             isAttackEnd = true;
         }
         break;
@@ -185,6 +192,7 @@ void PapyrusRound::SelectRound(Move *heart)
         roundX(heart);
         break;
     case 0:
+        round0(heart);
         break;
     }
 }

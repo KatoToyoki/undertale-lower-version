@@ -24,7 +24,7 @@ enum DirectionOfNext
 class PapyrusRound: public BarrageMode
 {
 private:
-    int _q;
+    int _q=0;
     int currentRound=-1;
     int UDBdirection=0;
     bool isSet=false;
@@ -51,4 +51,21 @@ public:
     void roundX(Move *heart);
     void round0(Move *heart);
     void round1(Move *heart);
+
+    void Test()
+    {
+        std::string a;
+        if(isAttackEnd==true)
+        {
+            a="True";
+        }
+        else{
+            a="False";
+        }
+        
+        CDC *pDC = game_framework::CDDraw::GetBackCDC();
+        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+        game_framework::CTextDraw::Print(pDC, 100, 200, a);
+        game_framework::CDDraw::ReleaseBackCDC();
+    }
 };
