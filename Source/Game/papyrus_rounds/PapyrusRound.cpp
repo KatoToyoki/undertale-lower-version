@@ -234,7 +234,17 @@ void PapyrusRound::SelectRound(Move *heart,int selection)
     case 15:
         round15(heart);
         break;
+    case 16:
+        round16(heart);
+        break;
+    case 17:
+        round17(heart);
+        break;
+    case 19:
+        round19(heart);
+        break;
     }
+    
 }
 
 void PapyrusRound::roundX(Move *heart)
@@ -518,3 +528,26 @@ void PapyrusRound::round15(Move* heart)
 
     DetectRoundEnd(leftAtLeft);
 }
+
+void PapyrusRound::round16(Move* heart)
+{
+    for(int i=0;i<_quantity;i++)
+    {
+        GoLeft(enemyBarrage[i],heart,allData[i].speed+3);
+    }
+
+    DetectRoundEnd(leftAtLeft);
+}
+
+void PapyrusRound::round17(Move* heart)
+{
+    PincerAttack(0,_quantity,heart,4,normal);
+    DetectRoundEnd(leftAtLeft);
+}
+
+void PapyrusRound::round19(Move* heart)
+{
+    PincerAttack(0,_quantity,heart,4,normal);
+    DetectRoundEnd(leftAtLeft);
+}
+

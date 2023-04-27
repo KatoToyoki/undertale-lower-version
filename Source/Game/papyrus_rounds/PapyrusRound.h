@@ -64,6 +64,10 @@ public:
     void round13(Move *heart);
     void round14(Move *heart);
     void round15(Move *heart);
+    void round16(Move *heart);
+    void round17(Move *heart);
+    
+    void round19(Move *heart);
 
     void Test()
     {
