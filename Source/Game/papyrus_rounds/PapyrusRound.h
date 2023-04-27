@@ -38,6 +38,7 @@ public:
 
     void GoRight(Barrage& barrage, Move *heart, int speed);
     void GoLeft(Barrage& barrage, Move *heart, int speed);
+    void PincerAttack(int start,int end, Move* heart, int wave, int appearance);
 
     void CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart);
     void UpDownBarrage(Barrage& barrage, int upLimit, int downLimit, int speed);

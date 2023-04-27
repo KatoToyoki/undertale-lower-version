@@ -40,6 +40,38 @@ void PapyrusRound::GoRight(Barrage& barrage, Move* heart, int speed)
     barrage.right_move(speed);
 }
 
+void PapyrusRound::PincerAttack(int start,int end,Move* heart, int wave, int appearance)
+{
+    int q=2;
+    switch (appearance)
+    {
+    case normal:
+        for(int i=0;i<wave-1;i++)
+        {
+            if(DetectCertainPoint(enemyBarrage[i*2],940,back)||DetectLeft(enemyBarrage[i*2],vanish))
+            {
+                q+=2;
+            }
+        }
+
+        for(int i=start;i<start+q;i++)
+        {
+            if(i%2==0)
+            {
+                GoRight(enemyBarrage[i],heart,allData[i].speed);
+            }
+            else
+            {
+                GoLeft(enemyBarrage[i],heart,allData[i].speed);
+            }
+        }
+        break;
+    case compound:
+        break;
+    }
+}
+
+
 void PapyrusRound::CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart)
 {
     if(barrage.GetIsOverlay(heart))
@@ -173,6 +205,9 @@ void PapyrusRound::SelectRound(Move *heart,int selection)
         break;
     case 7:
         round7(heart);
+        break;
+    case 8:
+        round8(heart);
         break;
     }
 }
@@ -325,5 +360,11 @@ void PapyrusRound::round7(Move* heart)
         GoLeft(enemyBarrage[i],heart,allData[i].speed);
     }
 
+    DetectRoundEnd(leftAtLeft);
+}
+
+void PapyrusRound::round8(Move* heart)
+{
+    PincerAttack(0,_quantity,heart,3,normal);
     DetectRoundEnd(leftAtLeft);
 }
