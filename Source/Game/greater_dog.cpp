@@ -3,6 +3,7 @@
 
 GreaterDog::GreaterDog()
 {
+    is_init = true;
 	set_acts();
 	_current_selection = 0;
 	monster_name = GameText({
@@ -111,7 +112,7 @@ void GreaterDog::set_acts()
 	text3 = Text (60, "  face.", RGB(255,255,255),600, 465,613);
 	text4 = Text (60, "* The Greater Dog's ears", RGB(255,255,255),600, 465,613);
 	text5 = Text (60, "  perk up.", RGB(255,255,255),600, 465,613);
-	text6 = Text (60, "* Nothing eles happens.", RGB(255,255,255),600, 465,613);
+	text6 = Text (60, "* Nothing else happens.", RGB(255,255,255),600, 465,613);
 	text_vector = {text0,text1,text2,text3,text4,text5,text6};
 	GameText act_after_beckon = GameText(text_vector,talk_mode);
 
@@ -139,8 +140,6 @@ void GreaterDog::set_acts()
 	text_vector = {text0,text1,text2};
 	GameText act_after_ignore = GameText(text_vector,talk_mode);
 	
-	// text0 = Text (60, "* Greater Dog is waiting for", RGB(255,255,255),600, 465,613);
-	// text1 = Text (60, "  your command.", RGB(255,255,255),600, 465,613);
 	text0 = Text (60, "* It's the Greater Dog.", RGB(255,255,255),600, 465,613);
 	text_vector = {text0};
 	GameText act_next_round = GameText(text_vector,talk_mode);
@@ -335,6 +334,8 @@ void GreaterDog::act_choose_count(UINT nChar)
 {
 	if ((nChar == VK_RETURN || nChar == 0x5A) && !_act_after_enable)
 	{
+		is_init = false;
+		act_times_enter+=1;
 		if (_current_selection == pet_d)
 		{
 			pet_times+=1;
@@ -406,14 +407,91 @@ void GreaterDog::set_monster_frame()
 void GreaterDog::set_next_round_text()
 {
 	Act* act = acts.get_act_by_index(_current_selection);
+	Text text0 = TEXXT ("* It's the Greater Dog.");
+	GameText game_text = GameText({text0},talk_mode);
+	
 	if (hp < 50)
 	{
-		GameText game_text ({
+		game_text = GameText ({
 			Text (60, "* Greater Dog is panting slowly.", RGB(255,255,255),600, 465,613)
 		}, talk_mode);
-		
-		act->act_next_round = game_text;
 	}
+	else if (is_play_afb)
+	{
+		switch (pet_times)
+		{
+		case 0:
+			game_text = GameText({
+				TEXXT("* Greater Dog wants some TLC."),
+			},talk_mode);
+			break;
+		case 1:
+			game_text = GameText({
+				TEXXT("* Pet capacity is 40-percent."),			
+			},talk_mode);
+			break;
+		default:
+			game_text = GameText({
+				TEXXT("* Greater Dog is contented."),						
+			},talk_mode);
+			break;
+		}
+	}
+	else if (is_pet_afb && pet_times == 0)
+	{
+		game_text = GameText({
+			TEXXT("* Greater Dog is patting the"),
+			TEXXT("  ground with its front paws.")
+		},talk_mode);
+	}
+	else if(ignore_times >=3)
+	{
+		game_text = GameText({
+			TEXXT("* Greater Dog is making"),
+			TEXXT("  puppy-dog eyes.")
+		},talk_mode);
+	}
+	else if (ignore_times > 0 && ignore_times < 3)
+	{
+		game_text = GameText ({		
+			TEXXT ("* Greater Dog just wants"),
+			TEXXT ("  affection."),
+		}, talk_mode);
+	}
+	else if (!is_init)
+	{
+		Text text1;
+		std::vector<Text> text_vector;
+		switch (act_times_enter%4)
+		{
+		case 0:
+			text0 = TEXXT("* Greater Dog is watching you");
+			text1 = TEXXT("  intently.");			
+			text_vector = {text0,text1};
+			game_text = GameText (text_vector,talk_mode);
+			break;
+		case 1:
+			text0 = TEXXT ("* Greater Dog is waiting for");
+			text1 = TEXXT ("  your command.");
+			text_vector = {text0,text1};
+			game_text = GameText (text_vector,talk_mode);
+			break;
+		case 2:
+			text0 = TEXXT ("* Greater Dog is seeking");
+			text1 = TEXXT ("  affection.");
+			text_vector = {text0,text1};
+			game_text = GameText (text_vector,talk_mode);			
+			break;
+		case 3:
+			text0 = TEXXT ("* It smells like freshly");
+			text1 = TEXXT ("  -squeezed puppy juice.");
+			text_vector = {text0,text1};
+			game_text = GameText (text_vector,talk_mode);
+			break;
+		}
+	}
+	
+	act->act_next_round = game_text;
 }
 
 int GreaterDog::get_next_round_index()

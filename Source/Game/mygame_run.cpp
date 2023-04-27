@@ -145,6 +145,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_sub = false;
 
     user_frame.control_frame(enemy->get_monster_battle_mode());
+    heart_test.set_show_img_enable(true);
     if (user_frame.get_move_done())
     {
       monster_frame._monster_saying_is_done = false;
@@ -158,14 +159,13 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       heart_test.move_control(user_frame.get_corner(),true);
     }
 
-    heart_test.set_show_img_enable(true);
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
     if (battel_mode_timer >= 1300)
     {
       stage_go = 1;
     }
     break;
-  case 8:
+  case 8://before exp&gold
     user_frame.control_frame(to_talk);
     stage_go_enable_add = false;
     stage_go_enable_sub = false;
@@ -176,7 +176,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go_enable_sub = false;
     }
     break;
-  case 9:
+  case 9://exp&gold
     user_frame.control_frame(to_talk);
     gameButtonFrame.choose_update(false);
     gameButtonFrame.all_button_off();
@@ -249,7 +249,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     if (stage_go!= 7) {charactor.change_hp_updata(nChar);}
   }
 
-  //stage_control don't touch here
+  //stage_control
   if ((nChar == VK_RETURN || nChar == 0x5A) && ((enemy->is_mercy() && gameButtonFrame.get_current_selection() ==3 && stage_go == 3) || gameFight.is_hp_zero() || stage_go == 9)) {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
