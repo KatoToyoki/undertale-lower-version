@@ -82,6 +82,10 @@ void PapyrusRound::CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart)
 
 void PapyrusRound::UpDownBarrage(Barrage& barrage, int upLimit, int downLimit, int speed)
 {
+    if(barrage.GetOnePosition(IMGtop)==0)
+    {
+        return;
+    }
     switch (UDBdirection)
     {
     case goUp:
@@ -226,6 +230,9 @@ void PapyrusRound::SelectRound(Move *heart,int selection)
         break;
     case 14:
         round14(heart);
+        break;
+    case 15:
+        round15(heart);
         break;
     }
 }
@@ -480,5 +487,34 @@ void PapyrusRound::round14(Move* heart)
         }
     }
     
+    DetectRoundEnd(leftAtLeft);
+}
+
+void PapyrusRound::round15(Move* heart)
+{
+    for(int i=0;i<_quantity;i++)
+    {
+        GoLeft(enemyBarrage[i],heart,allData[i].speed+2);
+    }
+    CompoundBarrage(enemyBarrage[1],enemyBarrage[0],heart);
+    CompoundBarrage(enemyBarrage[3],enemyBarrage[2],heart);
+    CompoundBarrage(enemyBarrage[5],enemyBarrage[4],heart);
+    UpDownBarrage(enemyBarrage[0],allData[0].initY-50,allData[0].initY+50,6);
+    UpDownBarrage(enemyBarrage[2],allData[2].initY-50,allData[2].initY+50,7);
+    UpDownBarrage(enemyBarrage[4],allData[4].initY-50,allData[4].initY+50,8);
+    
+    CompoundBarrage(enemyBarrage[6],enemyBarrage[7],heart);
+    CompoundBarrage(enemyBarrage[8],enemyBarrage[9],heart);
+    CompoundBarrage(enemyBarrage[10],enemyBarrage[11],heart);
+    UpDownBarrage(enemyBarrage[7],allData[7].initY-50,allData[7].initY+10,6);
+    UpDownBarrage(enemyBarrage[9],allData[9].initY-50,allData[9].initY+30,7);
+    UpDownBarrage(enemyBarrage[11],allData[11].initY-50,allData[11].initY+30,8);
+
+    CompoundBarrage(enemyBarrage[12],enemyBarrage[13],heart);
+    UpDownBarrage(enemyBarrage[13],allData[13].initY-40,allData[13].initY+100,3);
+    
+    CompoundBarrage(enemyBarrage[15],enemyBarrage[16],heart);
+    UpDownBarrage(enemyBarrage[16],allData[16].initY-40,allData[16].initY+130,3);
+
     DetectRoundEnd(leftAtLeft);
 }
