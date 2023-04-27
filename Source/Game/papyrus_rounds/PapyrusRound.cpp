@@ -137,9 +137,9 @@ bool  PapyrusRound::DetectLeft(Barrage& barrage,int direction)
     switch (direction)
     {
     case leftAtLeft:
-        return barrage.GetOnePosition(IMGleft)>1250;
-    case leftAtRight:
         return barrage.GetOnePosition(IMGleft)<650;
+    case leftAtRight:
+        return barrage.GetOnePosition(IMGleft)>1250;
     case vanish:
         return barrage.GetOnePosition(IMGtop)==0;
     }
@@ -217,6 +217,9 @@ void PapyrusRound::SelectRound(Move *heart,int selection)
         break;
     case 11:
         round11(heart);
+        break;
+    case 12:
+        round12(heart);
         break;
     }
 }
@@ -413,3 +416,31 @@ void PapyrusRound::round11(Move* heart)
     DetectRoundEnd(leftAtLeft);
 }
 
+void PapyrusRound::round12(Move* heart)
+{
+    bool secondWave=false;
+    for(int i=0;i<13;i++)
+    {
+        GoRight(enemyBarrage[i],heart,allData[i].speed);
+        if(DetectLeft(enemyBarrage[12],leftAtRight)||DetectLeft(enemyBarrage[12],vanish)){
+            secondWave=true;
+        }
+    }
+
+    if(secondWave)
+    {
+        for(int i=13;i<_quantity;i++)
+        {
+            GoLeft(enemyBarrage[i],heart,allData[i].speed);
+        }
+        CompoundBarrage(enemyBarrage[14],enemyBarrage[13],heart);
+        CompoundBarrage(enemyBarrage[16],enemyBarrage[15],heart);
+        CompoundBarrage(enemyBarrage[18],enemyBarrage[17],heart);
+
+        UpDownBarrage(enemyBarrage[13],allData[13].initY-50,825,4);
+        UpDownBarrage(enemyBarrage[15],allData[15].initY-50,825,4);
+        UpDownBarrage(enemyBarrage[17],allData[17].initY-50,825,4);
+    }
+
+    DetectRoundEnd(leftAtLeft);
+}

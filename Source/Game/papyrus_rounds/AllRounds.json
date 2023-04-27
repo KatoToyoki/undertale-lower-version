@@ -1573,6 +1573,236 @@
         }
       ]
     }
+  ],
+  "Round12Data": [
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 650,
+      "initY": 795,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h69bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 600,
+      "initY": 575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 600,
+      "initY": 774,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h90bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 550,
+      "initY": 575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h81bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 550,
+      "initY": 753,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 500,
+      "initY": 575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h60bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 500,
+      "initY": 740,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h124bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 110,
+      "initY": 575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h87bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 110,
+      "initY": 753,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 70,
+      "initY": 575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 70,
+      "initY": 777,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h87bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 30,
+      "initY": 575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h124bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 30,
+      "initY": 795,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h69bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 1270,
+      "initY": 751,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h221bone"
+        }
+      ]
+    },
+    {
+      "damage": 0,
+      "speed": 4,
+      "initX": 1270,
+      "initY": 855,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "bone_bottom"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 1315,
+      "initY": 784,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h221bone"
+        }
+      ]
+    },
+    {
+      "damage": 0,
+      "speed": 4,
+      "initX": 1315,
+      "initY": 855,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "bone_bottom"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 1360,
+      "initY": 811,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h221bone"
+        }
+      ]
+    },
+    {
+      "damage": 0,
+      "speed": 4,
+      "initX": 1360,
+      "initY": 855,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "bone_bottom"
+        }
+      ]
+    }
   ]
 
 }

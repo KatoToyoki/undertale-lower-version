@@ -45,10 +45,6 @@ protected:
     
 public:
     BarrageMode()=default;
-    /*{
-        _quantity=quantity;
-    }
-    */
     ~BarrageMode()=default;
 
     void SetQuantity(int q)
@@ -60,12 +56,6 @@ public:
     // set xPosition, yPosition depends on each mode
     // kind of virtual function
     void Init();
-    
-/*    
-    // each round may be different, so it's pure virtual
-    // set each barrage data, like struct SetData
-    virtual void SetAllData()=0;
-*/
     
     // depends on quantity, push empty barrage in vector enemyBarrage
     void PushEmpty();
@@ -100,13 +90,7 @@ public:
 
     // close all barrages
     void UnshowBarrage();
-    
-/*
-    // to let enemy attack you, each round may be different, so it's pure virtual
-    virtual void MovingBarrage(Move *heart)=0;
-*/
-   
-    
+
     // getter
     bool GetIsAttackEnd();
 
