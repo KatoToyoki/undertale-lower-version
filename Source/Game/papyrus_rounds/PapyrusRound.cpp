@@ -224,6 +224,9 @@ void PapyrusRound::SelectRound(Move *heart,int selection)
     case 13:
         round13(heart);
         break;
+    case 14:
+        round14(heart);
+        break;
     }
 }
 
@@ -455,5 +458,27 @@ void PapyrusRound::round13(Move* heart)
         GoLeft(enemyBarrage[i],heart,allData[i].speed);
     }
 
+    DetectRoundEnd(leftAtLeft);
+}
+
+void PapyrusRound::round14(Move* heart)
+{
+    bool secondWave=false;
+    for(int i=0;i<7;i++)
+    {
+        GoRight(enemyBarrage[i],heart,allData[i].speed+2);
+        if(DetectCertainPoint(enemyBarrage[6],1095,back)||DetectLeft(enemyBarrage[6],vanish))
+        {
+            secondWave=true;
+        }
+    }
+
+    if(secondWave){
+        for(int i=7;i<_quantity;i++)
+        {
+            GoLeft(enemyBarrage[i],heart,allData[i].speed+4);
+        }
+    }
+    
     DetectRoundEnd(leftAtLeft);
 }
