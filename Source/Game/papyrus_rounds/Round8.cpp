@@ -34,7 +34,7 @@ void Round8::MovingBarrage(Move* heart)
         }
     }
    
-    if((q==6)&&(LeaveAtLeft()||LastOneDisappear()))
+    if((LeaveAtLeft()||LastOneDisappear()))
     {
         isAttackEnd=true;
     }
