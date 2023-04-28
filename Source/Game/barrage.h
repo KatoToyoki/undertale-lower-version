@@ -11,11 +11,24 @@ enum barrage_mode
     blue
 };
 
+enum isDisappear
+{
+    appear,
+    disappear
+};
+
+enum imgDirection
+{
+    IMGleft,
+    IMGtop,
+};
+
 class Barrage
 {
 public:
     Barrage(int damege = 2, barrage_mode mode = white);
     void load_img(std::string bmp_name);
+    void LoadMultImg(std::vector<std::string> imgArr);
     void loda_CMoving_Bitmap(game_framework::CMovingBitmap img);
     void up_move(int move_pixel = 7);
     void down_move(int move_pixel = 7);
@@ -31,7 +44,11 @@ public:
     void UnshowIMG();
     
     void switch_mode();
-    int damege_hit(Move *heart);
+    int damege_hit(Move *heart, int command=appear);
+
+    int GetOnePosition(int direction);
+
+    bool GetIsOverlay(Move *heart);
 
 private:
     game_framework::CMovingBitmap barrage_img;

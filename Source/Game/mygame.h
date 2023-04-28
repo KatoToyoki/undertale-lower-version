@@ -54,6 +54,8 @@
 
 #include "../Library/audio.h"
 
+// ============================================
+#include "papyrus_rounds/PapyrusRound.h"
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -123,7 +125,9 @@ private:
   Menu menu;
   GameText game_text;
   ShowNormalMode show_normal_mode;
-  BarrageMode boneRed=BarrageMode(3);
+
+  
+  PapyrusRound papyrusRound;
 
   MonsterFrame monster_frame;
   Migosp migosp;

@@ -35,9 +35,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   case 1:
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
-    boneRed.RandomBarrage();
     show_normal_mode.init(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,&migosp,&items,&charactor);
 
+    // ===========================================================
+    
     break;
   case 2:
     stage_go_enable_add = true;
@@ -149,19 +150,24 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     
     monster_frame._monster_saying_is_done = false;
     user_frame.control_frame(talk_to_normal_battle);
-    migosp.set_barrage_enable(true);
+    // migosp.set_barrage_enable(true);
 
-    // to do enemy attack
-    // boneRed.MovingBarrage(&heart_test,3);
-
+    // let migosp stop attacking me even when its barrage doesn't appear
+    /*
     charactor.change_hp( (heart_test.shine_time_count>=400)
       ,migosp.get_barrage().damege_hit(&heart_test)*(-1));
+    */
+
+    // to do enemy attack
+    // ===========================================================
+    papyrusRound.SelectRound(&heart_test);
+    charactor.change_hp( (heart_test.shine_time_count>=400)
+      ,papyrusRound.GetMinusHP_M(&heart_test,disappear)*(-1));
     
     heart_test.move_control(user_frame.get_corner(),true);
     heart_test.set_show_img_enable(true);
-
-	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
-    if (battel_mode_timer >= 1300)
+  
+    if (papyrusRound.GetIsAttackEnd())
     {
       stage_go = 1;
     }
@@ -188,11 +194,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameButtonFrame.SetInit();
 
   menu.load_img_set_postion();
-
-  // enemy attack path generate
-  boneRed.Init();
-  
-  // game_framework::CSpecialEffect::SetCurrentTime();
 
   green_line.LoadBitmapByString({"resources/green_line.bmp"},RGB(255,255,255));
   green_line.SetTopLeft(274,20);
@@ -280,9 +281,10 @@ void CGameStateRun::OnShow()
   } else {
     //all show thing put here no any if else
     heart_test.show_heart_img();
-    
+
+    // ===========================================================
     // enemy attack path
-    boneRed.ShowBarrage();
+    papyrusRound.RevealBarrage();
 
     user_frame.show_frame();
     user_frame.show_select_heart();

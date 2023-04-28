@@ -263,6 +263,7 @@
     <ClCompile Include="Source\Game\mygame_initialize.cpp" />
     <ClCompile Include="Source\Game\mygame_over.cpp" />
     <ClCompile Include="Source\Game\mygame_run.cpp" />
+    <ClCompile Include="Source\Game\papyrus_rounds\PapyrusRound.cpp" />
     <ClCompile Include="Source\Game\sub_stage.cpp" />
     <ClCompile Include="Source\Game\text.cpp" />
     <ClCompile Include="Source\Game\user_frame.cpp" />
@@ -298,6 +299,7 @@
     <ClInclude Include="Source\Game\monster_frame.h" />
     <ClInclude Include="Source\Game\move.h" />
     <ClInclude Include="Source\Game\mygame.h" />
+    <ClInclude Include="Source\Game\papyrus_rounds\PapyrusRound.h" />
     <ClInclude Include="Source\Game\sub_stage.h" />
     <ClInclude Include="Source\Game\text.h" />
     <ClInclude Include="Source\Game\user_frame.h" />
@@ -341,6 +343,7 @@
     <Content Include="Resources\right_vertical_frame.bmp" />
     <Content Include="Resources\Toolbar.bmp" />
     <Content Include="Resources\undertale.bmp" />
+    <Content Include="Source\Game\papyrus_rounds\AllRounds.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

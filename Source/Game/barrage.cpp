@@ -40,13 +40,18 @@ void Barrage::load_img(std::string bmp_name)
     if (_mode == white)
     {
         barrage_img.LoadBitmapByString({"resources/"+bmp_name+".bmp"},RGB(255,255,255));
-        barrage_img.LoadBitmapByString({"resources/"+bmp_name+".bmp"},RGB(0,0,0));
     }
     else
     {
         barrage_img.LoadBitmapByString({"resources/"+bmp_name+".bmp"},RGB(255,255,255));
     }
 }
+
+void Barrage::LoadMultImg(std::vector<std::string> imgArr)
+{
+    barrage_img.LoadBitmapByString(imgArr,RGB(255,255,255));
+}
+
 
 void Barrage::loda_CMoving_Bitmap(game_framework::CMovingBitmap img)
 {
@@ -97,13 +102,17 @@ void Barrage::switch_mode()
     }
 }
 
-int Barrage::damege_hit(Move *heart)
+int Barrage::damege_hit(Move *heart, int command)
 {
     if (_mode == white && barrage_img.IsOverlap(barrage_img,heart->heart) && heart -> shine_time_count >=400)
     {
         heart->shine_time_count = 0;
         heart->shine_two_second();
-        barrage_img.SetTopLeft(0,0);
+        
+        if(command==disappear)
+        {
+            barrage_img.SetTopLeft(0,0);
+        }
         return _damage;
     }
     if (_mode == blue)
@@ -115,11 +124,34 @@ int Barrage::damege_hit(Move *heart)
             {
                 heart->shine_time_count = 0;
                 heart->shine_two_second();
-                barrage_img.SetTopLeft(0,0);
+                
+                if(command==disappear)
+                {
+                    barrage_img.SetTopLeft(0,0);
+                }
                 return  _damage;
             }
         }
     }
     heart->shine_two_second();
     return 0;
+}
+
+int Barrage::GetOnePosition(int direction)
+{
+    switch (direction)
+    {
+    case IMGleft:
+        return barrage_img.GetLeft();
+        break;
+    case IMGtop:
+        return barrage_img.GetTop();
+        break;
+    }
+    return 0;
+}
+
+bool Barrage::GetIsOverlay(Move* heart)
+{
+    return barrage_img.IsOverlap(barrage_img,heart->heart);
 }
