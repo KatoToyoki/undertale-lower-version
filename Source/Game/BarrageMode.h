@@ -58,7 +58,7 @@ public:
 
     // when getting a string from json, you will get "sth"
     // need this in order to get rid of two "  
-    std::string HandleJsonString(std::string str);
+    static std::string HandleJsonString(std::string str);
 
     // in json file, it only have the name of img,
     // not including path and .bmp, so it will add all for you
@@ -69,7 +69,7 @@ public:
     void HandleMultImg(nlohmann::basic_json<> imgArr, std::vector<std::string>& img);
 
     // to get data from json file, need to input which round so that it can find the name in json
-    void HandleJsonData(std::string round);
+    void HandleJsonData(std::string round, std::string fileName);
 
     // set each barrage in vector enemyBarrage
     Barrage Setup(DataSet data);

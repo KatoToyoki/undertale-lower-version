@@ -55,7 +55,7 @@
 #include "../Library/audio.h"
 
 // ============================================
-#include "papyrus_rounds/PapyrusRound.h"
+#include "PapyrusRound.h"
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////

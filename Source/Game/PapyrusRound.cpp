@@ -10,11 +10,11 @@ void PapyrusRound::SetAllData()
 
     if(currentRound==-1)
     {
-        HandleJsonData("RoundXData");    
+        HandleJsonData("RoundXData","PapyrusRounds");    
     }
     else
     {
-        HandleJsonData("Round"+to_string(currentRound)+"Data");
+        HandleJsonData("Round"+to_string(currentRound)+"Data","PapyrusRounds");
     }
     
     SetQuantity(allData.size());
