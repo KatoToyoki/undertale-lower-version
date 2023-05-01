@@ -28,17 +28,16 @@ public:
     ~TextContent()=default;
 
     // file name is the source of the json, situation is what you want to call
-    void HandleActContent(std::string fileName,std::string situation,std::vector<std::vector<std::vector<std::string>>> &act);
+    void HandleActContent(std::string fileName,std::string situation);
 
     // when the reaction only have one situation, use this can that situation
     // -> only 2 layers rather than 3 layers
-    std::vector<std::vector<std::string>> ActNormalSituation();
+    void ActNormalSituation();
 
     // when the reaction have more than one situation, use this can that one of the situation randomly
     // -> only 2 layers rather than 3 layers
-    std::vector<std::vector<std::string>> ActRandomSitionation();
+    void ActRandomSitionation();
 
     //testing
-    int testTime=600;
     void PrintItOut();
 };

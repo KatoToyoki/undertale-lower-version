@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TextContent.h"
 
-void TextContent::HandleActContent(std::string fileName, std::string situation, std::vector<std::vector<std::vector<std::string>>>& act)
+void TextContent::HandleActContent(std::string fileName, std::string situation)
 {
     json data;
     std::ifstream file("Source/Game/json/"+fileName+".json");
@@ -25,36 +25,31 @@ void TextContent::HandleActContent(std::string fileName, std::string situation, 
     }
 }
 
-std::vector<std::vector<std::string>> TextContent::ActNormalSituation()
+void TextContent::ActNormalSituation()
 {
-    return act[0];
+    actOneReaction = act[0];
 }
 
-std::vector<std::vector<std::string>> TextContent::ActRandomSitionation()
+void TextContent::ActRandomSitionation()
 {
     int random=rand()%act.size();
-    return act[random];
+    actOneReaction = act[random];
 }
 
 void TextContent::PrintItOut()
 {
-    for(int i=0;i<actOneReaction.size();)
+    for(unsigned int i=0;i<actOneReaction.size();i++)
     {
         std::string b;
-        for(int j=0;j<actOneReaction[i].size();j++)
+        for(unsigned int j=0;j<actOneReaction[i].size();j++)
         {
-            b+=actOneReaction[i][j]+"\n";
+            b=b+actOneReaction[i][j]+"\n\n";
         }
 
         CDC *pDC = game_framework::CDDraw::GetBackCDC();
         game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
         game_framework::CTextDraw::Print(pDC, 0, 200, b);
         game_framework::CDDraw::ReleaseBackCDC();
-
-        if(testTime==0)
-        {
-            i++;
-        }
     }
 }
 

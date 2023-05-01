@@ -51,11 +51,12 @@
 #include "monster_frame.h"
 #include "Fight.h"
 #include "BarrageMode.h"
+#include "PapyrusRound.h"
+#include "TextContent.h"
 
 #include "../Library/audio.h"
 
-// ============================================
-#include "PapyrusRound.h"
+
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -128,6 +129,7 @@ private:
 
   
   PapyrusRound papyrusRound;
+  TextContent testDog;
 
   MonsterFrame monster_frame;
   Migosp migosp;
