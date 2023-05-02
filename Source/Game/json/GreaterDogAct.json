@@ -1,0 +1,194 @@
+{
+    "check": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* GREATER DOG - AT 15 DF 8",
+                    "content1": "* It's so excited that it",
+                    "content2": "  thinks fighting is just play."
+                }
+            }
+        }
+    ],
+    "cant_pet": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog is too far",
+                    "content1": "  away to pet.",
+                    "content2": "* You just pet the air."
+                }
+            }
+        }
+    ],
+    "pet_first_time": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog curls up",
+                    "content1": "  in your lab",
+                    "content2": "  as it is pet by you."
+                },
+                "frame1": {
+                    "content0": "* It gets so comfortable",
+                    "content1": "  it falls asleep..."
+                },
+                "frame2": {
+                    "content0": "* Zzzzz..."
+                },
+                "frame3": {
+                    "content0": "* ..."
+                },
+                "frame4": {
+                    "content0": "* Then it wakes up!",
+                    "content1": "* It's so excited!"
+                }
+            }
+        }
+    ],
+    "play_then_pet": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* As you pet the dog,",
+                    "content1": "  it sinks its entire weight",
+                    "content2": "  into you..."
+                },
+                "frame1": {
+                    "content0": "* You movements slows."
+                },
+                "frame2": {
+                    "content0": "* But, you still haven't",
+                    "content1": "  pet enough...!"
+                }
+            }
+        }
+    ],
+    "last_pet": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* You pet decisively.",
+                    "content1": "* Pet capacity reaches 100",
+                    "content2": "  percent."
+                },
+                "frame1": {
+                    "content0": "* The dog flops over with",
+                    "content1": "  its legs hanging in the air."
+                }
+            }
+        }
+    ],
+    "after_last_pet": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Tummy rubs are forbidden."
+                }
+            },
+            "reaction1": {
+                "frame0": {
+                    "content0": "* Greater Dog's excitement is",
+                    "content1": "  creating a power field that",
+                    "content2": "  prevents petting."
+                }
+            }
+        }
+    ],
+    "first_beckon": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* You call the Greater Dog."
+                },
+                "frame1": {
+                    "content0": "* It bounds towards you,",
+                    "content1": "  flecking slobber into your",
+                    "content2": "  face."
+                }
+            }
+        }
+    ],
+    "after_first_beckon": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* The Greater Dog's ears",
+                    "content1": "  perk up.",
+                    "content2": "* Nothing else happens."
+                }
+            }
+        }
+    ],
+    "cant_play": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog is not excited",
+                    "content1": "  enough to play with."
+                }
+            }
+        }
+    ],
+    "play_after_pet": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* You make a snowball and",
+                    "content1": "  throw it for the dog",
+                    "content2": "  to fetch."
+                },
+                "frame1": {
+                    "content0": "* It splats on the ground."
+                },
+                "frame2": {
+                    "content0": "* Greater Dog picks up all",
+                    "content1": "  the snow in the area",
+                    "content2": "  and brings it to you."
+                },
+                "frame3": {
+                    "content0": "* Now dog is very tired...",
+                    "content1": "* It rests its head on you..."
+                }
+            }
+        }
+    ],
+    "after_first_play": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog is too tired",
+                    "content1": "  to play."
+                }
+            }
+        }
+    ],
+    "ignore_4": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog inches closer."
+                }
+            }
+        }
+    ],
+    "ignore_over_4": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog decides you are",
+                    "content1": "  too boring."
+                }
+            }
+        }
+    ],
+    "new_round_begin": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* It's the Greater Dog."
+                }
+            }
+        }
+    ]
+}

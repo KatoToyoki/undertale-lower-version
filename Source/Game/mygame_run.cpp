@@ -31,13 +31,17 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   case 0:
     if (menu.get_current_stage() == 1) {enemy = &migosp;}
     if (menu.get_current_stage() == 2) {enemy = &greater_dog;}
+    if (menu.get_current_stage() == 3) {enemy = &migosp;}
     show_normal_mode.load_data(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,enemy,&items,&charactor);
     break;
   case 1:
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
-    boneRed.RandomBarrage();
     show_normal_mode.init();
+    show_normal_mode.init();
+
+    // ===========================================================
+    
     break;
   case 2:
     stage_go_enable_add = true;
@@ -143,24 +147,35 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     //maybe battle mode
     stage_go_enable_add = false;
     stage_go_enable_sub = false;
+    
+    monster_frame._monster_saying_is_done = false;
+    user_frame.control_frame(talk_to_normal_battle);
 
     user_frame.control_frame(enemy->get_monster_battle_mode());
     heart_test.set_show_img_enable(true);
     if (user_frame.get_move_done())
     {
       monster_frame._monster_saying_is_done = false;
-      enemy->set_barrage_enable(true);
-
-      // to do enemy attack
-      // boneRed.MovingBarrage(&heart_test,3);
-
-      enemy->get_barrage().damege_hit(&heart_test,&charactor);
-      
       heart_test.move_control(user_frame.get_corner(),true);
+    // to do enemy attack
+    // ===========================================================
+      if (menu.get_current_stage()== 3)
+      {
+        papyrusRound.SelectRound(&heart_test,&charactor);
+        papyrusRound.GetMinusHP_M(&heart_test,&charactor,disappear);
+      }
+      else
+      {
+        enemy->set_barrage_enable(true);
+        enemy->get_barrage().damege_hit(&heart_test,&charactor);
+      }
     }
-
+    
+    heart_test.move_control(user_frame.get_corner(),true);
+    heart_test.set_show_img_enable(true);
+  
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
-    if (battel_mode_timer >= 1300)
+    if (papyrusRound.GetIsAttackEnd() || (battel_mode_timer>= 1300 && menu.get_current_stage()!=3))
     {
       stage_go = 1;
     }
@@ -213,11 +228,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 
   menu.load_img_set_postion();
 
-  // enemy attack path generate
-  boneRed.Init();
-  
-  // game_framework::CSpecialEffect::SetCurrentTime();
-
   green_line.LoadBitmapByString({"resources/green_line.bmp"},RGB(255,255,255));
   green_line.SetTopLeft(274,20);
 
@@ -229,6 +239,9 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameFight.set_monster(&migosp);
 
   charactor.set_hp_img();
+
+  testDog.HandleActContent("GreaterDogAct","play_after_pet");
+  testDog.ActNormalSituation();
 }
 
 
@@ -307,9 +320,10 @@ void CGameStateRun::OnShow()
   } else {
     //all show thing put here no any if else
     heart_test.show_heart_img();
-    
+
+    // ===========================================================
     // enemy attack path
-    boneRed.ShowBarrage();
+    papyrusRound.RevealBarrage();
 
     user_frame.show_frame();
     user_frame.show_select_heart();
@@ -331,6 +345,8 @@ void CGameStateRun::OnShow()
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
+
+    testDog.PrintItOut();
 
   }
 }

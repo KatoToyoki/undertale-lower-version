@@ -83,15 +83,10 @@ void Fight::set_monster(Migosp* enemy)
 
 void Fight::show_fight_img()
 {
-    // if put here, it will never change ...
-    // Test1();
-    
     if (_enable)
     {
         fightScope.ShowBitmap();
         fightBar.ShowBitmap();
-       
-        // Test2();
     }
     else if (!_enable)
     {
@@ -127,7 +122,7 @@ void Fight::show_fight_img()
             ResetIsMiss();
             UnshowHPBar();
         }
-        if (!GetIsMiss())
+        if (_isAttack)
         {
             attack_red.ShowBitmap();
             _enemy->set_enemy_img_init_or_damege(damege);
@@ -136,9 +131,6 @@ void Fight::show_fight_img()
     else if((attackThisRound>0 || fightBarthisRound>0) && _enable)
     {
         _enable=false;
-        // if put here, you can check if enable change or not
-        // reveal correctly
-        // Test1();
     }
 }
 
@@ -197,6 +189,17 @@ void Fight::attack()
     attackThisRound+=1;
 }
 
+void Fight::DetectMissCondition()
+{
+    if(fightBar.GetLeft()>=theEnd || fightBar.GetLeft()<=theStart)
+    {
+        _isAttack=false;
+        _isMiss=true;
+        fightBarthisRound+=1;
+        minusHP="MISS";
+    }
+}
+
 void Fight::MovingBar()
 {
     if (_enable && fightBarthisRound==0)
@@ -204,11 +207,9 @@ void Fight::MovingBar()
         if(fightBar.GetLeft()<1560 && _isBarStop==false ){
             fightBar.SetTopLeft(fightBar.GetLeft()+16,590);
         }
-        else if(fightBar.GetLeft()>=theEnd || fightBar.GetLeft()<=theStart)
+        else
         {
-            _isMiss=true;
-            fightBarthisRound+=1;
-            minusHP="MISS";
+            DetectMissCondition();
         }
     }
 }
@@ -220,6 +221,7 @@ void Fight::ToStop(UINT nChar)
         _isBarStop=true;
         _isAttack=true;
         attackThisRound+=1;
+        DetectMissCondition();
     }
 }
 

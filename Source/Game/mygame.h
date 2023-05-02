@@ -51,8 +51,11 @@
 #include "Fight.h"
 #include "BarrageMode.h"
 #include "greater_dog.h"
+#include "PapyrusRound.h"
+#include "TextContent.h"
 
 #include "../Library/audio.h"
+
 
 
 namespace game_framework {
@@ -123,7 +126,10 @@ private:
   Menu menu;
   GameText game_text;
   ShowNormalMode show_normal_mode;
-  BarrageMode boneRed=BarrageMode(3);
+
+  
+  PapyrusRound papyrusRound;
+  TextContent testDog;
 
   MonsterFrame monster_frame;
   Migosp migosp;

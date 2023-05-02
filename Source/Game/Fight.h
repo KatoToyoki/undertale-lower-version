@@ -8,7 +8,7 @@
 /*
  * range : 431~1540
  * 0.0 - 0.1 - 0.3 - 0.46 - 0.54 - 0.7 - 0.9 - 1.0
- *   0.15%  0.18%  0.18%  0.24% 0.21% 0.18%  0.15%
+ *   0.15%  0.18%  0.21%  0.24% 0.21% 0.18%  0.15%
  *
  *  give enemy attack depends on the fight bar position
  *  this is the fight bar position ranges
@@ -125,6 +125,10 @@ public:
 
     // to get what damage the enemy will receive
     int Minus(double range);
+
+    // no matter press the enter key or not, we need to detect if it is miss condition
+    // so it will be executed in two different places
+    void DetectMissCondition();
     
     // to let attack bar gradually moving
     void MovingBar();

@@ -1,44 +1,9 @@
 #include "stdafx.h"
 #include "BarrageMode.h"
 
-void BarrageMode::Init()
+void BarrageMode::SetQuantity(int q)
 {
-    xPosition[0]=1000;
-    xPosition[1]=1150;
-    xPosition[2]=1300;
-    
-    yPosition[0]=795;
-    yPosition[1]=783;
-    yPosition[2]=774;
-    
-    SetAllData();
-    PushEmpty();
-}
-
-void BarrageMode::SetAllData()
-{
-    SetData current;
-    
-    current.damage=3;
-    current.mode=white;
-    current.imgPath="bone1";
-    current.initX=1000;
-    current.initY=795;
-    allData.push_back(current);
-    
-    current.damage=3;
-    current.mode=white;
-    current.imgPath="bone2";
-    current.initX=1150;
-    current.initY=783;
-    allData.push_back(current);
-    
-    current.damage=3;
-    current.mode=white;
-    current.imgPath="bone3";
-    current.initX=1300;
-    current.initY=774;
-    allData.push_back(current);
+    _quantity=q;
 }
 
 void BarrageMode::PushEmpty()
@@ -50,10 +15,79 @@ void BarrageMode::PushEmpty()
     }
 }
 
-Barrage BarrageMode::Setup(SetData data)
+std::string BarrageMode::HandleJsonString(std::string str){
+    std::string temp=str;
+    temp=temp.erase(0,0);
+    temp=temp.erase(temp.size(),1);
+
+    return temp;
+}
+
+void BarrageMode::FormatImgPath(std::vector<std::string> &imgArr){
+    int a=imgArr.size();
+    for(int i=0;i<a;i++){
+        imgArr[i]="resources/"+imgArr[i]+".bmp";
+    }
+}
+
+void BarrageMode::HandleMultImg(nlohmann::basic_json<> imgArr, std::vector<std::string>& img){
+    for (auto& imgPathElement : imgArr) {
+        int i=0;
+        while (true){
+            if(imgPathElement.contains("path"+std::to_string(i))){
+                img.push_back(HandleJsonString(imgPathElement["path"+std::to_string(i)]));
+                i++;
+            }
+            else{
+                break;
+            }
+        }
+    }
+    FormatImgPath(img);
+}
+
+void BarrageMode::HandleJsonData(std::string round, std::string fileName){
+    json data;
+    std::ifstream file("Source/Game/json/"+fileName+".json");
+    file >> data;
+    
+    for (const auto& round : data[round]) {
+        DataSet temp;
+
+        for (const auto& element : round.items()) {
+            if(element.key()=="damage"){
+                temp.damage=element.value();
+            }
+            else if(element.key()=="speed"){
+                temp.speed=element.value();
+            }
+            else if(element.key()=="initX"){
+                temp.initX=element.value();
+            }
+            else if(element.key()=="initY"){
+                temp.initY=element.value();
+            }
+            else if(element.key()=="barrage_mode"){
+                if(HandleJsonString(element.value())=="white"){
+                    temp.mode=white;
+                }
+                else{
+                    temp.mode=blue;
+                }
+            }
+            else if(element.key()=="imgPath"){
+                auto& imgPathArray = round["imgPath"];
+                HandleMultImg(imgPathArray,temp.imgPath);
+            }
+        }
+        allData.push_back(temp);
+    }
+}
+
+Barrage BarrageMode::Setup(DataSet data)
 {
     Barrage current;
-    current.load_img(data.imgPath);
+    current.LoadMultImg(data.imgPath);
     current.SetDamage(data.damage);
     current.SetMode(data.mode);
     current.set_positon(data.initX,data.initY);
@@ -70,17 +104,17 @@ void BarrageMode::RandomBarrage()
         if(temp%3==0)
         {
             enemyBarrage[i]=Setup(allData[_quantity-_quantity]);
-            enemyBarrage[i].set_positon(xPosition[i],allData[_quantity-_quantity].initY);
+            enemyBarrage[i].set_positon(allData[i].initX,allData[_quantity-_quantity].initY);
         }
         else if(temp%3==1)
         {
             enemyBarrage[i]=Setup(allData[_quantity-1]);
-            enemyBarrage[i].set_positon(xPosition[i],allData[_quantity-1].initY);
+            enemyBarrage[i].set_positon(allData[i].initX,allData[_quantity-1].initY);
         }
         else if(_quantity>=3)
         {
             enemyBarrage[i]=Setup(allData[_quantity-2]);
-            enemyBarrage[i].set_positon(xPosition[i],allData[_quantity-2].initY);
+            enemyBarrage[i].set_positon(allData[i].initX,allData[_quantity-2].initY);
         }
     }
 }
@@ -109,12 +143,43 @@ void BarrageMode::UnshowBarrage()
     }
 }
 
-void BarrageMode::MovingBarrage(Move *heart, int speed)
+bool BarrageMode::GetIsAttackEnd()
 {
-    // for(int i=0;i<_quantity;i++)
-    // {
-    //     enemyBarrage[i].set_show_enable(true);
-    //     enemyBarrage[i].damege_hit(heart);//koko
-    //     enemyBarrage[i].left_move(speed);
-    // }
+    return isAttackEnd;
+}
+
+void BarrageMode::GetMinusHP_M(Move *heart,Character *character, int command)
+{
+    for(int i=0;i<_quantity;i++)
+    {
+        enemyBarrage[i].set_show_enable(true);
+        enemyBarrage[i].damege_hit(heart,character,command);
+    }
+}
+
+bool BarrageMode::LeaveAtRight()
+{
+    return enemyBarrage[_quantity-1].GetOnePosition(IMGleft)>1270;
+}
+
+bool BarrageMode::LeaveAtLeft()
+{
+    return enemyBarrage[_quantity-1].GetOnePosition(IMGleft)<665;
+}
+
+bool BarrageMode::LastOneDisappear()
+{
+    return enemyBarrage[_quantity-1].GetOnePosition(IMGtop)==0;
+}
+
+void BarrageMode::RevealBarrage()
+{
+    if(isAttackEnd)
+    {
+        UnshowBarrage();
+    }
+    else
+    {
+        ShowBarrage();
+    }
 }

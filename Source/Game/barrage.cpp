@@ -48,6 +48,12 @@ void Barrage::load_img(std::string bmp_name)
     }
 }
 
+void Barrage::LoadMultImg(std::vector<std::string> imgArr)
+{
+    barrage_img.LoadBitmapByString(imgArr,RGB(255,255,255));
+}
+
+
 void Barrage::loda_CMoving_Bitmap(game_framework::CMovingBitmap img)
 {
     barrage_img = img;
@@ -97,7 +103,7 @@ void Barrage::switch_mode()
     }
 }
 
-void Barrage::damege_hit(Move *heart, Character *character)
+void Barrage::damege_hit(Move *heart, Character *character,int command)
 {
     if (_mode == white && barrage_img.IsOverlap(barrage_img,heart->heart) && heart -> shine_time_count >=400)
     {
@@ -106,6 +112,11 @@ void Barrage::damege_hit(Move *heart, Character *character)
         barrage_img.SetTopLeft(0,0);
         
         character->change_hp(true,_damage*(-1));
+
+        if(command==disappear)
+        {
+            barrage_img.SetTopLeft(0,0);
+        }
         return;
     }
     if (_mode == blue)
@@ -117,12 +128,35 @@ void Barrage::damege_hit(Move *heart, Character *character)
             {
                 heart->shine_time_count = 0;
                 heart->shine_two_second();
+                
                 barrage_img.SetTopLeft(0,0);
                 character->change_hp(true,_damage*(-1));
+
+                if(command==disappear)
+                {
+                    barrage_img.SetTopLeft(0,0);
+                }
                 return;
             }
         }
     }
     heart->shine_two_second();
     return ;
+}
+
+int Barrage::GetOnePosition(int direction)
+{
+    switch (direction)
+    {
+    case IMGleft:
+        return barrage_img.GetLeft();
+    case IMGtop:
+        return barrage_img.GetTop();
+    }
+    return 0;
+}
+
+bool Barrage::GetIsOverlay(Move* heart)
+{
+    return barrage_img.IsOverlap(barrage_img,heart->heart);
 }
