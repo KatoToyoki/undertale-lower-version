@@ -1,5 +1,5 @@
 #pragma once
-#include "../BarrageMode.h"
+#include "./BarrageMode.h"
 
 enum EndPoint
 {

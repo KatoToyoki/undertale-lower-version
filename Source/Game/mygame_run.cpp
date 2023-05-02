@@ -206,6 +206,9 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameFight.set_monster(&migosp);
 
   charactor.set_hp_img();
+
+  testDog.HandleActContent("GreaterDogAct","play_after_pet");
+  testDog.ActNormalSituation();
 }
 
 
@@ -307,5 +310,7 @@ void CGameStateRun::OnShow()
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.set_enable(true);
     stage.print();
+
+    testDog.PrintItOut();
   }
 }

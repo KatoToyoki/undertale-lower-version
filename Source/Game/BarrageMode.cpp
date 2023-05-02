@@ -46,9 +46,9 @@ void BarrageMode::HandleMultImg(nlohmann::basic_json<> imgArr, std::vector<std::
     FormatImgPath(img);
 }
 
-void BarrageMode::HandleJsonData(std::string round){
+void BarrageMode::HandleJsonData(std::string round, std::string fileName){
     json data;
-    std::ifstream file("Source/Game/papyrus_rounds/AllRounds.json");
+    std::ifstream file("Source/Game/json/"+fileName+".json");
     file >> data;
     
     for (const auto& round : data[round]) {
