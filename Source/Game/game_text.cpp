@@ -74,15 +74,14 @@ void GameText::print_text()
 
 void GameText::print()
 {
-    if (_mode == target_mode || _mode == act_item_mode)
+    if (_mode == target_mode || _mode == act_item_mode || _mode == talk_mode)
     {
        print_vector(); 
     }
-    if (_mode == talk_mode || _mode == monster_mode)
+    if (_mode == monster_mode)
     {
         print_text();
     }
-    
 }
 
 int GameText::get_vector_len()

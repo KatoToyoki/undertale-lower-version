@@ -9,7 +9,6 @@ enum migosp_act_selection
 {
     check_m,
     talk_m,
-    pet_m
 };
 
 
@@ -22,6 +21,7 @@ public:
     void set_barrage() override;
     void set_acts() override;
     void set_act_init(int current_selection) override;
+    void set_act_updata() override;
     void act_choose_count(UINT nChar) override {}
     void set_monster_frame() override;
     void set_next_round_text() override;

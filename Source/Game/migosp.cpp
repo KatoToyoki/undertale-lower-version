@@ -70,56 +70,44 @@ void Migosp::set_barrage()
 
 void Migosp::set_acts()
 {
-	Text text0(60, "* Migosp - AT 7 DF 5", RGB(255,255,255),600, 465,613);
-	Text text1(60, "* It seems evil,but it's just ", RGB(255,255,255),600, 465,613);
-	Text text2(60, "  with the wrong crowd...", RGB(255,255,255),600, 465,613);
-	std::vector<Text> text_vector = {text0,text1,text2};
-	GameText act_after = GameText(text_vector,talk_mode);
-
-	text0 = Text (60, "* Migosp curls up", RGB(255,255,255),600, 465,613);
-	text1 = Text (60, "  in your lab", RGB(255,255,255),600, 465,613);
-	text2 = Text (60, "  as it is pet by you.", RGB(255,255,255),600, 465,613);
-	Text text3(60, "* It gets so comfortable", RGB(255,255,255),600, 465,613);
-	Text text4(60, "  it falls asleep...", RGB(255,255,255),600, 465,613);
-	Text text5(60, "* Zzzzz...", RGB(255,255,255),600, 465,613);
-	Text text6(60, "* ...", RGB(255,255,255),600, 465,613);
-	Text text7(60, "* Then it wakes up!", RGB(255,255,255),600, 465,613);
-	Text text8(60, "* It's so excited!", RGB(255,255,255),600, 465,613);
-	text_vector = {text0,text1,text2,text3,text4,text5,text6,text7,text8};
-	GameText act_after_pet = GameText(text_vector,talk_mode);
-
-	text0 = Text (60, "* Migosp doesn't have a care", RGB(255,255,255),600, 465,613);
-	text1 = Text (60, "  in the world.", RGB(255,255,255),600, 465,613);
+	Text text0 (60, "* Migosp doesn't have a care", RGB(255,255,255),600, 465,613);
+	Text text1 (60, "  in the world.", RGB(255,255,255),600, 465,613);
 	text_vector = {text0,text1};
 	GameText act_next_round = GameText(text_vector,talk_mode);
 
 	Act act_check = {
         "check",
-        act_after,
 		act_next_round,
-		1,
-		1,
-		{0,3}
     };
 	Act act_talk = {
         "talk",
-        act_after,
 		act_next_round,
-		0,
-		0,
-		{0,3}
     };
-	Act act_pet = {
-        "pet",
-        act_after_pet,
-		act_next_round,
-		0,
-		5,
-		{0,3,2,1,1,2}
-    };
-	vector<Act> act_vecter = {act_check,act_talk,act_pet};
+	vector<Act> act_vecter = {act_check,act_talk};
 	acts = Acts (act_vecter) ;
 	
+}
+void Migosp::set_act_updata()
+{
+	text_vector.clear();
+	text_vector.shrink_to_fit();
+	if (_current_selection == check_m )
+	{
+		text = dog_text_content.get_reaction("MigospAct","check");
+	}
+	 for(unsigned int j=0;j<text[act_times].size();j++)
+	 {
+		   text_vector.push_back(TEXXT(text[act_times][j]));
+	 }
+	act_after = GameText(text_vector,talk_mode);
+	cost_round = text.size();
+	
+	if (_current_selection == talk_m)
+	{
+		std::vector<std::vector<std::string>> vector = {{}};
+		text = vector;
+		cost_round = 0;
+	}
 }
 
 
@@ -128,28 +116,8 @@ void Migosp::set_act_init(int current_selection)//monster frame那邊的init有�
 	if(!_act_after_enable)
 	{
 		set_next_round_text();
-		
 		act_times = 0;
 		_current_selection = current_selection;
-		Act* act = acts.get_act_by_index(_current_selection);
-		if (_current_selection == check_m )
-		{
-			act->index = 0;
-			act->act_after_len_list={0,3};
-			act->cost_round = 1;
-		}
-		if (_current_selection == talk_m)
-		{
-			act->index = 0;
-			act->act_after_len_list={0,0};
-			act->cost_round = 0;
-		}
-		if (_current_selection == pet_m)
-		{
-			act->index = 0;
-			act->act_after_len_list={0,3,2,1,1,2};
-			act->cost_round = 5;
-		}
 	}
 }
 

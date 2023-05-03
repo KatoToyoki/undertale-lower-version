@@ -3,14 +3,16 @@
 #include "acts.h"
 #include "barrage.h"
 #include "monster_frame.h"
+#include "TextContent.h"
 #include "user_frame.h"
+
+#define TEXXT(content) Text(60, content, RGB(255,255,255), 600, 420, 69)
 
 enum enemy_img_state
 {
     init_img,
     damege
 };
-
 
 class Enemy
 {
@@ -47,6 +49,8 @@ public:
     
     void act_after_stage_control_updata(UINT nChar, int *stage);
     virtual void act_choose_count(UINT nChar) = 0;
+    
+    virtual void set_act_updata() {};
 
     int get_now_act_after_index();
     int get_now_act_after_text_len();
@@ -108,4 +112,10 @@ protected:
     game_framework::CMovingBitmap enemy_targe_choose_hp;
     game_framework::CMovingBitmap enemy_targe_choose_hp_red;
     game_framework::CMovingBitmap enemy_targe_choose_hp_black;
+    
+	std::vector<Text> text_vector;
+    std::vector<std::vector<std::string>> text;
+    TextContent dog_text_content;
+	GameText act_after;
+    int cost_round;
 };

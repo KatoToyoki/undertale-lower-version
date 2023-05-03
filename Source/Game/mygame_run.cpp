@@ -26,6 +26,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
+  if (stage_go > 0)
+  {
+	  enemy->set_act_updata();
+  }
   switch (stage_go)
   {
   case 0:
@@ -38,10 +42,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
     show_normal_mode.init();
-    show_normal_mode.init();
-
     // ===========================================================
-    
     break;
   case 2:
     stage_go_enable_add = true;
@@ -149,7 +150,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_sub = false;
     
     monster_frame._monster_saying_is_done = false;
-    user_frame.control_frame(talk_to_normal_battle);
+    user_frame.control_frame(enemy->get_monster_battle_mode());
 
     user_frame.control_frame(enemy->get_monster_battle_mode());
     heart_test.set_show_img_enable(true);
@@ -240,8 +241,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 
   charactor.set_hp_img();
 
-  testDog.HandleActContent("GreaterDogAct","play_after_pet");
-  testDog.ActNormalSituation();
+  testDog.HandleActContent("GreaterDogAct","first_beckon");
 }
 
 

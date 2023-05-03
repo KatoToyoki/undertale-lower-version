@@ -6,8 +6,6 @@ int Enemy::generate_random_num(int min, int max)
     return ( rand() % ((max-1) - min + 1) + min );
 }
 
-
-
 void Enemy::show_img()
 {
 	enemy_img.ShowBitmap();
@@ -78,7 +76,7 @@ void Enemy::set_act_game_text_enable(bool enable)
 	if (_act_after_enable )
 	{
 		Act* act = acts.get_act_by_index(_current_selection);
-		if (act->cost_round == 0)
+		if (cost_round == 0)
 		{
 			*_stege+=1;
 		}
@@ -91,10 +89,9 @@ void Enemy::act_after_stage_control_updata(UINT nChar, int* stage)//更改mercy�
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _act_after_enable)
 	{
 		Act* act = acts.get_act_by_index(_current_selection);
-		if (act_times < act->cost_round-1)
+		if (act_times < cost_round-1)
 		{
 			act_times+=1;
-			act->index+=act->act_after_len_list[act_times];
 			*stage-=1;
 		}
 	}
@@ -102,20 +99,17 @@ void Enemy::act_after_stage_control_updata(UINT nChar, int* stage)//更改mercy�
 
 int Enemy::get_now_act_after_index()
 {
-	Act* act = acts.get_act_by_index(_current_selection);
-	return act->index;
+	return 0;
 }
 
 int Enemy::get_now_act_after_text_len()
 {
-	Act* act = acts.get_act_by_index(_current_selection);
-	return act->act_after_len_list[act_times+1];
+	return text[act_times].size();
 }
 
 GameText Enemy::get_act_after_game_text()
 {
-	Act* act = acts.get_act_by_index(_current_selection);
-	return act->act_after;
+	return act_after;
 }
 
 void Enemy::set_monster_frame_init(int current_selection)
