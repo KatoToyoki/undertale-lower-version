@@ -44,21 +44,16 @@ public:
     Barrage get_barrage();
 /// act
     GameText get_act_after_game_text();
-    virtual void set_act_init(int current_selection) = 0;
+    void set_act_init(int current_selection);
     void set_act_game_text_enable(bool enable);
     
     void act_after_stage_control_updata(UINT nChar, int *stage);
     virtual void act_choose_count(UINT nChar) = 0;
     
-    virtual void set_act_updata() {};
+    virtual void set_act_updata() = 0;
 
-    int get_now_act_after_index();
-    int get_now_act_after_text_len();
 /// next_round
     GameText get_next_round_game_text();
-    
-    virtual int get_next_round_index() = 0;
-    int get_next_round_text_len();
     
 /// monster frame
     GameText get_monster_frame_game_text();
@@ -113,9 +108,12 @@ protected:
     game_framework::CMovingBitmap enemy_targe_choose_hp_red;
     game_framework::CMovingBitmap enemy_targe_choose_hp_black;
     
-	std::vector<Text> text_vector;
-    std::vector<std::vector<std::string>> text;
-    TextContent dog_text_content;
+	std::vector<Text> act_text_vector;
+	std::vector<Text> next_text_vector;
+    std::vector<std::vector<std::string>> act_text;
+    std::vector<std::vector<std::string>> next_round_text;
+    TextContent text_content;
 	GameText act_after;
+	GameText act_next_round;
     int cost_round;
 };

@@ -67,7 +67,7 @@ void ShowNormalMode::init()//宣告於OnMove()
 	if (_user_frame->get_move_done())
 	{
 		_user_frame->load_text(_enemy->get_next_round_game_text());
-		_user_frame->set_choose(true,_enemy->get_next_round_index(),_enemy->get_next_round_text_len());
+		_user_frame->set_choose(true,0,0);
 	}
 }
 
@@ -101,13 +101,13 @@ void ShowNormalMode::choose_act_target()
 	_button_frame->set_updata_enable(false);
 	
 	_user_frame->load_text(_enemy->get_monster_name());
-	_user_frame->set_choose(true,0,1);
+	_user_frame->set_choose(true,0,0);
 }
 
 void ShowNormalMode::choose_act()
 {
 	_user_frame->load_text(_enemy->acts.get_act_name_list());
-	_user_frame->set_choose(true,0,_user_frame->get_text_vector_len());
+	_user_frame->set_choose(true,0,0);
 }
 
 void ShowNormalMode::choose_act_after()
@@ -117,7 +117,7 @@ void ShowNormalMode::choose_act_after()
 
 	_user_frame->load_text(_enemy->get_act_after_game_text());
 	_enemy->set_act_game_text_enable(true);
-	_user_frame->set_choose(true,_enemy->get_now_act_after_index(),_enemy->get_now_act_after_text_len());
+	_user_frame->set_choose(true,0,0);
 	
 	_enemy->set_monster_frame_game_text_enable(true);
 	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
@@ -185,7 +185,7 @@ void ShowNormalMode::choose_mercy_after()
 	if (_enemy->is_mercy())
 	{
 		_user_frame->load_text(_enemy->get_mercy_win_game_text());
-		_user_frame->set_choose(true,0,2);
+		_user_frame->set_choose(true,0,0);
 	}
 }
 

@@ -9,5 +9,24 @@
                 }
             }
         }
+    ],
+    "next_round": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Migosp dosen't have a care",
+                    "content1": "  in the world."
+                }
+            }
+        }
+    ],
+    "hp_low": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Migosp refuses to give up."
+                }
+            }
+        }
     ]
 }

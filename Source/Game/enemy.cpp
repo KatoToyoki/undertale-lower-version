@@ -83,6 +83,15 @@ void Enemy::set_act_game_text_enable(bool enable)
 	}
 }
 
+void Enemy::set_act_init(int current_selection)//monster frame那邊的init有隨機性所以多寫了set去把東西包起來
+{
+	if(!_act_after_enable)
+	{
+		act_times = 0;
+		_current_selection = current_selection;
+	}
+}
+
 void Enemy::act_after_stage_control_updata(UINT nChar, int* stage)//更改mercy目前在這裡但之後可稜會修?
 {
 	_stege = stage;
@@ -95,16 +104,6 @@ void Enemy::act_after_stage_control_updata(UINT nChar, int* stage)//更改mercy�
 			*stage-=1;
 		}
 	}
-}
-
-int Enemy::get_now_act_after_index()
-{
-	return 0;
-}
-
-int Enemy::get_now_act_after_text_len()
-{
-	return text[act_times].size();
 }
 
 GameText Enemy::get_act_after_game_text()
@@ -176,12 +175,5 @@ void Enemy::set_monster_frame_game_text_enable(bool enable)
 
 GameText Enemy::get_next_round_game_text()
 {
-	Act* act = acts.get_act_by_index(_current_selection);
-	return act->act_next_round;
-}
-
-int Enemy::get_next_round_text_len()
-{
-	Act* act = acts.get_act_by_index(_current_selection);
-	return act->act_next_round.get_vector_len();
+	return act_next_round;
 }

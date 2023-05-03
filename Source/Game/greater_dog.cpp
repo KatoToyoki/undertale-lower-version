@@ -65,11 +65,6 @@ void GreaterDog::set_barrage()
 }
 void GreaterDog::set_acts()
 {
-	Text text0(60, "* It's the Greater Dog.", RGB(255,255,255),600, 465,613);
-	 
-	text_vector = {text0};
-	GameText act_next_round = GameText(text_vector,talk_mode);
-	
 	Act act_check = {
         "Check",
 		act_next_round,
@@ -92,24 +87,16 @@ void GreaterDog::set_acts()
 	};
 	vector<Act> act_vecter = {act_check,act_pet,act_beckon,act_play,act_ignore};
 	acts = Acts (act_vecter) ;
-	
 }
-void GreaterDog::set_act_init(int current_selection)//monster frame那邊的init有隨機性所以多寫了set去把東西包起來
-{
-	if(!_act_after_enable)
-	{
-		set_next_round_text();
-		act_times = 0;
-		_current_selection = current_selection;
-	}
-}
+
 void GreaterDog::set_act_updata()
 {
-	text_vector.clear();
-	text_vector.shrink_to_fit();
+	set_next_round_text();
+	act_text_vector.clear();
+	act_text_vector.shrink_to_fit();
 	if (_current_selection == check_d )
 	{
-		text = dog_text_content.get_reaction("GreaterDogAct","check");
+		act_text = text_content.get_reaction("GreaterDogAct","check");
 	}
 	if (_current_selection == pet_d)
 	{
@@ -118,29 +105,29 @@ void GreaterDog::set_act_updata()
 			 switch (pet_times)
 			 {
 			 case 1:
-			 	  text = dog_text_content.get_reaction("GreaterDogAct","play_then_pet");
+			 	  act_text = text_content.get_reaction("GreaterDogAct","play_then_pet");
 				  break;
 			 case 2 :
-			 	  text = dog_text_content.get_reaction("GreaterDogAct","last_pet");
+			 	  act_text = text_content.get_reaction("GreaterDogAct","last_pet");
 				  break;
 			 default:
-			 	  text = dog_text_content.get_reaction("GreaterDogAct","after_last_pet");
+			 	  act_text = text_content.get_reaction("GreaterDogAct","after_last_pet");
 				  break;
 			 }
 		}
 		else if (!is_play_afb && is_pet_afb)
 		{
-			 text = dog_text_content.get_reaction("GreaterDogAct","after_first_pet");//
+			 act_text = text_content.get_reaction("GreaterDogAct","after_first_pet");//
 			 pet_times=0;
 		}
 		else if (is_beckon)
 		{
-			 text = dog_text_content.get_reaction("GreaterDogAct","pet_first_time");//not run
+			 act_text = text_content.get_reaction("GreaterDogAct","pet_first_time");//not run
 			 pet_times=0;
 		}
 		else
 		{
-			 text = dog_text_content.get_reaction("GreaterDogAct","cant_pet");
+			 act_text = text_content.get_reaction("GreaterDogAct","cant_pet");
 			 pet_times=0;
 		}
 	}
@@ -149,10 +136,10 @@ void GreaterDog::set_act_updata()
 		switch(beckon_times)
 		{
 		case 1:
-			 text = dog_text_content.get_reaction("GreaterDogAct","first_beckon");
+			 act_text = text_content.get_reaction("GreaterDogAct","first_beckon");
 			 break;
 		default:
-			 text = dog_text_content.get_reaction("GreaterDogAct","after_first_beckon");
+			 act_text = text_content.get_reaction("GreaterDogAct","after_first_beckon");
 			 break;
 		}
 	}
@@ -163,16 +150,16 @@ void GreaterDog::set_act_updata()
 			 switch (play_times)
 			 {
 			 case 1:
-			 	  text = dog_text_content.get_reaction("GreaterDogAct","play_after_pet");
+			 	  act_text = text_content.get_reaction("GreaterDogAct","play_after_pet");
 				  break;
 			 default:
-			 	  text = dog_text_content.get_reaction("GreaterDogAct","after_first_play");
+			 	  act_text = text_content.get_reaction("GreaterDogAct","after_first_play");
 				  break;
 			 }
 		}
 		else
 		{
-			 text = dog_text_content.get_reaction("GreaterDogAct","cant_play");
+			 act_text = text_content.get_reaction("GreaterDogAct","cant_play");
 			 play_times=0;
 		}
 	}
@@ -183,19 +170,19 @@ void GreaterDog::set_act_updata()
 		case 1:
 		case 2:
 		case 3:
-			 text = dog_text_content.get_reaction("GreaterDogAct","ignore_4");
+			 act_text = text_content.get_reaction("GreaterDogAct","ignore_4");
 			 break;
 		case 4:
-			 text = dog_text_content.get_reaction("GreaterDogAct","ignore_over_4");
+			 act_text = text_content.get_reaction("GreaterDogAct","ignore_over_4");
 			 break;
 		}
 	}
-	 for(unsigned int j=0;j<text[act_times].size();j++)
+	 for(unsigned int j=0;j<act_text[act_times].size();j++)
 	 {
-		   text_vector.push_back(TEXXT(text[act_times][j]));
+		   act_text_vector.push_back(TEXXT(act_text[act_times][j]));
 	 }
-	act_after = GameText(text_vector,talk_mode);
-	cost_round = text.size();
+	act_after = GameText(act_text_vector,talk_mode);
+	cost_round = act_text.size();
 }
 
 void GreaterDog::act_choose_count(UINT nChar)
@@ -250,7 +237,6 @@ MonsterText GreaterDog::get_random_game_text(std::string name)
 	return MonsterText();
 }
 
-
 void GreaterDog::set_monster_frame()
 {
 	Text data(33, "Mmm, cha", RGB(0,0,0),30, 1234,333);
@@ -274,98 +260,62 @@ void GreaterDog::set_monster_frame()
 }
 void GreaterDog::set_next_round_text()
 {
-	Act* act = acts.get_act_by_index(_current_selection);
-	Text text0 = TEXXT ("* It's the Greater Dog.");
-	GameText game_text = GameText({text0},talk_mode);
+	next_text_vector.clear();
+	next_text_vector.shrink_to_fit();
+	next_round_text = text_content.get_reaction("GreaterDogAct","new_round_begin");
 	
 	if (hp < 50)
 	{
-		game_text = GameText ({
-			Text (60, "* Greater Dog is panting slowly.", RGB(255,255,255),600, 465,613)
-		}, talk_mode);
+		next_round_text = text_content.get_reaction("GreaterDogAct","hp_low");
 	}
 	else if (is_play_afb)
 	{
 		switch (pet_times)
 		{
 		case 0:
-			game_text = GameText({
-				TEXXT("* Greater Dog wants some TLC."),
-			},talk_mode);
+			next_round_text = text_content.get_reaction("GreaterDogAct","last_pet_count_0");
 			break;
 		case 1:
-			game_text = GameText({
-				TEXXT("* Pet capacity is 40-percent."),			
-			},talk_mode);
+			next_round_text = text_content.get_reaction("GreaterDogAct","last_pet_count_1");
 			break;
 		default:
-			game_text = GameText({
-				TEXXT("* Greater Dog is contented."),						
-			},talk_mode);
+			next_round_text = text_content.get_reaction("GreaterDogAct","last_pet_count_plus");
 			break;
 		}
 	}
 	else if (is_pet_afb && pet_times == 0)
 	{
-		game_text = GameText({
-			TEXXT("* Greater Dog is patting the"),
-			TEXXT("  ground with its front paws.")
-		},talk_mode);
+		next_round_text = text_content.get_reaction("GreaterDogAct","afb_play_wait_pet");
 	}
 	else if(ignore_times >=3)
 	{
-		game_text = GameText({
-			TEXXT("* Greater Dog is making"),
-			TEXXT("  puppy-dog eyes.")
-		},talk_mode);
+		next_round_text = text_content.get_reaction("GreaterDogAct","ignore_4_next_round");
 	}
 	else if (ignore_times > 0 && ignore_times < 3)
 	{
-		game_text = GameText ({		
-			TEXXT ("* Greater Dog just wants"),
-			TEXXT ("  affection."),
-		}, talk_mode);
+		next_round_text = text_content.get_reaction("GreaterDogAct","ignore_over_4_next_round");
 	}
 	else if (!is_init)
 	{
-		Text text1;
-		std::vector<Text> text_vector;
 		switch (act_times_enter%4)
 		{
 		case 0:
-			text0 = TEXXT("* Greater Dog is watching you");
-			text1 = TEXXT("  intently.");			
-			text_vector = {text0,text1};
-			game_text = GameText (text_vector,talk_mode);
+			next_round_text = text_content.get_reaction("GreaterDogAct","after_init_1");
 			break;
 		case 1:
-			text0 = TEXXT ("* Greater Dog is waiting for");
-			text1 = TEXXT ("  your command.");
-			text_vector = {text0,text1};
-			game_text = GameText (text_vector,talk_mode);
+			next_round_text = text_content.get_reaction("GreaterDogAct","after_init_2");
 			break;
 		case 2:
-			text0 = TEXXT ("* Greater Dog is seeking");
-			text1 = TEXXT ("  affection.");
-			text_vector = {text0,text1};
-			game_text = GameText (text_vector,talk_mode);			
+			next_round_text = text_content.get_reaction("GreaterDogAct","after_init_3");
 			break;
 		case 3:
-			text0 = TEXXT ("* It smells like freshly");
-			text1 = TEXXT ("  -squeezed puppy juice.");
-			text_vector = {text0,text1};
-			game_text = GameText (text_vector,talk_mode);
+			next_round_text = text_content.get_reaction("GreaterDogAct","after_init_4");
 			break;
 		}
 	}
-	
-	act->act_next_round = game_text;
+	 for(unsigned int j=0;j<next_round_text[0].size();j++)
+	 {
+		   next_text_vector.push_back(TEXXT(next_round_text[0][j]));
+	 }
+	act_next_round = GameText (next_text_vector,talk_mode);
 }
-
-int GreaterDog::get_next_round_index()
-{
-	return 0;
-}
-
-
-

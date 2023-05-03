@@ -72,8 +72,9 @@ void Migosp::set_acts()
 {
 	Text text0 (60, "* Migosp doesn't have a care", RGB(255,255,255),600, 465,613);
 	Text text1 (60, "  in the world.", RGB(255,255,255),600, 465,613);
-	text_vector = {text0,text1};
-	GameText act_next_round = GameText(text_vector,talk_mode);
+	act_text_vector = {text0,text1};
+	next_round_text = text_content.get_reaction("GreaterDogAct","last_pet_count_1");
+	GameText act_next_round = GameText(act_text_vector,talk_mode);
 
 	Act act_check = {
         "check",
@@ -89,35 +90,25 @@ void Migosp::set_acts()
 }
 void Migosp::set_act_updata()
 {
-	text_vector.clear();
-	text_vector.shrink_to_fit();
+	set_next_round_text();
+	act_text_vector.clear();
+	act_text_vector.shrink_to_fit();
 	if (_current_selection == check_m )
 	{
-		text = dog_text_content.get_reaction("MigospAct","check");
+		act_text = text_content.get_reaction("MigospAct","check");
 	}
-	 for(unsigned int j=0;j<text[act_times].size();j++)
+	 for(unsigned int j=0;j<act_text[act_times].size();j++)
 	 {
-		   text_vector.push_back(TEXXT(text[act_times][j]));
+		   act_text_vector.push_back(TEXXT(act_text[act_times][j]));
 	 }
-	act_after = GameText(text_vector,talk_mode);
-	cost_round = text.size();
+	act_after = GameText(act_text_vector,talk_mode);
+	cost_round = act_text.size();
 	
 	if (_current_selection == talk_m)
 	{
 		std::vector<std::vector<std::string>> vector = {{}};
-		text = vector;
+		act_text = vector;
 		cost_round = 0;
-	}
-}
-
-
-void Migosp::set_act_init(int current_selection)//monster frame那邊的init有隨機性所以多寫了set去把東西包起來
-{
-	if(!_act_after_enable)
-	{
-		set_next_round_text();
-		act_times = 0;
-		_current_selection = current_selection;
 	}
 }
 
@@ -298,21 +289,18 @@ void Migosp::set_monster_frame()
 }
 void Migosp::set_next_round_text()
 {
-	Act* act = acts.get_act_by_index(_current_selection);
+	next_text_vector.clear();
+	next_text_vector.shrink_to_fit();
+	next_round_text = text_content.get_reaction("MigospAct","next_round");
+	
 	if (hp < 50)
 	{
-		GameText game_text ({
-			Text (60, "* Migosp refuses to give up.", RGB(255,255,255),600, 465,613)
-		}, talk_mode);
-		
-		act->act_next_round = game_text;
+		next_round_text = text_content.get_reaction("MigospAct","hp_low");
 	}
+	
+	 for(unsigned int j=0;j<next_round_text[0].size();j++)
+	 {
+		   next_text_vector.push_back(TEXXT(next_round_text[0][j]));
+	 }
+	act_next_round = GameText (next_text_vector,talk_mode);
 }
-
-int Migosp::get_next_round_index()
-{
-	return 0;
-}
-
-
-
