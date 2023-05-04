@@ -13,7 +13,7 @@ enum Position
 
 enum Appearance
 {
-    normal,updown,compound
+    normal,compoundUp,compoundDown
 };
 
 enum DirectionOfNext
@@ -49,6 +49,8 @@ public:
     bool DetectCertainPoint(Barrage& barrage,int point,int position);
 
     int GetCurrentRound();
+    void ToGetEnterCount(UINT nChar);
+    void DogAnimation(Move *heart);
     
     void roundX(Move *heart);
     void round0(Move *heart);
@@ -72,7 +74,5 @@ public:
     void round18(Move *heart);
     void round19(Move *heart);
     void round20(Move *heart);
-
-    void ToGetEnterCount(UINT nChar);
-    void DogAnimation(Move *heart);
+    void round21(Move *heart);
 };

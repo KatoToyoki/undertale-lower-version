@@ -2955,7 +2955,7 @@
     },
     {
       "damage": 3,
-      "speed": 4,
+      "speed": 6,
       "initX": 650,
       "initY": 740,
       "barrage_mode": "white",
@@ -2967,7 +2967,7 @@
     },
     {
       "damage": 3,
-      "speed": 4,
+      "speed": 6,
       "initX": 1270,
       "initY": 740,
       "barrage_mode": "white",
@@ -3423,127 +3423,7 @@
     },
     {
       "damage": 3,
-      "speed": 4,
-      "initX": 1270,
-      "initY": 769,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bones95"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 1379,
-      "initY": 769,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bones95"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 1488,
-      "initY": 769,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bones95"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 1597,
-      "initY": 769,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bones95"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 1706,
-      "initY": 769,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bones95"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 1815,
-      "initY": 769,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bones95"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 1924,
-      "initY": 769,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bones95"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 2033,
-      "initY": 769,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bones95"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 2142,
-      "initY": 769,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bones95"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 2251,
-      "initY": 363,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bigbig_bone501"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
+      "speed": 2,
       "initX": 2281,
       "initY": 819,
       "barrage_mode": "white",
@@ -3554,5 +3434,4 @@
       ]
     }
   ]
-
 }
