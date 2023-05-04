@@ -74,14 +74,7 @@ void GameText::print_text()
 
 void GameText::print()
 {
-    if (_mode == target_mode || _mode == act_item_mode || _mode == talk_mode)
-    {
-       print_vector(); 
-    }
-    if (_mode == monster_mode)
-    {
-        print_text();
-    }
+    print_vector(); 
 }
 
 int GameText::get_vector_len()

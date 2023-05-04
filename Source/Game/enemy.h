@@ -7,6 +7,7 @@
 #include "user_frame.h"
 
 #define TEXXT(content) Text(60, content, RGB(255,255,255), 600, 420, 69)
+#define TEXXT_M(content) Text(33, content, RGB(0,0,0), 30, 420, 69)
 
 enum enemy_img_state
 {
@@ -67,10 +68,9 @@ public:
     int get_now_monster_frame_after_text_len();
     int get_now_monster_frame_mode();
 
-    virtual MonsterText get_random_game_text(std::string name) = 0;
+    virtual std::vector<std::vector<std::string>> get_random_text(std::string name) = 0;
 
     Acts acts;
-    vector<MonsterText> _monster_text_vector;
     int hp = 100;
     game_framework::CMovingBitmap enemy_barrage;
     
@@ -116,4 +116,11 @@ protected:
 	GameText act_after;
 	GameText act_next_round;
     int cost_round;
+    
+	std::vector<Text> monster_text_vector;
+	GameText monster_frame_game_text;
+    std::vector<std::vector<std::string>> monster_text;
+    int monster_cost_round;
+    monster_frame_mode monster_frame_mode;
+    
 };

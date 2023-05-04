@@ -25,7 +25,7 @@ public:
     void set_monster_frame() override;
     void set_next_round_text() override;
 
-    MonsterText get_random_game_text(std::string name) override;
+    std::vector<std::vector<std::string>> get_random_text(std::string name) override;
     // frame_command get_monster_battle_mode() override;
     frame_command get_monster_battle_mode() override { return talk_to_long_battle; }
     

@@ -12,16 +12,6 @@ enum monster_frame_mode
     pass_talk
 };
 
-struct MonsterText
-{
-    std::string type;
-    int mode;
-    int index;
-    GameText game_text;
-    int cost_round;
-    vector<int> round_len_list;
-};
-
 class MonsterFrame
 {
 public:

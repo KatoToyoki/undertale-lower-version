@@ -60,17 +60,6 @@ void Items::set_items_init()
 
 void Items::set_items(int current_selection)
 {
-    Item *item = get_item_by_index(current_selection);
-   if ( item->name == "NiceCream")
-   {
-       // Text nice_cream_ramdon = get_and_set_ramdon_text("NiceCream");
-       //  vector<Text> text_vector= {
-       //      nice_cream_ramdon,
-       //      Text (60,"* You recovered 15 HP!",RGB(255,255,255),600,0,0),
-       //  };
-       //  GameText nice_cream_gmae_text(text_vector, talk_mode);
-       // item->item_after_game_text = nice_cream_gmae_text;
-   }
     for (Item &item_in : items)
     {
         if (item_in.name == "Bisicle" && item_in.useable_times == 1)
@@ -149,7 +138,6 @@ void Items::set_item_updata()
 	cost_round = item_text.size();
 }
 
-
 void Items::set_control_updata(bool enable)
 {
     _enable = enable;
@@ -205,7 +193,7 @@ void Items::check_and_del_item()
                 item
             };
             items = item_vector;
-            }
+        }
     }
 }
 

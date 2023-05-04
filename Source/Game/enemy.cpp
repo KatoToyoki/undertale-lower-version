@@ -115,28 +115,32 @@ void Enemy::set_monster_frame_init(int current_selection)
 	if (!_monster_frame_enable)
 	{
 		monster_times = 0;
+		monster_text = get_random_text("neutral");//only random use
 		set_monster_frame();
 	}
 }
 
 GameText Enemy::get_monster_frame_game_text()
 {
-    return _monster_text_vector[_current_selection].game_text;
+    // return _monster_text_vector[_current_selection].game_text;
+	return monster_frame_game_text;
 }
 
 int Enemy::get_now_monster_frame_after_index()
 {
-    return _monster_text_vector[_current_selection].index;
+    // return _monster_text_vector[_current_selection].index;
+	return 0;
 }
 
 int Enemy::get_now_monster_frame_after_text_len()
 {
-    return _monster_text_vector[_current_selection].round_len_list[monster_times+1];
+    // return _monster_text_vector[_current_selection].round_len_list[monster_times+1];
+	return 0;
 }
 
 int Enemy::get_now_monster_frame_mode()
 {
-    return _monster_text_vector[_current_selection].mode;
+    return monster_frame_mode;
 }
 
 void Enemy::monster_frame_stage_control_updata(UINT nChar, int* stage,MonsterFrame *monster_frame)
@@ -145,11 +149,9 @@ void Enemy::monster_frame_stage_control_updata(UINT nChar, int* stage,MonsterFra
 	_monster_frame = monster_frame;
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable)
 	{
-		MonsterText *monster_text = &_monster_text_vector[_current_selection];
-		if (monster_times < monster_text->cost_round-1)
+		if (monster_times < monster_cost_round-1)
 		{
 			monster_times+=1;
-			monster_text->index+=monster_text->round_len_list[monster_times];
 			*stage-=1;
 		}
 	}
@@ -160,12 +162,11 @@ void Enemy::set_monster_frame_game_text_enable(bool enable)
 	_monster_frame_enable = enable;
 	if (_monster_frame_enable)
 	{
-		MonsterText *monster_text = &_monster_text_vector[_current_selection];
-		if (monster_text->mode == no_enter_talk && _monster_frame->_time_count > 800)
+		if (monster_frame_mode == no_enter_talk && _monster_frame->_time_count > 800)
 		{
 			*_stege+=1;
 		}
-		if(monster_text->mode == pass_talk && _monster_frame->_time_count > 0)
+		if(monster_frame_mode == pass_talk && _monster_frame->_time_count > 0)
 		{
 			*_stege+=1;
 		}

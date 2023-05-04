@@ -226,31 +226,14 @@ void GreaterDog::check_mercy()
 	}
 }
 
-MonsterText GreaterDog::get_random_game_text(std::string name)
+std::vector<std::vector<std::string>> GreaterDog::get_random_text(std::string name)
 {
-	return MonsterText();
+	return {{}};
 }
 
 void GreaterDog::set_monster_frame()
 {
-	Text data(33, "Mmm, cha", RGB(0,0,0),30, 1234,333);
-	Text data2(33, "cha cha!", RGB(0,0,0),30, 1234,382);
-	MonsterText neutral = {
-		"neutral",
-		pass_talk,
-		0,
-		GameText ({data,data2},monster_mode),
-		1,
-		{0,2}
-	};
-	
-	_monster_text_vector = {//這邊跟act selection 跑數量要對
-		neutral,
-		neutral,
-		neutral,
-		neutral,
-		neutral
-	};
+	monster_frame_mode = pass_talk;
 }
 void GreaterDog::set_next_round_text()
 {

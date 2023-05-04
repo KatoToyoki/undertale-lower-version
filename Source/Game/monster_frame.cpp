@@ -15,7 +15,6 @@ void MonsterFrame::load_game_text_and_mode(GameText game_text,int mode)
   _mode = mode;
 }
 
-
 void MonsterFrame::set_img_position(int x, int y)
 {
   monster_frame_img.SetTopLeft(x,y);
