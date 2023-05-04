@@ -166,6 +166,11 @@ bool PapyrusRound::DetectCertainPoint(Barrage& barrage,int point ,int position)
     return false;
 }
 
+int PapyrusRound::GetCurrentRound()
+{
+    return currentRound;
+}
+
 void PapyrusRound::SelectRound(Move *heart,int selection)
 {
     // for test
@@ -243,6 +248,9 @@ void PapyrusRound::SelectRound(Move *heart,int selection)
         break;
     case 19:
         round19(heart);
+        break;
+    case 20:
+        round20(heart);
         break;
     }
     
@@ -571,3 +579,57 @@ void PapyrusRound::round19(Move* heart)
     PincerAttack(0,_quantity,heart,4,normal);
     DetectRoundEnd(leftAtLeft);
 }
+
+void PapyrusRound::round20(Move* heart)
+{
+    DetectRoundEnd(leftAtRight);
+}
+
+void PapyrusRound::DogAnimation(Move *heart)
+{
+    if(currentRound!=20)
+    {
+        return;
+    }
+
+    switch (dogAnimation)
+    {
+    case 1:
+        enemyBarrage[0].barrage_img.ShowBitmap();
+        enemyBarrage[0].barrage_img.SetAnimation(150,false);
+        break;
+    case 2:
+        enemyBarrage[0].UnshowIMG();
+        enemyBarrage[0].set_positon(2000,2000);
+        enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(0);
+        enemyBarrage[1].barrage_img.SetTopLeft(1000,810);
+        break;
+    case 3:
+        enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(1);
+        break;
+    case 4:
+        enemyBarrage[1].UnshowIMG();
+        enemyBarrage[1].set_positon(2000,2000);
+        enemyBarrage[2].barrage_img.SetTopLeft(1000,810);
+        if(dogAnimation==4)
+        {
+            dogAnimation+=1;
+        }
+        break;
+    case 5:
+        enemyBarrage[2].barrage_img.ShowBitmap();
+        enemyBarrage[2].barrage_img.SetAnimation(150,false);
+        GoRight(enemyBarrage[2],heart,3);
+        break;
+    }
+    
+}
+
+void PapyrusRound::ToGetEnterCount(UINT nChar)
+{
+    if(nChar==VK_RETURN && currentRound==20)
+    {
+        dogAnimation+=1;
+    }
+}
+

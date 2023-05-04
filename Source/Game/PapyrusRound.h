@@ -27,7 +27,9 @@ private:
     int currentRound=-1;
     int UDBdirection=0;
     bool isSet=false;
+    int dogAnimation=1;
 public:
+    
     PapyrusRound()=default;
     ~PapyrusRound()=default;
     
@@ -45,6 +47,8 @@ public:
     void DetectRoundEnd(int direction);
     bool DetectLeft(Barrage& barrage,int direction);
     bool DetectCertainPoint(Barrage& barrage,int point,int position);
+
+    int GetCurrentRound();
     
     void roundX(Move *heart);
     void round0(Move *heart);
@@ -67,4 +71,8 @@ public:
     void round17(Move *heart);
     void round18(Move *heart);
     void round19(Move *heart);
+    void round20(Move *heart);
+
+    void ToGetEnterCount(UINT nChar);
+    void DogAnimation(Move *heart);
 };

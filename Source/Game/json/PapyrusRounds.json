@@ -2862,6 +2862,48 @@
       ]
     }
   ],
+  "Round20Data": [
+    {
+      "damage": 0,
+      "speed": 0,
+      "initX": 1000,
+      "initY": 810,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "dog-bite1",
+          "path1": "dog-bite2",
+          "path2": "dog-bite3"
+        }
+      ]
+    },
+    {
+      "damage": 0,
+      "speed": 0,
+      "initX": 200,
+      "initY": 810,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "dog-eye",
+          "path1": "dog-eye_up"
+        }
+      ]
+    },
+    {
+      "damage": 0,
+      "speed": 0,
+      "initX": 200,
+      "initY": 810,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "dog-run1",
+          "path1": "dog-run2"
+        }
+      ]
+    }
+  ],
   "Round21Data": [
     {
       "damage": 3,

@@ -160,9 +160,17 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 
     // to do enemy attack
     // ===========================================================
-    papyrusRound.SelectRound(&heart_test);
+    papyrusRound.SelectRound(&heart_test,20);
+    if(papyrusRound.GetCurrentRound()!=20)
+    {
     charactor.change_hp( (heart_test.shine_time_count>=400)
-      ,papyrusRound.GetMinusHP_M(&heart_test,disappear)*(-1));
+          ,papyrusRound.GetMinusHP_M(&heart_test,disappear)*(-1));
+    }
+    else
+    {
+      charactor.change_hp( (heart_test.shine_time_count>=400)
+      ,papyrusRound.GetMinusHP_M(&heart_test,appear)*(-1));
+    }
     
     heart_test.move_control(user_frame.get_corner(),true);
     heart_test.set_show_img_enable(true);
@@ -226,6 +234,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     migosp.monster_frame_stage_control_updata(nChar,&stage_go,&monster_frame);
     items.item_after_stage_control_updata(nChar,&stage_go);
     charactor.change_hp_updata(nChar);
+    papyrusRound.ToGetEnterCount(nChar);
   }
 
   //stage_control don't touch here
@@ -288,6 +297,7 @@ void CGameStateRun::OnShow()
     // ===========================================================
     // enemy attack path
     papyrusRound.RevealBarrage();
+    papyrusRound.DogAnimation(&heart_test);
 
     user_frame.show_frame();
     user_frame.show_select_heart();
