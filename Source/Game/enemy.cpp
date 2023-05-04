@@ -97,7 +97,6 @@ void Enemy::act_after_stage_control_updata(UINT nChar, int* stage)//更改mercy�
 	_stege = stage;
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _act_after_enable)
 	{
-		Act* act = acts.get_act_by_index(_current_selection);
 		if (act_times < cost_round-1)
 		{
 			act_times+=1;

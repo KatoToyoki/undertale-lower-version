@@ -4,7 +4,6 @@
 struct Act
 {
     std::string name;
-    GameText act_next_round;
 };
 
 class Acts

@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "greater_dog.h"
 
-#include <set>
-
 GreaterDog::GreaterDog()
 {
     is_init = true;
@@ -63,27 +61,23 @@ void GreaterDog::set_barrage()
   barrage = Barrage(4,white);
   barrage.loda_CMoving_Bitmap(enemy_barrage);
 }
+
 void GreaterDog::set_acts()
 {
 	Act act_check = {
         "Check",
-		act_next_round,
     };
 	Act act_pet = {
         "Pet",
-		act_next_round,
     };
 	Act act_beckon = {
         "Beckon",
-		act_next_round,
 	};
 	Act act_play = {
         "Play",
-		act_next_round,
 	};
 	Act act_ignore = {
         "Ignore",
-		act_next_round,
 	};
 	vector<Act> act_vecter = {act_check,act_pet,act_beckon,act_play,act_ignore};
 	acts = Acts (act_vecter) ;

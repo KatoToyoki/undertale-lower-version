@@ -70,19 +70,11 @@ void Migosp::set_barrage()
 
 void Migosp::set_acts()
 {
-	Text text0 (60, "* Migosp doesn't have a care", RGB(255,255,255),600, 465,613);
-	Text text1 (60, "  in the world.", RGB(255,255,255),600, 465,613);
-	act_text_vector = {text0,text1};
-	next_round_text = text_content.get_reaction("GreaterDogAct","last_pet_count_1");
-	GameText act_next_round = GameText(act_text_vector,talk_mode);
-
 	Act act_check = {
         "check",
-		act_next_round,
     };
 	Act act_talk = {
         "talk",
-		act_next_round,
     };
 	vector<Act> act_vecter = {act_check,act_talk};
 	acts = Acts (act_vecter) ;

@@ -28,7 +28,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   }
   if (stage_go > 0)
   {
-	  enemy->set_act_updata();
+    enemy->set_act_updata();
+    items.set_item_updata();
   }
   switch (stage_go)
   {

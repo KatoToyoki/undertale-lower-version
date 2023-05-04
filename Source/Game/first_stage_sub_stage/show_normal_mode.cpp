@@ -28,6 +28,10 @@ void ShowNormalMode::updata()
     _enemy->set_act_init(_user_frame->get_current_selection());
     _enemy->set_monster_frame_init(_user_frame->get_current_selection());
   }
+  else
+  {
+  	_items->set_item_cost_round_init(_user_frame->get_current_selection(),_button_frame->get_current_selection());
+  }
 }
 
 void ShowNormalMode::init()//宣告於OnMove()
@@ -53,7 +57,7 @@ void ShowNormalMode::init()//宣告於OnMove()
 	_enemy->check_change_mercy_name_to_yellow_by_is_mercy();
 
 	_items->set_control_updata(false);
-	_items->set_item_cost_round_init(0,_button_frame->get_current_selection());
+	// _items->set_item_cost_round_init(0,_button_frame->get_current_selection());
 	
 //s	
 	_enemy->set_enemy_targe_choose_hp_bar(false);
@@ -128,10 +132,8 @@ void ShowNormalMode::choose_item()
 	_button_frame->set_updata_enable(false);
 
 	_user_frame->load_text(_items->get_item_list());
-	_user_frame->set_choose(true,0,_user_frame->get_text_vector_len());
-	_items->set_item_cost_round_init(_user_frame->get_current_selection(),_button_frame->get_current_selection());
+	_user_frame->set_choose(true,0,0);
 
-	
 	_charactor->change_hp(true,_items->get_selection_heal_num());
 }
 
@@ -142,7 +144,7 @@ void ShowNormalMode::choose_item_after()
 	
 	_user_frame->load_text(_items->get_item_after_game_text());
 	_items->set_control_updata(true);
-	_user_frame->set_choose(true,_items->get_now_item_after_index(),_items->get_now_item_after_text_len());
+	_user_frame->set_choose(true,0, 0);
 
 	_charactor->change_hp(false);
 	
