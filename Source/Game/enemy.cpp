@@ -75,7 +75,6 @@ void Enemy::set_act_game_text_enable(bool enable)
 	_act_after_enable = enable;
 	if (_act_after_enable )
 	{
-		Act* act = acts.get_act_by_index(_current_selection);
 		if (cost_round == 0)
 		{
 			*_stege+=1;
@@ -110,32 +109,19 @@ GameText Enemy::get_act_after_game_text()
 	return act_after;
 }
 
-void Enemy::set_monster_frame_init(int current_selection)
+void Enemy::set_monster_frame_init()
 {
 	if (!_monster_frame_enable)
 	{
 		monster_times = 0;
 		monster_text = get_random_text("neutral");//only random use
-		set_monster_frame();
 	}
+	set_monster_frame();
 }
 
 GameText Enemy::get_monster_frame_game_text()
 {
-    // return _monster_text_vector[_current_selection].game_text;
 	return monster_frame_game_text;
-}
-
-int Enemy::get_now_monster_frame_after_index()
-{
-    // return _monster_text_vector[_current_selection].index;
-	return 0;
-}
-
-int Enemy::get_now_monster_frame_after_text_len()
-{
-    // return _monster_text_vector[_current_selection].round_len_list[monster_times+1];
-	return 0;
 }
 
 int Enemy::get_now_monster_frame_mode()
@@ -147,7 +133,7 @@ void Enemy::monster_frame_stage_control_updata(UINT nChar, int* stage,MonsterFra
 {
 	_stege = stage;
 	_monster_frame = monster_frame;
-	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable)
+	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable && *stage ==6)
 	{
 		if (monster_times < monster_cost_round-1)
 		{

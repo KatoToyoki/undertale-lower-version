@@ -20,14 +20,10 @@ void MonsterFrame::set_img_position(int x, int y)
   monster_frame_img.SetTopLeft(x,y);
 }
 
-void MonsterFrame::set_enable(bool enable,int head, int text_len)
+void MonsterFrame::set_enable(bool enable)
 {
   _enable = enable;
   _game_text.set_enable(enable);
-  if (_enable)
-  {
-    _game_text.set_text_index(head,text_len);
-  }
 }
 
 void MonsterFrame::show_monster_frame_and_print()

@@ -19,7 +19,7 @@ public:
     void load_game_text_and_mode(GameText game_text,int mode = no_enter_talk);
     void show_monster_frame_and_print();
     void set_img_position(int x, int y);
-    void set_enable(bool enable,int head =0 , int text_len =1);
+    void set_enable(bool enable);
     
     bool _monster_saying_is_done = true;
     DWORD _time_count = 0;

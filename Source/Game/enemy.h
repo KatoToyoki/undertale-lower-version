@@ -59,14 +59,13 @@ public:
 /// monster frame
     GameText get_monster_frame_game_text();
     
-    void set_monster_frame_init(int current_selection);
+    void set_monster_frame_init();
     void set_monster_frame_game_text_enable(bool enable);
     
     void monster_frame_stage_control_updata(UINT nChar, int *stage,MonsterFrame *monster_frame);
 
-    int get_now_monster_frame_after_index();
-    int get_now_monster_frame_after_text_len();
     int get_now_monster_frame_mode();
+    virtual void set_monster_frame() = 0;
 
     virtual std::vector<std::vector<std::string>> get_random_text(std::string name) = 0;
 
@@ -94,7 +93,6 @@ protected:
     
     virtual void set_acts() = 0;
     virtual void check_mercy() = 0;
-    virtual void set_monster_frame() = 0;
     virtual void set_next_round_text() = 0;
 
     int hp_max = 100;

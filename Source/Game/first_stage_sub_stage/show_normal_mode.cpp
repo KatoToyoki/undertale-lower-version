@@ -26,7 +26,7 @@ void ShowNormalMode::updata()
   if (_button_frame->get_current_selection() != 2)
   {
     _enemy->set_act_init(_user_frame->get_current_selection());
-    _enemy->set_monster_frame_init(_user_frame->get_current_selection());
+  	_items->set_item_cost_round_init(0,_button_frame->get_current_selection());
   }
   else
   {
@@ -57,7 +57,6 @@ void ShowNormalMode::init()//宣告於OnMove()
 	_enemy->check_change_mercy_name_to_yellow_by_is_mercy();
 
 	_items->set_control_updata(false);
-	// _items->set_item_cost_round_init(0,_button_frame->get_current_selection());
 	
 //s	
 	_enemy->set_enemy_targe_choose_hp_bar(false);
@@ -71,7 +70,7 @@ void ShowNormalMode::init()//宣告於OnMove()
 	if (_user_frame->get_move_done())
 	{
 		_user_frame->load_text(_enemy->get_next_round_game_text());
-		_user_frame->set_choose(true,0,0);
+		_user_frame->set_choose(true);
 	}
 }
 
@@ -84,7 +83,7 @@ void ShowNormalMode::choose_fight_taget()
 	_button_frame->set_updata_enable(false);
 	
 	_user_frame->load_text(_enemy->get_monster_name());
-	_user_frame->set_choose(true,0,1);
+	_user_frame->set_choose(true);
 	_enemy->set_enemy_targe_choose_hp_bar(true);
 }
 void ShowNormalMode::choose_fight()
@@ -94,10 +93,7 @@ void ShowNormalMode::choose_fight()
 	_enemy->set_enemy_targe_choose_hp_bar(false);
 	
 	_game_fight->set_fight_enable(true);
-	_user_frame->set_choose(true,0,1);
-	
-	_enemy->set_monster_frame_game_text_enable(true);
-	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
+	_user_frame->set_choose(true);
 }
 
 void ShowNormalMode::choose_act_target()
@@ -105,13 +101,13 @@ void ShowNormalMode::choose_act_target()
 	_button_frame->set_updata_enable(false);
 	
 	_user_frame->load_text(_enemy->get_monster_name());
-	_user_frame->set_choose(true,0,0);
+	_user_frame->set_choose(true);
 }
 
 void ShowNormalMode::choose_act()
 {
 	_user_frame->load_text(_enemy->acts.get_act_name_list());
-	_user_frame->set_choose(true,0,0);
+	_user_frame->set_choose(true);
 }
 
 void ShowNormalMode::choose_act_after()
@@ -121,10 +117,7 @@ void ShowNormalMode::choose_act_after()
 
 	_user_frame->load_text(_enemy->get_act_after_game_text());
 	_enemy->set_act_game_text_enable(true);
-	_user_frame->set_choose(true,0,0);
-	
-	_enemy->set_monster_frame_game_text_enable(true);
-	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
+	_user_frame->set_choose(true);
 }
 
 void ShowNormalMode::choose_item()
@@ -132,7 +125,7 @@ void ShowNormalMode::choose_item()
 	_button_frame->set_updata_enable(false);
 
 	_user_frame->load_text(_items->get_item_list());
-	_user_frame->set_choose(true,0,0);
+	_user_frame->set_choose(true);
 
 	_charactor->change_hp(true,_items->get_selection_heal_num());
 }
@@ -144,12 +137,9 @@ void ShowNormalMode::choose_item_after()
 	
 	_user_frame->load_text(_items->get_item_after_game_text());
 	_items->set_control_updata(true);
-	_user_frame->set_choose(true,0, 0);
+	_user_frame->set_choose(true);
 
 	_charactor->change_hp(false);
-	
-	_enemy->set_monster_frame_game_text_enable(true);
-	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
 }
 
 void ShowNormalMode::monster_frame_no_battle()
@@ -158,10 +148,6 @@ void ShowNormalMode::monster_frame_no_battle()
     _items->set_control_updata(false);
 	_user_frame->set_choose(false);
     _enemy->set_enemy_img_init_or_damege(init_img);
-	if (_button_frame->get_current_selection() == 2)
-	{
-		_items->set_item_cost_round_init(_user_frame->get_current_selection(),_button_frame->get_current_selection());
-	}
 }
 
 void ShowNormalMode::monster_frame_battle()
@@ -170,16 +156,15 @@ void ShowNormalMode::monster_frame_battle()
     _heart_test->set_shine_mode(false);
     _user_frame->control_frame(_enemy->get_monster_battle_mode());
     _enemy->set_monster_frame_game_text_enable(true);
-    _monster_frame->set_enable(true,_enemy->get_now_monster_frame_after_index(),_enemy->get_now_monster_frame_after_text_len());
+	
+	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
+    _monster_frame->set_enable(true);
 }
 
 void ShowNormalMode::choose_mercy()
 {
 	_user_frame->load_text(_enemy->get_mercy_game_text());
-	_user_frame->set_choose(true,0,1);
-	
-	_enemy->set_monster_frame_game_text_enable(true);
-	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
+	_user_frame->set_choose(true);
 }
 
 void ShowNormalMode::choose_mercy_after()
@@ -187,7 +172,7 @@ void ShowNormalMode::choose_mercy_after()
 	if (_enemy->is_mercy())
 	{
 		_user_frame->load_text(_enemy->get_mercy_win_game_text());
-		_user_frame->set_choose(true,0,0);
+		_user_frame->set_choose(true);
 	}
 }
 

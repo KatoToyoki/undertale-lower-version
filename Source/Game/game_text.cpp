@@ -49,29 +49,6 @@ void GameText::print_vector()
     }
 }
 
-void GameText::set_text_index(int head, int text_len)
-{
-    print_index = head;
-    _text_len = text_len;
-}
-
-
-void GameText::print_text()
-{
-    for (int i=print_index; i<_text_len+print_index; i++)
-    {
-        if (_mode == talk_mode)
-        {
-            _data[i].set_positon(352,605 + (((i-print_index)%3)*72) );
-        }
-        else
-        {
-            _data[i].set_positon(1234,333 + (((i-print_index)%4)*50) );
-        }
-        _data[i].print();
-    }
-}
-
 void GameText::print()
 {
     print_vector(); 

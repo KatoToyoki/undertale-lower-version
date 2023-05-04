@@ -139,14 +139,24 @@ void Migosp::set_monster_frame()
 {
 	monster_text_vector.clear();
 	monster_text_vector.shrink_to_fit();
-	
+	//
+	//  for(unsigned int j=0;j<monster_text[monster_times].size();j++)
+	//  {
+	//  	monster_text_vector.push_back(TEXXT_M(monster_text[monster_times][j]));
+	//  }
+	// monster_frame_game_text = GameText(monster_text_vector,monster_mode);
+	// monster_cost_round = monster_text.size();
+	// monster_frame_mode = no_enter_talk;
+
+	monster_text = text_content.get_reaction("text","netral_1");
 	 for(unsigned int j=0;j<monster_text[monster_times].size();j++)
 	 {
 	 	monster_text_vector.push_back(TEXXT_M(monster_text[monster_times][j]));
 	 }
 	monster_frame_game_text = GameText(monster_text_vector,monster_mode);
 	monster_cost_round = monster_text.size();
-	monster_frame_mode = no_enter_talk;
+	monster_frame_mode = enter_talk;
+	//enter_talk work example
 }
 
 void Migosp::set_next_round_text()
