@@ -595,19 +595,21 @@ void PapyrusRound::DogAnimation(Move *heart)
     switch (dogAnimation)
     {
     case 1:
+    case 2:
         enemyBarrage[0].barrage_img.ShowBitmap();
         enemyBarrage[0].barrage_img.SetAnimation(150,false);
         break;
-    case 2:
+    case 3:
         enemyBarrage[0].UnshowIMG();
         enemyBarrage[0].set_positon(2000,2000);
         enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(0);
         enemyBarrage[1].barrage_img.SetTopLeft(1000,810);
         break;
-    case 3:
+    case 4:
+    case 5:
         enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(1);
         break;
-    case 4:
+    case 6:
         enemyBarrage[1].UnshowIMG();
         enemyBarrage[1].set_positon(2000,2000);
         enemyBarrage[2].barrage_img.SetTopLeft(1000,810);
