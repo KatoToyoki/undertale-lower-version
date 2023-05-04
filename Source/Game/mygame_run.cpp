@@ -278,7 +278,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     stage_go-=1;
   }
   
-  if (stage_go <4 && stage_go >1 && ((nChar == 0x5A || nChar == VK_RETURN) || (nChar == 0x58 || nChar == VK_SHIFT)))
+  if (stage_go == 1 || stage_go <4 && stage_go >1 && ((nChar == 0x5A || nChar == VK_RETURN) || (nChar == 0x58 || nChar == VK_SHIFT)))
   {
     user_frame._current_selection = 0;
   }
