@@ -26,7 +26,7 @@ void TextContent::HandleActContent(std::string fileName, std::string situation)
     }
 }
 
-std::vector<std::vector<std::string>> TextContent::get_reaction(std::string fileName, std::string situation, bool random)
+std::vector<std::vector<std::string>> TextContent::get_reaction(std::string situation)
 {
     return data_context[situation];
 }

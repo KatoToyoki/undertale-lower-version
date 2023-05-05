@@ -15,8 +15,8 @@ GreaterDog::GreaterDog()
 		target_mode);
 	_is_mercy = false;
 	mercy_win_text = GameText({
-		TEXXT(text_content.get_reaction("GreaterDogAct","win_text")[0][0]),
-		TEXXT(text_content.get_reaction("GreaterDogAct","win_text")[0][1])
+		TEXXT(text_content.get_reaction("win_text")[0][0]),
+		TEXXT(text_content.get_reaction("win_text")[0][1])
 	},
 	talk_mode);
 }
@@ -92,7 +92,7 @@ void GreaterDog::set_act_updata()
 	act_text_vector.shrink_to_fit();
 	if (_current_selection == check_d )
 	{
-		act_text = text_content.get_reaction("GreaterDogAct","check");
+		act_text = text_content.get_reaction("check");
 	}
 	if (_current_selection == pet_d)
 	{
@@ -101,29 +101,29 @@ void GreaterDog::set_act_updata()
 			 switch (pet_times)
 			 {
 			 case 1:
-			 	  act_text = text_content.get_reaction("GreaterDogAct","play_then_pet");
+			 	  act_text = text_content.get_reaction("play_then_pet");
 				  break;
 			 case 2 :
-			 	  act_text = text_content.get_reaction("GreaterDogAct","last_pet");
+			 	  act_text = text_content.get_reaction("last_pet");
 				  break;
 			 default:
-			 	  act_text = text_content.get_reaction("GreaterDogAct","after_last_pet");
+			 	  act_text = text_content.get_reaction("after_last_pet");
 				  break;
 			 }
 		}
 		else if (!is_play_afb && is_pet_afb)
 		{
-			 act_text = text_content.get_reaction("GreaterDogAct","after_first_pet");//
+			 act_text = text_content.get_reaction("after_first_pet");//
 			 pet_times=0;
 		}
 		else if (is_beckon)
 		{
-			 act_text = text_content.get_reaction("GreaterDogAct","pet_first_time");//not run
+			 act_text = text_content.get_reaction("pet_first_time");//not run
 			 pet_times=0;
 		}
 		else
 		{
-			 act_text = text_content.get_reaction("GreaterDogAct","cant_pet");
+			 act_text = text_content.get_reaction("cant_pet");
 			 pet_times=0;
 		}
 	}
@@ -132,10 +132,10 @@ void GreaterDog::set_act_updata()
 		switch(beckon_times)
 		{
 		case 1:
-			 act_text = text_content.get_reaction("GreaterDogAct","first_beckon");
+			 act_text = text_content.get_reaction("first_beckon");
 			 break;
 		default:
-			 act_text = text_content.get_reaction("GreaterDogAct","after_first_beckon");
+			 act_text = text_content.get_reaction("after_first_beckon");
 			 break;
 		}
 	}
@@ -146,16 +146,16 @@ void GreaterDog::set_act_updata()
 			 switch (play_times)
 			 {
 			 case 1:
-			 	  act_text = text_content.get_reaction("GreaterDogAct","play_after_pet");
+			 	  act_text = text_content.get_reaction("play_after_pet");
 				  break;
 			 default:
-			 	  act_text = text_content.get_reaction("GreaterDogAct","after_first_play");
+			 	  act_text = text_content.get_reaction("after_first_play");
 				  break;
 			 }
 		}
 		else
 		{
-			 act_text = text_content.get_reaction("GreaterDogAct","cant_play");
+			 act_text = text_content.get_reaction("cant_play");
 			 play_times=0;
 		}
 	}
@@ -166,10 +166,10 @@ void GreaterDog::set_act_updata()
 		case 1:
 		case 2:
 		case 3:
-			 act_text = text_content.get_reaction("GreaterDogAct","ignore_4");
+			 act_text = text_content.get_reaction("ignore_4");
 			 break;
 		case 4:
-			 act_text = text_content.get_reaction("GreaterDogAct","ignore_over_4");
+			 act_text = text_content.get_reaction("ignore_over_4");
 			 break;
 		}
 	}
@@ -241,54 +241,54 @@ void GreaterDog::set_next_round_text()
 {
 	next_text_vector.clear();
 	next_text_vector.shrink_to_fit();
-	next_round_text = text_content.get_reaction("GreaterDogAct","new_round_begin");
+	next_round_text = text_content.get_reaction("new_round_begin");
 	
 	if (hp < 50)
 	{
-		next_round_text = text_content.get_reaction("GreaterDogAct","hp_low");
+		next_round_text = text_content.get_reaction("hp_low");
 	}
 	else if (is_play_afb)
 	{
 		switch (pet_times)
 		{
 		case 0:
-			next_round_text = text_content.get_reaction("GreaterDogAct","last_pet_count_0");
+			next_round_text = text_content.get_reaction("last_pet_count_0");
 			break;
 		case 1:
-			next_round_text = text_content.get_reaction("GreaterDogAct","last_pet_count_1");
+			next_round_text = text_content.get_reaction("last_pet_count_1");
 			break;
 		default:
-			next_round_text = text_content.get_reaction("GreaterDogAct","last_pet_count_plus");
+			next_round_text = text_content.get_reaction("last_pet_count_plus");
 			break;
 		}
 	}
 	else if (is_pet_afb && pet_times == 0)
 	{
-		next_round_text = text_content.get_reaction("GreaterDogAct","afb_play_wait_pet");
+		next_round_text = text_content.get_reaction("afb_play_wait_pet");
 	}
 	else if(ignore_times >=3)
 	{
-		next_round_text = text_content.get_reaction("GreaterDogAct","ignore_4_next_round");
+		next_round_text = text_content.get_reaction("ignore_4_next_round");
 	}
 	else if (ignore_times > 0 && ignore_times < 3)
 	{
-		next_round_text = text_content.get_reaction("GreaterDogAct","ignore_over_4_next_round");
+		next_round_text = text_content.get_reaction("ignore_over_4_next_round");
 	}
 	else if (!is_init)
 	{
 		switch (act_times_enter%4)
 		{
 		case 0:
-			next_round_text = text_content.get_reaction("GreaterDogAct","after_init_1");
+			next_round_text = text_content.get_reaction("after_init_1");
 			break;
 		case 1:
-			next_round_text = text_content.get_reaction("GreaterDogAct","after_init_2");
+			next_round_text = text_content.get_reaction("after_init_2");
 			break;
 		case 2:
-			next_round_text = text_content.get_reaction("GreaterDogAct","after_init_3");
+			next_round_text = text_content.get_reaction("after_init_3");
 			break;
 		case 3:
-			next_round_text = text_content.get_reaction("GreaterDogAct","after_init_4");
+			next_round_text = text_content.get_reaction("after_init_4");
 			break;
 		}
 	}
