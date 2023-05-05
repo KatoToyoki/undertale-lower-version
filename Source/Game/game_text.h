@@ -20,7 +20,6 @@ public:
     int get_positon_x(int index);
     int get_positon_y(int index);
     void set_enable(bool enable);
-    void set_text_index(int head, int text_len);
     void print();
 
     int get_vector_len();
@@ -33,5 +32,4 @@ private:
     int print_index = 0;
   
     void print_vector();
-    void print_text();
 };

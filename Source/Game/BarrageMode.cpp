@@ -148,21 +148,13 @@ bool BarrageMode::GetIsAttackEnd()
     return isAttackEnd;
 }
 
-int BarrageMode::GetMinusHP_M(Move *heart, int command)
+void BarrageMode::GetMinusHP_M(Move *heart,Character *character, int command)
 {
     for(int i=0;i<_quantity;i++)
     {
-        damageToCharacter=0;
         enemyBarrage[i].set_show_enable(true);
-        damageToCharacter = enemyBarrage[i].damege_hit(heart,command);
-        
-        if(damageToCharacter!=0)
-        {
-            return damageToCharacter;
-        }
+        enemyBarrage[i].damege_hit(heart,character,command);
     }
-
-    return 0;
 }
 
 bool BarrageMode::LeaveAtRight()

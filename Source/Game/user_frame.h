@@ -23,7 +23,7 @@ public:
   int get_text_vector_len();
   
   void load_text(GameText game_text);
-  void set_choose(bool enable, int head = 0, int text_len = 0);
+  void set_choose(bool enable);
   void set_heart_mode(int mode);
   
   void choose_updata(UINT nChar);
@@ -47,6 +47,5 @@ private:
   
   bool move_done = true;
   bool _enable = false;
-  int _head = 0,_text_len = 1;
   GameText _game_text;
 };

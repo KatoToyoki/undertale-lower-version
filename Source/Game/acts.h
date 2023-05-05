@@ -4,11 +4,6 @@
 struct Act
 {
     std::string name;
-    GameText act_after;
-    GameText act_next_round;
-    int index = 0;
-    int cost_round = 1;
-    vector<int> act_after_len_list;
 };
 
 class Acts

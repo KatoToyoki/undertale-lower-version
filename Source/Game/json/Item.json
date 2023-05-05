@@ -1,0 +1,126 @@
+{
+    "NiceCream": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content1": "* You recovered 15 HP!"
+                }
+            }
+        }
+    ],
+    "NiceCream_random": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* You're super spiffy!",
+                    "content1": "* Are those claws natural?",
+                    "content2": "* Love yourself! I love you!",
+                    "content3": "* You look nice today!",
+                    "content4": "* (An illustration of a hug)",
+                    "content5": "* Have a wonderful day!",
+                    "content6": "* Is this as sweet as you?",
+                    "content7": "* You're just great!"
+                }
+            }
+        }
+    ],
+    "Bisicle": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* You eat one half of",
+                    "content1": "  the Bisicle.",
+                    "content2": "* You recovered 11 HP!"
+                }
+            }
+        }
+    ],
+    "Unisicle": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* You eat the Unsicle",
+                    "content1": "* You recovered 11 HP!"
+                }
+            }
+        }
+    ],
+    "InstaNood": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* You remove the Instant",
+                    "content1": "  Noodles from their",
+                    "content2": "  packaging."
+                },
+                "frame1": {
+                    "content0": "* You put some water in",
+                    "content1": "  the pot and place it on",
+                    "content2": "  the heat."
+                },
+                "frame2": {
+                    "content0": "* You wait for the water",
+                    "content1": "  to boil..."
+                },
+                "frame3": {
+                    "content0": "* ...",
+                    "content1": "* ...",
+                    "content2": "* ..."
+                },
+                "frame4": {
+                    "content0": "* It's boiling."
+                },
+                "frame5": {
+                    "content0": "* You place the noodles",
+                    "content1": "  into the pot."
+                },
+                "frame6": {
+                    "content0": "* 4 minutes left until",
+                    "content1": "  the noodles are finished."
+                },
+                "frame7": {
+                    "content0": "* 3 minutes left until",
+                    "content1": "  the noodles are finished."
+                },
+                "frame8": {
+                    "content0": "* 2 minutes left until",
+                    "content1": "  the noodles are finished."
+                },
+                "frame9": {
+                    "content0": "* 1 minutes left until",
+                    "content1": "  the noodles are finished."
+                },
+                "frameA": {
+                    "content0": "* The noodles are finished."
+                },
+                "frameB": {
+                    "content0": "* ... they don't taste very",
+                    "content1": "  good."
+                },
+                "frameC": {
+                    "content0": "* You add the flavor packet."
+                },
+                "frameD": {
+                    "content0": "* That's better."
+                },
+                "frameE": {
+                    "content0": "* Not great, but better."
+                },
+                "frameF": {
+                    "content0": "* You ate the Instant Noodles.",
+                    "content1": "* You recovered 4 HP!"
+                }
+            }
+        }
+    ],
+    "tem_flake": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* You eat the tem flake",
+                    "content1": "* You recovered 2 HP!"
+                }
+            }
+        }
+    ]
+}

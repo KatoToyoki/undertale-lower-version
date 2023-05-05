@@ -11,6 +11,7 @@ public:
     void set_enable(bool enable);
     void type_mode();
     void print();
+
     int _x,_y;
 private:
     bool _enable = false;

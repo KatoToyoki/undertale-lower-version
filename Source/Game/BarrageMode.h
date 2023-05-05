@@ -9,6 +9,7 @@
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
 #include "../Library/json.hpp"
+#include "Character.h"
 using json = nlohmann::json;
 
 // to set init data ( resetting can use it as well)
@@ -93,7 +94,7 @@ public:
     // to return the damage that character will receive
     // i separated this with MovingBarrage because Character must call this function to get the damage
     // meanwhile, MovingBarrage just do move, detection is not its job
-    int GetMinusHP_M(Move *heart, int command=appear);
+    void GetMinusHP_M(Move *heart,Character *character, int command=appear);
 
     // to check if this round is end or not
     bool LeaveAtRight();

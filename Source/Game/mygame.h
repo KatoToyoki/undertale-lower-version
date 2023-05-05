@@ -44,13 +44,13 @@
 #include "user_frame.h"
 #include "menu.h"
 #include "game_text.h"
-#include "first_stage_sub_stage/show_menu.h"
 #include "first_stage_sub_stage/show_normal_mode.h"
 #include "barrage.h"
 #include "Character.h"
 #include "monster_frame.h"
 #include "Fight.h"
 #include "BarrageMode.h"
+#include "greater_dog.h"
 #include "PapyrusRound.h"
 #include "TextContent.h"
 
@@ -133,8 +133,10 @@ private:
 
   MonsterFrame monster_frame;
   Migosp migosp;
+  GreaterDog greater_dog;
   Items items;
   Character charactor;
+  Enemy *enemy;
   
   int stage_go = 0;
   bool stage_go_enable_add = true;

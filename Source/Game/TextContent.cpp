@@ -20,20 +20,16 @@ void TextContent::HandleActContent(std::string fileName, std::string situation)
                 }
                 container.push_back(_frame);
             }
-            act.push_back(container);
+                actOneReaction = container;
         }
     }
 }
 
-void TextContent::ActNormalSituation()
+std::vector<std::vector<std::string>> TextContent::get_reaction(std::string fileName, std::string situation, bool random)
 {
-    actOneReaction = act[0];
-}
-
-void TextContent::ActRandomSitionation()
-{
-    int random=rand()%act.size();
-    actOneReaction = act[random];
+    HandleActContent(fileName,situation);
+    
+    return actOneReaction;
 }
 
 void TextContent::PrintItOut()
@@ -52,5 +48,6 @@ void TextContent::PrintItOut()
         game_framework::CDDraw::ReleaseBackCDC();
     }
 }
+
 
 

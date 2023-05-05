@@ -7,7 +7,6 @@
 void MonsterFrame::load_img()
 {
   monster_frame_img.LoadBitmapByString({"resources/monster_frame.bmp"},RGB(0,0,0));
-
 }
 
 void MonsterFrame::load_game_text_and_mode(GameText game_text,int mode)
@@ -16,20 +15,15 @@ void MonsterFrame::load_game_text_and_mode(GameText game_text,int mode)
   _mode = mode;
 }
 
-
 void MonsterFrame::set_img_position(int x, int y)
 {
   monster_frame_img.SetTopLeft(x,y);
 }
 
-void MonsterFrame::set_enable(bool enable,int head, int text_len)
+void MonsterFrame::set_enable(bool enable)
 {
   _enable = enable;
   _game_text.set_enable(enable);
-  if (_enable)
-  {
-    _game_text.set_text_index(head,text_len);
-  }
 }
 
 void MonsterFrame::show_monster_frame_and_print()
@@ -48,6 +42,10 @@ void MonsterFrame::show_monster_frame_and_print()
   {
       monster_frame_img.ShowBitmap();
       _game_text.print();
+  }
+  else if (_enable && _mode == pass_talk)
+  {
+    _time_count +=time_count;
   }
   else
   {

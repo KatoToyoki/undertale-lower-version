@@ -1,4 +1,14 @@
 {
+    "cant_play": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog is not excited",
+                    "content1": "  enough to play with."
+                }
+            }
+        }
+    ],
     "check": [
         {
             "reaction0": {
@@ -85,8 +95,12 @@
                 "frame0": {
                     "content0": "* Tummy rubs are forbidden."
                 }
-            },
-            "reaction1": {
+            }
+        }
+    ],
+    "after_first_pet": [
+        {
+            "reaction0": {
                 "frame0": {
                     "content0": "* Greater Dog's excitement is",
                     "content1": "  creating a power field that",
@@ -116,16 +130,6 @@
                     "content0": "* The Greater Dog's ears",
                     "content1": "  perk up.",
                     "content2": "* Nothing else happens."
-                }
-            }
-        }
-    ],
-    "cant_play": [
-        {
-            "reaction0": {
-                "frame0": {
-                    "content0": "* Greater Dog is not excited",
-                    "content1": "  enough to play with."
                 }
             }
         }
@@ -187,6 +191,112 @@
             "reaction0": {
                 "frame0": {
                     "content0": "* It's the Greater Dog."
+                }
+            }
+        }
+    ],
+    "hp_low": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog is panting slowly."
+                }
+            }
+        }
+    ],
+    "after_init_1": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog is watching you",
+                    "content1": "  intently."
+                }
+            }
+        }
+    ],
+    "after_init_2": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog is waiting for",
+                    "content1": "  your command."
+                }
+            }
+        }
+    ],
+    "after_init_3": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog is seeking",
+                    "content1": "  affection."
+                }
+            }
+        }
+    ],
+    "after_init_4": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* It smells like freshly",
+                    "content1": "  -squeezed puppy juice."
+                }
+            }
+        }
+    ],
+    "ignore_4_next_round": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog just wants",
+                    "content1": "  affection."
+                }
+            }
+        }
+    ],
+    "ignore_over_4_next_round": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog is making",
+                    "content1": "  puppy-dog eyes."
+                }
+            }
+        }
+    ],
+    "afb_play_wait_pet": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog is patting the",
+                    "content1": "  ground with its front paws."
+                }
+            }
+        }
+    ],
+    "last_pet_count_0": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog wants some TLC."
+                }
+            }
+        }
+    ],
+    "last_pet_count_1": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Pet capacity is 40-percent."
+                }
+            }
+        }
+    ],
+    "last_pet_count_plus": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Greater Dog is contented."
                 }
             }
         }

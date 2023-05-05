@@ -15,6 +15,7 @@ public:
     void MenuOff();
     void choose(UINT nChar);
     bool get_menu();
+    int get_current_stage() {return current_stage;}
     
     game_framework::CMovingBitmap menuTop, menuBottom;
 private:

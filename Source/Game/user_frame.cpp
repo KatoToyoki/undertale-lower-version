@@ -17,7 +17,6 @@ void UserFrame::load_img() {
 }
 
 void UserFrame::move_frame_to_battle_mode() {
-  // game_framework::CSpecialEffect::Delay(1);
   int height = get_height();
   int width = get_width();
   Coordinate leftTop = {get_corner()._leftTop.x - get_pixel(),
@@ -88,6 +87,7 @@ void UserFrame::control_frame(
     if (get_width() <= 416) {
       frame_commend = 4;
       create_frame(314, 416, 751, 563);
+      move_done = true;
       break;
     }
     move_done = false;
@@ -117,8 +117,12 @@ void UserFrame::control_frame(
     break;
   case 3: // change long battle to talk
     frame_commend = 2;
-    if (get_width() >= 1294) {
+    if (get_width() >= 1294-10) {
       frame_commend = 3;
+      if (get_height() == 227)
+      {
+        create_frame(228, 1294, 312, 649);
+      }
     }
     if (get_height() >= 314 && get_width() >= 1294) {
       frame_commend = 4;
@@ -169,16 +173,12 @@ int UserFrame::get_current_selection()
   return _current_selection;
 }
 
-void UserFrame::set_choose(bool enable, int head, int text_len)
+void UserFrame::set_choose(bool enable)
 {
   _enable = enable;
-  _head = head;
-  _text_len = text_len;
   _game_text.set_enable(_enable);
-  _game_text.set_text_index(_head,_text_len);
   if (_enable && _game_text._mode != talk_mode)
   {
-    // _current_selection = 0;
     int x= _game_text.get_positon_x(_current_selection);
     int y= _game_text.get_positon_y(_current_selection);
     heart.SetTopLeft(x-78,y+21);
