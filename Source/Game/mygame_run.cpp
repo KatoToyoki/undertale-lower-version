@@ -165,7 +165,14 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       if (menu.get_current_stage()== 3)
       {
         papyrusRound.SelectRound(&heart_test,&charactor);
-        papyrusRound.GetMinusHP_M(&heart_test,&charactor,disappear);
+        if(papyrusRound.GetCurrentRound()!=20)
+        {
+          papyrusRound.GetMinusHP_M(&heart_test,&charactor,disappear);
+        }
+        else
+        {
+          papyrusRound.GetMinusHP_M(&heart_test,&charactor,appear);
+        }
       }
       else
       {
@@ -262,6 +269,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     items.item_after_stage_control_updata(nChar,&stage_go);
     if (stage_go == 3) {enemy->act_choose_count(nChar);}
     if (stage_go!= 7) {charactor.change_hp_updata(nChar);}
+    papyrusRound.ToGetEnterCount(nChar);
   }
 
   //stage_control
@@ -326,6 +334,7 @@ void CGameStateRun::OnShow()
     // ===========================================================
     // enemy attack path
     papyrusRound.RevealBarrage();
+    papyrusRound.DogAnimation(&heart_test,&charactor);
 
     user_frame.show_frame();
     user_frame.show_select_heart();
