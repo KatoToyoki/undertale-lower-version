@@ -242,8 +242,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameFight.set_monster(&migosp);
 
   charactor.set_hp_img();
-
-  testDog.HandleActContent("GreaterDogAct","first_beckon");
 }
 
 

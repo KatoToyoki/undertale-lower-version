@@ -124,12 +124,9 @@ private:
   ButtonFrame button_frame;
   Move heart_test;
   Menu menu;
-  GameText game_text;
   ShowNormalMode show_normal_mode;
 
-  
   PapyrusRound papyrusRound;
-  TextContent testDog;
 
   MonsterFrame monster_frame;
   Migosp migosp;

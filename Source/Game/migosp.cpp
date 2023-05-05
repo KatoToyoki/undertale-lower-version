@@ -14,8 +14,9 @@ Migosp::Migosp()
 		Text (60, "* Spare", RGB(255,255,255),500, 465,613)},
 		target_mode);
 	mercy_win_text = GameText({
-		Text (60, "* YOU WON!", RGB(255,255,255),500, 465,613),
-		Text (60, "* You earned 0 XP and 3 gold.", RGB(255,255,255),500, 465,613)},
+		TEXXT(text_content.get_reaction("MigospAct","win_text")[0][0]),
+		TEXXT(text_content.get_reaction("MigospAct","win_text")[0][1])
+	},
 		talk_mode);
 	_is_mercy = false;
 }
@@ -47,7 +48,6 @@ void Migosp::set_img()
 	
 	enemy_barrage.SetTopLeft(933,799);
 	enemy_barrage.SetAnimation(250,false);
-	
 }
 
 void Migosp::set_hp_img()
@@ -90,7 +90,7 @@ void Migosp::set_act_updata()
 	}
 	 for(unsigned int j=0;j<act_text[act_times].size();j++)
 	 {
-		   act_text_vector.push_back(TEXXT(act_text[act_times][j]));
+	 	act_text_vector.push_back(TEXXT(act_text[act_times][j]));
 	 }
 	act_after = GameText(act_text_vector,talk_mode);
 	cost_round = act_text.size();
