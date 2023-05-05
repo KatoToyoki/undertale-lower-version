@@ -521,7 +521,7 @@ void PapyrusRound::round11(Move* heart)
 {
     for(int i=0;i<_quantity;i++)
     {
-        GoLeft(enemyBarrage[i],heart,allData[i].speed);
+        GoLeft(enemyBarrage[i],heart,allData[i].speed+3);
         CompoundBarrage(enemyBarrage[11],enemyBarrage[12],heart);
         CompoundBarrage(enemyBarrage[14],enemyBarrage[13],heart);
         CompoundBarrage(enemyBarrage[15],enemyBarrage[16],heart);
@@ -719,7 +719,6 @@ void PapyrusRound::round21(Move* heart)
     // 10 11 12 13
     if(fifthWave)
     {
-        
         PincerAttack(10,13,heart,1,compoundDown);
         if(DetectCertainPoint(enemyBarrage[10],910,back)||DetectLeft(enemyBarrage[10],vanish))
         {
