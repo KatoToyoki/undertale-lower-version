@@ -90,23 +90,23 @@
                     "content0": "* 1 minutes left until",
                     "content1": "  the noodles are finished."
                 },
-                "frame10": {
+                "frameA": {
                     "content0": "* The noodles are finished."
                 },
-                "frame11": {
+                "frameB": {
                     "content0": "* ... they don't taste very",
                     "content1": "  good."
                 },
-                "frame12": {
+                "frameC": {
                     "content0": "* You add the flavor packet."
                 },
-                "frame13": {
+                "frameD": {
                     "content0": "* That's better."
                 },
-                "frame14": {
+                "frameE": {
                     "content0": "* Not great, but better."
                 },
-                "frame15": {
+                "frameF": {
                     "content0": "* You ate the Instant Noodles.",
                     "content1": "* You recovered 4 HP!"
                 }

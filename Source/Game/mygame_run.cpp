@@ -140,7 +140,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     
     battel_mode_timer = 0;
 
-    show_normal_mode.set_heart_mode(heart_blue);
+    // show_normal_mode.set_heart_mode(heart_blue);
     if (enemy->get_now_monster_frame_mode() == enter_talk)
     {
       stage_go_enable_add = true;
@@ -347,8 +347,5 @@ void CGameStateRun::OnShow()
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
-
-    testDog.PrintItOut();
-
   }
 }

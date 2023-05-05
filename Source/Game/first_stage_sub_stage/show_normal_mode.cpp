@@ -63,8 +63,6 @@ void ShowNormalMode::init()//宣告於OnMove()
 	_enemy->set_barrage_enable(false);
 	_enemy->hp = _game_fight->get_current_monster_hp();
 	
-	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),enter_talk);
-
 	_charactor->change_hp(false);
 	
 	if (_user_frame->get_move_done())
