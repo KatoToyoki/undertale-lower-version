@@ -32,7 +32,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     enemy->set_act_updata();
     enemy->set_monster_frame_init();
     items.set_item_updata();
-    show_normal_mode.updata();
   }
   switch (stage_go)
   {
@@ -214,6 +213,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   {
     stage_go = 9;
   }
+  show_normal_mode.updata();
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定

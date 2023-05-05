@@ -28,14 +28,6 @@ void TextContent::HandleActContent(std::string fileName, std::string situation)
 
 std::vector<std::vector<std::string>> TextContent::get_reaction(std::string fileName, std::string situation, bool random)
 {
-    // HandleActContent(fileName,situation);
-    // std::vector<std::vector<std::string>> vector;
-    // vector = data_context[situation];
-    // return actOneReaction;
-    // if (data_context.find(situation) == data_context.end())
-    // {
-    //     return {{}};
-    // }
     return data_context[situation];
 }
 
@@ -57,22 +49,8 @@ void TextContent::get_data(std::string fileName)
 
 void TextContent::load(string file_name)
 {
-    // switch (current_selection)
-    // {
-    // case 1:
-        get_data(file_name);
-    //     break;
-    // case 2:
-    //     get_data("GreaterDogAct");
-    //     break;
-    // case 3:
-    //     get_data("MigospAct");
-    //     break;
-    // default:
-    //     break;
-    // }
+    get_data(file_name);
 }
-
 
 void TextContent::PrintItOut()
 {
