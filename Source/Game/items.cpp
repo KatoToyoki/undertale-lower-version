@@ -5,6 +5,7 @@
 
 Items::Items()
 {
+    text_content.load("Item");
     set_items_init();
 }
 

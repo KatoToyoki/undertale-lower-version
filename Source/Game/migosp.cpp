@@ -5,6 +5,7 @@
 
 Migosp::Migosp()
 {
+	text_content.load("MigospAct");
 	set_acts();
 	_current_selection = 0;
 	monster_name = GameText({
@@ -13,13 +14,14 @@ Migosp::Migosp()
 	mercy_text = GameText({
 		Text (60, "* Spare", RGB(255,255,255),500, 465,613)},
 		target_mode);
+	_is_mercy = false;
 	mercy_win_text = GameText({
 		TEXXT(text_content.get_reaction("MigospAct","win_text")[0][0]),
 		TEXXT(text_content.get_reaction("MigospAct","win_text")[0][1])
 	},
-		talk_mode);
-	_is_mercy = false;
+	talk_mode);
 }
+
 void Migosp::set_img()
 {
 	set_hp_img();

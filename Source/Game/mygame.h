@@ -134,6 +134,7 @@ private:
   Items items;
   Character charactor;
   Enemy *enemy;
+  TextContent text_content;
   
   int stage_go = 0;
   bool stage_go_enable_add = true;
