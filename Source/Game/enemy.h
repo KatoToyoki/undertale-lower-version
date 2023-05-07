@@ -68,6 +68,7 @@ public:
     virtual void set_monster_frame() = 0;
 
     virtual std::vector<std::vector<std::string>> get_random_text(std::string name) = 0;
+    virtual void set_fight() {};
 
     Acts acts;
     int hp = 100;

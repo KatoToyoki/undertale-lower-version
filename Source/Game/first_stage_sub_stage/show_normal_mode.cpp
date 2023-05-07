@@ -51,6 +51,7 @@ void ShowNormalMode::init()//宣告於OnMove()
 	_heart_test->set_heart_jump_enable_and_init(false);
 
 	_game_fight->set_fight_enable(false);
+	_game_fight->set_monster(_enemy);
 
 	_enemy->set_act_game_text_enable(false);
 	_enemy->set_monster_frame_game_text_enable(false);

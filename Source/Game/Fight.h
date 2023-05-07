@@ -83,7 +83,7 @@ private:
     int fightBarthisRound=0;
 
     game_framework::CMovingBitmap attack_red;
-    Migosp *_enemy;
+    Enemy *_enemy;
 protected:
     
 public:
@@ -113,7 +113,7 @@ public:
     // REQUIRED
     // load and set img for init
     void load_img();
-    void set_monster(Migosp *enemy);
+    void set_monster(Enemy *enemy);
     
     // REQUIRED
     // put OnShow, can modify enable to control if img will reveal or not

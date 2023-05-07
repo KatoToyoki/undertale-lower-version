@@ -27,6 +27,7 @@ public:
 
     std::vector<std::vector<std::string>> get_random_text(std::string name) override;
     frame_command get_monster_battle_mode() override { return talk_to_long_battle; }
+    void set_fight() override;//if some thing happend hit need to set
     
     void check_mercy() override;
 private:

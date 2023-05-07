@@ -29,8 +29,8 @@ void GreaterDog::set_img()
 	enemy_img_init.SetTopLeft(584,115);
 	enemy_img_init.SetAnimation(300,false);
 
-	enemy_img_damege.LoadBitmapByString({"resources/dog_hit.bmp"},RGB(0,0,0));
-	enemy_img_damege.SetTopLeft(746,125);
+	enemy_img_damege.LoadBitmapByString({"resources/dog_hit.bmp"},RGB(0,0,255));
+	enemy_img_damege.SetTopLeft(584,115);
 
 	enemy_img_close.LoadBitmapA({"resources/dog_close_0.bmp","resources/dog_close_1.bmp","resources/dog_close_2.bmp","resources/dog_close_2.bmp"},RGB(0,0,255));
 	enemy_img_close.SetTopLeft(584,115);
@@ -307,4 +307,10 @@ void GreaterDog::set_next_round_text()
 		   next_text_vector.push_back(TEXXT(next_round_text[0][j]));
 	 }
 	act_next_round = GameText (next_text_vector,talk_mode);
+}
+
+void GreaterDog::set_fight()
+{
+	ignore_times = 0;
+	enemy_last = enemy_img_init;
 }

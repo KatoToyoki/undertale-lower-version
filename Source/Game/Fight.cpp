@@ -75,7 +75,7 @@ void Fight::load_img()
 	attack_red.SetTopLeft(1050,316);
 	attack_red.SetAnimation(150,false);
 }
-void Fight::set_monster(Migosp* enemy)
+void Fight::set_monster(Enemy* enemy)
 {
     _enemy = enemy;
 }
@@ -126,6 +126,7 @@ void Fight::show_fight_img()
         {
             attack_red.ShowBitmap();
             _enemy->set_enemy_img_init_or_damege(damege);
+            _enemy->set_fight();
         }
     }
     else if((attackThisRound>0 || fightBarthisRound>0) && _enable)
