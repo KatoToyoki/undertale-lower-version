@@ -50,15 +50,14 @@ void Fight::load_img()
     fightBar.LoadBitmapByString({"resources/fight_bar.bmp"});
     fightBar.SetTopLeft(240,593);
 
-    //374 ori
     HP.LoadBitmapByString({"resources/hp_bar_hp.bmp"});
-    HP.SetTopLeft(618,200);
+    HP.SetTopLeft(618,_enemy->fight_bar_positon.y);
 
     HPminus.LoadBitmapByString({"resources/hp_bar_minushp.bmp"});
-    HPminus.SetTopLeft(1300,200);
+    HPminus.SetTopLeft(1300,_enemy->fight_bar_positon.y);
     
     HPFrame.LoadBitmapByString({"resources/hp_bar_frame.bmp"}, RGB(255, 255, 255));
-    HPFrame.SetTopLeft(618,200);
+    HPFrame.SetTopLeft(618,_enemy->fight_bar_positon.y);
 
     greenLineRight.LoadBitmapByString({"resources/green_line_right.bmp"}, RGB(255, 255, 255));
     greenLineRight.SetTopLeft(1185,20);
@@ -72,14 +71,13 @@ void Fight::load_img()
     "resources/attack_6.bmp"
         }
     ,RGB(0,0,0));
-	attack_red.SetTopLeft(1050,316);
+	attack_red.SetTopLeft(_enemy->red_attck_positon.x,_enemy->red_attck_positon.y);
 	attack_red.SetAnimation(150,false);
 }
 void Fight::set_monster(Enemy* enemy)
 {
     _enemy = enemy;
 }
-
 
 void Fight::show_fight_img()
 {
@@ -233,10 +231,9 @@ bool Fight::GetIsMiss()
 
 void Fight::RevealMinusHP()
 {
-    //300 ori
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
     game_framework::CTextDraw::ChangeFontLog(pDC, 40, "Determination Mono Web", RGB(255, 255, 255), 800);
-    game_framework::CTextDraw::Print(pDC, 900, 126, minusHP);
+    game_framework::CTextDraw::Print(pDC, 900, _enemy->fight_bar_positon.y-70, minusHP);
     game_framework::CDDraw::ReleaseBackCDC();
     if(durationMinusHP!=0)
     {
@@ -256,11 +253,11 @@ void Fight::MovingHPBar()
 {
     if(HPminus.GetLeft()-10>minusPosition && _isHPBarStop==false){
         //374 ori
-        HPminus.SetTopLeft(HPminus.GetLeft()-5,200);
+        HPminus.SetTopLeft(HPminus.GetLeft()-5,_enemy->fight_bar_positon.y);
     }
     else if(HPminus.GetLeft()-4<=minusPosition)
     {
-        HPminus.SetTopLeft(minusPosition,200);
+        HPminus.SetTopLeft(minusPosition,_enemy->fight_bar_positon.y);
         _isHPBarStop=true;
     }
 }

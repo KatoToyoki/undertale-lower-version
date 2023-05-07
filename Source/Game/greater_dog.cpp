@@ -38,6 +38,9 @@ void GreaterDog::set_img()
 	enemy_img  =enemy_img_init;
 	enemy_last  =enemy_img_init;
 
+	red_attck_positon = {960,150};
+	fight_bar_positon = {0,374};
+
 	enemy_barrage.LoadBitmapByString({
  "resources/dog_barage_0.bmp",
  "resources/dog_barage_1.bmp",

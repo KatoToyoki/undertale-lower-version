@@ -238,7 +238,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   monster_frame.load_img();
   monster_frame.set_img_position(1190,307);
 
-  gameFight.load_img();
   gameFight.set_fight_enable(false);
 
   charactor.set_hp_img();

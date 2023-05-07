@@ -34,6 +34,9 @@ void Migosp::set_img()
 
 	enemy_img = enemy_img_init;
 	enemy_last = enemy_img_init;
+
+	red_attck_positon = {1050,316};
+	fight_bar_positon = {0,200};
 	
 	enemy_barrage.LoadBitmapByString({
  "resources/std_hand_up.bmp",
