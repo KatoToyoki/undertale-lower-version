@@ -5,6 +5,7 @@
 
 Migosp::Migosp()
 {
+	text_content.load("MigospAct");
 	set_acts();
 	_current_selection = 0;
 	monster_name = GameText({
@@ -13,12 +14,14 @@ Migosp::Migosp()
 	mercy_text = GameText({
 		Text (60, "* Spare", RGB(255,255,255),500, 465,613)},
 		target_mode);
-	mercy_win_text = GameText({
-		Text (60, "* YOU WON!", RGB(255,255,255),500, 465,613),
-		Text (60, "* You earned 0 XP and 3 gold.", RGB(255,255,255),500, 465,613)},
-		talk_mode);
 	_is_mercy = false;
+	mercy_win_text = GameText({
+		TEXXT(text_content.get_reaction("win_text")[0][0]),
+		TEXXT(text_content.get_reaction("win_text")[0][1])
+	},
+	talk_mode);
 }
+
 void Migosp::set_img()
 {
 	set_hp_img();
@@ -47,7 +50,6 @@ void Migosp::set_img()
 	
 	enemy_barrage.SetTopLeft(933,799);
 	enemy_barrage.SetAnimation(250,false);
-	
 }
 
 void Migosp::set_hp_img()
@@ -86,11 +88,11 @@ void Migosp::set_act_updata()
 	act_text_vector.shrink_to_fit();
 	if (_current_selection == check_m )
 	{
-		act_text = text_content.get_reaction("MigospAct","check");
+		act_text = text_content.get_reaction("check");
 	}
 	 for(unsigned int j=0;j<act_text[act_times].size();j++)
 	 {
-		   act_text_vector.push_back(TEXXT(act_text[act_times][j]));
+	 	act_text_vector.push_back(TEXXT(act_text[act_times][j]));
 	 }
 	act_after = GameText(act_text_vector,talk_mode);
 	cost_round = act_text.size();
@@ -117,17 +119,17 @@ std::vector<std::vector<std::string>> Migosp::get_random_text(std::string name)
 	if(name == "neutral")
 	{
 		monster_text ={
-			text_content.get_reaction("MigospAct","netral_1"),
-			text_content.get_reaction("MigospAct","netral_2"),
-			text_content.get_reaction("MigospAct","netral_3"),
-			text_content.get_reaction("MigospAct","netral_4"),
-			text_content.get_reaction("MigospAct","netral_5"),
-			text_content.get_reaction("MigospAct","netral_6"),
-			text_content.get_reaction("MigospAct","netral_7"),
-			text_content.get_reaction("MigospAct","netral_8"),
-			text_content.get_reaction("MigospAct","netral_9"),
-			text_content.get_reaction("MigospAct","netral_10"),
-			text_content.get_reaction("MigospAct","netral_11")
+			text_content.get_reaction("netral_1"),
+			text_content.get_reaction("netral_2"),
+			text_content.get_reaction("netral_3"),
+			text_content.get_reaction("netral_4"),
+			text_content.get_reaction("netral_5"),
+			text_content.get_reaction("netral_6"),
+			text_content.get_reaction("netral_7"),
+			text_content.get_reaction("netral_8"),
+			text_content.get_reaction("netral_9"),
+			text_content.get_reaction("netral_10"),
+			text_content.get_reaction("netral_11")
 		};
 		int random_num = generate_random_num(0,monster_text.size());
 		return monster_text[random_num];
@@ -163,11 +165,11 @@ void Migosp::set_next_round_text()
 {
 	next_text_vector.clear();
 	next_text_vector.shrink_to_fit();
-	next_round_text = text_content.get_reaction("MigospAct","next_round");
+	next_round_text = text_content.get_reaction("next_round");
 	
 	if (hp < 50)
 	{
-		next_round_text = text_content.get_reaction("MigospAct","hp_low");
+		next_round_text = text_content.get_reaction("hp_low");
 	}
 	
 	 for(unsigned int j=0;j<next_round_text[0].size();j++)

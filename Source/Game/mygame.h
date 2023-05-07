@@ -124,12 +124,9 @@ private:
   ButtonFrame button_frame;
   Move heart_test;
   Menu menu;
-  GameText game_text;
   ShowNormalMode show_normal_mode;
 
-  
   PapyrusRound papyrusRound;
-  TextContent testDog;
 
   MonsterFrame monster_frame;
   Migosp migosp;
@@ -137,6 +134,7 @@ private:
   Items items;
   Character charactor;
   Enemy *enemy;
+  TextContent text_content;
   
   int stage_go = 0;
   bool stage_go_enable_add = true;
