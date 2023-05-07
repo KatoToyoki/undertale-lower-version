@@ -232,3 +232,14 @@ void Move::set_heart_jump_enable_and_init(bool enable)
 	jump_time_count_max_up = 330;
 	jump_time_count_max_down = 200;
 }
+
+int Move::GetCurrentX()
+{
+	return (int)move_num_x;
+}
+
+int Move::GetCurrentY()
+{
+	return (int)move_num_y;
+}
+

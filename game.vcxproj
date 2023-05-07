@@ -254,6 +254,7 @@
     <ClCompile Include="Source\Game\first_stage_sub_stage\show_normal_mode.cpp" />
     <ClCompile Include="Source\Game\frame.cpp" />
     <ClCompile Include="Source\Game\game_text.cpp" />
+    <ClCompile Include="Source\Game\GreaterDogRound.cpp" />
     <ClCompile Include="Source\Game\greater_dog.cpp" />
     <ClCompile Include="Source\Game\items.cpp" />
     <ClCompile Include="Source\Game\menu.cpp" />
@@ -352,6 +353,7 @@
     <ClInclude Include="Source\Game\first_stage_sub_stage\show_normal_mode.h" />
     <ClInclude Include="Source\Game\frame.h" />
     <ClInclude Include="Source\Game\game_text.h" />
+    <ClInclude Include="Source\Game\GreaterDogRound.h" />
     <ClInclude Include="Source\Game\greater_dog.h" />
     <ClInclude Include="Source\Game\items.h" />
     <ClInclude Include="Source\Game\menu.h" />

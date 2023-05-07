@@ -143,6 +143,61 @@ void BarrageMode::UnshowBarrage()
     }
 }
 
+void BarrageMode::GoLeft(Barrage& barrage, Move* heart, int speed,Character* character)
+{
+    barrage.set_show_enable(true);
+    barrage.damege_hit(heart,character,disappear);
+    barrage.left_move(speed);
+}
+
+void BarrageMode::GoRight(Barrage& barrage, Move* heart, int speed,Character* character)
+{
+    barrage.set_show_enable(true);
+    barrage.damege_hit(heart,character,disappear);
+    barrage.right_move(speed);
+}
+
+void BarrageMode::GoUp(Barrage& barrage, Move* heart, int speed, Character* character)
+{
+    barrage.set_show_enable(true);
+    barrage.damege_hit(heart,character,disappear);
+    barrage.up_move(speed);
+}
+
+bool BarrageMode::DetectCertainPoint(Barrage& barrage,int point ,int position)
+{
+    switch (position)
+    {
+    case front:
+        return barrage.GetOnePosition(IMGleft)<point;
+    case back:
+        return barrage.GetOnePosition(IMGleft)>point;
+    case frontEqual:
+        return barrage.GetOnePosition(IMGleft)<=point;
+    case backEqual:
+        return barrage.GetOnePosition(IMGleft)>=point;
+    case up:
+        return barrage.GetOnePosition(IMGtop)<point;
+    }
+    
+    return false;
+}
+
+bool  BarrageMode::DetectLeft(Barrage& barrage,int direction)
+{
+    switch (direction)
+    {
+    case leftAtLeft:
+        return barrage.GetOnePosition(IMGleft)<650;
+    case leftAtRight:
+        return barrage.GetOnePosition(IMGleft)>1250;
+    case vanish:
+        return barrage.GetOnePosition(IMGtop)==0;
+    }
+
+    return false;
+}
+
 bool BarrageMode::GetIsAttackEnd()
 {
     return isAttackEnd;

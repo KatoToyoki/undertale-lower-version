@@ -24,20 +24,6 @@ void PapyrusRound::SetAllData()
     isAttackEnd=false;
 }
 
-void PapyrusRound::GoLeft(Barrage& barrage, Move* heart, int speed,Character* character)
-{
-    barrage.set_show_enable(true);
-    barrage.damege_hit(heart,character,disappear);
-    barrage.left_move(speed);
-}
-
-void PapyrusRound::GoRight(Barrage& barrage, Move* heart, int speed,Character* character)
-{
-    barrage.set_show_enable(true);
-    barrage.damege_hit(heart,character,disappear);
-    barrage.right_move(speed);
-}
-
 void PapyrusRound::PincerAttack(int start,int end,Move* heart, int wave, int appearance,Character *character)
 {
     int q=2;
@@ -170,38 +156,6 @@ void PapyrusRound::DetectRoundEnd(int direction)
         }
         break;
     }
-}
-
-bool  PapyrusRound::DetectLeft(Barrage& barrage,int direction)
-{
-    switch (direction)
-    {
-    case leftAtLeft:
-        return barrage.GetOnePosition(IMGleft)<650;
-    case leftAtRight:
-        return barrage.GetOnePosition(IMGleft)>1250;
-    case vanish:
-        return barrage.GetOnePosition(IMGtop)==0;
-    }
-
-    return false;
-}
-
-bool PapyrusRound::DetectCertainPoint(Barrage& barrage,int point ,int position)
-{
-    switch (position)
-    {
-    case front:
-        return barrage.GetOnePosition(IMGleft)<point;
-    case back:
-        return barrage.GetOnePosition(IMGleft)>point;
-    case frontEqual:
-        return barrage.GetOnePosition(IMGleft)<=point;
-    case backEqual:
-        return barrage.GetOnePosition(IMGleft)>=point;
-    }
-    
-    return false;
 }
 
 int PapyrusRound::GetCurrentRound()

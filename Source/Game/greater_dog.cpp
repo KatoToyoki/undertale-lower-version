@@ -39,11 +39,12 @@ void GreaterDog::set_img()
  "resources/dog_barage_0.bmp",
  "resources/dog_barage_1.bmp",
  "resources/dog_barage_2.bmp",
-	},RGB(0,0,0));
+	},RGB(255,255,255));
 	
 	enemy_barrage.SetTopLeft(933,799);
 	enemy_barrage.SetAnimation(250,false);
-	
+
+	//enemy_barrage.SetFrameIndexOfBitmap();
 }
 
 void GreaterDog::set_hp_img()

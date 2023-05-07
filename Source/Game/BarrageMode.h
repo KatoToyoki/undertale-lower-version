@@ -22,6 +22,16 @@ struct DataSet
     std::vector<std::string> imgPath;
 };
 
+enum Position
+{
+    front,back,frontEqual,backEqual,up
+};
+
+enum EndPoint
+{
+    leftAtLeft,leftAtRight,vanish
+};
+
 class BarrageMode
 {
 private:
@@ -87,6 +97,12 @@ public:
 
     // close all barrages
     void UnshowBarrage();
+
+    void GoRight(Barrage& barrage, Move *heart, int speed,Character *character);
+    void GoLeft(Barrage& barrage, Move *heart, int speed,Character *character);
+    void GoUp(Barrage& barrage, Move *heart, int speed,Character *character);
+    bool DetectCertainPoint(Barrage& barrage,int point,int position);
+    bool DetectLeft(Barrage& barrage,int direction);
 
     // getter
     bool GetIsAttackEnd();

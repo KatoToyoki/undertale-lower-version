@@ -1,16 +1,6 @@
 #pragma once
 #include "./BarrageMode.h"
 
-enum EndPoint
-{
-    leftAtLeft,leftAtRight,vanish
-};
-
-enum Position
-{
-    front,back,frontEqual,backEqual
-};
-
 enum Appearance
 {
     normal,compoundUp,compoundDown
@@ -37,20 +27,16 @@ public:
     
     void SelectRound(Move *heart, Character *character,int selection=-99);
 
-    void GoRight(Barrage& barrage, Move *heart, int speed,Character *character);
-    void GoLeft(Barrage& barrage, Move *heart, int speed,Character *character);
     void PincerAttack(int start,int end, Move* heart, int wave, int appearance,Character *character);
 
     void CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart);
     void UpDownBarrage(Barrage& barrage, int upLimit, int downLimit, int speed);
     
     void DetectRoundEnd(int direction);
-    bool DetectLeft(Barrage& barrage,int direction);
-    bool DetectCertainPoint(Barrage& barrage,int point,int position);
-
+    
     int GetCurrentRound();
     void ToGetEnterCount(UINT nChar);
-    void DogAnimation(Move *,Character *character);
+    void DogAnimation(Move *heart,Character *character);
 
     void roundX(Move *heart,Character *character);
     void round0(Move *heart,Character *character);
