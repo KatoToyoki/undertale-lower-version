@@ -25,10 +25,6 @@ Migosp::Migosp()
 void Migosp::set_img()
 {
 	set_hp_img();
-	enemy_img.LoadBitmapByString({"resources/migosp_0.bmp","resources/migosp_1.bmp"},RGB(0,0,0));
-	enemy_img.SetTopLeft(993,316);
-	enemy_img.SetAnimation(300,false);
-	
 	enemy_img_init.LoadBitmapByString({"resources/migosp_0.bmp","resources/migosp_1.bmp"},RGB(0,0,0));
 	enemy_img_init.SetTopLeft(993,316);
 	enemy_img_init.SetAnimation(300,false);
@@ -36,6 +32,9 @@ void Migosp::set_img()
 	enemy_img_damege.LoadBitmapByString({"resources/migosp_hit.bmp"},RGB(0,0,0));
 	enemy_img_damege.SetTopLeft(993,316);
 
+	enemy_img = enemy_img_init;
+	enemy_last = enemy_img_init;
+	
 	enemy_barrage.LoadBitmapByString({
  "resources/std_hand_up.bmp",
    "resources/hand_up.bmp","resources/std.bmp",

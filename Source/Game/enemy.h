@@ -100,6 +100,7 @@ protected:
     int hp_bar_y = 630;
 
     game_framework::CMovingBitmap enemy_img;
+    game_framework::CMovingBitmap enemy_last;
     game_framework::CMovingBitmap enemy_img_init;
     game_framework::CMovingBitmap enemy_img_damege;
     game_framework::CMovingBitmap enemy_targe_choose_hp;

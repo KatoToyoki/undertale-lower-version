@@ -30,7 +30,7 @@ void Enemy::set_enemy_img_init_or_damege(int index)
 {
 	if (index == init_img)
 	{
-		enemy_img = enemy_img_init;
+		enemy_img = enemy_last;
 	}
 	if (index == damege)
 	{

@@ -24,16 +24,19 @@ GreaterDog::GreaterDog()
 void GreaterDog::set_img()
 {
 	set_hp_img();
-	enemy_img.LoadBitmapByString({"resources/dog_0.bmp","resources/dog_1.bmp"},RGB(0,0,255));
-	enemy_img.SetTopLeft(746,125);
-	enemy_img.SetAnimation(300,false);
 	
 	enemy_img_init.LoadBitmapByString({"resources/dog_0.bmp","resources/dog_1.bmp"},RGB(0,0,255));
-	enemy_img_init.SetTopLeft(746,125);
+	enemy_img_init.SetTopLeft(584,115);
 	enemy_img_init.SetAnimation(300,false);
 
 	enemy_img_damege.LoadBitmapByString({"resources/dog_hit.bmp"},RGB(0,0,0));
 	enemy_img_damege.SetTopLeft(746,125);
+
+	enemy_img_close.LoadBitmapA({"resources/dog_close_0.bmp","resources/dog_close_1.bmp","resources/dog_close_2.bmp","resources/dog_close_2.bmp"},RGB(0,0,255));
+	enemy_img_close.SetTopLeft(584,115);
+
+	enemy_img  =enemy_img_init;
+	enemy_last  =enemy_img_init;
 
 	enemy_barrage.LoadBitmapByString({
  "resources/dog_barage_0.bmp",
@@ -88,6 +91,13 @@ void GreaterDog::set_acts()
 void GreaterDog::set_act_updata()
 {
 	set_next_round_text();
+	if (ignore_times>0)
+	{
+		enemy_img_close.SetFrameIndexOfBitmap(ignore_times-1);
+		enemy_img = enemy_img_close;
+		enemy_last = enemy_img_close;
+	}
+	
 	act_text_vector.clear();
 	act_text_vector.shrink_to_fit();
 	if (_current_selection == check_d )

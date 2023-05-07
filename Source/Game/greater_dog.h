@@ -41,6 +41,6 @@ private:
     bool is_init = true;
 
     Barrage dog_b,dog_soul,dog_bark_1,dog_bark_2;
-
+    game_framework::CMovingBitmap enemy_img_close;
     
 };
