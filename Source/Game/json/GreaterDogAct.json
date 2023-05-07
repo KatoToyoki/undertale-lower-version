@@ -300,5 +300,15 @@
                 }
             }
         }
+    ],
+    "win_text": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* YOU WON!",
+                    "content1": "* You earned 0 XP and 40 gold."
+                }
+            }
+        }
     ]
 }

@@ -5,6 +5,7 @@
 
 Items::Items()
 {
+    text_content.load("Item");
     set_items_init();
 }
 
@@ -79,7 +80,7 @@ std::string Items::get_and_set_ramdon_text(std::string str)
     vector<std::string> random_text_vector;
     if (str == "NiceCream")
     {
-        item_text = text_content.get_reaction("Item","NiceCream_random");
+        item_text = text_content.get_reaction("NiceCream_random");
          for(unsigned int j=0;j<item_text[0].size();j++)
          {
              random_text_vector.push_back(item_text[0][j]);
@@ -111,23 +112,23 @@ void Items::set_item_updata()
     
     if (item->name == "NiceCream")
     {
-        item_text = text_content.get_reaction("Item","NiceCream");
+        item_text = text_content.get_reaction("NiceCream");
         item_text[0].insert(item_text[0].begin(),nice_cream_random_text);
     }
     else if (item->name == "Bisicle")
     {
-        item_text = text_content.get_reaction("Item","Bisicle");
+        item_text = text_content.get_reaction("Bisicle");
     }
     else if (item->name == "Unisicle")
     {
-        item_text = text_content.get_reaction("Item","Unisicle");
+        item_text = text_content.get_reaction("Unisicle");
     }
     else if (item->name == "InstaNood"){
-        item_text = text_content.get_reaction("Item","InstaNood");
+        item_text = text_content.get_reaction("InstaNood");
     }
     else if (item->name == "tem flake")
     {
-        item_text = text_content.get_reaction("Item","tem_flake");
+        item_text = text_content.get_reaction("tem_flake");
     }
     
 	 for(unsigned int j=0;j<item_text[times].size();j++)

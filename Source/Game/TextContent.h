@@ -25,7 +25,10 @@ public:
     // file name is the source of the json, situation is what you want to call
     void HandleActContent(std::string fileName,std::string situation);
 
-    std::vector<std::vector<std::string>> get_reaction(std::string fileName, std::string situation, bool random = false);
+    std::vector<std::vector<std::string>> get_reaction(std::string situation);
+    void get_data(std::string fileName);
+    void load(string file_name);
+    std::unordered_map<string, vector< vector< string>>> data_context;
     
     //testing
     void PrintItOut();

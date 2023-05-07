@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "TextContent.h"
+#include <unordered_map>
 
 void TextContent::HandleActContent(std::string fileName, std::string situation)
 {
@@ -25,11 +26,30 @@ void TextContent::HandleActContent(std::string fileName, std::string situation)
     }
 }
 
-std::vector<std::vector<std::string>> TextContent::get_reaction(std::string fileName, std::string situation, bool random)
+std::vector<std::vector<std::string>> TextContent::get_reaction(std::string situation)
 {
-    HandleActContent(fileName,situation);
-    
-    return actOneReaction;
+    return data_context[situation];
+}
+
+void TextContent::get_data(std::string fileName)
+{
+    json data;
+    std::ifstream file("Source/Game/json/"+fileName+".json");
+    file >> data;
+
+    std::string temp;
+    vector<string> keys;
+    for (auto & item : data.items())
+    {
+        HandleActContent(fileName,item.key());
+        string key = item.key();
+        data_context.insert({key, actOneReaction});
+    }
+}
+
+void TextContent::load(string file_name)
+{
+    get_data(file_name);
 }
 
 void TextContent::PrintItOut()

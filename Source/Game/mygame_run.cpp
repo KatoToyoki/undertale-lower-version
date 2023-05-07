@@ -26,6 +26,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
+  
   if (stage_go > 0)
   {
     enemy->set_act_updata();
@@ -242,8 +243,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   gameFight.set_monster(&migosp);
 
   charactor.set_hp_img();
-
-  testDog.HandleActContent("GreaterDogAct","first_beckon");
 }
 
 
