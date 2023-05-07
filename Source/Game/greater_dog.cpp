@@ -113,10 +113,10 @@ void GreaterDog::set_act_updata()
 		{
 			 switch (pet_times)
 			 {
-			 case 1:
+			 case 3:
 			 	  act_text = text_content.get_reaction("play_then_pet");
 				  break;
-			 case 2 :
+			 case 4 :
 			 	  act_text = text_content.get_reaction("last_pet");
 				  break;
 			 default:
@@ -124,15 +124,15 @@ void GreaterDog::set_act_updata()
 				  break;
 			 }
 		}
-		else if (!is_play_afb && is_pet_afb)
+		else if (!is_play_afb && is_pet_afb && pet_times>1)
 		{
 			 act_text = text_content.get_reaction("after_first_pet");//
-			 pet_times=0;
+			 pet_times=2;
 		}
 		else if (is_beckon)
 		{
 			 act_text = text_content.get_reaction("pet_first_time");//not run
-			 pet_times=0;
+			 // pet_times=0;
 		}
 		else
 		{
@@ -235,7 +235,7 @@ void GreaterDog::act_choose_count(UINT nChar)
 
 void GreaterDog::check_mercy()
 {
-	if (is_play_afb && pet_times>1)
+	if (is_play_afb && pet_times>3)
 	{
 		_is_mercy = true;
 	}
@@ -264,10 +264,11 @@ void GreaterDog::set_next_round_text()
 	{
 		switch (pet_times)
 		{
-		case 0:
+		case 1:
+		case 2:
 			next_round_text = text_content.get_reaction("last_pet_count_0");
 			break;
-		case 1:
+		case 3:
 			next_round_text = text_content.get_reaction("last_pet_count_1");
 			break;
 		default:
@@ -275,7 +276,7 @@ void GreaterDog::set_next_round_text()
 			break;
 		}
 	}
-	else if (is_pet_afb && pet_times == 0)
+	else if (is_pet_afb && pet_times >1)
 	{
 		next_round_text = text_content.get_reaction("afb_play_wait_pet");
 	}
