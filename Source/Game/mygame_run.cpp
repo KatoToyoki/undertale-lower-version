@@ -163,7 +163,11 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       heart_test.move_control(user_frame.get_corner(),true);
     // to do enemy attack
     // ===========================================================
-      if (menu.get_current_stage()== 3)
+      if (menu.get_current_stage()== 2)
+      {
+        greaterDogRound.SelectRound(&heart_test,&charactor,1);
+      }
+      else if (menu.get_current_stage()== 3)
       {
         papyrusRound.SelectRound(&heart_test,&charactor,20);
         //papyrusRound.HPcondition(&heart_test,&charactor);
@@ -176,7 +180,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
         {
           papyrusRound.GetMinusHP_M(&heart_test,&charactor,appear);
         }
-        
       }
       else
       {
@@ -189,7 +192,12 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     heart_test.set_show_img_enable(true);
   
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
-    if (papyrusRound.GetIsAttackEnd() || (battel_mode_timer>= 1300 && menu.get_current_stage()!=3))
+    
+    if(greaterDogRound.GetIsAttackEnd() || (battel_mode_timer>= 1300 && menu.get_current_stage()!=2))
+    {
+      stage_go = 1;
+    }
+    else if(papyrusRound.GetIsAttackEnd() || (battel_mode_timer>= 1300 && menu.get_current_stage()!=3))
     {
       stage_go = 1;
     }
@@ -337,6 +345,8 @@ void CGameStateRun::OnShow()
     // enemy attack path
     papyrusRound.RevealBarrage();
     papyrusRound.DogAnimation(&heart_test,&charactor);
+
+    greaterDogRound.RevealBarrage();
 
     user_frame.show_frame();
     user_frame.show_select_heart();
