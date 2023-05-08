@@ -170,16 +170,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       else if (menu.get_current_stage()== 3)
       {
         papyrusRound.SelectRound(&heart_test,&charactor,20);
-        //papyrusRound.HPcondition(&heart_test,&charactor);
-        
-        if(papyrusRound.GetCurrentRound()!=20)
-        {
-          papyrusRound.GetMinusHP_M(&heart_test,&charactor,disappear);
-        }
-        else
-        {
-          papyrusRound.GetMinusHP_M(&heart_test,&charactor,appear);
-        }
+        papyrusRound.HPcondition(&heart_test,&charactor);
       }
       else
       {
@@ -193,11 +184,11 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
     
-    if(greaterDogRound.GetIsAttackEnd() || (battel_mode_timer>= 1300 && menu.get_current_stage()!=2))
+    if(greaterDogRound.GetIsAttackEnd())
     {
       stage_go = 1;
     }
-    else if(papyrusRound.GetIsAttackEnd() || (battel_mode_timer>= 1300 && menu.get_current_stage()!=3))
+    else if(papyrusRound.GetIsAttackEnd())
     {
       stage_go = 1;
     }
@@ -370,5 +361,6 @@ void CGameStateRun::OnShow()
     stage.print();
 
     greaterDogRound.Test2();
+    papyrusRound.Test2();
   }
 }

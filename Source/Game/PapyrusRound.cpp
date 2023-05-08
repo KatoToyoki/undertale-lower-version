@@ -22,6 +22,7 @@ void PapyrusRound::SetAllData()
     NormalBarrage();
     isSet=true;
     isAttackEnd=false;
+    dogAnimation=1;
 }
 
 void PapyrusRound::PincerAttack(int start,int end,Move* heart, int wave, int appearance,Character *character)
@@ -201,7 +202,7 @@ void PapyrusRound::DogAnimation(Move *heart,Character *character)
     }
 }
 
-void PapyrusRound::HPcondition(Move* heart, Character* character)
+void PapyrusRound::HPcondition(Move* heart, Character* character,int command)
 {
     if(currentRound==20)
     {

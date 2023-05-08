@@ -109,7 +109,6 @@ void Barrage::damege_hit(Move *heart, Character *character,int command)
     {
         heart->shine_time_count = 0;
         heart->shine_two_second();
-        barrage_img.SetTopLeft(0,0);
         
         character->change_hp(true,_damage*(-1));
 

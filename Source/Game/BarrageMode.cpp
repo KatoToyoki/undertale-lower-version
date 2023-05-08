@@ -198,9 +198,9 @@ bool  BarrageMode::DetectLeft(Barrage& barrage,int direction)
     return false;
 }
 
-void BarrageMode::HPcondition(Move* heart, Character* character)
+void BarrageMode::HPcondition(Move* heart, Character* character,int command)
 {
-    GetMinusHP_M(heart,character,appear);
+    GetMinusHP_M(heart,character,command);
 }
 
 bool BarrageMode::GetIsAttackEnd()

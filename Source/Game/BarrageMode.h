@@ -104,7 +104,7 @@ public:
     bool DetectCertainPoint(Barrage& barrage,int point,int position);
     bool DetectLeft(Barrage& barrage,int direction);
     
-    void virtual HPcondition(Move *heart,Character *character);
+    void virtual HPcondition(Move *heart,Character *character,int command);
 
     // getter
     bool GetIsAttackEnd();
