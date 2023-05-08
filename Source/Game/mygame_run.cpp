@@ -368,5 +368,7 @@ void CGameStateRun::OnShow()
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
+
+    greaterDogRound.Test2();
   }
 }

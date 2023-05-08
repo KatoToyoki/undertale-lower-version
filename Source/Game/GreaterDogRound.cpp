@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "GreaterDogRound.h"
-#include "PapyrusRound.h"
 
 void GreaterDogRound::SetAllData()
 {
@@ -119,7 +118,7 @@ void GreaterDogRound::DetectRoundEnd()
         }
         break;
     case 1:
-        if(DetectLeft(enemyBarrage[_quantity-1],leftAtLeft)||LastOneDisappear())
+        if(enemyBarrage[0].GetOnePosition(IMGleft)<620||LastOneDisappear())
         {
             isSet=false;
             isAttackEnd=true;
@@ -151,7 +150,7 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
 void GreaterDogRound::Spear(Move* heart, Character* character)
 {
     bool secondWave=false;
-    if(enemyBarrage[0].GetOnePosition(IMGtop)>665)
+    if(enemyBarrage[0].GetOnePosition(IMGtop)>740)
     {
         GoUp(enemyBarrage[0],heart,allData[0].speed,character);
     }
@@ -162,6 +161,7 @@ void GreaterDogRound::Spear(Move* heart, Character* character)
 
     if(secondWave)
     {
+        GoLeft(enemyBarrage[0],heart,allData[0].speed,character);
         if(enemyBarrage[0].GetOnePosition(IMGleft)==allData[0].initX-changeColor)
         {
             enemyBarrage[0].barrage_img.SetFrameIndexOfBitmap(1);
