@@ -1,7 +1,7 @@
 #pragma once
 #include "enemy.h"
 #include "TextContent.h"
-
+#include "GreaterDogRound.h"
 
 enum dog_act_selection
 {
@@ -40,7 +40,8 @@ private:
     bool is_pet_afb = false;//pet過在b之後
     bool is_init = true;
 
-    Barrage dog_b,dog_soul,dog_bark_1,dog_bark_2;
+    GreaterDogRound greaterDogRound;
+   // Barrage dog_b,dog_soul,dog_bark_1,dog_bark_2;
 
     
 };

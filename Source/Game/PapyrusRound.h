@@ -38,6 +38,8 @@ public:
     void ToGetEnterCount(UINT nChar);
     void DogAnimation(Move *heart,Character *character);
 
+    void HPcondition(Move *heart,Character *character) override ; 
+
     void roundX(Move *heart,Character *character);
     void round0(Move *heart,Character *character);
     void round1(Move *heart,Character *character);

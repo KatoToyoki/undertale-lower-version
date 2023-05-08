@@ -83,6 +83,7 @@ void GreaterDogRound::DogAnimation(Move* heart, Character* character)
     }
     enemyBarrage[0].barrage_img.ShowBitmap();
     enemyBarrage[0].barrage_img.SetAnimation(150,false);
+    enemyBarrage[0].damege_hit(heart,character,appear);
 }
 
 bool GreaterDogRound::BarkLeft(Barrage& barrage)

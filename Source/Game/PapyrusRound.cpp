@@ -201,6 +201,18 @@ void PapyrusRound::DogAnimation(Move *heart,Character *character)
     }
 }
 
+void PapyrusRound::HPcondition(Move* heart, Character* character)
+{
+    if(currentRound==20)
+    {
+        GetMinusHP_M(heart,character,appear);
+    }
+    else
+    {
+        GetMinusHP_M(heart,character,disappear);
+    }
+}
+
 void PapyrusRound::ToGetEnterCount(UINT nChar)
 {
     if(nChar==VK_RETURN && currentRound==20)

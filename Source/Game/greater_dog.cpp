@@ -27,14 +27,17 @@ void GreaterDog::set_img()
 	enemy_img.LoadBitmapByString({"resources/dog_0.bmp","resources/dog_1.bmp"},RGB(0,0,255));
 	enemy_img.SetTopLeft(746,125);
 	enemy_img.SetAnimation(300,false);
+
 	
 	enemy_img_init.LoadBitmapByString({"resources/dog_0.bmp","resources/dog_1.bmp"},RGB(0,0,255));
 	enemy_img_init.SetTopLeft(746,125);
 	enemy_img_init.SetAnimation(300,false);
+	
 
 	enemy_img_damege.LoadBitmapByString({"resources/dog_hit.bmp"},RGB(0,0,0));
 	enemy_img_damege.SetTopLeft(746,125);
 
+	
 	enemy_barrage.LoadBitmapByString({
  "resources/dog_barage_0.bmp",
  "resources/dog_barage_1.bmp",
@@ -43,8 +46,7 @@ void GreaterDog::set_img()
 	
 	enemy_barrage.SetTopLeft(933,799);
 	enemy_barrage.SetAnimation(250,false);
-
-	//enemy_barrage.SetFrameIndexOfBitmap();
+	
 }
 
 void GreaterDog::set_hp_img()
@@ -61,8 +63,10 @@ void GreaterDog::set_hp_img()
 
 void GreaterDog::set_barrage()
 {
-  barrage = Barrage(4,white);
+
+	barrage = Barrage(4,white);
   barrage.loda_CMoving_Bitmap(enemy_barrage);
+	
 }
 
 void GreaterDog::set_acts()

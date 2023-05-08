@@ -103,6 +103,8 @@ public:
     void GoUp(Barrage& barrage, Move *heart, int speed,Character *character);
     bool DetectCertainPoint(Barrage& barrage,int point,int position);
     bool DetectLeft(Barrage& barrage,int direction);
+    
+    void virtual HPcondition(Move *heart,Character *character);
 
     // getter
     bool GetIsAttackEnd();

@@ -165,7 +165,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     // ===========================================================
       if (menu.get_current_stage()== 3)
       {
-        papyrusRound.SelectRound(&heart_test,&charactor);
+        papyrusRound.SelectRound(&heart_test,&charactor,20);
+        //papyrusRound.HPcondition(&heart_test,&charactor);
+        
         if(papyrusRound.GetCurrentRound()!=20)
         {
           papyrusRound.GetMinusHP_M(&heart_test,&charactor,disappear);
@@ -174,11 +176,12 @@ void CGameStateRun::OnMove() // 移動遊戲元素
         {
           papyrusRound.GetMinusHP_M(&heart_test,&charactor,appear);
         }
+        
       }
       else
       {
         enemy->set_barrage_enable(true);
-        enemy->get_barrage().damege_hit(&heart_test,&charactor);
+        //enemy->get_barrage().damege_hit(&heart_test,&charactor);
       }
     }
     
@@ -228,7 +231,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   migosp.set_img();
   migosp.set_barrage();
   greater_dog.set_img();
-  greater_dog.set_barrage();
+  //greater_dog.set_barrage();
   
   user_frame.load_img();
   user_frame.create_frame(314, 1294, 312, 563);
@@ -343,7 +346,7 @@ void CGameStateRun::OnShow()
     monster_frame.show_monster_frame_and_print();
     
     enemy->show_img();
-    enemy->show_barrage();
+    //enemy->show_barrage();
     enemy->show_enemy_targe_choose_hp_bar();
     
     gameButtonFrame.show_button();
