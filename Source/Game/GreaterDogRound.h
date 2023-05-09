@@ -29,20 +29,9 @@ public:
     bool BarkLeft(Barrage& barrage);
     void DetectRoundEnd();
     
+    void HPcondition(Move *heart,Character *character,int command=0) override ; 
+
+    
     void DogFindsYou(Move *heart,Character *character);
     void Spear(Move *heart,Character *character);
-
-    void Test2()
-    {
-        if(isSet)
-        {
-            int position=0;
-            position=enemyBarrage[0].barrage_img.GetTop();
-            CDC *pDC = game_framework::CDDraw::GetBackCDC();
-            game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 255), 800);
-            game_framework::CTextDraw::Print(pDC, 0, 200, "p "+to_string(position));
-            game_framework::CDDraw::ReleaseBackCDC();    
-        }
-        
-    }
 };

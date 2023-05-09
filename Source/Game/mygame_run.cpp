@@ -166,13 +166,14 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       if (menu.get_current_stage()== 2)
       {
         greaterDogRound.SelectRound(&heart_test,&charactor,1);
+        greaterDogRound.HPcondition(&heart_test,&charactor);
       }
       else if (menu.get_current_stage()== 3)
       {
         papyrusRound.SelectRound(&heart_test,&charactor,20);
         papyrusRound.HPcondition(&heart_test,&charactor);
       }
-      else
+      else if(battel_mode_timer>= 1300)
       {
         enemy->set_barrage_enable(true);
         //enemy->get_barrage().damege_hit(&heart_test,&charactor);
@@ -360,7 +361,7 @@ void CGameStateRun::OnShow()
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
 
-    greaterDogRound.Test2();
-    papyrusRound.Test2();
+    //greaterDogRound.Test2();
+    //papyrusRound.Test2();
   }
 }

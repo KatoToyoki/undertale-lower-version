@@ -19,7 +19,7 @@ void GreaterDogRound::SetAllData()
         HandleJsonData("DogFindYou","GreaterDogRounds");   
         break;
     case 1:
-        changeColor=rand()%(330-60+1)+60; 
+        changeColor=rand()%(170-100+1)+100; 
         HandleJsonData("Spear","GreaterDogRounds");   
         break;
     }
@@ -29,6 +29,7 @@ void GreaterDogRound::SetAllData()
     NormalBarrage();
     isSet=true;
     isAttackEnd=false;
+   
 }
 
 void GreaterDogRound::SelectRound(Move* heart, Character* character, int selection)
@@ -127,6 +128,23 @@ void GreaterDogRound::DetectRoundEnd()
     }
 }
 
+void GreaterDogRound::HPcondition(Move* heart, Character* character, int command)
+{
+    enemyBarrage[0].set_show_enable(true);
+    enemyBarrage[0].damege_hit(heart,character,appear);
+
+    if(currentRound==1)
+    {
+        return;
+    }
+    
+    for(int i=1;i<_quantity;i++)
+    {
+        enemyBarrage[i].set_show_enable(true);
+        enemyBarrage[i].damege_hit(heart,character,disappear);
+    }
+}
+
 void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
 {
     
@@ -162,16 +180,18 @@ void GreaterDogRound::Spear(Move* heart, Character* character)
     if(secondWave)
     {
         GoLeft(enemyBarrage[0],heart,allData[0].speed,character);
-        if(enemyBarrage[0].GetOnePosition(IMGleft)==allData[0].initX-changeColor)
+        
+        if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-changeColor)<10)
         {
             enemyBarrage[0].barrage_img.SetFrameIndexOfBitmap(1);
+            enemyBarrage[0].switch_mode();
         }
-        if(enemyBarrage[0].GetOnePosition(IMGleft)==allData[0].initX-2*changeColor)
+        if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-2*changeColor)<10)
         {
             enemyBarrage[0].barrage_img.SetFrameIndexOfBitmap(0);
+            enemyBarrage[0].switch_mode();
         }
     }
-
     DetectRoundEnd();
 }
 
