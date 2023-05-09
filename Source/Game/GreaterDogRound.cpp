@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GreaterDogRound.h"
-
+#include <iostream>
 void GreaterDogRound::SetAllData()
 {
     allData.clear();
@@ -33,14 +33,14 @@ void GreaterDogRound::SetAllData()
 
 void GreaterDogRound::SelectRound(Move* heart, Character* character, int selection)
 {
+    static bool tempIsSet = isSet;
     if(selection!=-99)
     {
         currentRound=selection;
     }
-    
+     
     if(!isSet)
     {
-        aaa+=1;
         SetAllData();
     }
     
@@ -48,11 +48,20 @@ void GreaterDogRound::SelectRound(Move* heart, Character* character, int selecti
     {
     case 0:
         DogFindsYou(heart,character);
+
         break;
     case 1:
         Spear(heart,character);
+
         break;
     }
+    DetectRoundEnd();
+
+    if (tempIsSet != isSet)
+    {
+        std::cout << tempIsSet;
+    }
+    tempIsSet = isSet;
 }
 
 bool GreaterDogRound::xBigger(double x, double y)
@@ -180,8 +189,6 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
     GoRight(enemyBarrage[dogFindQ],heart,replacement.displacementX*3,character);
     GoUp(enemyBarrage[dogFindQ+1],heart,(abs(replacement.displacementY))*2,character);
     GoRight(enemyBarrage[dogFindQ+1],heart,replacement.displacementX*3,character);
-
-    DetectRoundEnd();
 }
 
 void GreaterDogRound::Spear(Move* heart, Character* character)
@@ -223,7 +230,6 @@ void GreaterDogRound::Spear(Move* heart, Character* character)
             }
         }
     }
-    DetectRoundEnd();
 }
 
 

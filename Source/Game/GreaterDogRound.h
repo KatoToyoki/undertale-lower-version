@@ -11,7 +11,7 @@ struct coorderinate{
 class GreaterDogRound: public BarrageMode
 {
 private:
-    bool isSet=false;
+    
     int currentRound=-99;
     coorderinate replacement;
     int changeColor=0;
@@ -21,7 +21,13 @@ private:
 public:
     GreaterDogRound()=default;
     ~GreaterDogRound()=default;
+    GreaterDogRound(const GreaterDogRound &other) = delete;
+    GreaterDogRound &operator=(const GreaterDogRound &other) = delete;
+    GreaterDogRound(GreaterDogRound &&other) = delete;
+    GreaterDogRound &operator=(GreaterDogRound &&other) = delete;
 
+   
+    
     void SetAllData();
 
     int GetCurrentRound()
@@ -42,65 +48,4 @@ public:
     void DogFindsYou(Move *heart,Character *character);
     void Spear(Move *heart,Character *character);
 
-    // for printing in real time
-    void Test44()
-    {
-        
-        CDC *pDC = game_framework::CDDraw::GetBackCDC();
-        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        //game_framework::CTextDraw::Print(pDC, 0, 350, Set);
-        game_framework::CTextDraw::Print(pDC, 0, 50, to_string(aaa));
-
-        game_framework::CDDraw::ReleaseBackCDC();
-        
-        
-    }
-
-    void Test43()
-    {
-        CDC *pDC = game_framework::CDDraw::GetBackCDC();
-        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        game_framework::CTextDraw::Print(pDC, 0, 150, "round "+to_string(currentRound));
-        game_framework::CDDraw::ReleaseBackCDC();
-        
-    }
-
-
-    int aaa=0;
-    void Test42()
-    {
-        std::string Set;
-        if(isSet)
-        {
-            Set="set:Set";
-        }
-        else
-        {
-            Set="set:Not Set";
-        }
-        
-        CDC *pDC = game_framework::CDDraw::GetBackCDC();
-        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        game_framework::CTextDraw::Print(pDC, 0, 250, Set);
-        game_framework::CDDraw::ReleaseBackCDC();
-        
-    }
-
-    void Test41()
-    {
-       std::string Set;
-               if(isAttackEnd)
-               {
-                   Set="end:attack end";
-               }
-               else
-               {
-                   Set="end:attack not end";
-               }
-        
-        CDC *pDC = game_framework::CDDraw::GetBackCDC();
-        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        game_framework::CTextDraw::Print(pDC, 0, 350, Set);
-        game_framework::CDDraw::ReleaseBackCDC();
-    }
 };

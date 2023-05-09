@@ -2,6 +2,8 @@
 #include "../Core/Resource.h"
 #include <mmsystem.h>
 #include <ddraw.h>
+#include <iostream>
+
 #include "../Library/audio.h"
 
 #include "../Library/gameutil.h"
@@ -45,6 +47,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
     show_normal_mode.init();
+    greaterDogRound.SetIsAttack(false);
+    
     // ===========================================================
     break;
   case 2:
@@ -153,7 +157,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_sub = false;
     
     monster_frame._monster_saying_is_done = false;
-    
+    if (greaterDogRound.GetCurrentRound() == 0)
+    {
+      std::cout << "something";
+    }
     if(menu.get_current_stage()== 2 && greaterDogRound.GetCurrentRound()==0)
     {
       user_frame.control_frame(talk_to_normal_battle);
@@ -162,7 +169,13 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
       user_frame.control_frame(enemy->get_monster_battle_mode());
     }
-    
+    static bool tempGetMove = user_frame.get_move_done();
+
+    if (tempGetMove != user_frame.get_move_done())
+    {
+      std::cout << tempGetMove;
+    }
+    tempGetMove = user_frame.get_move_done();
     heart_test.set_show_img_enable(true);
     if (user_frame.get_move_done())
     {
@@ -172,18 +185,24 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     // ===========================================================
       if (menu.get_current_stage()== 2)
       {
-        greaterDogRound.SelectRound(&heart_test,&charactor);
+        greaterDogRound.SelectRound(&heart_test,&charactor,0);
         greaterDogRound.HPcondition(&heart_test,&charactor);
+
+        if(greaterDogRound.GetIsAttackEnd())
+        {
+          stage_go = 1;
+        }
       }
       else if (menu.get_current_stage()== 3)
       {
         papyrusRound.SelectRound(&heart_test,&charactor,20);
         papyrusRound.HPcondition(&heart_test,&charactor);
       }
-      else if(menu.get_current_stage()== 1 && battel_mode_timer>= 1300)
+      else
       {
         enemy->set_barrage_enable(true);
         enemy->get_barrage().damege_hit(&heart_test,&charactor);
+        
       }
     }
     
@@ -192,14 +211,16 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
     
-    if(greaterDogRound.GetIsAttackEnd())
+    
+    if(papyrusRound.GetIsAttackEnd())
     {
       stage_go = 1;
     }
-    else if(papyrusRound.GetIsAttackEnd())
+    else if(menu.get_current_stage()== 1 && battel_mode_timer>= 1300)
     {
       stage_go = 1;
     }
+    
     break;
   case 8://before exp&gold
     user_frame.control_frame(to_talk);
@@ -369,10 +390,6 @@ void CGameStateRun::OnShow()
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
 
-    greaterDogRound.Test44();
-    greaterDogRound.Test43();
-    greaterDogRound.Test42();
-    greaterDogRound.Test41();
 
   }
 }

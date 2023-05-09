@@ -13,6 +13,11 @@ enum frame_command {
 
 class UserFrame : public Frame {
 public:
+  UserFrame() = default;
+  UserFrame(const UserFrame &other) = delete;
+  UserFrame(UserFrame &&other) = delete;
+  UserFrame &operator=(const UserFrame &other) = delete;
+  UserFrame &operator=(UserFrame &&other) = delete;
   void load_img();
   void show_select_heart();
 

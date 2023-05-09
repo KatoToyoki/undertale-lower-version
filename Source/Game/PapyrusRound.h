@@ -16,7 +16,6 @@ class PapyrusRound: public BarrageMode
 private:
     int currentRound=-1;
     int UDBdirection=0;
-    bool isSet=false;
     int dogAnimation=1;
 public:
     

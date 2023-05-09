@@ -48,6 +48,8 @@ protected:
 
     // to know if this round is ended, because you may need to go to other stage
     bool isAttackEnd=false;
+
+    bool isSet=false;
     
     // to put all barrages setting in this mode
     std::vector<Barrage> enemyBarrage;
@@ -103,6 +105,11 @@ public:
     void GoUp(Barrage& barrage, Move *heart, int speed,Character *character);
     bool DetectCertainPoint(Barrage& barrage,int point,int position);
     bool DetectLeft(Barrage& barrage,int direction);
+
+    void SetIsAttack(bool a)
+    {
+        isAttackEnd=a;
+    }
     
     void virtual HPcondition(Move *heart,Character *character,int command);
 
