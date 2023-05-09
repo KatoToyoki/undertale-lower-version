@@ -17,7 +17,9 @@ private:
     int changeColor=0;
     int dogFindQ=1;
     int dogFindCounter=0;
+    int mode=0;
 public:
+    int test=0;
     GreaterDogRound()=default;
     ~GreaterDogRound()=default;
 
@@ -40,4 +42,74 @@ public:
     
     void DogFindsYou(Move *heart,Character *character);
     void Spear(Move *heart,Character *character);
+
+    void Test44()
+    {
+        if(isSet==true)
+        {
+            CDC *pDC = game_framework::CDDraw::GetBackCDC();
+            game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+            game_framework::CTextDraw::Print(pDC, 0, 50, "ppsition "+to_string(enemyBarrage[_quantity-1].GetOnePosition(IMGleft)));
+            game_framework::CDDraw::ReleaseBackCDC();
+        }
+        else
+        {
+            CDC *pDC = game_framework::CDDraw::GetBackCDC();
+            game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+            game_framework::CTextDraw::Print(pDC, 0, 50, "test "+to_string(test));
+            game_framework::CDDraw::ReleaseBackCDC();
+        }
+        
+    }
+
+    void Test43()
+    {
+        CDC *pDC = game_framework::CDDraw::GetBackCDC();
+        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+        game_framework::CTextDraw::Print(pDC, 0, 150, "round "+to_string(currentRound));
+        game_framework::CDDraw::ReleaseBackCDC();
+        
+    }
+
+
+    int aaa=0;
+    void Test42()
+    {
+        std::string Set;
+        if(isSet)
+        {
+            Set="set:Set";
+        }
+        else
+        {
+            Set="set:Not Set";
+        }
+        
+        CDC *pDC = game_framework::CDDraw::GetBackCDC();
+        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+        game_framework::CTextDraw::Print(pDC, 0, 250, Set);
+        game_framework::CDDraw::ReleaseBackCDC();
+        
+    }
+
+    void Test41()
+    {
+       std::string Set;
+               if(isAttackEnd)
+               {
+                   Set="end:attack end";
+               }
+               else
+               {
+                   Set="end:attack not end";
+               }
+        
+        CDC *pDC = game_framework::CDDraw::GetBackCDC();
+        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+        //game_framework::CTextDraw::Print(pDC, 0, 350, Set);
+        game_framework::CTextDraw::Print(pDC, 0, 350, to_string(aaa));
+
+        game_framework::CDDraw::ReleaseBackCDC();
+        
+    }
 };

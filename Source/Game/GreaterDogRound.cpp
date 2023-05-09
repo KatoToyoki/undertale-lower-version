@@ -8,10 +8,13 @@ void GreaterDogRound::SetAllData()
     enemyBarrage.clear();
     enemyBarrage.shrink_to_fit();
 
+    /*
     if(currentRound==-99)
     {
         currentRound=rand()%2;
     }
+    */
+    
     
     switch(currentRound)
     {
@@ -29,7 +32,7 @@ void GreaterDogRound::SetAllData()
     NormalBarrage();
     isSet=true;
     isAttackEnd=false;
-   
+
 }
 
 void GreaterDogRound::SelectRound(Move* heart, Character* character, int selection)
@@ -43,7 +46,7 @@ void GreaterDogRound::SelectRound(Move* heart, Character* character, int selecti
     {
         SetAllData();
     }
-
+    
     switch (currentRound)
     {
     case 0:
@@ -105,7 +108,6 @@ bool GreaterDogRound::BarkLeft(Barrage& barrage)
     return false;
 }
 
-
 void GreaterDogRound::DetectRoundEnd()
 {
     switch (currentRound)
@@ -118,7 +120,7 @@ void GreaterDogRound::DetectRoundEnd()
         }
         break;
     case 1:
-        if(enemyBarrage[0].GetOnePosition(IMGleft)<620||LastOneDisappear())
+        if(enemyBarrage[_quantity-1].GetOnePosition(IMGleft)<=620)
         {
             isSet=false;
             isAttackEnd=true;
@@ -160,12 +162,6 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
             dogFindQ=5;
         }
         break;
-    case 5:
-        if(BarkLeft(enemyBarrage[dogFindQ+1]))
-        {
-            isAttackEnd=true;
-        }
-        break;
     }
     
     if(dogFindCounter==0 && dogFindQ%2!=0)
@@ -174,7 +170,7 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
           heart->GetCurrentY()-enemyBarrage[dogFindQ+1].GetOnePosition(IMGtop)-20);
         dogFindCounter+=1;
     }
-    else if(dogFindCounter<30)
+    else if(dogFindCounter<50)
     {
         dogFindCounter+=1;
     }
@@ -182,18 +178,19 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
     {
         dogFindCounter=0;
     }
-
-   
-    GoUp(enemyBarrage[dogFindQ],heart,(abs(replacement.displacementY))*3,character);
+    
+    GoUp(enemyBarrage[dogFindQ],heart,(abs(replacement.displacementY))*2,character);
     GoRight(enemyBarrage[dogFindQ],heart,replacement.displacementX*3,character);
-    GoUp(enemyBarrage[dogFindQ+1],heart,(abs(replacement.displacementY))*3,character);
+    GoUp(enemyBarrage[dogFindQ+1],heart,(abs(replacement.displacementY))*2,character);
     GoRight(enemyBarrage[dogFindQ+1],heart,replacement.displacementX*3,character);
+
+    DetectRoundEnd();
 }
 
 void GreaterDogRound::Spear(Move* heart, Character* character)
 {
     bool secondWave=false;
-    if(enemyBarrage[0].GetOnePosition(IMGtop)>740)
+    if(enemyBarrage[0].GetOnePosition(IMGtop)>665)
     {
         GoUp(enemyBarrage[0],heart,allData[0].speed,character);
     }
@@ -209,12 +206,24 @@ void GreaterDogRound::Spear(Move* heart, Character* character)
         if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-changeColor)<10)
         {
             enemyBarrage[0].barrage_img.SetFrameIndexOfBitmap(1);
-            enemyBarrage[0].switch_mode();
+            if(mode==0)
+            {
+                enemyBarrage[0].switch_mode();
+                mode=1;
+            }
         }
         if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-2*changeColor)<10)
         {
+            if (mode==1)
+            {
+                mode=2;
+            }
             enemyBarrage[0].barrage_img.SetFrameIndexOfBitmap(0);
-            enemyBarrage[0].switch_mode();
+            if(mode==2)
+            {
+                enemyBarrage[0].switch_mode();
+                mode=3;
+            }
         }
     }
     DetectRoundEnd();
