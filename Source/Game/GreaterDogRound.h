@@ -19,7 +19,6 @@ private:
     int dogFindCounter=0;
     int mode=0;
 public:
-    int test=0;
     GreaterDogRound()=default;
     ~GreaterDogRound()=default;
 
@@ -43,22 +42,17 @@ public:
     void DogFindsYou(Move *heart,Character *character);
     void Spear(Move *heart,Character *character);
 
+    // for printing in real time
     void Test44()
     {
-        if(isSet==true)
-        {
-            CDC *pDC = game_framework::CDDraw::GetBackCDC();
-            game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-            game_framework::CTextDraw::Print(pDC, 0, 50, "ppsition "+to_string(enemyBarrage[_quantity-1].GetOnePosition(IMGleft)));
-            game_framework::CDDraw::ReleaseBackCDC();
-        }
-        else
-        {
-            CDC *pDC = game_framework::CDDraw::GetBackCDC();
-            game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-            game_framework::CTextDraw::Print(pDC, 0, 50, "test "+to_string(test));
-            game_framework::CDDraw::ReleaseBackCDC();
-        }
+        
+        CDC *pDC = game_framework::CDDraw::GetBackCDC();
+        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+        //game_framework::CTextDraw::Print(pDC, 0, 350, Set);
+        game_framework::CTextDraw::Print(pDC, 0, 50, to_string(aaa));
+
+        game_framework::CDDraw::ReleaseBackCDC();
+        
         
     }
 
@@ -106,10 +100,7 @@ public:
         
         CDC *pDC = game_framework::CDDraw::GetBackCDC();
         game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        //game_framework::CTextDraw::Print(pDC, 0, 350, Set);
-        game_framework::CTextDraw::Print(pDC, 0, 350, to_string(aaa));
-
+        game_framework::CTextDraw::Print(pDC, 0, 350, Set);
         game_framework::CDDraw::ReleaseBackCDC();
-        
     }
 };

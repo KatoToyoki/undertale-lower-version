@@ -7,14 +7,11 @@ void GreaterDogRound::SetAllData()
     allData.shrink_to_fit();
     enemyBarrage.clear();
     enemyBarrage.shrink_to_fit();
-
-    /*
+    
     if(currentRound==-99)
     {
         currentRound=rand()%2;
     }
-    */
-    
     
     switch(currentRound)
     {
@@ -32,7 +29,6 @@ void GreaterDogRound::SetAllData()
     NormalBarrage();
     isSet=true;
     isAttackEnd=false;
-
 }
 
 void GreaterDogRound::SelectRound(Move* heart, Character* character, int selection)
@@ -44,6 +40,7 @@ void GreaterDogRound::SelectRound(Move* heart, Character* character, int selecti
     
     if(!isSet)
     {
+        aaa+=1;
         SetAllData();
     }
     

@@ -172,7 +172,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     // ===========================================================
       if (menu.get_current_stage()== 2)
       {
-        greaterDogRound.SelectRound(&heart_test,&charactor,1);
+        greaterDogRound.SelectRound(&heart_test,&charactor);
         greaterDogRound.HPcondition(&heart_test,&charactor);
       }
       else if (menu.get_current_stage()== 3)
@@ -183,7 +183,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       else if(menu.get_current_stage()== 1 && battel_mode_timer>= 1300)
       {
         enemy->set_barrage_enable(true);
-        //enemy->get_barrage().damege_hit(&heart_test,&charactor);
+        enemy->get_barrage().damege_hit(&heart_test,&charactor);
       }
     }
     
@@ -356,7 +356,7 @@ void CGameStateRun::OnShow()
     monster_frame.show_monster_frame_and_print();
     
     enemy->show_img();
-    //enemy->show_barrage();
+    enemy->show_barrage();
     enemy->show_enemy_targe_choose_hp_bar();
     
     gameButtonFrame.show_button();
@@ -374,6 +374,5 @@ void CGameStateRun::OnShow()
     greaterDogRound.Test42();
     greaterDogRound.Test41();
 
-    //papyrusRound.Test2();
   }
 }
