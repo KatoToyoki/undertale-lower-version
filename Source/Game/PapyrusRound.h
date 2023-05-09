@@ -22,7 +22,7 @@ public:
     PapyrusRound()=default;
     ~PapyrusRound()=default;
     
-    void SetAllData();
+    void SetAllData(int selection=-99);
     
     void SelectRound(Move *heart, Character *character,int selection=-99);
 

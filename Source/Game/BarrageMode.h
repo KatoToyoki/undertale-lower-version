@@ -50,6 +50,8 @@ protected:
     bool isAttackEnd=false;
 
     bool isSet=false;
+
+    bool isRightTime=false;
     
     // to put all barrages setting in this mode
     std::vector<Barrage> enemyBarrage;
@@ -65,6 +67,10 @@ public:
     // the quantity of barrages in current round, then set it
     // so for loop would know when to stop
     void SetQuantity(int q);
+
+    bool GetIsSet();
+
+    void SetIsRightTime(bool rt);
     
     // depends on quantity, push empty barrage in vector enemyBarrage
     void PushEmpty();

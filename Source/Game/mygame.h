@@ -56,9 +56,6 @@
 #include "GreaterDogRound.h"
 #include "../Library/audio.h"
 
-#include <iostream>
-
-
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
 // Constants

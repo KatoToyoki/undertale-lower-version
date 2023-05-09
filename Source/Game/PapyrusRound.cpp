@@ -1,12 +1,17 @@
 #include "stdafx.h"
 #include "PapyrusRound.h"
 
-void PapyrusRound::SetAllData()
+void PapyrusRound::SetAllData(int selection)
 {
     allData.clear();
     allData.shrink_to_fit();
     enemyBarrage.clear();
     enemyBarrage.shrink_to_fit();
+
+    if(selection!=-99)
+    {
+        currentRound=selection;
+    }
 
     if(currentRound==-1)
     {
@@ -23,6 +28,7 @@ void PapyrusRound::SetAllData()
     isSet=true;
     isAttackEnd=false;
     dogAnimation=1;
+    isRightTime=false;
 }
 
 void PapyrusRound::PincerAttack(int start,int end,Move* heart, int wave, int appearance,Character *character)
@@ -166,7 +172,7 @@ int PapyrusRound::GetCurrentRound()
 
 void PapyrusRound::DogAnimation(Move *heart,Character *character)
 {
-    if(currentRound!=20)
+    if(currentRound!=20 || !isRightTime)
     {
         return;
     }
@@ -216,6 +222,10 @@ void PapyrusRound::HPcondition(Move* heart, Character* character,int command)
 
 void PapyrusRound::ToGetEnterCount(UINT nChar)
 {
+    if(!isRightTime)
+    {
+        return;
+    }
     if(nChar==VK_RETURN && currentRound==20)
     {
         dogAnimation+=1;
@@ -224,16 +234,20 @@ void PapyrusRound::ToGetEnterCount(UINT nChar)
 
 void PapyrusRound::SelectRound(Move *heart,Character *character,int selection)
 {
+    /*
     // for test
     if(selection!=-99)
     {
         currentRound=selection;
     }
-    
+
+    */
+    /*
     if(!isSet)
     {
         SetAllData();
     }
+    */
     
     switch (currentRound)
     {

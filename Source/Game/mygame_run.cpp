@@ -2,12 +2,8 @@
 #include "../Core/Resource.h"
 #include <mmsystem.h>
 #include <ddraw.h>
-#include <iostream>
-
 #include "../Library/audio.h"
-
 #include "../Library/gameutil.h"
-
 #include "../Library/gamecore.h"
 #include "mygame.h"
 
@@ -47,7 +43,21 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
     show_normal_mode.init();
-    greaterDogRound.SetIsAttack(false);
+
+    if (menu.get_current_stage()== 2)
+    {
+      if(!greaterDogRound.GetIsSet())
+      {
+        greaterDogRound.SetAllData();
+      }
+    }
+    if (menu.get_current_stage()== 3)
+    {
+      if(!papyrusRound.GetIsSet())
+      {
+        papyrusRound.SetAllData(20);
+      }
+    }
     
     // ===========================================================
     break;
@@ -157,10 +167,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_sub = false;
     
     monster_frame._monster_saying_is_done = false;
-    if (greaterDogRound.GetCurrentRound() == 0)
-    {
-      std::cout << "something";
-    }
+   
     if(menu.get_current_stage()== 2 && greaterDogRound.GetCurrentRound()==0)
     {
       user_frame.control_frame(talk_to_normal_battle);
@@ -169,40 +176,30 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
       user_frame.control_frame(enemy->get_monster_battle_mode());
     }
-    static bool tempGetMove = user_frame.get_move_done();
-
-    if (tempGetMove != user_frame.get_move_done())
-    {
-      std::cout << tempGetMove;
-    }
-    tempGetMove = user_frame.get_move_done();
+    
     heart_test.set_show_img_enable(true);
     if (user_frame.get_move_done())
     {
       monster_frame._monster_saying_is_done = false;
       heart_test.move_control(user_frame.get_corner(),true);
-    // to do enemy attack
-    // ===========================================================
+
+      // to do enemy attack
+      // ===========================================================
+
       if (menu.get_current_stage()== 2)
       {
-        greaterDogRound.SelectRound(&heart_test,&charactor,0);
+        greaterDogRound.SelectRound(&heart_test,&charactor);
         greaterDogRound.HPcondition(&heart_test,&charactor);
-
-        if(greaterDogRound.GetIsAttackEnd())
-        {
-          stage_go = 1;
-        }
       }
       else if (menu.get_current_stage()== 3)
       {
-        papyrusRound.SelectRound(&heart_test,&charactor,20);
+        papyrusRound.SelectRound(&heart_test,&charactor);
         papyrusRound.HPcondition(&heart_test,&charactor);
       }
       else
       {
         enemy->set_barrage_enable(true);
         enemy->get_barrage().damege_hit(&heart_test,&charactor);
-        
       }
     }
     
@@ -212,7 +209,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
     
     
-    if(papyrusRound.GetIsAttackEnd())
+    if(papyrusRound.GetIsAttackEnd()||greaterDogRound.GetIsAttackEnd())
     {
       stage_go = 1;
     }
@@ -363,11 +360,21 @@ void CGameStateRun::OnShow()
 
     // ===========================================================
     // enemy attack path
-    papyrusRound.RevealBarrage();
-    papyrusRound.DogAnimation(&heart_test,&charactor);
-
-    greaterDogRound.RevealBarrage();
-    greaterDogRound.DogAnimation(&heart_test,&charactor);
+    if(stage_go==7)
+    {
+      if(menu.get_current_stage()==2)
+      {
+        greaterDogRound.SetIsRightTime(true);
+        greaterDogRound.RevealBarrage();
+        greaterDogRound.DogAnimation(&heart_test,&charactor);
+      }
+      else if(menu.get_current_stage()==3)
+      {
+        papyrusRound.SetIsRightTime(true);
+        papyrusRound.RevealBarrage();
+        papyrusRound.DogAnimation(&heart_test,&charactor);
+      }
+    }
 
     user_frame.show_frame();
     user_frame.show_select_heart();
@@ -389,7 +396,5 @@ void CGameStateRun::OnShow()
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
-
-
   }
 }

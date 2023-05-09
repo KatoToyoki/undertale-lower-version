@@ -11,13 +11,13 @@ struct coorderinate{
 class GreaterDogRound: public BarrageMode
 {
 private:
-    
     int currentRound=-99;
     coorderinate replacement;
     int changeColor=0;
     int dogFindQ=1;
     int dogFindCounter=0;
     int mode=0;
+    
 public:
     GreaterDogRound()=default;
     ~GreaterDogRound()=default;
@@ -26,14 +26,9 @@ public:
     GreaterDogRound(GreaterDogRound &&other) = delete;
     GreaterDogRound &operator=(GreaterDogRound &&other) = delete;
 
-   
-    
-    void SetAllData();
+    void SetAllData(int selection=-99);
 
-    int GetCurrentRound()
-    {
-        return currentRound;   
-    }
+    int GetCurrentRound();
 
     void SelectRound(Move *heart, Character *character,int selection=-99);
     bool xBigger(double x, double y);
@@ -47,5 +42,4 @@ public:
     
     void DogFindsYou(Move *heart,Character *character);
     void Spear(Move *heart,Character *character);
-
 };

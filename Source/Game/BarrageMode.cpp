@@ -6,6 +6,16 @@ void BarrageMode::SetQuantity(int q)
     _quantity=q;
 }
 
+bool BarrageMode::GetIsSet()
+{
+    return isSet;
+}
+
+void BarrageMode::SetIsRightTime(bool rt)
+{
+    isRightTime=rt;
+}
+
 void BarrageMode::PushEmpty()
 {
     Barrage temp=Barrage(0,white);
@@ -234,12 +244,12 @@ bool BarrageMode::LastOneDisappear()
 
 void BarrageMode::RevealBarrage()
 {
-    if(isAttackEnd)
+    if(isRightTime)
     {
-        UnshowBarrage();
+        ShowBarrage();
     }
     else
     {
-        ShowBarrage();
+        UnshowBarrage();
     }
 }
