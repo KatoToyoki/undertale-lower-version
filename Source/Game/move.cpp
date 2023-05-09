@@ -235,11 +235,11 @@ void Move::set_heart_jump_enable_and_init(bool enable)
 
 int Move::GetCurrentX()
 {
-	return (int)move_num_x;
+	return heart.GetLeft();
 }
 
 int Move::GetCurrentY()
 {
-	return (int)move_num_y;
+	return heart.GetTop();
 }
 

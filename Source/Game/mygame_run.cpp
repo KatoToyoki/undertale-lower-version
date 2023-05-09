@@ -153,9 +153,16 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_sub = false;
     
     monster_frame._monster_saying_is_done = false;
-    user_frame.control_frame(enemy->get_monster_battle_mode());
-
-    user_frame.control_frame(enemy->get_monster_battle_mode());
+    
+    if(menu.get_current_stage()== 2 && greaterDogRound.GetCurrentRound()==0)
+    {
+      user_frame.control_frame(talk_to_normal_battle);
+    }
+    else
+    {
+      user_frame.control_frame(enemy->get_monster_battle_mode());
+    }
+    
     heart_test.set_show_img_enable(true);
     if (user_frame.get_move_done())
     {
@@ -165,7 +172,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     // ===========================================================
       if (menu.get_current_stage()== 2)
       {
-        greaterDogRound.SelectRound(&heart_test,&charactor,1);
+        greaterDogRound.SelectRound(&heart_test,&charactor,0);
         greaterDogRound.HPcondition(&heart_test,&charactor);
       }
       else if (menu.get_current_stage()== 3)
@@ -339,6 +346,7 @@ void CGameStateRun::OnShow()
     papyrusRound.DogAnimation(&heart_test,&charactor);
 
     greaterDogRound.RevealBarrage();
+    greaterDogRound.DogAnimation(&heart_test,&charactor);
 
     user_frame.show_frame();
     user_frame.show_select_heart();

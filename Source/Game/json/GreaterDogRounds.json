@@ -3,8 +3,8 @@
       {
         "damage": 4,
         "speed": 0,
-        "initX":930,
-        "initY":629,
+        "initX":910,
+        "initY":820,
         "barrage_mode": "white",
         "imgPath": [
           {
@@ -18,7 +18,19 @@
         "damage": 4,
         "speed": 0,
         "initX":930,
-        "initY":629,
+        "initY":820,
+        "barrage_mode": "white",
+        "imgPath": [
+          {
+            "path0":"bark"
+          }
+        ]
+      },
+      {
+        "damage": 4,
+        "speed": 0,
+        "initX":950,
+        "initY":870,
         "barrage_mode": "white",
         "imgPath": [
           {
@@ -30,7 +42,19 @@
         "damage": 4,
         "speed": 0,
         "initX":930,
-        "initY":629,
+        "initY":820,
+        "barrage_mode": "white",
+        "imgPath": [
+          {
+            "path0":"bark"
+          }
+        ]
+      },
+      {
+        "damage": 4,
+        "speed": 0,
+        "initX":950,
+        "initY":870,
         "barrage_mode": "white",
         "imgPath": [
           {
@@ -42,7 +66,7 @@
         "damage": 4,
         "speed": 0,
         "initX":930,
-        "initY":629,
+        "initY":820,
         "barrage_mode": "white",
         "imgPath": [
           {
@@ -53,32 +77,8 @@
       {
         "damage": 4,
         "speed": 0,
-        "initX":930,
-        "initY":629,
-        "barrage_mode": "white",
-        "imgPath": [
-          {
-            "path0":"bark"
-          }
-        ]
-      },
-      {
-        "damage": 4,
-        "speed": 0,
-        "initX":930,
-        "initY":629,
-        "barrage_mode": "white",
-        "imgPath": [
-          {
-            "path0":"bark"
-          }
-        ]
-      },
-      {
-        "damage": 4,
-        "speed": 0,
-        "initX":930,
-        "initY":629,
+        "initX":950,
+        "initY":870,
         "barrage_mode": "white",
         "imgPath": [
           {
