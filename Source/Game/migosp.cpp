@@ -180,3 +180,21 @@ void Migosp::set_next_round_text()
 	 }
 	act_next_round = GameText (next_text_vector,talk_mode);
 }
+
+void Migosp::fight_open(Move* heart, Character* charactor)
+{
+	set_barrage_enable(true);
+	get_barrage().damege_hit(heart,charactor);
+}
+
+bool Migosp::get_fight_end()
+{
+	battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
+	return (battel_mode_timer >=1300);
+}
+
+void Migosp::show_barrage(Move* heart, Character* charactor,int stage)
+{
+    barrage.show_img();
+}
+

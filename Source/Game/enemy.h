@@ -41,7 +41,7 @@ public:
 /// barrage
     virtual void set_barrage() = 0;
     void set_barrage_enable(bool enable);
-    void show_barrage();
+    virtual void show_barrage(Move *heart, Character *charactor, int stage) = 0;
     Barrage get_barrage();
 /// act
     GameText get_act_after_game_text();
@@ -69,6 +69,11 @@ public:
 
     virtual std::vector<std::vector<std::string>> get_random_text(std::string name) = 0;
     virtual void set_fight() {}
+    virtual void fight_open(Move *heart, Character *charactor) = 0;
+    virtual bool get_fight_end() = 0;
+    void set_battle_timer(int time) {battel_mode_timer = time;}
+    virtual void init_barrage_data() {};
+    
 
     Acts acts;
     int hp = 100;
@@ -79,6 +84,7 @@ public:
     bool _monster_frame_enable = false;
 protected:
     
+    int battel_mode_timer = 0;
     bool _act_after_enable = false;
     bool _choose_targe_hp_bar_enable = false;
     bool _barrage_enable = false;

@@ -43,11 +43,6 @@ void Enemy::set_barrage_enable(bool enable)
     barrage.set_show_enable(enable);
 }
 
-void Enemy::show_barrage()
-{
-    barrage.show_img();
-}
-
 Barrage Enemy::get_barrage()
 {
 	return barrage;

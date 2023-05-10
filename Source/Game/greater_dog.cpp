@@ -317,3 +317,47 @@ void GreaterDog::set_fight()
 	ignore_times = 0;
 	enemy_last = enemy_img_init;
 }
+
+frame_command GreaterDog::get_monster_battle_mode()
+{
+	frame_command frame_mode;
+	if (greater_dog_round.GetCurrentRound() == 0)
+	{
+		frame_mode = talk_to_normal_battle;
+	}
+	else
+	{
+		frame_mode = talk_to_long_battle;
+	}
+
+	return frame_mode;
+}
+
+void GreaterDog::fight_open(Move* heart, Character* charactor)
+{
+	greater_dog_round.SelectRound(heart,charactor);
+	greater_dog_round.HPcondition(heart,charactor);
+}
+
+bool GreaterDog::get_fight_end()
+{
+	return greater_dog_round.GetIsAttackEnd();
+}
+
+void GreaterDog::init_barrage_data()
+{
+	if(!greater_dog_round.GetIsSet())
+	{
+		greater_dog_round.SetAllData();
+	}
+}
+
+void GreaterDog::show_barrage(Move* heart, Character* charactor,int stege)
+{
+	if ( stege == 7)
+	{
+		greater_dog_round.SetIsRightTime(true);
+		greater_dog_round.RevealBarrage();
+		greater_dog_round.DogAnimation(heart,charactor);
+	}
+}

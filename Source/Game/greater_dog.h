@@ -1,5 +1,6 @@
 #pragma once
 #include "enemy.h"
+#include "GreaterDogRound.h"
 #include "TextContent.h"
 
 enum dog_act_selection
@@ -25,8 +26,12 @@ public:
     void set_next_round_text() override;
 
     std::vector<std::vector<std::string>> get_random_text(std::string name) override;
-    frame_command get_monster_battle_mode() override { return talk_to_long_battle; }
+    frame_command get_monster_battle_mode() override;
     void set_fight() override;//if some thing happend hit need to set
+    void fight_open(Move* heart, Character* charactor) override;
+    bool get_fight_end() override;
+    void init_barrage_data() override;
+    void show_barrage(Move* heart, Character* charactor, int stage) override;
     
     void check_mercy() override;
 private:
@@ -41,4 +46,5 @@ private:
     bool is_init = true;
 
     game_framework::CMovingBitmap enemy_img_close;
+    GreaterDogRound greater_dog_round;
 };

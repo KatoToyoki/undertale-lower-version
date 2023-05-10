@@ -29,6 +29,10 @@ public:
     frame_command get_monster_battle_mode() override { return talk_to_normal_battle; }
     
     void check_mercy() override;
+    void fight_open(Move* heart, Character* charactor) override;
+    bool get_fight_end() override;
+
+    void show_barrage(Move* heart, Character* charactor,int stage) override;
     
 ///
 private:
