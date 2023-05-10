@@ -23,6 +23,11 @@ void ShowNormalMode::load_data(UserFrame* user_frame, ButtonFrame* button_frame,
 
 void ShowNormalMode::updata()
 {
+	_enemy->set_next_round_text_updata();
+    _enemy->set_act_text_updata();
+	_enemy->set_monster_frame_init();
+    _items->set_item_updata();
+	
   _charactor->updata_hp_bar_by_hp();
   _enemy->updata_hp_bar_by_hp();
 

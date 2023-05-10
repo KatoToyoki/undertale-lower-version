@@ -91,9 +91,8 @@ void GreaterDog::set_acts()
 	acts = Acts (act_vecter) ;
 }
 
-void GreaterDog::set_act_updata()
+void GreaterDog::set_act_text_updata()
 {
-	set_next_round_text();
 	if (ignore_times>0)
 	{
 		enemy_img_close.SetFrameIndexOfBitmap(ignore_times-1);
@@ -193,12 +192,12 @@ void GreaterDog::set_act_updata()
 	cost_round = act_text.size();
 }
 
-void GreaterDog::act_choose_count(UINT nChar)
+void GreaterDog::act_choose_count(UINT nChar,int button_current)
 {
-	if ((nChar == VK_RETURN || nChar == 0x5A) && !_act_after_enable)
+	is_init = false;
+	act_times_enter+=1;
+	if ((nChar == VK_RETURN || nChar == 0x5A) && !_act_after_enable && button_current ==1)
 	{
-		is_init = false;
-		act_times_enter+=1;
 		if (_current_selection == pet_d)
 		{
 			pet_times+=1;
@@ -249,7 +248,7 @@ void GreaterDog::set_monster_frame()
 {
 	monster_frame_mode = pass_talk;
 }
-void GreaterDog::set_next_round_text()
+void GreaterDog::set_next_round_text_updata()
 {
 	next_text_vector.clear();
 	next_text_vector.shrink_to_fit();

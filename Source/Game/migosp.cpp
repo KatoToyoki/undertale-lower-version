@@ -83,9 +83,8 @@ void Migosp::set_acts()
 	vector<Act> act_vecter = {act_check,act_talk};
 	acts = Acts (act_vecter) ;
 }
-void Migosp::set_act_updata()
+void Migosp::set_act_text_updata()
 {
-	set_next_round_text();
 	act_text_vector.clear();
 	act_text_vector.shrink_to_fit();
 	if (_current_selection == check_m )
@@ -163,7 +162,7 @@ void Migosp::set_monster_frame()
 	//enter_talk work example
 }
 
-void Migosp::set_next_round_text()
+void Migosp::set_next_round_text_updata()
 {
 	next_text_vector.clear();
 	next_text_vector.shrink_to_fit();

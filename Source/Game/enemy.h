@@ -49,12 +49,13 @@ public:
     void set_act_game_text_enable(bool enable);
     
     void act_after_stage_control_updata(UINT nChar, int *stage);
-    virtual void act_choose_count(UINT nChar) = 0;
+    virtual void act_choose_count(UINT nChar,int button_current) = 0;
     
-    virtual void set_act_updata() = 0;
+    virtual void set_act_text_updata() = 0;
 
 /// next_round
     GameText get_next_round_game_text();
+    virtual void set_next_round_text_updata() = 0;
     
 /// monster frame
     GameText get_monster_frame_game_text();
@@ -102,7 +103,6 @@ protected:
     
     virtual void set_acts() = 0;
     virtual void check_mercy() = 0;
-    virtual void set_next_round_text() = 0;
 
     int hp_max = 100;
     int hp_bar_x = 884;
