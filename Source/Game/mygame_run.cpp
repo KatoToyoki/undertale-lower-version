@@ -27,8 +27,12 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   
   if (stage_go > 0)
   {
-    show_normal_mode.updata();
+	  enemy->set_next_round_text_updata();
+    enemy->set_act_text_updata();
+	  enemy->set_monster_frame_init();
+    items.set_item_updata();
   }
+  
   switch (stage_go)
   {
   case 0:
@@ -217,6 +221,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   {
     stage_go = 9;
   }
+  show_normal_mode.updata();
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定

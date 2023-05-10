@@ -158,3 +158,14 @@ GameText Enemy::get_next_round_game_text()
 {
 	return act_next_round;
 }
+
+GameText Enemy::set_vector_vector_to_game_text(std::vector<std::vector<std::string>> text,int times,mode mode)
+{
+	std::vector<Text> temp_text_vector;
+	 for(unsigned int j=0;j<text[times].size();j++)
+	 {
+	 	if (mode == monster_mode){ temp_text_vector.push_back(TEXXT_M(text[times][j])); }
+	    else { temp_text_vector.push_back(TEXXT(text[times][j])); }
+	 }
+	return GameText (temp_text_vector,mode);
+}

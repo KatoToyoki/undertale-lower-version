@@ -31,6 +31,8 @@ public:
     void show_enemy_targe_choose_hp_bar();
     void set_enemy_img_init_or_damege(int index);
 
+    GameText set_vector_vector_to_game_text(std::vector<std::vector<std::string>> text,int times,mode mode = talk_mode);
+
 /// mercy
     GameText get_mercy_game_text() { return mercy_text;}
     GameText get_mercy_win_game_text() { return mercy_win_text;}
@@ -116,16 +118,11 @@ protected:
     game_framework::CMovingBitmap enemy_targe_choose_hp_red;
     game_framework::CMovingBitmap enemy_targe_choose_hp_black;
     
-	std::vector<Text> act_text_vector;
-	std::vector<Text> next_text_vector;
-    std::vector<std::vector<std::string>> act_text;
-    std::vector<std::vector<std::string>> next_round_text;
     TextContent text_content;
 	GameText act_after;
 	GameText act_next_round;
     int cost_round;
     
-	std::vector<Text> monster_text_vector;
 	GameText monster_frame_game_text;
     std::vector<std::vector<std::string>> monster_text;
     int monster_cost_round;

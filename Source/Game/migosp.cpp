@@ -85,17 +85,12 @@ void Migosp::set_acts()
 }
 void Migosp::set_act_text_updata()
 {
-	act_text_vector.clear();
-	act_text_vector.shrink_to_fit();
+	std::vector<std::vector<std::string>> act_text = {{}};
 	if (_current_selection == check_m )
 	{
 		act_text = text_content.get_reaction("check");
 	}
-	 for(unsigned int j=0;j<act_text[act_times].size();j++)
-	 {
-	 	act_text_vector.push_back(TEXXT(act_text[act_times][j]));
-	 }
-	act_after = GameText(act_text_vector,talk_mode);
+	act_after = set_vector_vector_to_game_text(act_text,act_times);
 	cost_round = act_text.size();
 	
 	if (_current_selection == talk_m)
@@ -140,23 +135,13 @@ std::vector<std::vector<std::string>> Migosp::get_random_text(std::string name)
 
 void Migosp::set_monster_frame()
 {
-	monster_text_vector.clear();
-	monster_text_vector.shrink_to_fit();
 	//
-	 for(unsigned int j=0;j<monster_text[monster_times].size();j++)
-	 {
-	 	monster_text_vector.push_back(TEXXT_M(monster_text[monster_times][j]));
-	 }
-	monster_frame_game_text = GameText(monster_text_vector,monster_mode);
+	monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode);
 	monster_cost_round = monster_text.size();
 	monster_frame_mode = no_enter_talk;
 
-	// monster_text = text_content.get_reaction("text","netral_1");
-	//  for(unsigned int j=0;j<monster_text[monster_times].size();j++)
-	//  {
-	//  	monster_text_vector.push_back(TEXXT_M(monster_text[monster_times][j]));
-	//  }
-	// monster_frame_game_text = GameText(monster_text_vector,monster_mode);
+	// monster_text = text_content.get_reaction("netral_1");
+	// monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode);
 	// monster_cost_round = monster_text.size();
 	// monster_frame_mode = enter_talk;
 	//enter_talk work example
@@ -164,8 +149,7 @@ void Migosp::set_monster_frame()
 
 void Migosp::set_next_round_text_updata()
 {
-	next_text_vector.clear();
-	next_text_vector.shrink_to_fit();
+    std::vector<std::vector<std::string>> next_round_text = {{}};
 	next_round_text = text_content.get_reaction("next_round");
 	
 	if (hp < 50)
@@ -173,11 +157,7 @@ void Migosp::set_next_round_text_updata()
 		next_round_text = text_content.get_reaction("hp_low");
 	}
 	
-	 for(unsigned int j=0;j<next_round_text[0].size();j++)
-	 {
-		   next_text_vector.push_back(TEXXT(next_round_text[0][j]));
-	 }
-	act_next_round = GameText (next_text_vector,talk_mode);
+	act_next_round = set_vector_vector_to_game_text(next_round_text,0);
 }
 
 void Migosp::fight_open(Move* heart, Character* charactor)

@@ -30,7 +30,7 @@ public:
     
     vector<Item> items;
 private:
-    int times = 0;
+    int _times = 0;
     int *_stage;
     int _current_selection = 0;
     bool _enable = false;
@@ -43,9 +43,9 @@ private:
     void set_items(int current_selection);
 
     void check_and_del_item();
+    
+    GameText set_vector_vector_to_game_text(std::vector<std::vector<std::string>> text,int times);
 
-    vector<Text> text_vector;
-    std::vector<std::vector<std::string>> item_text;
     TextContent text_content;
 	GameText item_after;
     int cost_round;

@@ -100,8 +100,8 @@ void GreaterDog::set_act_text_updata()
 		enemy_last = enemy_img_close;
 	}
 	
-	act_text_vector.clear();
-	act_text_vector.shrink_to_fit();
+	std::vector<std::vector<std::string>> act_text = {{}};
+	
 	if (_current_selection == check_d )
 	{
 		act_text = text_content.get_reaction("check");
@@ -184,20 +184,16 @@ void GreaterDog::set_act_text_updata()
 			 break;
 		}
 	}
-	 for(unsigned int j=0;j<act_text[act_times].size();j++)
-	 {
-		   act_text_vector.push_back(TEXXT(act_text[act_times][j]));
-	 }
-	act_after = GameText(act_text_vector,talk_mode);
+	act_after = set_vector_vector_to_game_text(act_text,act_times);
 	cost_round = act_text.size();
 }
 
 void GreaterDog::act_choose_count(UINT nChar,int button_current)
 {
 	is_init = false;
-	act_times_enter+=1;
 	if ((nChar == VK_RETURN || nChar == 0x5A) && !_act_after_enable && button_current ==1)
 	{
+		act_times_enter+=1;
 		if (_current_selection == pet_d)
 		{
 			pet_times+=1;
@@ -250,8 +246,7 @@ void GreaterDog::set_monster_frame()
 }
 void GreaterDog::set_next_round_text_updata()
 {
-	next_text_vector.clear();
-	next_text_vector.shrink_to_fit();
+    std::vector<std::vector<std::string>> next_round_text = {{}};
 	next_round_text = text_content.get_reaction("new_round_begin");
 	
 	if (hp < 50)
@@ -304,11 +299,7 @@ void GreaterDog::set_next_round_text_updata()
 			break;
 		}
 	}
-	 for(unsigned int j=0;j<next_round_text[0].size();j++)
-	 {
-		   next_text_vector.push_back(TEXXT(next_round_text[0][j]));
-	 }
-	act_next_round = GameText (next_text_vector,talk_mode);
+	act_next_round = set_vector_vector_to_game_text(next_round_text,0);
 }
 
 void GreaterDog::set_fight()
