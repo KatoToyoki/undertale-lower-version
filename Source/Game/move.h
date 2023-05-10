@@ -39,6 +39,9 @@ public:
 	DWORD jump_time_count;
 	DWORD jump_time_count_max_up;
 	DWORD jump_time_count_max_down;
+
+    int GetCurrentX();
+    int GetCurrentY();
 private:
     Vec2 check_range(Corner corner,Vec2 force);
     Vec2 normalize(Vec2 force);

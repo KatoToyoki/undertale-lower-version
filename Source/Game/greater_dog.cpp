@@ -45,7 +45,7 @@ void GreaterDog::set_img()
  "resources/dog_barage_0.bmp",
  "resources/dog_barage_1.bmp",
  "resources/dog_barage_2.bmp",
-	},RGB(0,0,0));
+	},RGB(255,255,255));
 	
 	enemy_barrage.SetTopLeft(933,799);
 	enemy_barrage.SetAnimation(250,false);
@@ -66,8 +66,8 @@ void GreaterDog::set_hp_img()
 
 void GreaterDog::set_barrage()
 {
-  barrage = Barrage(4,white);
-  barrage.loda_CMoving_Bitmap(enemy_barrage);
+	barrage = Barrage(4,white);
+    barrage.loda_CMoving_Bitmap(enemy_barrage);
 }
 
 void GreaterDog::set_acts()
@@ -132,7 +132,6 @@ void GreaterDog::set_act_updata()
 		else if (is_beckon)
 		{
 			 act_text = text_content.get_reaction("pet_first_time");//not run
-			 // pet_times=0;
 		}
 		else
 		{

@@ -3,9 +3,7 @@
 #include <mmsystem.h>
 #include <ddraw.h>
 #include "../Library/audio.h"
-
 #include "../Library/gameutil.h"
-
 #include "../Library/gamecore.h"
 #include "mygame.h"
 
@@ -45,6 +43,22 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_add = true;
     stage_go_enable_sub = false;
     show_normal_mode.init();
+
+    if (menu.get_current_stage()== 2)
+    {
+      if(!greaterDogRound.GetIsSet())
+      {
+        greaterDogRound.SetAllData();
+      }
+    }
+    if (menu.get_current_stage()== 3)
+    {
+      if(!papyrusRound.GetIsSet())
+      {
+        papyrusRound.SetAllData(20);
+      }
+    }
+    
     // ===========================================================
     break;
   case 2:
@@ -153,20 +167,34 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_sub = false;
     
     monster_frame._monster_saying_is_done = false;
-    user_frame.control_frame(enemy->get_monster_battle_mode());
-
-    user_frame.control_frame(enemy->get_monster_battle_mode());
+   
+    if(menu.get_current_stage()== 2 && greaterDogRound.GetCurrentRound()==0)
+    {
+      user_frame.control_frame(talk_to_normal_battle);
+    }
+    else
+    {
+      user_frame.control_frame(enemy->get_monster_battle_mode());
+    }
+    
     heart_test.set_show_img_enable(true);
     if (user_frame.get_move_done())
     {
       monster_frame._monster_saying_is_done = false;
       heart_test.move_control(user_frame.get_corner(),true);
-    // to do enemy attack
-    // ===========================================================
-      if (menu.get_current_stage()== 3)
+
+      // to do enemy attack
+      // ===========================================================
+
+      if (menu.get_current_stage()== 2)
+      {
+        greaterDogRound.SelectRound(&heart_test,&charactor);
+        greaterDogRound.HPcondition(&heart_test,&charactor);
+      }
+      else if (menu.get_current_stage()== 3)
       {
         papyrusRound.SelectRound(&heart_test,&charactor);
-        papyrusRound.GetMinusHP_M(&heart_test,&charactor,disappear);
+        papyrusRound.HPcondition(&heart_test,&charactor);
       }
       else
       {
@@ -179,10 +207,17 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     heart_test.set_show_img_enable(true);
   
 	  battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
-    if (papyrusRound.GetIsAttackEnd() || (battel_mode_timer>= 1300 && menu.get_current_stage()!=3))
+    
+    
+    if(papyrusRound.GetIsAttackEnd()||greaterDogRound.GetIsAttackEnd())
     {
       stage_go = 1;
     }
+    else if(menu.get_current_stage()== 1 && battel_mode_timer>= 1300)
+    {
+      stage_go = 1;
+    }
+    
     break;
   case 8://before exp&gold
     user_frame.control_frame(to_talk);
@@ -221,7 +256,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   migosp.set_img();
   migosp.set_barrage();
   greater_dog.set_img();
-  greater_dog.set_barrage();
+  //greater_dog.set_barrage();
   
   user_frame.load_img();
   user_frame.create_frame(314, 1294, 312, 563);
@@ -259,6 +294,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     items.item_after_stage_control_updata(nChar,&stage_go);
     if (stage_go == 3) {enemy->act_choose_count(nChar);}
     if (stage_go!= 7) {charactor.change_hp_updata(nChar);}
+    papyrusRound.ToGetEnterCount(nChar);
   }
 
   //stage_control
@@ -322,7 +358,21 @@ void CGameStateRun::OnShow()
 
     // ===========================================================
     // enemy attack path
-    papyrusRound.RevealBarrage();
+    if(stage_go==7)
+    {
+      if(menu.get_current_stage()==2)
+      {
+        greaterDogRound.SetIsRightTime(true);
+        greaterDogRound.RevealBarrage();
+        greaterDogRound.DogAnimation(&heart_test,&charactor);
+      }
+      else if(menu.get_current_stage()==3)
+      {
+        papyrusRound.SetIsRightTime(true);
+        papyrusRound.RevealBarrage();
+        papyrusRound.DogAnimation(&heart_test,&charactor);
+      }
+    }
 
     user_frame.show_frame();
     user_frame.show_select_heart();

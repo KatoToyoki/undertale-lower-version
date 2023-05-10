@@ -22,6 +22,16 @@ struct DataSet
     std::vector<std::string> imgPath;
 };
 
+enum Position
+{
+    front,back,frontEqual,backEqual,up
+};
+
+enum EndPoint
+{
+    leftAtLeft,leftAtRight,vanish
+};
+
 class BarrageMode
 {
 private:
@@ -38,6 +48,10 @@ protected:
 
     // to know if this round is ended, because you may need to go to other stage
     bool isAttackEnd=false;
+
+    bool isSet=false;
+
+    bool isRightTime=false;
     
     // to put all barrages setting in this mode
     std::vector<Barrage> enemyBarrage;
@@ -53,6 +67,10 @@ public:
     // the quantity of barrages in current round, then set it
     // so for loop would know when to stop
     void SetQuantity(int q);
+
+    bool GetIsSet();
+
+    void SetIsRightTime(bool rt);
     
     // depends on quantity, push empty barrage in vector enemyBarrage
     void PushEmpty();
@@ -87,6 +105,19 @@ public:
 
     // close all barrages
     void UnshowBarrage();
+
+    void GoRight(Barrage& barrage, Move *heart, int speed,Character *character);
+    void GoLeft(Barrage& barrage, Move *heart, int speed,Character *character);
+    void GoUp(Barrage& barrage, Move *heart, int speed,Character *character);
+    bool DetectCertainPoint(Barrage& barrage,int point,int position);
+    bool DetectLeft(Barrage& barrage,int direction);
+
+    void SetIsAttack(bool a)
+    {
+        isAttackEnd=a;
+    }
+    
+    void virtual HPcondition(Move *heart,Character *character,int command);
 
     // getter
     bool GetIsAttackEnd();

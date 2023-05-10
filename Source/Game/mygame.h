@@ -53,10 +53,8 @@
 #include "greater_dog.h"
 #include "PapyrusRound.h"
 #include "TextContent.h"
-
+#include "GreaterDogRound.h"
 #include "../Library/audio.h"
-
-
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -127,6 +125,7 @@ private:
   ShowNormalMode show_normal_mode;
 
   PapyrusRound papyrusRound;
+  GreaterDogRound greaterDogRound;
 
   MonsterFrame monster_frame;
   Migosp migosp;

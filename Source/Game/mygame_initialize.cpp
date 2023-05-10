@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include "../Core/Resource.h"
 #include "../Library/audio.h"
-
 #include "../Library/gameutil.h"
-
 #include "../Library/gamecore.h"
 #include "mygame.h"
 #include <ddraw.h>
