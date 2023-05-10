@@ -13,6 +13,7 @@ enum frame_command {
 
 class UserFrame : public Frame {
 public:
+  UserFrame() = default;
   void load_img();
   void show_select_heart();
 

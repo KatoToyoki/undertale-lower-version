@@ -1,0 +1,105 @@
+{
+    "DogFindYou": [
+      {
+        "damage": 4,
+        "speed": 0,
+        "initX":910,
+        "initY":820,
+        "barrage_mode": "white",
+        "imgPath": [
+          {
+            "path0":"dog_barage_0",
+            "path1":"dog_barage_1",
+            "path2":"dog_barage_2"
+          }
+        ]
+      },
+      {
+        "damage": 4,
+        "speed": 0,
+        "initX":1000,
+        "initY":920,
+        "barrage_mode": "white",
+        "imgPath": [
+          {
+            "path0":"bark"
+          }
+        ]
+      },
+      {
+        "damage": 4,
+        "speed": 0,
+        "initX":1020,
+        "initY":970,
+        "barrage_mode": "white",
+        "imgPath": [
+          {
+            "path0":"bark"
+          }
+        ]
+      },
+      {
+        "damage": 4,
+        "speed": 0,
+        "initX":1000,
+        "initY":920,
+        "barrage_mode": "white",
+        "imgPath": [
+          {
+            "path0":"bark"
+          }
+        ]
+      },
+      {
+        "damage": 4,
+        "speed": 0,
+        "initX":1020,
+        "initY":970,
+        "barrage_mode": "white",
+        "imgPath": [
+          {
+            "path0":"bark"
+          }
+        ]
+      },
+      {
+        "damage": 4,
+        "speed": 0,
+        "initX":1000,
+        "initY":920,
+        "barrage_mode": "white",
+        "imgPath": [
+          {
+            "path0":"bark"
+          }
+        ]
+      },
+      {
+        "damage": 4,
+        "speed": 0,
+        "initX":1020,
+        "initY":970,
+        "barrage_mode": "white",
+        "imgPath": [
+          {
+            "path0":"bark"
+          }
+        ]
+      }
+    ],
+    "Spear": [
+        {
+          "damage": 4,
+          "speed": 5,
+          "initX":1170,
+          "initY":885,
+          "barrage_mode": "white",
+          "imgPath": [
+            {
+              "path0":"dog_long",
+              "path1":"dog_long_b"
+            }
+          ]
+        }
+      ]
+}

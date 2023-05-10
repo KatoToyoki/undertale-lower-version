@@ -52,8 +52,9 @@ public:
 
     bool GetIsOverlay(Move *heart);
 
-private:
     game_framework::CMovingBitmap barrage_img;
+
+private:
     int _damage;
     bool _enable = false;
     barrage_mode _mode;
