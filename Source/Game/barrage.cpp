@@ -91,16 +91,9 @@ void Barrage::UnshowIMG()
     }
 }
 
-void Barrage::switch_mode()
+void Barrage::switch_mode(barrage_mode mode)
 {
-    if (_mode == white)
-    {
-        _mode = blue;
-    }
-    else
-    {
-        _mode = white;
-    }
+    _mode = mode;
 }
 
 void Barrage::damege_hit(Move *heart, Character *character,int command)
