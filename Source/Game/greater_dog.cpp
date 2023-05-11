@@ -24,20 +24,23 @@ GreaterDog::GreaterDog()
 void GreaterDog::set_img()
 {
 	set_hp_img();
-	enemy_img.LoadBitmapByString({"resources/dog_0.bmp","resources/dog_1.bmp"},RGB(0,0,255));
-	enemy_img.SetTopLeft(746,125);
-	enemy_img.SetAnimation(300,false);
-
 	
 	enemy_img_init.LoadBitmapByString({"resources/dog_0.bmp","resources/dog_1.bmp"},RGB(0,0,255));
-	enemy_img_init.SetTopLeft(746,125);
+	enemy_img_init.SetTopLeft(584,115);
 	enemy_img_init.SetAnimation(300,false);
-	
 
-	enemy_img_damege.LoadBitmapByString({"resources/dog_hit.bmp"},RGB(0,0,0));
-	enemy_img_damege.SetTopLeft(746,125);
+	enemy_img_damege.LoadBitmapByString({"resources/dog_hit.bmp"},RGB(0,0,255));
+	enemy_img_damege.SetTopLeft(584,115);
 
-	
+	enemy_img_close.LoadBitmapA({"resources/dog_close_0.bmp","resources/dog_close_1.bmp","resources/dog_close_2.bmp","resources/dog_close_2.bmp"},RGB(0,0,255));
+	enemy_img_close.SetTopLeft(584,115);
+
+	enemy_img  =enemy_img_init;
+	enemy_last  =enemy_img_init;
+
+	red_attck_positon = {960,150};
+	fight_bar_positon = {0,374};
+
 	enemy_barrage.LoadBitmapByString({
  "resources/dog_barage_0.bmp",
  "resources/dog_barage_1.bmp",
@@ -46,7 +49,6 @@ void GreaterDog::set_img()
 	
 	enemy_barrage.SetTopLeft(933,799);
 	enemy_barrage.SetAnimation(250,false);
-	
 }
 
 void GreaterDog::set_hp_img()
@@ -63,38 +65,28 @@ void GreaterDog::set_hp_img()
 
 void GreaterDog::set_barrage()
 {
-
 	barrage = Barrage(4,white);
-  barrage.loda_CMoving_Bitmap(enemy_barrage);
-	
+    barrage.loda_CMoving_Bitmap(enemy_barrage);
 }
 
 void GreaterDog::set_acts()
 {
-	Act act_check = {
-        "Check",
-    };
-	Act act_pet = {
-        "Pet",
-    };
-	Act act_beckon = {
-        "Beckon",
-	};
-	Act act_play = {
-        "Play",
-	};
-	Act act_ignore = {
-        "Ignore",
-	};
-	vector<Act> act_vecter = {act_check,act_pet,act_beckon,act_play,act_ignore};
+	vector<string> act_name_vector = {"Check","Pet","Beckon","Play","Ignore"};
+	vector<string> act_vecter = act_name_vector;
 	acts = Acts (act_vecter) ;
 }
 
-void GreaterDog::set_act_updata()
+void GreaterDog::set_act_text_updata()
 {
-	set_next_round_text();
-	act_text_vector.clear();
-	act_text_vector.shrink_to_fit();
+	if (ignore_times>0)
+	{
+		enemy_img_close.SetFrameIndexOfBitmap(ignore_times-1);
+		enemy_img = enemy_img_close;
+		enemy_last = enemy_img_close;
+	}
+	
+	std::vector<std::vector<std::string>> act_text = {{}};
+	
 	if (_current_selection == check_d )
 	{
 		act_text = text_content.get_reaction("check");
@@ -105,10 +97,10 @@ void GreaterDog::set_act_updata()
 		{
 			 switch (pet_times)
 			 {
-			 case 1:
+			 case 3:
 			 	  act_text = text_content.get_reaction("play_then_pet");
 				  break;
-			 case 2 :
+			 case 4 :
 			 	  act_text = text_content.get_reaction("last_pet");
 				  break;
 			 default:
@@ -116,15 +108,14 @@ void GreaterDog::set_act_updata()
 				  break;
 			 }
 		}
-		else if (!is_play_afb && is_pet_afb)
+		else if (!is_play_afb && is_pet_afb && pet_times>1)
 		{
 			 act_text = text_content.get_reaction("after_first_pet");//
-			 pet_times=0;
+			 pet_times=2;
 		}
 		else if (is_beckon)
 		{
 			 act_text = text_content.get_reaction("pet_first_time");//not run
-			 pet_times=0;
 		}
 		else
 		{
@@ -178,19 +169,15 @@ void GreaterDog::set_act_updata()
 			 break;
 		}
 	}
-	 for(unsigned int j=0;j<act_text[act_times].size();j++)
-	 {
-		   act_text_vector.push_back(TEXXT(act_text[act_times][j]));
-	 }
-	act_after = GameText(act_text_vector,talk_mode);
+	act_after = set_vector_vector_to_game_text(act_text,act_times);
 	cost_round = act_text.size();
 }
 
-void GreaterDog::act_choose_count(UINT nChar)
+void GreaterDog::act_choose_count(UINT nChar,int button_current)
 {
-	if ((nChar == VK_RETURN || nChar == 0x5A) && !_act_after_enable)
+	is_init = false;
+	if ((nChar == VK_RETURN || nChar == 0x5A) && !_act_after_enable && button_current ==1)
 	{
-		is_init = false;
 		act_times_enter+=1;
 		if (_current_selection == pet_d)
 		{
@@ -227,7 +214,7 @@ void GreaterDog::act_choose_count(UINT nChar)
 
 void GreaterDog::check_mercy()
 {
-	if (is_play_afb && pet_times>1)
+	if (is_play_afb && pet_times>3)
 	{
 		_is_mercy = true;
 	}
@@ -242,10 +229,9 @@ void GreaterDog::set_monster_frame()
 {
 	monster_frame_mode = pass_talk;
 }
-void GreaterDog::set_next_round_text()
+void GreaterDog::set_next_round_text_updata()
 {
-	next_text_vector.clear();
-	next_text_vector.shrink_to_fit();
+    std::vector<std::vector<std::string>> next_round_text = {{}};
 	next_round_text = text_content.get_reaction("new_round_begin");
 	
 	if (hp < 50)
@@ -256,10 +242,11 @@ void GreaterDog::set_next_round_text()
 	{
 		switch (pet_times)
 		{
-		case 0:
+		case 1:
+		case 2:
 			next_round_text = text_content.get_reaction("last_pet_count_0");
 			break;
-		case 1:
+		case 3:
 			next_round_text = text_content.get_reaction("last_pet_count_1");
 			break;
 		default:
@@ -267,7 +254,7 @@ void GreaterDog::set_next_round_text()
 			break;
 		}
 	}
-	else if (is_pet_afb && pet_times == 0)
+	else if (is_pet_afb && pet_times >1)
 	{
 		next_round_text = text_content.get_reaction("afb_play_wait_pet");
 	}
@@ -297,9 +284,55 @@ void GreaterDog::set_next_round_text()
 			break;
 		}
 	}
-	 for(unsigned int j=0;j<next_round_text[0].size();j++)
-	 {
-		   next_text_vector.push_back(TEXXT(next_round_text[0][j]));
-	 }
-	act_next_round = GameText (next_text_vector,talk_mode);
+	act_next_round = set_vector_vector_to_game_text(next_round_text,0);
+}
+
+void GreaterDog::set_fight()
+{
+	ignore_times = 0;
+	enemy_last = enemy_img_init;
+}
+
+frame_command GreaterDog::get_monster_battle_mode()
+{
+	frame_command frame_mode;
+	if (greater_dog_round.GetCurrentRound() == 0)
+	{
+		frame_mode = talk_to_normal_battle;
+	}
+	else
+	{
+		frame_mode = talk_to_long_battle;
+	}
+
+	return frame_mode;
+}
+
+void GreaterDog::fight_open(Move* heart, Character* charactor)
+{
+	greater_dog_round.SelectRound(heart,charactor);
+	greater_dog_round.HPcondition(heart,charactor);
+}
+
+bool GreaterDog::get_fight_end()
+{
+	return greater_dog_round.GetIsAttackEnd();
+}
+
+void GreaterDog::init_barrage_data()
+{
+	if(!greater_dog_round.GetIsSet())
+	{
+		greater_dog_round.SetAllData();
+	}
+}
+
+void GreaterDog::show_barrage(Move* heart, Character* charactor,int stege)
+{
+	if ( stege == 7)
+	{
+		greater_dog_round.SetIsRightTime(true);
+		greater_dog_round.RevealBarrage();
+		greater_dog_round.DogAnimation(heart,charactor);
+	}
 }

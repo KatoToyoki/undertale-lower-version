@@ -25,10 +25,6 @@ Migosp::Migosp()
 void Migosp::set_img()
 {
 	set_hp_img();
-	enemy_img.LoadBitmapByString({"resources/migosp_0.bmp","resources/migosp_1.bmp"},RGB(0,0,0));
-	enemy_img.SetTopLeft(993,316);
-	enemy_img.SetAnimation(300,false);
-	
 	enemy_img_init.LoadBitmapByString({"resources/migosp_0.bmp","resources/migosp_1.bmp"},RGB(0,0,0));
 	enemy_img_init.SetTopLeft(993,316);
 	enemy_img_init.SetAnimation(300,false);
@@ -36,6 +32,12 @@ void Migosp::set_img()
 	enemy_img_damege.LoadBitmapByString({"resources/migosp_hit.bmp"},RGB(0,0,0));
 	enemy_img_damege.SetTopLeft(993,316);
 
+	enemy_img = enemy_img_init;
+	enemy_last = enemy_img_init;
+
+	red_attck_positon = {1050,316};
+	fight_bar_positon = {0,200};
+	
 	enemy_barrage.LoadBitmapByString({
  "resources/std_hand_up.bmp",
    "resources/hand_up.bmp","resources/std.bmp",
@@ -72,29 +74,18 @@ void Migosp::set_barrage()
 
 void Migosp::set_acts()
 {
-	Act act_check = {
-        "check",
-    };
-	Act act_talk = {
-        "talk",
-    };
-	vector<Act> act_vecter = {act_check,act_talk};
-	acts = Acts (act_vecter) ;
+	vector<string> act_name_vector = {"check","talk"};
+	vector<string> act_vecter = act_name_vector;
+	acts = Acts (act_vecter);
 }
-void Migosp::set_act_updata()
+void Migosp::set_act_text_updata()
 {
-	set_next_round_text();
-	act_text_vector.clear();
-	act_text_vector.shrink_to_fit();
+	std::vector<std::vector<std::string>> act_text = {{}};
 	if (_current_selection == check_m )
 	{
 		act_text = text_content.get_reaction("check");
 	}
-	 for(unsigned int j=0;j<act_text[act_times].size();j++)
-	 {
-	 	act_text_vector.push_back(TEXXT(act_text[act_times][j]));
-	 }
-	act_after = GameText(act_text_vector,talk_mode);
+	act_after = set_vector_vector_to_game_text(act_text,act_times);
 	cost_round = act_text.size();
 	
 	if (_current_selection == talk_m)
@@ -139,32 +130,21 @@ std::vector<std::vector<std::string>> Migosp::get_random_text(std::string name)
 
 void Migosp::set_monster_frame()
 {
-	monster_text_vector.clear();
-	monster_text_vector.shrink_to_fit();
 	//
-	 for(unsigned int j=0;j<monster_text[monster_times].size();j++)
-	 {
-	 	monster_text_vector.push_back(TEXXT_M(monster_text[monster_times][j]));
-	 }
-	monster_frame_game_text = GameText(monster_text_vector,monster_mode);
+	monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode);
 	monster_cost_round = monster_text.size();
 	monster_frame_mode = no_enter_talk;
 
-	// monster_text = text_content.get_reaction("text","netral_1");
-	//  for(unsigned int j=0;j<monster_text[monster_times].size();j++)
-	//  {
-	//  	monster_text_vector.push_back(TEXXT_M(monster_text[monster_times][j]));
-	//  }
-	// monster_frame_game_text = GameText(monster_text_vector,monster_mode);
+	// monster_text = text_content.get_reaction("netral_1");
+	// monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode);
 	// monster_cost_round = monster_text.size();
 	// monster_frame_mode = enter_talk;
 	//enter_talk work example
 }
 
-void Migosp::set_next_round_text()
+void Migosp::set_next_round_text_updata()
 {
-	next_text_vector.clear();
-	next_text_vector.shrink_to_fit();
+    std::vector<std::vector<std::string>> next_round_text = {{}};
 	next_round_text = text_content.get_reaction("next_round");
 	
 	if (hp < 50)
@@ -172,9 +152,23 @@ void Migosp::set_next_round_text()
 		next_round_text = text_content.get_reaction("hp_low");
 	}
 	
-	 for(unsigned int j=0;j<next_round_text[0].size();j++)
-	 {
-		   next_text_vector.push_back(TEXXT(next_round_text[0][j]));
-	 }
-	act_next_round = GameText (next_text_vector,talk_mode);
+	act_next_round = set_vector_vector_to_game_text(next_round_text,0);
 }
+
+void Migosp::fight_open(Move* heart, Character* charactor)
+{
+	set_barrage_enable(true);
+	get_barrage().damege_hit(heart,charactor);
+}
+
+bool Migosp::get_fight_end()
+{
+	battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
+	return (battel_mode_timer >=1300);
+}
+
+void Migosp::show_barrage(Move* heart, Character* charactor,int stage)
+{
+    barrage.show_img();
+}
+

@@ -407,7 +407,11 @@
     <Content Include="Resources\Toolbar.bmp" />
     <Content Include="Resources\undertale.bmp" />
     <Content Include="Source\Game\json\GreaterDogAct.json" />
+    <Content Include="Source\Game\json\GreaterDogRounds.json" />
+    <Content Include="Source\Game\json\Item.json" />
+    <Content Include="Source\Game\json\MigospAct.json" />
     <Content Include="Source\Game\json\PapyrusRounds.json" />
+    <Content Include="Source\Game\json\text.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -78,6 +78,7 @@ int Items::generate_random_num(int min, int max)
 std::string Items::get_and_set_ramdon_text(std::string str)
 {
     vector<std::string> random_text_vector;
+    std::vector<std::vector<std::string>> item_text;
     if (str == "NiceCream")
     {
         item_text = text_content.get_reaction("NiceCream_random");
@@ -97,7 +98,7 @@ void Items::set_item_cost_round_init(int current_selection, int button_selection
     {
         check_and_del_item();
         _current_selection = current_selection;
-        times = 0;
+        _times = 0;
         set_items(_current_selection);
         _button_selection = button_selection;
         nice_cream_random_text = get_and_set_ramdon_text("NiceCream");
@@ -107,8 +108,7 @@ void Items::set_item_cost_round_init(int current_selection, int button_selection
 void Items::set_item_updata()
 {
     Item *item = get_item_by_index(_current_selection);
-    text_vector.clear();
-    text_vector.shrink_to_fit();
+    std::vector<std::vector<std::string>> item_text = {{}};
     
     if (item->name == "NiceCream")
     {
@@ -131,11 +131,7 @@ void Items::set_item_updata()
         item_text = text_content.get_reaction("tem_flake");
     }
     
-	 for(unsigned int j=0;j<item_text[times].size();j++)
-	 {
-		   text_vector.push_back(TEXXT(item_text[times][j]));
-	 }
-	item_after = GameText(text_vector,talk_mode);
+    item_after = set_vector_vector_to_game_text(item_text,_times);
 	cost_round = item_text.size();
 }
 
@@ -150,11 +146,11 @@ void Items::item_after_stage_control_updata(UINT nChar, int* stage)
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _enable)
 	{
 		Item* item = get_item_by_index(_current_selection);
-		if (times < cost_round-1)
+		if (_times < cost_round-1)
 		{
-			times+=1;
+			_times+=1;
 			*stage-=1;
-		    if (times == cost_round-2)
+		    if (_times == cost_round-2)
 		    {
 		       item->useable_times-=1; 
 		    }
@@ -201,4 +197,14 @@ void Items::check_and_del_item()
 bool Items::is_items_empty()
 {
     return (items[0].heal_num == 0 && *_stage == 1 && _button_selection == 2);
+}
+
+GameText Items::set_vector_vector_to_game_text(std::vector<std::vector<std::string>> text, int times)
+{
+    vector<Text> text_vector;
+	 for(unsigned int j=0;j<text[times].size();j++)
+	 {
+		   text_vector.push_back(TEXXT(text[times][j]));
+	 }
+	return GameText(text_vector,talk_mode);
 }

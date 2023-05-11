@@ -16,6 +16,9 @@ void ShowNormalMode::load_data(UserFrame* user_frame, ButtonFrame* button_frame,
 	_enemy = enemy;
 	_items = items;
 	_charactor = charactor;
+	
+	_game_fight->set_monster(enemy);
+    _game_fight->load_img();
 }
 
 void ShowNormalMode::updata()
@@ -55,6 +58,8 @@ void ShowNormalMode::init()//宣告於OnMove()
 	_enemy->set_act_game_text_enable(false);
 	_enemy->set_monster_frame_game_text_enable(false);
 	_enemy->check_change_mercy_name_to_yellow_by_is_mercy();
+	_enemy->init_barrage_data();//here init round SetAllData 
+    _enemy->set_battle_timer(0);
 
 	_items->set_control_updata(false);
 	

@@ -31,6 +31,8 @@ public:
     void show_enemy_targe_choose_hp_bar();
     void set_enemy_img_init_or_damege(int index);
 
+    GameText set_vector_vector_to_game_text(std::vector<std::vector<std::string>> text,int times,mode mode = talk_mode);
+
 /// mercy
     GameText get_mercy_game_text() { return mercy_text;}
     GameText get_mercy_win_game_text() { return mercy_win_text;}
@@ -41,7 +43,7 @@ public:
 /// barrage
     virtual void set_barrage() = 0;
     void set_barrage_enable(bool enable);
-    void show_barrage();
+    virtual void show_barrage(Move *heart, Character *charactor, int stage) = 0;
     Barrage get_barrage();
 /// act
     GameText get_act_after_game_text();
@@ -49,12 +51,13 @@ public:
     void set_act_game_text_enable(bool enable);
     
     void act_after_stage_control_updata(UINT nChar, int *stage);
-    virtual void act_choose_count(UINT nChar) = 0;
+    virtual void act_choose_count(UINT nChar,int button_current) = 0;
     
-    virtual void set_act_updata() = 0;
+    virtual void set_act_text_updata() = 0;
 
 /// next_round
     GameText get_next_round_game_text();
+    virtual void set_next_round_text_updata() = 0;
     
 /// monster frame
     GameText get_monster_frame_game_text();
@@ -68,14 +71,23 @@ public:
     virtual void set_monster_frame() = 0;
 
     virtual std::vector<std::vector<std::string>> get_random_text(std::string name) = 0;
+    virtual void set_fight() {}
+    virtual void fight_open(Move *heart, Character *charactor) = 0;
+    virtual bool get_fight_end() = 0;
+    void set_battle_timer(int time) {battel_mode_timer = time;}
+    virtual void init_barrage_data() {};
+    
 
     Acts acts;
     int hp = 100;
+    Coordinate red_attck_positon;
+    Coordinate fight_bar_positon;
     game_framework::CMovingBitmap enemy_barrage;
     
     bool _monster_frame_enable = false;
 protected:
     
+    int battel_mode_timer = 0;
     bool _act_after_enable = false;
     bool _choose_targe_hp_bar_enable = false;
     bool _barrage_enable = false;
@@ -93,29 +105,24 @@ protected:
     
     virtual void set_acts() = 0;
     virtual void check_mercy() = 0;
-    virtual void set_next_round_text() = 0;
 
     int hp_max = 100;
     int hp_bar_x = 884;
     int hp_bar_y = 630;
 
     game_framework::CMovingBitmap enemy_img;
+    game_framework::CMovingBitmap enemy_last;
     game_framework::CMovingBitmap enemy_img_init;
     game_framework::CMovingBitmap enemy_img_damege;
     game_framework::CMovingBitmap enemy_targe_choose_hp;
     game_framework::CMovingBitmap enemy_targe_choose_hp_red;
     game_framework::CMovingBitmap enemy_targe_choose_hp_black;
     
-	std::vector<Text> act_text_vector;
-	std::vector<Text> next_text_vector;
-    std::vector<std::vector<std::string>> act_text;
-    std::vector<std::vector<std::string>> next_round_text;
     TextContent text_content;
 	GameText act_after;
 	GameText act_next_round;
     int cost_round;
     
-	std::vector<Text> monster_text_vector;
 	GameText monster_frame_game_text;
     std::vector<std::vector<std::string>> monster_text;
     int monster_cost_round;
