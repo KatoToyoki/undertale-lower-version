@@ -226,7 +226,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   migosp.set_img();
   migosp.set_barrage();
   greater_dog.set_img();
-  //greater_dog.set_barrage();
   
   user_frame.load_img();
   user_frame.create_frame(314, 1294, 312, 563);
@@ -289,40 +288,33 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-  
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
-  
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
-  
 }
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
-  
 }
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
-  
 }
 
 void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
-  
 }
 void CGameStateRun::OnShow()
 {
   if (menu.get_menu()) {
     menu.WholeMenu();
-    
   } else {
-    //all show thing put here no any if else
+    //all show thing put here
     heart_test.show_heart_img();
     // ===========================================================
     // enemy attack path

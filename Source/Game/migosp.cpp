@@ -74,14 +74,9 @@ void Migosp::set_barrage()
 
 void Migosp::set_acts()
 {
-	Act act_check = {
-        "check",
-    };
-	Act act_talk = {
-        "talk",
-    };
-	vector<Act> act_vecter = {act_check,act_talk};
-	acts = Acts (act_vecter) ;
+	vector<string> act_name_vector = {"check","talk"};
+	vector<string> act_vecter = act_name_vector;
+	acts = Acts (act_vecter);
 }
 void Migosp::set_act_text_updata()
 {

@@ -72,22 +72,8 @@ void GreaterDog::set_barrage()
 
 void GreaterDog::set_acts()//FIXME
 {
-	Act act_check = {
-        "Check",
-    };
-	Act act_pet = {
-        "Pet",
-    };
-	Act act_beckon = {
-        "Beckon",
-	};
-	Act act_play = {
-        "Play",
-	};
-	Act act_ignore = {
-        "Ignore",
-	};
-	vector<Act> act_vecter = {act_check,act_pet,act_beckon,act_play,act_ignore};
+	vector<string> act_name_vector = {"Check","Pet","Beckon","Play","Ignore"};
+	vector<string> act_vecter = act_name_vector;
 	acts = Acts (act_vecter) ;
 }
 
