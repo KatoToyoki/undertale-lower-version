@@ -70,7 +70,7 @@ void GreaterDog::set_barrage()
     barrage.loda_CMoving_Bitmap(enemy_barrage);
 }
 
-void GreaterDog::set_acts()
+void GreaterDog::set_acts()//FIXME
 {
 	Act act_check = {
         "Check",

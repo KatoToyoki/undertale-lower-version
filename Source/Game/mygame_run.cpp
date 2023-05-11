@@ -177,9 +177,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
         papyrusRound.HPcondition(&heart_test,&charactor);
       }
     }
-    
-    heart_test.move_control(user_frame.get_corner(),true);
-    heart_test.set_show_img_enable(true);
   
     if(papyrusRound.GetIsAttackEnd())
     {
@@ -329,7 +326,7 @@ void CGameStateRun::OnShow()
     heart_test.show_heart_img();
     // ===========================================================
     // enemy attack path
-    enemy->show_barrage(&heart_test, &charactor,stage_go);
+    if (user_frame.get_move_done()) {enemy->show_barrage(&heart_test, &charactor,stage_go);}
     if(stage_go==7)
     {
       if(menu.get_current_stage()==3)

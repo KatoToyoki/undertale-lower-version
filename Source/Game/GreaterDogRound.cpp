@@ -220,7 +220,7 @@ void GreaterDogRound::Spear(Move* heart, Character* character)
                 mode=1;
             }
         }
-        if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-2*changeColor)<10)
+        if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-4*changeColor)<10)
         {
             if (mode==1)
             {
