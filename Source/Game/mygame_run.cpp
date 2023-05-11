@@ -145,8 +145,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     break;
   case 6:
     show_normal_mode.monster_frame_battle();
-    
-    enemy->set_battle_timer(0);
 
     // show_normal_mode.set_heart_mode(heart_blue);
     stage_go_enable_add = enemy->get_now_monster_frame_mode() == enter_talk;

@@ -49,7 +49,6 @@ void GreaterDog::set_img()
 	
 	enemy_barrage.SetTopLeft(933,799);
 	enemy_barrage.SetAnimation(250,false);
-	
 }
 
 void GreaterDog::set_hp_img()
@@ -70,7 +69,7 @@ void GreaterDog::set_barrage()
     barrage.loda_CMoving_Bitmap(enemy_barrage);
 }
 
-void GreaterDog::set_acts()//FIXME
+void GreaterDog::set_acts()
 {
 	vector<string> act_name_vector = {"Check","Pet","Beckon","Play","Ignore"};
 	vector<string> act_vecter = act_name_vector;
