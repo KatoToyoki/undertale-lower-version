@@ -2,6 +2,7 @@
 #include "user_frame.h"
 #include "../Library/gamecore.h"
 #include "game_text.h"
+#include "../Library/audio.h"
 
 void UserFrame::load_img() {
   left_vertical_frame.LoadBitmapByString({"resources/left_vertical_frame.bmp"});
@@ -201,18 +202,22 @@ void UserFrame::choose_updata(UINT nChar)
       if ( nChar == VK_LEFT && (_current_selection%2) != 0)
       {
         _current_selection -=1;
+        game_framework::CAudio::Instance() -> Play(6);
       }
       if (nChar == VK_RIGHT && (_current_selection%2) != 1 && _current_selection+1 <=_game_text.get_vector_len()-1)
       {
         _current_selection +=1;
+        game_framework::CAudio::Instance() -> Play(6);
       }
       if (nChar == VK_DOWN && (_current_selection+2<=_game_text.get_vector_len()-1))
       {
         _current_selection +=2;
+        game_framework::CAudio::Instance() -> Play(6);
       }
       if (nChar == VK_UP && (_current_selection/2) != 0)
       {
         _current_selection -=2;
+        game_framework::CAudio::Instance() -> Play(6);
       }
     }
     if (_game_text._mode == target_mode)
@@ -220,10 +225,12 @@ void UserFrame::choose_updata(UINT nChar)
       if (nChar == VK_DOWN && _current_selection < _game_text.get_vector_len()-1)
       {
         _current_selection +=1;
+        game_framework::CAudio::Instance() -> Play(6);
       }
       if (nChar == VK_UP && _current_selection != 0)
       {
         _current_selection -=1;
+        game_framework::CAudio::Instance() -> Play(6);
       }
     }
   }

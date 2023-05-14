@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "ButtonFrame.h"
 
+#include "../Library/audio.h"
+
 int ButtonFrame::get_current_selection()
 {
     return _current_selection;
@@ -61,11 +63,13 @@ void ButtonFrame::choose_update(UINT nChar)
     if (_enable){
         if(nChar==VK_LEFT && _current_selection!=fight)
         {
+            game_framework::CAudio::Instance() -> Play(6);
             target=toLeft;
             isChange=true;
         }
         else if(nChar==VK_RIGHT && _current_selection!=mercy)
         {
+            game_framework::CAudio::Instance() -> Play(6);
             target=toRight;
             isChange=true;
         }

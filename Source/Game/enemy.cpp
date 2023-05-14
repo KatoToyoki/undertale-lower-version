@@ -9,6 +9,10 @@ int Enemy::generate_random_num(int min, int max)
 void Enemy::show_img()
 {
 	enemy_img.ShowBitmap();
+	if (end_fight)
+	{
+		enemy_img_end_effc.ShowBitmap();
+	}
 }
 
 void Enemy::set_enemy_targe_choose_hp_bar(bool enable)
@@ -35,6 +39,11 @@ void Enemy::set_enemy_img_init_or_damege(int index)
 	if (index == damege)
 	{
 		enemy_img = enemy_img_damege;
+	}
+	if (index == end_img)
+	{
+		enemy_img = enemy_img_end;
+		end_fight = true;
 	}
 }
 
@@ -86,15 +95,15 @@ void Enemy::set_act_init(int current_selection)//monster frame那邊的init有�
 	}
 }
 
-void Enemy::act_after_stage_control_updata(UINT nChar, int* stage)//更改mercy目前在這裡但之後可稜會修?
+void Enemy::act_after_stage_control_updata(UINT nChar)//更改mercy目前在這裡但之後可稜會修?
 {
-	_stege = stage;
+	stage_stop = false;
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _act_after_enable)
 	{
 		if (act_times < cost_round-1)
 		{
 			act_times+=1;
-			*stage-=1;
+			stage_stop = true;
 		}
 	}
 }
@@ -133,7 +142,7 @@ void Enemy::monster_frame_stage_control_updata(UINT nChar, int* stage,MonsterFra
 		if (monster_times < monster_cost_round-1)
 		{
 			monster_times+=1;
-			*stage-=1;
+			stage_stop = true;
 		}
 	}
 }

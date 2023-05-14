@@ -24,6 +24,8 @@ GreaterDog::GreaterDog()
 void GreaterDog::set_img()
 {
 	set_hp_img();
+	enemy_img_end_effc.LoadBitmapByString({"resources/enemy_end_effc.bmp"},RGB(0,0,0));
+	enemy_img_end_effc.SetTopLeft(584,115);
 	
 	enemy_img_init.LoadBitmapByString({"resources/dog_0.bmp","resources/dog_1.bmp"},RGB(0,0,255));
 	enemy_img_init.SetTopLeft(584,115);
@@ -34,6 +36,9 @@ void GreaterDog::set_img()
 
 	enemy_img_close.LoadBitmapA({"resources/dog_close_0.bmp","resources/dog_close_1.bmp","resources/dog_close_2.bmp","resources/dog_close_2.bmp"},RGB(0,0,255));
 	enemy_img_close.SetTopLeft(584,115);
+	
+	enemy_img_end.LoadBitmapByString({"resources/dog_end.bmp"},RGB(0,0,255));
+	enemy_img_end.SetTopLeft(584,115);
 
 	enemy_img  =enemy_img_init;
 	enemy_last  =enemy_img_init;
@@ -78,7 +83,7 @@ void GreaterDog::set_acts()
 
 void GreaterDog::set_act_text_updata()
 {
-	if (ignore_times>0)
+	if (ignore_times>0 && !end_fight)
 	{
 		enemy_img_close.SetFrameIndexOfBitmap(ignore_times-1);
 		enemy_img = enemy_img_close;

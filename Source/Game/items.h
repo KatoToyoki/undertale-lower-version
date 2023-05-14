@@ -24,10 +24,11 @@ public:
     void set_item_updata();
     
     void set_item_cost_round_init(int current_selection, int button_selection);
-    void item_after_stage_control_updata(UINT nChar,int *stage);
+    void item_after_stage_control_updata(UINT nChar);
     void set_control_updata(bool enable);
     bool is_items_empty();
-    
+
+    bool stage_stop = false;
     vector<Item> items;
 private:
     int _times = 0;

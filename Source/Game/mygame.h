@@ -67,6 +67,29 @@ enum AUDIO_ID { // 定義各種音效的編號
   AUDIO_NTUT    // 2
 };
 
+enum STAGE
+{
+  LOAD,
+  INIT,
+  CHOOSE_TARGET,
+  CHOOSE_ACT_ITEM,
+  CHOOSE_AFTER,
+  SHOW_MONSTER_FRAME_FRAME_STOP,
+  SHOW_MONSTER_FRAME_FRAME_MOVE,
+  BATTLE,
+  FIGHT_END,
+  BEFORE_END,
+  END,
+};
+
+enum BUTTON_SELECT
+{
+  FIGHT,
+  ACT,
+  ITEM,
+  MERCY
+};
+
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的遊戲開頭畫面物件
 // 每個Member function的Implementation都要弄懂
@@ -119,7 +142,6 @@ private:
    * the images that game used define here
    */
   UserFrame user_frame;
-  ButtonFrame button_frame;
   Move heart_test;
   Menu menu;
   ShowNormalMode show_normal_mode;
@@ -134,6 +156,8 @@ private:
   Character charactor;
   Enemy *enemy;
   TextContent text_content;
+
+  CAudio *music;
   
   int stage_go = 0;
   bool stage_go_enable_add = true;

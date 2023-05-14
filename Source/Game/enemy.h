@@ -12,7 +12,8 @@
 enum enemy_img_state
 {
     init_img,
-    damege
+    damege,
+    end_img
 };
 
 class Enemy
@@ -50,7 +51,7 @@ public:
     void set_act_init(int current_selection);
     void set_act_game_text_enable(bool enable);
     
-    void act_after_stage_control_updata(UINT nChar, int *stage);
+    void act_after_stage_control_updata(UINT nChar);
     virtual void act_choose_count(UINT nChar,int button_current) = 0;
     
     virtual void set_act_text_updata() = 0;
@@ -85,9 +86,11 @@ public:
     game_framework::CMovingBitmap enemy_barrage;
     
     bool _monster_frame_enable = false;
+    bool stage_stop = false;
 protected:
     
     int battel_mode_timer = 0;
+    bool end_fight = false;
     bool _act_after_enable = false;
     bool _choose_targe_hp_bar_enable = false;
     bool _barrage_enable = false;
@@ -114,6 +117,8 @@ protected:
     game_framework::CMovingBitmap enemy_last;
     game_framework::CMovingBitmap enemy_img_init;
     game_framework::CMovingBitmap enemy_img_damege;
+    game_framework::CMovingBitmap enemy_img_end;
+    game_framework::CMovingBitmap enemy_img_end_effc;
     game_framework::CMovingBitmap enemy_targe_choose_hp;
     game_framework::CMovingBitmap enemy_targe_choose_hp_red;
     game_framework::CMovingBitmap enemy_targe_choose_hp_black;

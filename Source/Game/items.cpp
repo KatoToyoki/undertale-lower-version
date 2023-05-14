@@ -2,6 +2,7 @@
 #include "items.h"
 
 #include "ButtonFrame.h"
+#include "../Library/audio.h"
 
 Items::Items()
 {
@@ -140,16 +141,16 @@ void Items::set_control_updata(bool enable)
     _enable = enable;
 }
 
-void Items::item_after_stage_control_updata(UINT nChar, int* stage)
+void Items::item_after_stage_control_updata(UINT nChar)
 {
-	_stage = stage;
+    stage_stop = false;
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _enable)
 	{
 		Item* item = get_item_by_index(_current_selection);
 		if (_times < cost_round-1)
 		{
 			_times+=1;
-			*stage-=1;
+            stage_stop = true;
 		    if (_times == cost_round-2)
 		    {
 		       item->useable_times-=1; 
