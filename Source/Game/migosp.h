@@ -26,7 +26,7 @@ public:
     void set_next_round_text_updata() override;
 
     std::vector<std::vector<std::string>> get_random_text(std::string name) override;
-    frame_command get_monster_battle_mode() override { return talk_to_normal_battle; }
+    frame_command get_monster_battle_mode() override { return talk_to_papyrus_normal_battle; }
     
     void check_mercy() override;
     void fight_open(Move* heart, Character* charactor) override;

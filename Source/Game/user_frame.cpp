@@ -47,7 +47,8 @@ void UserFrame::move_frame_horizontal_up() {
                         get_corner()._leftTop.y - get_pixel()};
   create_frame(height + 10, width, leftTop.x, leftTop.y - 10);
 }
-void UserFrame::change_talk_to_normal_battle() {
+
+void UserFrame::change_frame_sub_width() {
   if (get_width() > 416) {
     move_frame_to_battle_mode();
   }
@@ -62,7 +63,6 @@ void UserFrame::change_frame_add_width() {
     move_frame_to_talk_mode();
   }
 }
-
 void UserFrame::change_frame_up() {
   if (get_height() < 314) {
     move_frame_horizontal_up();
@@ -70,72 +70,54 @@ void UserFrame::change_frame_up() {
 }
 
 void UserFrame::control_frame(
-    int frame_command_control) // change move_done to 判斷 move_done=ture can go
-                               // next act
-/*
- * 0 : change talk to normal battle
- * 1 : change talk to long battle
- * 2 : change normal battle to talk
- * 3 : change long battle to talk
- * 4 : idle frame
- */
+    frame_command frame_command_control) // change move_done to 判斷 move_done=ture can go
 {
-  int frame_commend = 4;
+  int frame_commend = STOP;
   switch (frame_command_control) {
-  case 0: // change talk to normal battle
-    frame_commend = 0;
+  case talk_to_normal_battle: // change talk to normal battle
+    frame_commend = SUB_WIDTH;
     if (get_width() <= 416) {
-      frame_commend = 4;
+      frame_commend = STOP;
       create_frame(314, 416, 751, 563);
       move_done = true;
       break;
     }
     move_done = false;
     break;
-  case 1: // change talk to long battle
-    frame_commend = 0;
+  case talk_to_long_battle: // change talk to long battle
+    frame_commend = SUB_WIDTH;
     if (get_width() <= 558 && frame_commend == 0) {
-      frame_commend = 1;
+      frame_commend = DOWN;
     }
     if (get_height() <= 227 && get_width() <= 558 && frame_commend == 1) {
       create_frame(227, 528, 695, 650);
-      frame_commend = 4;
+      frame_commend = STOP;
       move_done = true;
       break;
     }
     move_done = false;
     break;
-  case 2: // change normal battle to talk
-    frame_commend = 2;
-    if (get_width() >= 1294) {
-      frame_commend = 4;
-      move_done = true;
-      create_frame(314, 1294, 312, 563);
-      break;
-    }
-    move_done = false;
-    break;
-  case 3: // change long battle to talk
-    frame_commend = 2;
+  case to_talk: // change long battle to talk
+    frame_commend = ADD_WIDTH;
     if (get_width() >= 1294-10) {
-      frame_commend = 3;
+      frame_commend = UP;
       if (get_height() == 227)
       {
         create_frame(228, 1294, 312, 649);
       }
     }
     if (get_height() >= 314 && get_width() >= 1294) {
-      frame_commend = 4;
+      frame_commend = STOP;
       move_done = true;
       create_frame(314, 1294, 312, 563);
       break;
     }
     move_done = false;
     break;
-  case 5:
-    frame_commend = 0;
+  case talk_to_papyrus_normal_battle:
+    frame_commend = SUB_WIDTH;
     if (get_width() <= 575) {
-      frame_commend = 4;
+      frame_commend = STOP;
       move_done = true;
       create_frame(314, 575, 671, 563);
       break;
@@ -144,7 +126,7 @@ void UserFrame::control_frame(
     break;
     
   default:
-    frame_commend = 4;
+    frame_commend = STOP;
     move_done = true;
     break;
   }
@@ -152,13 +134,13 @@ void UserFrame::control_frame(
 }
 
 void UserFrame::check_which_change_frame_need_call(int frame_commend) {
-  if (frame_commend == 0) {
-    change_talk_to_normal_battle();
-  } else if (frame_commend == 1) {
+  if (frame_commend == SUB_WIDTH) {
+    change_frame_sub_width();
+  } else if (frame_commend == DOWN) {
     change_frame_down();
-  } else if (frame_commend == 2) {
+  } else if (frame_commend == ADD_WIDTH) {
     change_frame_add_width();
-  } else if (frame_commend == 3) {
+  } else if (frame_commend == UP) {
     change_frame_up();
   }
 }

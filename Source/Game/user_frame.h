@@ -5,10 +5,19 @@
 enum frame_command {
   talk_to_normal_battle,
   talk_to_long_battle,
-  no_work,
   to_talk,
   idle,
-  talk_to_papyrus_normal_battle
+  talk_to_papyrus_normal_battle,
+  papyrus_dog_long_battle
+};
+
+enum frame_act
+{
+  SUB_WIDTH,
+  DOWN,
+  ADD_WIDTH,
+  UP,
+  STOP
 };
 
 class UserFrame : public Frame {
@@ -17,7 +26,7 @@ public:
   void load_img();
   void show_select_heart();
 
-  void control_frame(int frame_command_control);
+  void control_frame(frame_command frame_command_control);
 
   bool get_move_done() const { return move_done; }
   int get_current_selection();
@@ -40,7 +49,7 @@ private:
   void move_frame_horizontal_down();
   void move_frame_horizontal_up();
 
-  void change_talk_to_normal_battle();
+  void change_frame_sub_width();
   void change_frame_down();
   void change_frame_add_width();
   void change_frame_up();
