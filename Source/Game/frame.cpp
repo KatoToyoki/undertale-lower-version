@@ -51,7 +51,7 @@ Corner Frame::get_corner() const { return _corner; }
 
 void Frame::show_frame() {
   down_horizontal_frame.ShowBitmap();
-  up_horizontal_frame.ShowBitmap();
+  // up_horizontal_frame.ShowBitmap();
   left_vertical_frame.ShowBitmap();
   right_vertical_frame.ShowBitmap();
   down_black.ShowBitmap();

@@ -9,7 +9,7 @@ void UserFrame::load_img() {
   right_vertical_frame.LoadBitmapByString(
       {"resources/right_vertical_frame.bmp"});
   up_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame.bmp"});
-  down_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame.bmp"});
+  down_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame_down.bmp"});
   down_black.LoadBitmapByString({"resources/down_black.bmp"});
   stage_in_top_black.LoadBitmapByString({"resources/stage_in_top_black.bmp"});
   
@@ -25,7 +25,6 @@ void UserFrame::move_frame_to_battle_mode() {
   create_frame(height, width - 40, leftTop.x + 20, leftTop.y);
 }
 void UserFrame::move_frame_to_talk_mode() {
-  // game_framework::CSpecialEffect::Delay(1);
   int height = get_height();
   int width = get_width();
   Coordinate leftTop = {get_corner()._leftTop.x - get_pixel(),

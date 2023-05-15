@@ -373,6 +373,7 @@ void CGameStateRun::OnShow()
     menu.WholeMenu();
   } else {
     //all show thing put here
+    user_frame.up_horizontal_frame.ShowBitmap();
     heart_test.show_heart_img();
     // ===========================================================
     // enemy attack path
