@@ -158,6 +158,7 @@ void Enemy::monster_frame_stage_control_updata(UINT nChar, int* stage,MonsterFra
 {
 	_stege = stage;
 	_monster_frame = monster_frame;
+	_monster_frame->set_monster_frame_img(monster_frame_img);
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable && *stage ==6)
 	{
 		if (monster_times < monster_cost_round-1)
@@ -194,7 +195,7 @@ GameText Enemy::set_vector_vector_to_game_text(std::vector<std::vector<std::stri
 	std::vector<Text> temp_text_vector;
 	 for(unsigned int j=0;j<text[times].size();j++)
 	 {
-	 	if (mode == monster_mode){ temp_text_vector.push_back(TEXXT_M(text[times][j])); }
+	 	if (mode == monster_mode_1 || mode == monster_mode_2){ temp_text_vector.push_back(TEXXT_M(text[times][j])); }
 	    else { temp_text_vector.push_back(TEXXT(text[times][j])); }
 	 }
 	return GameText (temp_text_vector,mode);

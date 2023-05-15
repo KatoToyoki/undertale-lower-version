@@ -27,6 +27,9 @@ void GreaterDog::set_img()
     enemy_x = 584;
     enemy_y = 115;
 	
+	monster_frame_img.LoadBitmapByString({"resources/monster_frame.bmp"},RGB(0,0,0));
+	monster_frame_img.SetTopLeft(1129,207);
+	
 	enemy_img_end_effc.LoadBitmapByString({"resources/enemy_end_effc.bmp"},RGB(0,0,0));
 	enemy_img_end_effc.SetTopLeft(enemy_x,enemy_y);
 	

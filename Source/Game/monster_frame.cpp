@@ -7,17 +7,21 @@
 void MonsterFrame::load_img()
 {
   monster_frame_img.LoadBitmapByString({"resources/monster_frame.bmp"},RGB(0,0,0));
+  monster_frame_img.SetTopLeft(1190,307);
+	// monster_frame_img.LoadBitmapByString({"resources/monster_frame_p.bmp"},RGB(0,0,0));
+	// monster_frame_img.SetTopLeft(1129,207);
 }
+
+void MonsterFrame::set_monster_frame_img(game_framework::CMovingBitmap img)
+{
+  monster_frame_img = img;
+}
+
 
 void MonsterFrame::load_game_text_and_mode(GameText game_text,int mode)
 {
   _game_text = game_text;
   _mode = mode;
-}
-
-void MonsterFrame::set_img_position(int x, int y)
-{
-  monster_frame_img.SetTopLeft(x,y);
 }
 
 void MonsterFrame::set_enable(bool enable)

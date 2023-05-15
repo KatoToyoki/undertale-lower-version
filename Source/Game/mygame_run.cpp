@@ -251,7 +251,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   green_line.SetTopLeft(274,20);
 
   monster_frame.load_img();
-  monster_frame.set_img_position(1190,307);
 
   gameFight.set_fight_enable(false);
 

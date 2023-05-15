@@ -131,6 +131,7 @@ protected:
     game_framework::CMovingBitmap enemy_targe_choose_hp;
     game_framework::CMovingBitmap enemy_targe_choose_hp_red;
     game_framework::CMovingBitmap enemy_targe_choose_hp_black;
+    game_framework::CMovingBitmap monster_frame_img;
     
     TextContent text_content;
 	GameText act_after;

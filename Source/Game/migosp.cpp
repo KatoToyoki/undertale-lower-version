@@ -27,6 +27,9 @@ void Migosp::set_img()
 	set_hp_img();
     enemy_x = 993;
     enemy_y = 316;
+
+	monster_frame_img.LoadBitmapByString({"resources/monster_frame.bmp"},RGB(0,0,0));
+	monster_frame_img.SetTopLeft(1190,307);
 	
 	enemy_img_end_effc.LoadBitmapByString({"resources/enemy_end_effc.bmp"},RGB(0,0,0));
 	enemy_img_end_effc.SetTopLeft(enemy_x,enemy_y);
@@ -140,12 +143,12 @@ std::vector<std::vector<std::string>> Migosp::get_random_text(std::string name)
 void Migosp::set_monster_frame()
 {
 	//
-	monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode);
+	monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
 	monster_cost_round = monster_text.size();
 	monster_frame_mode = no_enter_talk;
 
 	// monster_text = text_content.get_reaction("netral_1");
-	// monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode);
+	// monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_2);
 	// monster_cost_round = monster_text.size();
 	// monster_frame_mode = enter_talk;
 	//enter_talk work example
