@@ -25,18 +25,21 @@ Migosp::Migosp()
 void Migosp::set_img()
 {
 	set_hp_img();
+    enemy_x = 993;
+    enemy_y = 316;
+	
 	enemy_img_end_effc.LoadBitmapByString({"resources/enemy_end_effc.bmp"},RGB(0,0,0));
-	enemy_img_end_effc.SetTopLeft(993,316);
+	enemy_img_end_effc.SetTopLeft(enemy_x,enemy_y);
 	
 	enemy_img_init.LoadBitmapByString({"resources/migosp_0.bmp","resources/migosp_1.bmp"},RGB(0,0,0));
-	enemy_img_init.SetTopLeft(993,316);
+	enemy_img_init.SetTopLeft(enemy_x,enemy_y);
 	enemy_img_init.SetAnimation(300,false);
 
 	enemy_img_damege.LoadBitmapByString({"resources/migosp_hit.bmp"},RGB(0,0,0));
-	enemy_img_damege.SetTopLeft(993,316);
+	enemy_img_damege.SetTopLeft(enemy_x,enemy_y);
 
 	enemy_img_end.LoadBitmapByString({"resources/migosp_end.bmp"},RGB(0,0,0));
-	enemy_img_end.SetTopLeft(993,316);
+	enemy_img_end.SetTopLeft(enemy_x,enemy_y);
 
 	enemy_img = enemy_img_init;
 	enemy_last = enemy_img_init;

@@ -223,7 +223,11 @@ void Fight::ToStop(UINT nChar)
         _isAttack=true;
         attackThisRound+=1;
         DetectMissCondition();
-        game_framework::CAudio::Instance() -> Play(7);
+        if (attackThisRound == 1 && !_isMiss)
+        {
+            game_framework::CAudio::Instance() -> Play(7);
+            _enemy->set_enemy_shark_time(15);
+        }
     }
 }
 

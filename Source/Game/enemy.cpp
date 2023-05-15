@@ -20,6 +20,27 @@ void Enemy::set_enemy_targe_choose_hp_bar(bool enable)
 	_choose_targe_hp_bar_enable = enable;
 }
 
+void Enemy::set_enemy_shark_time(float time)
+{
+	shark_time = time;
+}
+
+void Enemy::enemy_shark()
+{
+	if (shark_time > 0 )
+	{
+		shark_time -= 1.0f;
+		int x = (int) (enemy_x + sin(shark_time) * 10.0f);
+		int y =(int) (enemy_y + sin(shark_time) * 10.0f);
+		enemy_img.SetTopLeft(x,y);
+	}
+	if (shark_time <= 0 )
+	{
+		enemy_img.SetTopLeft(enemy_x,enemy_y);
+	}
+}
+
+
 void Enemy::show_enemy_targe_choose_hp_bar()
 {
 	if (_choose_targe_hp_bar_enable)

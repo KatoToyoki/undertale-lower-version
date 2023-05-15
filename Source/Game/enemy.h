@@ -34,6 +34,9 @@ public:
 
     GameText set_vector_vector_to_game_text(std::vector<std::vector<std::string>> text,int times,mode mode = talk_mode);
 
+    void set_enemy_shark_time(float time);
+    void enemy_shark();
+    
 /// mercy
     GameText get_mercy_game_text() { return mercy_text;}
     GameText get_mercy_win_game_text() { return mercy_win_text;}
@@ -85,6 +88,7 @@ public:
     Coordinate fight_bar_positon;
     game_framework::CMovingBitmap enemy_barrage;
     
+    
     bool _monster_frame_enable = false;
     bool stage_stop = false;
 protected:
@@ -99,7 +103,10 @@ protected:
     int act_times = 0;
     int monster_times = 0;
     int _current_selection =0;
+    float shark_time = 0;
     int *_stege;
+    
+
     MonsterFrame *_monster_frame;
     GameText monster_name;
     GameText mercy_text;
@@ -112,6 +119,8 @@ protected:
     int hp_max = 100;
     int hp_bar_x = 884;
     int hp_bar_y = 630;
+    int enemy_x;
+    int enemy_y;
 
     game_framework::CMovingBitmap enemy_img;
     game_framework::CMovingBitmap enemy_last;

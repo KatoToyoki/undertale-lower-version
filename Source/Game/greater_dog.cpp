@@ -24,21 +24,24 @@ GreaterDog::GreaterDog()
 void GreaterDog::set_img()
 {
 	set_hp_img();
+    enemy_x = 584;
+    enemy_y = 115;
+	
 	enemy_img_end_effc.LoadBitmapByString({"resources/enemy_end_effc.bmp"},RGB(0,0,0));
-	enemy_img_end_effc.SetTopLeft(584,115);
+	enemy_img_end_effc.SetTopLeft(enemy_x,enemy_y);
 	
 	enemy_img_init.LoadBitmapByString({"resources/dog_0.bmp","resources/dog_1.bmp"},RGB(0,0,255));
-	enemy_img_init.SetTopLeft(584,115);
+	enemy_img_init.SetTopLeft(enemy_x,enemy_y);
 	enemy_img_init.SetAnimation(300,false);
 
 	enemy_img_damege.LoadBitmapByString({"resources/dog_hit.bmp"},RGB(0,0,255));
-	enemy_img_damege.SetTopLeft(584,115);
+	enemy_img_damege.SetTopLeft(enemy_x,enemy_y);
 
 	enemy_img_close.LoadBitmapA({"resources/dog_close_0.bmp","resources/dog_close_1.bmp","resources/dog_close_2.bmp","resources/dog_close_2.bmp"},RGB(0,0,255));
-	enemy_img_close.SetTopLeft(584,115);
+	enemy_img_close.SetTopLeft(enemy_x,enemy_y);
 	
 	enemy_img_end.LoadBitmapByString({"resources/dog_end.bmp"},RGB(0,0,255));
-	enemy_img_end.SetTopLeft(584,115);
+	enemy_img_end.SetTopLeft(enemy_x,enemy_y);
 
 	enemy_img  =enemy_img_init;
 	enemy_last  =enemy_img_init;
