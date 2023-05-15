@@ -44,15 +44,11 @@ public:
   game_framework::CMovingBitmap heart;
 
 private:
-  void move_frame_to_battle_mode();
-  void move_frame_to_talk_mode();
+  void move_frame_sub_width();
+  void move_frame_add_width();
   void move_frame_horizontal_down();
   void move_frame_horizontal_up();
 
-  void change_frame_sub_width();
-  void change_frame_down();
-  void change_frame_add_width();
-  void change_frame_up();
   void check_which_change_frame_need_call(int frame_commend);
   
   bool move_done = true;

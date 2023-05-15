@@ -17,14 +17,14 @@ void UserFrame::load_img() {
   heart.SetTopLeft(1000,700);
 }
 
-void UserFrame::move_frame_to_battle_mode() {
+void UserFrame::move_frame_sub_width() {
   int height = get_height();
   int width = get_width();
   Coordinate leftTop = {get_corner()._leftTop.x - get_pixel(),
                         get_corner()._leftTop.y - get_pixel()};
   create_frame(height, width - 40, leftTop.x + 20, leftTop.y);
 }
-void UserFrame::move_frame_to_talk_mode() {
+void UserFrame::move_frame_add_width() {
   int height = get_height();
   int width = get_width();
   Coordinate leftTop = {get_corner()._leftTop.x - get_pixel(),
@@ -46,27 +46,6 @@ void UserFrame::move_frame_horizontal_up() {
   Coordinate leftTop = {get_corner()._leftTop.x - get_pixel(),
                         get_corner()._leftTop.y - get_pixel()};
   create_frame(height + 10, width, leftTop.x, leftTop.y - 10);
-}
-
-void UserFrame::change_frame_sub_width() {
-  if (get_width() > 416) {
-    move_frame_to_battle_mode();
-  }
-}
-void UserFrame::change_frame_down() {
-  if (get_height() > 227) {
-    move_frame_horizontal_down();
-  }
-}
-void UserFrame::change_frame_add_width() {
-  if (get_width() < 1294) {
-    move_frame_to_talk_mode();
-  }
-}
-void UserFrame::change_frame_up() {
-  if (get_height() < 314) {
-    move_frame_horizontal_up();
-  }
 }
 
 void UserFrame::control_frame(
@@ -135,13 +114,13 @@ void UserFrame::control_frame(
 
 void UserFrame::check_which_change_frame_need_call(int frame_commend) {
   if (frame_commend == SUB_WIDTH) {
-    change_frame_sub_width();
+    move_frame_sub_width();
   } else if (frame_commend == DOWN) {
-    change_frame_down();
+    move_frame_horizontal_down();
   } else if (frame_commend == ADD_WIDTH) {
-    change_frame_add_width();
+    move_frame_add_width();
   } else if (frame_commend == UP) {
-    change_frame_up();
+    move_frame_horizontal_up();
   }
 }
 
