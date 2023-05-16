@@ -50,7 +50,14 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
       if(!papyrusRound.GetIsSet())
       {
-        papyrusRound.SetAllData(20);
+        papyrusRound.SetAllData(21);
+      }
+    }
+    else if (menu.get_current_stage()== 2)
+    {
+      if(!greaterDogRound.GetIsSet())
+      {
+        greaterDogRound.SetAllData(0 );
       }
     }
     

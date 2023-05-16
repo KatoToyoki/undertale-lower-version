@@ -17,7 +17,7 @@
       {
         "damage": 4,
         "speed": 0,
-        "initX":1000,
+        "initX":911,
         "initY":920,
         "barrage_mode": "white",
         "imgPath": [
@@ -29,7 +29,7 @@
       {
         "damage": 4,
         "speed": 0,
-        "initX":1020,
+        "initX":931,
         "initY":970,
         "barrage_mode": "white",
         "imgPath": [
@@ -41,7 +41,7 @@
       {
         "damage": 4,
         "speed": 0,
-        "initX":1000,
+        "initX":911,
         "initY":920,
         "barrage_mode": "white",
         "imgPath": [
@@ -53,7 +53,7 @@
       {
         "damage": 4,
         "speed": 0,
-        "initX":1020,
+        "initX":931,
         "initY":970,
         "barrage_mode": "white",
         "imgPath": [
@@ -65,7 +65,7 @@
       {
         "damage": 4,
         "speed": 0,
-        "initX":1000,
+        "initX":911,
         "initY":920,
         "barrage_mode": "white",
         "imgPath": [
@@ -77,7 +77,7 @@
       {
         "damage": 4,
         "speed": 0,
-        "initX":1020,
+        "initX":931,
         "initY":970,
         "barrage_mode": "white",
         "imgPath": [

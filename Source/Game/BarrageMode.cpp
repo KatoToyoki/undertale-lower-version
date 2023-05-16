@@ -153,24 +153,24 @@ void BarrageMode::UnshowBarrage()
     }
 }
 
-void BarrageMode::GoLeft(Barrage& barrage, Move* heart, int speed,Character* character)
+void BarrageMode::GoLeft(Barrage& barrage, Move* heart, int speed,Character* character,isDisappear command)
 {
     barrage.set_show_enable(true);
-    barrage.damege_hit(heart,character,disappear);
+    barrage.damege_hit(heart,character,command);
     barrage.left_move(speed);
 }
 
-void BarrageMode::GoRight(Barrage& barrage, Move* heart, int speed,Character* character)
+void BarrageMode::GoRight(Barrage& barrage, Move* heart, int speed,Character* character,isDisappear command)
 {
     barrage.set_show_enable(true);
-    barrage.damege_hit(heart,character,disappear);
+    barrage.damege_hit(heart,character,command);
     barrage.right_move(speed);
 }
 
-void BarrageMode::GoUp(Barrage& barrage, Move* heart, int speed, Character* character)
+void BarrageMode::GoUp(Barrage& barrage, Move* heart, int speed, Character* character,isDisappear command)
 {
     barrage.set_show_enable(true);
-    barrage.damege_hit(heart,character,disappear);
+    barrage.damege_hit(heart,character,command);
     barrage.up_move(speed);
 }
 
