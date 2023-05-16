@@ -55,7 +55,7 @@ void Frame::show_frame() {
   left_vertical_frame.ShowBitmap();
   right_vertical_frame.ShowBitmap();
   down_black.ShowBitmap();
-  stage_in_top_black.ShowBitmap();
+  // stage_in_top_black.ShowBitmap();
 }
 
 void Frame::off_frame() {

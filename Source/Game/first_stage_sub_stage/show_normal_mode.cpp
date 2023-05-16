@@ -26,6 +26,7 @@ void ShowNormalMode::updata()
   _charactor->updata_hp_bar_by_hp();
   _enemy->updata_hp_bar_by_hp();
 	_enemy ->enemy_shark();
+	_user_frame->up_frame_updata(_heart_test);
 
   if (_button_frame->get_current_selection() != 2)
   {

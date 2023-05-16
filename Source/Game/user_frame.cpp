@@ -68,6 +68,7 @@ void UserFrame::control_frame(
     frame_command_c frame_command_control) // change move_done to 判斷 move_done=ture can go
 {
   int frame_commend = STOP;
+  _up_limit_enable = false;
   switch (frame_command_control) {
   case talk_to_normal_battle: // change talk to normal battle
     frame_commend = SUB_WIDTH;
@@ -120,6 +121,7 @@ void UserFrame::control_frame(
     move_done = false;
     break;
   case papyrus_normal_to_bit_bone_dog:
+    _up_limit_enable = true;
     if (get_width() < 700)
     {
       frame_commend = ADD_RIGHT_WIDTH;
@@ -128,11 +130,15 @@ void UserFrame::control_frame(
     {
       frame_commend = STOP;
       move_done = true;
-      create_frame(314, 733, 671, 563);
+      create_frame(get_height(), 733, 671, get_corner()._leftTop.y - get_pixel());
     }
     break;
   case bit_bone_dog_to_papyrus_normal:
-    if (get_width() > 575)
+    if (get_height()> 341)
+    {
+      frame_commend = DOWN;
+    }
+    else if (get_width() > 575)
     {
       frame_commend = SUB_RIGHT_WIDTH;
     }
@@ -259,4 +265,13 @@ void UserFrame::set_heart_mode(int mode)
   heart.SetFrameIndexOfBitmap(mode);
 }
 
-
+void UserFrame::up_frame_updata(Move* heart)
+{
+  if (_up_limit_enable)
+  {
+    if (heart->GetCurrentY() < get_corner()._leftTop.y + 10)
+    {
+      move_frame_horizontal_up();
+    }
+  }
+}

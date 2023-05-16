@@ -186,7 +186,9 @@ void Migosp::show_barrage(Move* heart, Character* charactor,int stage)
 
 frame_command_c Migosp::get_monster_battle_mode()
 {
-	return talk_to_normal_battle;
+	if (battel_mode_timer >100)
+		return papyrus_normal_to_bit_bone_dog;
+	return talk_to_papyrus_normal_battle;
 }
 
 
