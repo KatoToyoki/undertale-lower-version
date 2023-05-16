@@ -48,8 +48,24 @@ void UserFrame::move_frame_horizontal_up() {
   create_frame(height + 10, width, leftTop.x, leftTop.y - 10);
 }
 
+void UserFrame::move_frame_add_right_width() {
+  int height = get_height();
+  int width = get_width();
+  Coordinate leftTop = {get_corner()._leftTop.x - get_pixel(),
+                        get_corner()._leftTop.y - get_pixel()};
+  create_frame(height, width + 40, leftTop.x, leftTop.y);
+}
+
+void UserFrame::move_frame_sub_right_width() {
+  int height = get_height();
+  int width = get_width();
+  Coordinate leftTop = {get_corner()._leftTop.x - get_pixel(),
+                        get_corner()._leftTop.y - get_pixel()};
+  create_frame(height, width - 40, leftTop.x, leftTop.y);
+}
+
 void UserFrame::control_frame(
-    frame_command frame_command_control) // change move_done to 判斷 move_done=ture can go
+    frame_command_c frame_command_control) // change move_done to 判斷 move_done=ture can go
 {
   int frame_commend = STOP;
   switch (frame_command_control) {
@@ -85,7 +101,7 @@ void UserFrame::control_frame(
         create_frame(228, 1294, 312, 649);
       }
     }
-    if (get_height() >= 314 && get_width() >= 1294) {
+    if (get_height() >= 314 && get_width() >= 1293) {
       frame_commend = STOP;
       move_done = true;
       create_frame(314, 1294, 312, 563);
@@ -103,6 +119,30 @@ void UserFrame::control_frame(
     }
     move_done = false;
     break;
+  case papyrus_normal_to_bit_bone_dog:
+    if (get_width() < 700)
+    {
+      frame_commend = ADD_RIGHT_WIDTH;
+    }
+    else
+    {
+      frame_commend = STOP;
+      move_done = true;
+      create_frame(314, 733, 671, 563);
+    }
+    break;
+  case bit_bone_dog_to_papyrus_normal:
+    if (get_width() > 575)
+    {
+      frame_commend = SUB_RIGHT_WIDTH;
+    }
+    else
+    {
+      frame_commend = STOP;
+      move_done = true;
+      create_frame(314, 575, 671, 563);
+    }
+    break;
     
   default:
     frame_commend = STOP;
@@ -112,7 +152,7 @@ void UserFrame::control_frame(
   check_which_change_frame_need_call(frame_commend);
 }
 
-void UserFrame::check_which_change_frame_need_call(int frame_commend) {
+void UserFrame::check_which_change_frame_need_call(int frame_commend){
   if (frame_commend == SUB_WIDTH) {
     move_frame_sub_width();
   } else if (frame_commend == DOWN) {
@@ -121,7 +161,12 @@ void UserFrame::check_which_change_frame_need_call(int frame_commend) {
     move_frame_add_width();
   } else if (frame_commend == UP) {
     move_frame_horizontal_up();
+  } else if (frame_commend == ADD_RIGHT_WIDTH){
+    move_frame_add_right_width();
+  } else if (frame_commend == SUB_RIGHT_WIDTH){
+    move_frame_sub_right_width();
   }
+  
 }
 
 void UserFrame::load_text(GameText game_text)

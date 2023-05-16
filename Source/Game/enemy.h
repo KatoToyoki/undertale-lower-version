@@ -25,7 +25,7 @@ public:
     void show_img();
     int generate_random_num(int min, int max);
     GameText get_monster_name() { return  monster_name; }
-    virtual frame_command get_monster_battle_mode() = 0;
+    virtual frame_command_c get_monster_battle_mode() = 0;
 
     void updata_hp_bar_by_hp();
     void set_enemy_targe_choose_hp_bar(bool enable);

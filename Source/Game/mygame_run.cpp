@@ -175,10 +175,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       }
     }
   
-    if(papyrusRound.GetIsAttackEnd())
-    {
-      stage_go = INIT;
-    }
+    // if(papyrusRound.GetIsAttackEnd())
+    // {
+    //   stage_go = INIT;
+    // }
 
     if (enemy->get_fight_end())
     {

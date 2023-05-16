@@ -175,7 +175,7 @@ void Migosp::fight_open(Move* heart, Character* charactor)
 
 bool Migosp::get_fight_end()
 {
-	battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
+	battel_mode_timer += (int)game_framework::CSpecialEffect::GetEllipseTime();
 	return (battel_mode_timer >=1300);
 }
 
@@ -183,4 +183,10 @@ void Migosp::show_barrage(Move* heart, Character* charactor,int stage)
 {
     barrage.show_img();
 }
+
+frame_command_c Migosp::get_monster_battle_mode()
+{
+	return talk_to_normal_battle;
+}
+
 

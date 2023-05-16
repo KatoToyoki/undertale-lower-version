@@ -304,9 +304,9 @@ void GreaterDog::set_fight()
 	enemy_last = enemy_img_init;
 }
 
-frame_command GreaterDog::get_monster_battle_mode()
+frame_command_c GreaterDog::get_monster_battle_mode()
 {
-	frame_command frame_mode;
+	frame_command_c frame_mode;
 	if (greater_dog_round.GetCurrentRound() == 0)
 	{
 		frame_mode = talk_to_normal_battle;
