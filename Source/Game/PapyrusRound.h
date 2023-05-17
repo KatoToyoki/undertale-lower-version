@@ -30,6 +30,7 @@ public:
 
     void CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart);
     void UpDownBarrage(Barrage& barrage, int upLimit, int downLimit, int speed);
+    void UpDownCompound(Barrage& cover,Barrage& barrage,Move *heart, int upLimit, int downLimit, int speed);
     
     void DetectRoundEnd(int direction);
     
