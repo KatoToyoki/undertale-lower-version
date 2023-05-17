@@ -33,7 +33,4 @@ public:
     bool get_fight_end() override;
 
     void show_barrage(Move* heart, Character* charactor,int stage) override;
-    
-///
-private:
 };

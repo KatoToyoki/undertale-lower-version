@@ -61,7 +61,6 @@ void ShowNormalMode::init()//宣告於OnMove()
 
 	_items->set_control_updata(false);
 	
-//s	
 	_enemy->set_enemy_targe_choose_hp_bar(false);
 	_enemy->set_barrage_enable(false);
 	_enemy->hp = _game_fight->get_current_monster_hp();
@@ -149,6 +148,8 @@ void ShowNormalMode::monster_frame_no_battle()
     _items->set_control_updata(false);
 	_user_frame->set_choose(false);
     _enemy->set_enemy_img_init_or_damege(init_img);
+
+	
 }
 
 void ShowNormalMode::monster_frame_battle()

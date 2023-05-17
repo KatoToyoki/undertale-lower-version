@@ -57,8 +57,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
         papyrusRound.SetAllData(20);
       }
     }
-    
-    // ===========================================================
     break;
   case CHOOSE_TARGET:
     stage_go_enable_add = true;
@@ -89,9 +87,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go_enable_add = true;
       stage_go_enable_sub = false;
       if (gameFight.GetDurationMinusHP()<=0)
-      {
         stage_go = SHOW_MONSTER_FRAME_FRAME_STOP;
-      }
       break;
     case ACT:
       show_normal_mode.choose_act();
@@ -103,7 +99,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go = CHOOSE_AFTER;
       break;
     }
-    
     break;
   case CHOOSE_AFTER:
     stage_go_enable_add = true;
@@ -114,26 +109,23 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go_enable_add = false;
       stage_go_enable_sub = false;
       if (gameFight.GetDurationMinusHP()<=0)
-      {
         stage_go = SHOW_MONSTER_FRAME_FRAME_STOP;
-      }
       break;
     case ACT:
       show_normal_mode.choose_act_after();
       if (enemy->is_game_over() && stage_go < BEFORE_END)
-      {
           stage_go = FIGHT_END;
-      }
+      else if (enemy->_is_pass_stage)
+          stage_go = SHOW_MONSTER_FRAME_FRAME_STOP;
       break;
     case ITEM:
       show_normal_mode.choose_item_after();
       break;
     case MERCY:
-      if (!enemy->is_mercy()) { stage_go = SHOW_MONSTER_FRAME_FRAME_STOP; }
+      if (!enemy->is_mercy())
+        stage_go = SHOW_MONSTER_FRAME_FRAME_STOP;
       else
-      {
         stage_go = FIGHT_END;
-      }
       break;
     }
     break;
@@ -146,18 +138,18 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     break;
   case SHOW_MONSTER_FRAME_FRAME_MOVE:
     show_normal_mode.monster_frame_battle();
+    if (enemy->_is_pass_stage)
+      stage_go = BATTLE;
 
     // show_normal_mode.set_heart_mode(heart_blue);
     stage_go_enable_add = enemy->get_now_monster_frame_mode() == enter_talk;
     stage_go_enable_sub = false;
     break;
   case BATTLE:
-    //maybe battle mode
     stage_go_enable_add = false;
     stage_go_enable_sub = false;
    
     user_frame.control_frame(enemy->get_monster_battle_mode());
-    
     heart_test.set_show_img_enable(true);
     if (user_frame.get_move_done())
     {
@@ -173,17 +165,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
         papyrusRound.HPcondition(&heart_test,&charactor);
       }
     }
-  
     // if(papyrusRound.GetIsAttackEnd())
-    // {
     //   stage_go = INIT;
-    // }
-
     if (enemy->get_fight_end())
-    {
       stage_go = INIT;
-    }
-    
     break;
   case FIGHT_END:
     if (gameFight.GetDurationMinusHP()<=0 || gameButtonFrame.get_current_selection() != FIGHT)
@@ -191,13 +176,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       music->Play(9);
       enemy->set_enemy_img_init_or_damege(end_img);
       if (enemy->is_game_over() && stage_go < BEFORE_END)
-      {
         stage_go = BEFORE_END;
-      }
       else
-      {
         stage_go = END;
-      }
     }
   case BEFORE_END://before exp&gold
     user_frame.control_frame(to_talk);
@@ -292,10 +273,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
         break;
       }
     }
-  ///
   } else{
-    //need OnKeyDown can put here
-
     gameButtonFrame.choose_update(nChar);
     user_frame.choose_updata(nChar);
     gameFight.ToStop(nChar);
@@ -306,7 +284,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     if (stage_go!= 7) {charactor.change_hp_updata(nChar);}
     papyrusRound.ToGetEnterCount(nChar);
   }
-
   //stage_control
   if ((nChar == VK_RETURN || nChar == 0x5A) && (stage_go == END)) {
     music->Pause();

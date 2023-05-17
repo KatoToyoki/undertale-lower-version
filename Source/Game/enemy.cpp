@@ -102,7 +102,7 @@ void Enemy::set_act_game_text_enable(bool enable)
 	{
 		if (cost_round == 0)
 		{
-			*_stege+=1;
+			_is_pass_stage = true;
 		}
 	}
 }
@@ -139,7 +139,7 @@ void Enemy::set_monster_frame_init()
 	if (!_monster_frame_enable)
 	{
 		monster_times = 0;
-		monster_text = get_random_text("neutral");//only random use
+		monster_text = get_random_text("neutral");//only random use need have neutral in json
 	}
 	set_monster_frame();
 }
@@ -154,9 +154,8 @@ int Enemy::get_now_monster_frame_mode()
     return monster_frame_mode;
 }
 
-void Enemy::monster_frame_stage_control_updata(UINT nChar, int* stage,MonsterFrame *monster_frame)
+void Enemy::monster_frame_stage_control_updata(UINT nChar, MonsterFrame *monster_frame)
 {
-	_stege = stage;
 	_monster_frame = monster_frame;
 	_monster_frame->set_monster_frame_img(monster_frame_img);
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable )
@@ -172,15 +171,16 @@ void Enemy::monster_frame_stage_control_updata(UINT nChar, int* stage,MonsterFra
 void Enemy::set_monster_frame_game_text_enable(bool enable)
 {
 	_monster_frame_enable = enable;
+	_is_pass_stage = false;
 	if (_monster_frame_enable)
 	{
 		if (monster_frame_mode == no_enter_talk && _monster_frame->_time_count > 800)
 		{
-			*_stege+=1;
+			_is_pass_stage = true;
 		}
 		if(monster_frame_mode == pass_talk && _monster_frame->_time_count > 0)
 		{
-			*_stege+=1;
+			_is_pass_stage = true;
 		}
 	}
 }

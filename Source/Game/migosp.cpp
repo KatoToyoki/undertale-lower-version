@@ -143,14 +143,14 @@ std::vector<std::vector<std::string>> Migosp::get_random_text(std::string name)
 void Migosp::set_monster_frame()
 {
 	//
-	// monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
-	// monster_cost_round = monster_text.size();
-	// monster_frame_mode = no_enter_talk;
-
-	monster_text = text_content.get_reaction("test");
 	monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
 	monster_cost_round = monster_text.size();
-	monster_frame_mode = enter_talk;
+	monster_frame_mode = no_enter_talk;
+
+	// monster_text = text_content.get_reaction("test");
+	// monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
+	// monster_cost_round = monster_text.size();
+	// monster_frame_mode = enter_talk;
 	//enter_talk work example
 }
 

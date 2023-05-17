@@ -69,7 +69,7 @@ public:
     void set_monster_frame_init();
     void set_monster_frame_game_text_enable(bool enable);
     
-    void monster_frame_stage_control_updata(UINT nChar, int *stage,MonsterFrame *monster_frame);
+    void monster_frame_stage_control_updata(UINT nChar, MonsterFrame *monster_frame);
 
     int get_now_monster_frame_mode();
     virtual void set_monster_frame() = 0;
@@ -79,7 +79,7 @@ public:
     virtual void fight_open(Move *heart, Character *charactor) = 0;
     virtual bool get_fight_end() = 0;
     void set_battle_timer(int time) {battel_mode_timer = time;}
-    virtual void init_barrage_data() {};
+    virtual void init_barrage_data() {}
     
 
     Acts acts;
@@ -91,6 +91,7 @@ public:
     
     bool _monster_frame_enable = false;
     bool stage_stop = false;
+    bool _is_pass_stage = false;
 protected:
     
     int battel_mode_timer = 0;
@@ -104,8 +105,6 @@ protected:
     int monster_times = 0;
     int _current_selection =0;
     float shark_time = 0;
-    int *_stege;
-    
 
     MonsterFrame *_monster_frame;
     GameText monster_name;
