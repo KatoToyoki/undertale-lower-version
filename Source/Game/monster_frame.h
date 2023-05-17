@@ -22,7 +22,6 @@ public:
     void set_enable(bool enable);
     void set_monster_frame_img(game_framework::CMovingBitmap img);
     
-    bool _monster_saying_is_done = true;
     DWORD _time_count = 0;
 private:
     game_framework::CMovingBitmap monster_frame_img;

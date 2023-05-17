@@ -42,7 +42,7 @@ void MonsterFrame::show_monster_frame_and_print()
       _game_text.print();
     }
   }
-  else if (_enable && _mode == enter_talk && _monster_saying_is_done)
+  else if (_enable && _mode == enter_talk )
   {
       monster_frame_img.ShowBitmap();
       _game_text.print();

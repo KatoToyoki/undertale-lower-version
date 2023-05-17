@@ -32,7 +32,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 	  enemy->set_next_round_text_updata();
     enemy->set_act_text_updata();
 	  enemy->set_monster_frame_init();
+    enemy->set_monster_frame_game_text_enable(false);
     items.set_item_updata();
+    monster_frame.set_enable(false);
   }
   
   switch (stage_go)
@@ -153,15 +155,12 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     //maybe battle mode
     stage_go_enable_add = false;
     stage_go_enable_sub = false;
-    
-    monster_frame._monster_saying_is_done = false;
    
     user_frame.control_frame(enemy->get_monster_battle_mode());
     
     heart_test.set_show_img_enable(true);
     if (user_frame.get_move_done())
     {
-      monster_frame._monster_saying_is_done = false;
       heart_test.move_control(user_frame.get_corner(),true);
 
       // to do enemy attack

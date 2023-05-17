@@ -143,14 +143,14 @@ std::vector<std::vector<std::string>> Migosp::get_random_text(std::string name)
 void Migosp::set_monster_frame()
 {
 	//
+	// monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
+	// monster_cost_round = monster_text.size();
+	// monster_frame_mode = no_enter_talk;
+
+	monster_text = text_content.get_reaction("test");
 	monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
 	monster_cost_round = monster_text.size();
-	monster_frame_mode = no_enter_talk;
-
-	// monster_text = text_content.get_reaction("netral_1");
-	// monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_2);
-	// monster_cost_round = monster_text.size();
-	// monster_frame_mode = enter_talk;
+	monster_frame_mode = enter_talk;
 	//enter_talk work example
 }
 
@@ -186,6 +186,8 @@ void Migosp::show_barrage(Move* heart, Character* charactor,int stage)
 
 frame_command_c Migosp::get_monster_battle_mode()
 {
+	if (battel_mode_timer >500 && battel_mode_timer<1300)
+		return bit_bone_dog_to_papyrus_normal;
 	if (battel_mode_timer >100)
 		return papyrus_normal_to_bit_bone_dog;
 	return talk_to_papyrus_normal_battle;

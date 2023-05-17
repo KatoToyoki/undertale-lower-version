@@ -159,7 +159,7 @@ void Enemy::monster_frame_stage_control_updata(UINT nChar, int* stage,MonsterFra
 	_stege = stage;
 	_monster_frame = monster_frame;
 	_monster_frame->set_monster_frame_img(monster_frame_img);
-	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable && *stage ==6)
+	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable )
 	{
 		if (monster_times < monster_cost_round-1)
 		{

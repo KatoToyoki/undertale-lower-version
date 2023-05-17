@@ -46,9 +46,6 @@ void ShowNormalMode::init()//宣告於OnMove()
 
 	_button_frame->set_updata_enable(true);
 
-    _monster_frame->set_enable(false);
-    _monster_frame->_monster_saying_is_done = true;
-
     _heart_test->move_control(_user_frame->get_corner(),false);
     _heart_test->set_show_img_enable(false);
 	_heart_test->set_heart_postion(935,698);
@@ -58,7 +55,6 @@ void ShowNormalMode::init()//宣告於OnMove()
 	_game_fight->set_fight_enable(false);
 
 	_enemy->set_act_game_text_enable(false);
-	_enemy->set_monster_frame_game_text_enable(false);
 	_enemy->check_change_mercy_name_to_yellow_by_is_mercy();
 	_enemy->init_barrage_data();//here init round SetAllData 
     _enemy->set_battle_timer(0);

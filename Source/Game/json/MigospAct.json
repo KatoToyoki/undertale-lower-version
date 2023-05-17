@@ -156,5 +156,27 @@
                 }
             }
         }
+    ],
+    "test": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "Mmm, cha",
+                    "content1": "cha cha!"
+                },
+                "frame1": {
+                    "content0": "I DON'T",
+                    "content1": "CARE"
+                },
+                "frame2": {
+                    "content0": "HEED THE",
+                    "content1": "SWARM"
+                },
+                "frame3": {
+                    "content0": "OBEY THE",
+                    "content1": "OVERMIND"
+                }
+            }
+        }
     ]
 }
