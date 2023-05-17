@@ -171,38 +171,47 @@ int PapyrusRound::GetCurrentRound()
 
 void PapyrusRound::DogAnimation(Move *heart,Character *character)
 {
-    if(currentRound!=20 || !isRightTime)
+    if(!isRightTime)
     {
         return;
     }
 
-    switch (dogAnimation)
+    switch (currentRound)
     {
-    case 1:
-    case 2:
-        enemyBarrage[0].barrage_img.ShowBitmap();
-        enemyBarrage[0].barrage_img.SetAnimation(150,false);
+    case 20:
+        switch (dogAnimation)
+        {
+            case 1:
+            case 2:
+                enemyBarrage[0].barrage_img.ShowBitmap();
+                enemyBarrage[0].barrage_img.SetAnimation(150,false);
+                break;
+            case 3:
+                enemyBarrage[0].UnshowIMG();
+                enemyBarrage[0].set_positon(2000,2000);
+                enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(0);
+                enemyBarrage[1].barrage_img.SetTopLeft(1000,810);
+                break;
+            case 4:
+            case 5:
+                enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(1);
+                break;
+            case 6:
+                enemyBarrage[1].UnshowIMG();
+                enemyBarrage[1].set_positon(2000,2000);
+                enemyBarrage[2].barrage_img.SetTopLeft(1000,810);
+                dogAnimation+=1;
+                break;
+            default:
+                enemyBarrage[2].barrage_img.ShowBitmap();
+                enemyBarrage[2].barrage_img.SetAnimation(150,false);
+                GoRight(enemyBarrage[2],heart,3,character);
+            break;
+        }
         break;
-    case 3:
-        enemyBarrage[0].UnshowIMG();
-        enemyBarrage[0].set_positon(2000,2000);
-        enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(0);
-        enemyBarrage[1].barrage_img.SetTopLeft(1000,810);
-        break;
-    case 4:
-    case 5:
-        enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(1);
-        break;
-    case 6:
-        enemyBarrage[1].UnshowIMG();
-        enemyBarrage[1].set_positon(2000,2000);
-        enemyBarrage[2].barrage_img.SetTopLeft(1000,810);
-        dogAnimation+=1;
-        break;
-    default:
-        enemyBarrage[2].barrage_img.ShowBitmap();
-        enemyBarrage[2].barrage_img.SetAnimation(150,false);
-        GoRight(enemyBarrage[2],heart,3,character);
+    case 21:
+        enemyBarrage[34].barrage_img.ShowBitmap();
+        enemyBarrage[34].barrage_img.SetAnimation(150,false);
         break;
     }
 }
@@ -639,23 +648,20 @@ void PapyrusRound::round20(Move* heart,Character *character)
 
 void PapyrusRound::round21(Move* heart,Character *character)
 {
-    bool secondWave=false, thirdWave=false, fourthWave=false,
-    fifthWave=false, sixthWave=false, sevenWave=false, eightWave=false,
-    nineWave=false;
-
-    std::vector<bool> Waves;
-    // 0 1
-    for(int i=0;i<2;i++)
+   std::vector<bool> Waves(14,false);
+    
+    for(int i=0;i<2;i++) // 0 1
     {
         GoRight(enemyBarrage[i],heart,allData[i].speed+2,character);
     }
     
     if(DetectCertainPoint(enemyBarrage[1],940,back)||DetectLeft(enemyBarrage[1],vanish))
     {
-        secondWave=true;
+        // secondWave=true;
+        Waves[1]=true;
     }
-    // 2 3
-    if(secondWave)
+    
+    if(Waves[1]) // 2 3
     {
         for(int i=2;i<4;i++)
         {
@@ -663,82 +669,140 @@ void PapyrusRound::round21(Move* heart,Character *character)
         }
         if(DetectCertainPoint(enemyBarrage[3],735,front)||DetectLeft(enemyBarrage[3],vanish))
         {
-            thirdWave=true;
+            Waves[2]=true;
         }
     }
-    // 4 5
-    if(thirdWave)
+    
+    if(Waves[2]) // 4 5
     {
         PincerAttack(4,5,heart,1,normal,character);
         if(DetectCertainPoint(enemyBarrage[4],810,back)||DetectLeft(enemyBarrage[4],vanish))
         {
-            fourthWave=true;
+            Waves[3]=true;
         }
     }
-    // 6 7 8 9
-    if(fourthWave)
+    
+    if(Waves[3]) // 6 7 8 9
     {
         PincerAttack(6,9,heart,1,compoundUp,character);
         if(DetectCertainPoint(enemyBarrage[7],870,back)||DetectLeft(enemyBarrage[7],vanish))
         {
-            fifthWave=true;
+            Waves[4]=true;
         }
     }
-    // 10 11 12 13
-    if(fifthWave)
+    
+    if(Waves[4]) // 10 11 12 13
     {
         PincerAttack(10,13,heart,1,compoundDown,character);
         if(DetectCertainPoint(enemyBarrage[10],910,back)||DetectLeft(enemyBarrage[10],vanish))
         {
-            sixthWave=true;
+            Waves[5]=true;
         }
-        
     }
-
-    // 14 15 16 17
-    if(sixthWave)
+    
+    if(Waves[5]) // 14 15 16 17
     {
         PincerAttack(14,17,heart,1,compoundUp,character);
         if(DetectCertainPoint(enemyBarrage[14],820,back)||DetectLeft(enemyBarrage[14],vanish))
         {
-            sevenWave=true;
+            Waves[6]=true;
         }
     }
-
-    // 18 19 20 21
-    if(sevenWave)
+    
+    if(Waves[6]) // 18 19 20 21
     {
         PincerAttack(18,21,heart,1,compoundUp,character);
         if(DetectCertainPoint(enemyBarrage[20],700,front)||DetectLeft(enemyBarrage[18],vanish))
         {
-            eightWave=true;
+            Waves[7]=true;
         }
     }
-
-    // 22 23 24 25 26 27
-    if(eightWave)
+    
+    if(Waves[7]) // 22 23 24 25 26 27
     {
-        for(int i=22;i<27;i++)
+        for(int i=22;i<28;i++)
         {
             GoLeft(enemyBarrage[i],heart,allData[i].speed+2,character);
         }
         CompoundBarrage(enemyBarrage[23],enemyBarrage[22],heart);
         CompoundBarrage(enemyBarrage[25],enemyBarrage[24],heart);
         CompoundBarrage(enemyBarrage[27],enemyBarrage[26],heart);
-        UpDownBarrage(enemyBarrage[22],allData[22].initY-50,allData[22].initY+50,6);
-        UpDownBarrage(enemyBarrage[24],allData[24].initY-50,allData[24].initY+50,7);
-        UpDownBarrage(enemyBarrage[26],allData[26].initY-50,allData[26].initY+50,8);
+        UpDownBarrage(enemyBarrage[22],allData[22].initY-30,allData[22].initY+30,5);
+        UpDownBarrage(enemyBarrage[24],allData[24].initY-50,allData[24].initY+50,6);
+        UpDownBarrage(enemyBarrage[26],allData[26].initY-70,allData[26].initY+70,7);
 
-        if(DetectCertainPoint(enemyBarrage[26],740,back)||DetectLeft(enemyBarrage[26],vanish))
+        if(DetectCertainPoint(enemyBarrage[26],740,front)||DetectLeft(enemyBarrage[26],vanish))
         {
-            nineWave=true;
+            Waves[8]=true;
+        }
+    }
+    
+    if(Waves[8]) // 28 29 30 31 32 33
+    {
+        for(int i=28;i<34;i++)
+        {
+            GoRight(enemyBarrage[i],heart,allData[i].speed+2,character);
+        }
+        CompoundBarrage(enemyBarrage[29],enemyBarrage[28],heart);
+        CompoundBarrage(enemyBarrage[31],enemyBarrage[30],heart);
+        CompoundBarrage(enemyBarrage[33],enemyBarrage[32],heart);
+        UpDownBarrage(enemyBarrage[28],allData[28].initY-30,allData[28].initY+30,5);
+        UpDownBarrage(enemyBarrage[30],allData[30].initY-60,allData[30].initY+60,6);
+        UpDownBarrage(enemyBarrage[32],allData[32].initY-60,allData[32].initY+60,5);
+
+        if(DetectCertainPoint(enemyBarrage[32],1120,back)||DetectLeft(enemyBarrage[32],vanish))
+        {
+            Waves[9]=true;
         }
     }
 
-    if(nineWave)
+    if(Waves[9]) // 34
     {
-        
+        GoLeft(enemyBarrage[34],heart,allData[34].speed+2,character);
+        if(DetectCertainPoint(enemyBarrage[34],700,front)||DetectLeft(enemyBarrage[34],vanish))
+        {
+            Waves[10]=true;
+        }
+    }
+    
+    if(Waves[10]) // 35 36 37 38
+    {
+        for(int i=35;i<39;i++)
+        {
+            GoLeft(enemyBarrage[i],heart,allData[i].speed+2,character);
+        }
+        if(DetectCertainPoint(enemyBarrage[38],835,front)||DetectLeft(enemyBarrage[38],vanish))
+        {
+            Waves[11]=true;
+        }  
+    }
+    
+    if(Waves[11]) // 39 40 41 42
+    {
+        for(int i=39;i<43;i++)
+        {
+            GoLeft(enemyBarrage[i],heart,allData[i].speed+2,character);
+        }
+        if(DetectCertainPoint(enemyBarrage[42],835,front)||DetectLeft(enemyBarrage[42],vanish))
+        {
+            Waves[12]=true;
+        }  
     }
 
-    // dog running tenWave
+    if(Waves[12]) // 43
+    {
+        GoLeft(enemyBarrage[43],heart,allData[43].speed+2,character);
+    
+        if(DetectCertainPoint(enemyBarrage[43],700,front)||DetectLeft(enemyBarrage[43],vanish))
+        {
+            Waves[13]=true;
+        }  
+    }
+
+    if(Waves[13]) // 44
+    {
+        GoLeft(enemyBarrage[44],heart,allData[44].speed,character);
+    }
+    
+    DetectRoundEnd(leftAtLeft);
 }

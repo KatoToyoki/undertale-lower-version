@@ -3293,7 +3293,7 @@
       "damage": 3,
       "speed": 4,
       "initX": 510,
-      "initY": 790,
+      "initY": 817,
       "barrage_mode": "white",
       "imgPath": [
         {
@@ -3310,6 +3310,19 @@
       "imgPath": [
         {
           "path0": "bone_bottom"
+        }
+      ]
+    },
+    {
+      "damage": 0,
+      "speed": 6,
+      "initX": 1190,
+      "initY": 810,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "dog-run1",
+          "path1": "dog-run2"
         }
       ]
     },
@@ -3424,7 +3437,7 @@
     {
       "damage": 3,
       "speed": 2,
-      "initX": 2281,
+      "initX": 1270,
       "initY": 819,
       "barrage_mode": "white",
       "imgPath": [
