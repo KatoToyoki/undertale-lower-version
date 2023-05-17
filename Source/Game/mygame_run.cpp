@@ -174,7 +174,11 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 
       // to do enemy attack
       // ===========================================================
-      enemy->fight_open(&heart_test,&charactor);
+      if(enemy!= &migosp)
+      {
+        enemy->fight_open(&heart_test,&charactor);
+        
+      }
       
       if (menu.get_current_stage()== 3)
       {
@@ -188,9 +192,13 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go = 1;
     }
 
-    if (enemy->get_fight_end())
+    if(enemy!= &migosp)
     {
-      stage_go = 1;
+      if (enemy->get_fight_end())
+      {
+        stage_go = 1;
+      }
+      
     }
     
     break;
