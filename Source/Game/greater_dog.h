@@ -30,7 +30,6 @@ public:
     //同上的set_act_text_updata 設定的文字 是下一回合該顯示的字
     void set_next_round_text_updata() override;
 
-    std::vector<std::vector<std::string>> get_random_text(std::string name) override;
     //在game_run的流程會統一call這個function所以如果需要更改戰鬥使用的眶 在這裏面判斷回傳的東西
     frame_command_c get_monster_battle_mode() override;
     void set_fight() override;//這個會在fight裡面被呼叫 功用是如果怪物被打了會做什麼變化之類的

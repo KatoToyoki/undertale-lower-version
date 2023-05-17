@@ -116,41 +116,18 @@ void Migosp::check_mercy()
 	}
 }
 
-std::vector<std::vector<std::string>> Migosp::get_random_text(std::string name)
-{
-    std::vector< std::vector<std::vector<std::string> >> monster_text;
-	if(name == "neutral")
-	{
-		monster_text ={
-			text_content.get_reaction("netral_1"),
-			text_content.get_reaction("netral_2"),
-			text_content.get_reaction("netral_3"),
-			text_content.get_reaction("netral_4"),
-			text_content.get_reaction("netral_5"),
-			text_content.get_reaction("netral_6"),
-			text_content.get_reaction("netral_7"),
-			text_content.get_reaction("netral_8"),
-			text_content.get_reaction("netral_9"),
-			text_content.get_reaction("netral_10"),
-			text_content.get_reaction("netral_11")
-		};
-		int random_num = generate_random_num(0,monster_text.size());
-		return monster_text[random_num];
-	}
-	return {{}};
-}
 
 void Migosp::set_monster_frame()
 {
 	//
-	monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
-	monster_cost_round = monster_text.size();
-	monster_frame_mode = no_enter_talk;
-
-	// monster_text = text_content.get_reaction("test");
 	// monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
 	// monster_cost_round = monster_text.size();
-	// monster_frame_mode = enter_talk;
+	// monster_frame_mode = no_enter_talk;
+
+	monster_text = text_content.get_reaction("test");
+	monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
+	monster_cost_round = monster_text.size();
+	monster_frame_mode = enter_talk;
 	//enter_talk work example
 }
 

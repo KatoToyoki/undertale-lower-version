@@ -25,7 +25,6 @@ public:
     void set_monster_frame() override;
     void set_next_round_text_updata() override;
 
-    std::vector<std::vector<std::string>> get_random_text(std::string name) override;
     frame_command_c get_monster_battle_mode() override ;
     
     void check_mercy() override;

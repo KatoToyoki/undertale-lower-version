@@ -71,26 +71,11 @@ void Items::set_items(int current_selection)
     }
 }
 
-int Items::generate_random_num(int min, int max)
+std::vector<std::vector<std::string>> Items::get_and_set_ramdon_text(std::string str)
 {
-    return ( rand() % ((max-1) - min + 1) + min );
-}
-
-std::string Items::get_and_set_ramdon_text(std::string str)
-{
-    vector<std::string> random_text_vector;
     std::vector<std::vector<std::string>> item_text;
-    if (str == "NiceCream")
-    {
-        item_text = text_content.get_reaction("NiceCream_random");
-         for(unsigned int j=0;j<item_text[0].size();j++)
-         {
-             random_text_vector.push_back(item_text[0][j]);
-         }
-    }
-    
-    int random_num = generate_random_num(0,random_text_vector.size());
-    return random_text_vector[random_num];
+    item_text = text_content.get_reaction("NiceCream");
+    return item_text;
 }
 
 void Items::set_item_cost_round_init(int current_selection, int button_selection)
@@ -102,7 +87,7 @@ void Items::set_item_cost_round_init(int current_selection, int button_selection
         _times = 0;
         set_items(_current_selection);
         _button_selection = button_selection;
-        nice_cream_random_text = get_and_set_ramdon_text("NiceCream");
+        random_text = get_and_set_ramdon_text("NiceCream");// random need read in init
     }
 }
 
@@ -113,8 +98,7 @@ void Items::set_item_updata()
     
     if (item->name == "NiceCream")
     {
-        item_text = text_content.get_reaction("NiceCream");
-        item_text[0].insert(item_text[0].begin(),nice_cream_random_text);
+        item_text = random_text;
     }
     else if (item->name == "Bisicle")
     {

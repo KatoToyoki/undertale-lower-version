@@ -38,8 +38,7 @@ private:
     int _button_selection;
 
     Item* get_item_by_index(int current_selection);
-    int generate_random_num(int min, int max);
-    std::string get_and_set_ramdon_text(std::string str);
+    std::vector<std::vector<std::string>> get_and_set_ramdon_text(std::string str);
     void set_items_init();
     void set_items(int current_selection);
 
@@ -52,4 +51,6 @@ private:
     int cost_round;
 
     std::string nice_cream_random_text;
+    
+    std::vector<std::vector<std::string>> random_text;
 };

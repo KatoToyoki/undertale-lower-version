@@ -278,7 +278,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     user_frame.choose_updata(nChar);
     gameFight.ToStop(nChar);
     enemy->act_after_stage_control_updata(nChar);
-    enemy->monster_frame_stage_control_updata(nChar,&stage_go,&monster_frame);
+    enemy->monster_frame_stage_control_updata(nChar,&monster_frame);
     items.item_after_stage_control_updata(nChar);
     if (stage_go == 3) {enemy->act_choose_count(nChar,gameButtonFrame.get_current_selection());}
     if (stage_go!= 7) {charactor.change_hp_updata(nChar);}

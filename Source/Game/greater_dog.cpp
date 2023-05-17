@@ -231,11 +231,6 @@ void GreaterDog::check_mercy()
 	}
 }
 
-std::vector<std::vector<std::string>> GreaterDog::get_random_text(std::string name)
-{
-	return {{}};
-}
-
 void GreaterDog::set_monster_frame()
 {
 	monster_frame_mode = pass_talk;

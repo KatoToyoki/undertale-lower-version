@@ -16,6 +16,8 @@ private:
     // inside one reaction may have multiple frames
     // but using this can only use one situation
     // it's two layers
+    
+    std::vector<std::vector<std::vector<std::string>>> act;
     std::vector<std::vector<std::string>> actOneReaction;
     
 public:
@@ -24,11 +26,11 @@ public:
 
     // file name is the source of the json, situation is what you want to call
     void HandleActContent(std::string fileName,std::string situation);
-
+    
     std::vector<std::vector<std::string>> get_reaction(std::string situation);
     void get_data(std::string fileName);
     void load(string file_name);
-    std::unordered_map<string, vector< vector< string>>> data_context;
+    std::unordered_map<string, vector <vector< vector< string>>>> data_context;
     
     //testing
     void PrintItOut();

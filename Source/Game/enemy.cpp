@@ -139,7 +139,8 @@ void Enemy::set_monster_frame_init()
 	if (!_monster_frame_enable)
 	{
 		monster_times = 0;
-		monster_text = get_random_text("neutral");//only random use need have neutral in json
+		//only random use need have neutral in json
+		monster_text = text_content.get_reaction("neutral");
 	}
 	set_monster_frame();
 }

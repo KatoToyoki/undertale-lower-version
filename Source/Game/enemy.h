@@ -74,7 +74,6 @@ public:
     int get_now_monster_frame_mode();
     virtual void set_monster_frame() = 0;
 
-    virtual std::vector<std::vector<std::string>> get_random_text(std::string name) = 0;
     virtual void set_fight() {}
     virtual void fight_open(Move *heart, Character *charactor) = 0;
     virtual bool get_fight_end() = 0;

@@ -29,118 +29,78 @@
             }
         }
     ],
-    "netral_1": [
+    "neutral": [
         {
             "reaction0": {
                 "frame0": {
                     "content0": "Mmm, cha",
                     "content1": "cha cha!"
                 }
-            }
-        }
-    ],
-    "netral_2": [
-        {
-            "reaction0": {
+            },
+            "reaction1": {
                 "frame0": {
                     "content0": "I DON'T",
                     "content1": "CARE"
                 }
-            }
-        }
-    ],
-    "netral_3": [
-        {
-            "reaction0": {
+            },
+            "reaction2": {
                 "frame0": {
                     "content0": "HEED THE",
                     "content1": "SWARM"
                 }
-            }
-        }
-    ],
-    "netral_4": [
-        {
-            "reaction0": {
+            },
+            "reaction3": {
                 "frame0": {
                     "content0": "OBEY THE",
                     "content1": "OVERMIND"
                 }
-            }
-        }
-    ],
-    "netral_5": [
-        {
-            "reaction0": {
+            },
+            "reaction4": {
                 "frame0": {
                     "content0": "LEGION!",
                     "content1": "WE ARE",
                     "content2": "LOGION"
                 }
-            }
-        }
-    ],
-    "netral_6": [
-        {
-            "reaction0": {
+            },
+            "reaction5": {
                 "frame0": {
                     "content0": "FILTHY",
                     "content1": "SINGLE",
                     "content2": "MINDER",
                     "content3": "..."
                 }
-            }
-        }
-    ],
-    "netral_7": [
-        {
-            "reaction0": {
+            },
+            "reaction6": {
                 "frame0": {
                     "content0": "Swing",
                     "content1": "your",
                     "content2": "arms",
                     "content3": "baby"
                 }
-            }
-        }
-    ],
-    "netral_8": [
-        {
-            "reaction0": {
+            },
+            "reaction7": {
                 "frame0": {
                     "content0": "Bein' me",
                     "content1": "is the",
                     "content2": "best!"
                 }
-            }
-        }
-    ],
-    "netral_9": [
-        {
-            "reaction0": {
+            },
+            "reaction8": {
                 "frame0": {
                     "content0": "Nothin",
                     "content1": "like",
                     "content2": "alone",
                     "content3": "time!"
                 }
-            }
-        }
-    ],
-    "netral_10": [
-        {
-            "reaction0": {
+            },
+            "reaction9": {
                 "frame0": {
                     "content0": "La la~",
                     "content1": "Just be",
                     "content2": "yourself"
                 }
-            }
-        }
-    ],
-    "netral_11": [
-        {
-            "reaction0": {
+            },
+            "reactionA": {
                 "frame0": {
                     "content0": "Hiya~"
                 }
