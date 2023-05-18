@@ -21,7 +21,7 @@ public:
     void set_barrage() override;
     void set_acts() override;
     void set_act_text_updata() override;
-    void act_choose_count(UINT nChar,int button_current) override {}
+    void act_choose_count(int button_current) override {}
     void set_monster_frame_before() override;
     void set_next_round_text_updata() override;
 

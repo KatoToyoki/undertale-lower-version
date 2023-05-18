@@ -180,7 +180,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   case BACK_INIT:
     stage_go_enable_add = false;
     stage_go_enable_sub = false;
+    enemy->act_choose_count(gameButtonFrame.get_current_selection());
     items.set_control_updata(false);
+  	enemy->set_act_game_text_enable(false);
     stage_go = INIT;
     break;
   case FIGHT_END:
@@ -293,8 +295,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     enemy->act_after_stage_control_updata(nChar);
     enemy->monster_frame_stage_control_updata(nChar,&monster_frame,stage_go);
     items.item_after_stage_control_updata(nChar);
-    if (stage_go == 3) {enemy->act_choose_count(nChar,gameButtonFrame.get_current_selection());}
-    if (stage_go!= 7) {charactor.change_hp_updata(nChar);}
+    if (stage_go!= BATTLE) {charactor.change_hp_updata(nChar);}
     papyrusRound.ToGetEnterCount(nChar);
   }
   //stage_control

@@ -61,7 +61,7 @@ public:
     void set_act_game_text_enable(bool enable);
     
     void act_after_stage_control_updata(UINT nChar);
-    virtual void act_choose_count(UINT nChar,int button_current) = 0;
+    virtual void act_choose_count(int button_current) = 0;
     
     virtual void set_act_text_updata() = 0;
 
