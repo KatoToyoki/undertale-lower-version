@@ -142,7 +142,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go = BATTLE;
 
     // show_normal_mode.set_heart_mode(heart_blue);
-    stage_go_enable_add = enemy->get_now_monster_frame_mode() == enter_talk;
+    stage_go_enable_add = enemy->get_now_monster_frame_mode(BEFORE_BATTLE) == enter_talk;
     stage_go_enable_sub = false;
     break;
   case BATTLE:
@@ -168,7 +168,20 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     // if(papyrusRound.GetIsAttackEnd())
     //   stage_go = INIT;
     if (enemy->get_fight_end())
-      stage_go = INIT;
+      stage_go = BATTLE_AFTER_MONSTER_FRAME;
+    break;
+  case BATTLE_AFTER_MONSTER_FRAME:
+    stage_go_enable_add = true;
+    stage_go_enable_sub = false;
+    show_normal_mode.battle_after_monster_frame();
+    if (enemy->_is_pass_stage)
+      stage_go = BACK_INIT;
+    break;
+  case BACK_INIT:
+    stage_go_enable_add = false;
+    stage_go_enable_sub = false;
+    items.set_control_updata(false);
+    stage_go = INIT;
     break;
   case FIGHT_END:
     if (gameFight.GetDurationMinusHP()<=0 || gameButtonFrame.get_current_selection() != FIGHT)
@@ -278,7 +291,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     user_frame.choose_updata(nChar);
     gameFight.ToStop(nChar);
     enemy->act_after_stage_control_updata(nChar);
-    enemy->monster_frame_stage_control_updata(nChar,&monster_frame);
+    enemy->monster_frame_stage_control_updata(nChar,&monster_frame,stage_go);
     items.item_after_stage_control_updata(nChar);
     if (stage_go == 3) {enemy->act_choose_count(nChar,gameButtonFrame.get_current_selection());}
     if (stage_go!= 7) {charactor.change_hp_updata(nChar);}
@@ -313,7 +326,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     else { stage_go-=1; }
   }
   
-  if (stage_go == 1 || stage_go <4 && stage_go >1 && ((nChar == 0x5A || nChar == VK_RETURN) || (nChar == 0x58 || nChar == VK_SHIFT)))
+  if(stage_go <CHOOSE_AFTER && stage_go > INIT &&
+      ((nChar == 0x5A || nChar == VK_RETURN) || (nChar == 0x58 || nChar == VK_SHIFT)))
   {
     user_frame._current_selection = 0;
   }
@@ -350,15 +364,15 @@ void CGameStateRun::OnShow()
   } else {
     //all show thing put here
     user_frame.stage_in_top_black.ShowBitmap();
-    enemy->show_img();
     green_line.ShowBitmap();
+    enemy->show_img();
     
     user_frame.up_horizontal_frame.ShowBitmap();
     heart_test.show_heart_img();
     // ===========================================================
     // enemy attack path
     if (user_frame.get_move_done()) {enemy->show_barrage(&heart_test, &charactor,stage_go);}
-    if(stage_go==7)
+    if(stage_go==BATTLE)
     {
       if(menu.get_current_stage()==3)
       {

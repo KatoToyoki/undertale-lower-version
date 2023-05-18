@@ -43,6 +43,7 @@ void ShowNormalMode::init()//宣告於OnMove()
 {
 	_user_frame->control_frame(to_talk);
 	_user_frame->set_choose(false);
+	_user_frame->_current_selection = 0;
 
 	_button_frame->set_updata_enable(true);
 
@@ -60,6 +61,7 @@ void ShowNormalMode::init()//宣告於OnMove()
     _enemy->set_battle_timer(0);
 
 	_items->set_control_updata(false);
+	_items->check_and_del_item();
 	
 	_enemy->set_enemy_targe_choose_hp_bar(false);
 	_enemy->set_barrage_enable(false);
@@ -158,8 +160,9 @@ void ShowNormalMode::monster_frame_battle()
     _heart_test->set_shine_mode(false);
     _user_frame->control_frame(_enemy->get_monster_battle_mode());
     _enemy->set_monster_frame_game_text_enable(true);
+	_enemy->check_pass(BEFORE_BATTLE);
 	
-	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(),_enemy->get_now_monster_frame_mode());
+	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(BEFORE_BATTLE),_enemy->get_now_monster_frame_mode(BEFORE_BATTLE));
     _monster_frame->set_enable(true);
 }
 
@@ -176,6 +179,15 @@ void ShowNormalMode::choose_mercy_after()
 		_user_frame->load_text(_enemy->get_mercy_win_game_text());
 		_user_frame->set_choose(true);
 	}
+}
+
+void ShowNormalMode::battle_after_monster_frame()
+{
+    _enemy->set_monster_frame_game_text_enable(true);
+	_enemy->check_pass(AFTER_BATTLE);
+	
+	_monster_frame->load_game_text_and_mode(_enemy->get_monster_frame_game_text(AFTER_BATTLE),_enemy->get_now_monster_frame_mode(AFTER_BATTLE));
+    _monster_frame->set_enable(true);
 }
 
 void ShowNormalMode::set_heart_mode(HeartMode mode)

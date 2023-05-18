@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "enemy.h"
 
+#include "mygame.h"
+
 int Enemy::generate_random_num(int min, int max)
 {
     return ( rand() % ((max-1) - min + 1) + min );
@@ -142,26 +144,47 @@ void Enemy::set_monster_frame_init()
 		//only random use need have neutral in json
 		monster_text = text_content.get_reaction("neutral");
 	}
-	set_monster_frame();
+	set_monster_frame_before();
+	set_monster_frame_after();
 }
 
-GameText Enemy::get_monster_frame_game_text()
+GameText Enemy::get_monster_frame_game_text(monster_frame_stage stage)
 {
-	return monster_frame_game_text;
+	switch (stage)
+	{
+		case BEFORE_BATTLE:
+			return monster_frame_game_text_before_battle;
+		case AFTER_BATTLE:
+			return monster_frame_game_text_after_battle;
+	}
+	return GameText();
 }
 
-int Enemy::get_now_monster_frame_mode()
+int Enemy::get_now_monster_frame_mode(monster_frame_stage stage)
 {
-    return monster_frame_mode;
+	switch (stage)
+	{
+		case BEFORE_BATTLE:
+			return monster_frame_mode_before_battle;
+		case AFTER_BATTLE:
+			return monster_frame_mode_after_battle;
+	}
+	return 0;
 }
 
-void Enemy::monster_frame_stage_control_updata(UINT nChar, MonsterFrame *monster_frame)
+void Enemy::monster_frame_stage_control_updata(UINT nChar, MonsterFrame *monster_frame,int stage)
 {
 	_monster_frame = monster_frame;
 	_monster_frame->set_monster_frame_img(monster_frame_img);
+	int cost_round;
+	if (stage == game_framework::SHOW_MONSTER_FRAME_FRAME_MOVE)
+		cost_round = monster_cost_round_before;
+	else if (stage == game_framework::BATTLE_AFTER_MONSTER_FRAME)
+		cost_round = monster_cost_round_after;
+	
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable )
 	{
-		if (monster_times < monster_cost_round-1)
+		if (monster_times < cost_round-1)
 		{
 			monster_times+=1;
 			stage_stop = true;
@@ -173,18 +196,30 @@ void Enemy::set_monster_frame_game_text_enable(bool enable)
 {
 	_monster_frame_enable = enable;
 	_is_pass_stage = false;
-	if (_monster_frame_enable)
+}
+
+void Enemy::check_pass(monster_frame_stage stage)
+{
+	switch (stage)
 	{
-		if (monster_frame_mode == no_enter_talk && _monster_frame->_time_count > 800)
-		{
-			_is_pass_stage = true;
-		}
-		if(monster_frame_mode == pass_talk && _monster_frame->_time_count > 0)
-		{
-			_is_pass_stage = true;
-		}
+		case BEFORE_BATTLE:
+			if (monster_frame_mode_before_battle == no_enter_talk && _monster_frame->_time_count > 800) {
+				_is_pass_stage = true;
+			}
+			if(monster_frame_mode_before_battle == pass_talk && _monster_frame->_time_count > 0)
+			{
+				_is_pass_stage = true;
+			}
+			break;
+		case AFTER_BATTLE:
+			if(monster_frame_mode_after_battle == pass_talk && _monster_frame->_time_count > 0)
+			{
+				_is_pass_stage = true;
+			}
+			break;
 	}
 }
+
 
 GameText Enemy::get_next_round_game_text()
 {

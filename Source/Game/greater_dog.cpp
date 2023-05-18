@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "greater_dog.h"
 
+#include "mygame.h"
+
 GreaterDog::GreaterDog()
 {
 	text_content.load("GreaterDogAct");
@@ -231,10 +233,6 @@ void GreaterDog::check_mercy()
 	}
 }
 
-void GreaterDog::set_monster_frame()
-{
-	monster_frame_mode = pass_talk;
-}
 void GreaterDog::set_next_round_text_updata()
 {
     std::vector<std::vector<std::string>> next_round_text = {{}};
@@ -335,7 +333,7 @@ void GreaterDog::init_barrage_data()
 
 void GreaterDog::show_barrage(Move* heart, Character* charactor,int stege)
 {
-	if ( stege == 7)
+	if ( stege == game_framework::BATTLE)
 	{
 		greater_dog_round.SetIsRightTime(true);
 		greater_dog_round.RevealBarrage();

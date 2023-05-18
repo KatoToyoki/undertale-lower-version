@@ -26,7 +26,7 @@ public:
     //設定 按下enter後什麼條件會成立 如果要計數該選擇做了幾次也在這裡進行加減
     void act_choose_count(UINT nChar,int button_current) override;
     //同上的set_act_text_updata 只是從在user_frame顯示變成在monster_frame顯示
-    void set_monster_frame() override;
+    // void set_monster_frame_before() override;
     //同上的set_act_text_updata 設定的文字 是下一回合該顯示的字
     void set_next_round_text_updata() override;
 

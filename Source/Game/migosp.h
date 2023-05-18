@@ -22,7 +22,7 @@ public:
     void set_acts() override;
     void set_act_text_updata() override;
     void act_choose_count(UINT nChar,int button_current) override {}
-    void set_monster_frame() override;
+    void set_monster_frame_before() override;
     void set_next_round_text_updata() override;
 
     frame_command_c get_monster_battle_mode() override ;
@@ -32,4 +32,7 @@ public:
     bool get_fight_end() override;
 
     void show_barrage(Move* heart, Character* charactor,int stage) override;
+
+    //test
+    // void set_monster_frame_after() override;
 };

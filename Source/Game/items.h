@@ -26,6 +26,7 @@ public:
     void set_item_cost_round_init(int current_selection, int button_selection);
     void item_after_stage_control_updata(UINT nChar);
     void set_control_updata(bool enable);
+    void check_and_del_item();
     bool is_items_empty();
 
     bool stage_stop = false;
@@ -42,7 +43,6 @@ private:
     void set_items_init();
     void set_items(int current_selection);
 
-    void check_and_del_item();
     
     GameText set_vector_vector_to_game_text(std::vector<std::vector<std::string>> text,int times);
 

@@ -74,7 +74,7 @@ void Items::set_items(int current_selection)
 std::vector<std::vector<std::string>> Items::get_and_set_ramdon_text(std::string str)
 {
     std::vector<std::vector<std::string>> item_text;
-    item_text = text_content.get_reaction("NiceCream");
+    item_text = text_content.get_reaction(str);
     return item_text;
 }
 
@@ -82,7 +82,6 @@ void Items::set_item_cost_round_init(int current_selection, int button_selection
 {
     if (!_enable)
     {
-        check_and_del_item();
         _current_selection = current_selection;
         _times = 0;
         set_items(_current_selection);
@@ -160,21 +159,23 @@ Item* Items::get_item_by_index(int current_selection)
 
 void Items::check_and_del_item()
 {
-    Item *item = &items[_current_selection];
-    if (item->useable_times == 0)
+    for (Item &item : items)
     {
-        items.erase(items.begin() + _current_selection);
-        if (items.empty())
+        if (item.useable_times == 0)
         {
-            Item item = {
-               "no_item",
-               1,
-               0,
-            };
-            vector<Item> item_vector = {
-                item
-            };
-            items = item_vector;
+            items.erase(items.begin() + _current_selection);
+            if (items.empty())
+            {
+                Item item = {
+                   "no_item",
+                   1,
+                   0,
+                };
+                vector<Item> item_vector = {
+                    item
+                };
+                items = item_vector;
+            }
         }
     }
 }

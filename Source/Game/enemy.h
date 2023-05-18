@@ -16,6 +16,12 @@ enum enemy_img_state
     end_img
 };
 
+enum monster_frame_stage
+{
+    BEFORE_BATTLE,
+    AFTER_BATTLE
+};
+
 class Enemy
 {
 public:
@@ -60,22 +66,35 @@ public:
     virtual void set_act_text_updata() = 0;
 
 /// next_round
+    //回傳set_next_round_text_updata指定的東西給userframe
     GameText get_next_round_game_text();
+    //設定下回合在什麼狀態下 會顯示怎麼字 隨時讀取
     virtual void set_next_round_text_updata() = 0;
     
 /// monster frame
-    GameText get_monster_frame_game_text();
+    //傳出monster_frame需要的game_text 給monster_frame印出(SHOW_MONSTER_FRAME_STOP用)
+    GameText get_monster_frame_game_text(monster_frame_stage stage);
+    //用於傳入monster_frame_mode (auto/enter/pass) 給 monster_frame印出
+    int get_now_monster_frame_mode(monster_frame_stage stage);
     
+    void check_pass(monster_frame_stage stage);
+    //初始化monster_times(文本enter次數) 跟 讀隨機台詞的地方
     void set_monster_frame_init();
+    //在move會一直輸入 false 直到 需要使用的時候呼叫傳入true
     void set_monster_frame_game_text_enable(bool enable);
-    
-    void monster_frame_stage_control_updata(UINT nChar, MonsterFrame *monster_frame);
-
-    int get_now_monster_frame_mode();
-    virtual void set_monster_frame() = 0;
-
-    virtual void set_fight() {}
-    virtual void fight_open(Move *heart, Character *charactor) = 0;
+    //放在onkeydown控制stage停下 依照monster_times印出文本 
+    void monster_frame_stage_control_updata(UINT nChar, MonsterFrame *monster_frame,int stage);
+    //設定讀取戰鬥前(BEFORE BATTLE)的monster_frame會印出甚麼字
+    //在此處指定monster_frame_game_text/monster_cost_round/monster_frame_mode
+    //東西會透過 get_monster_frame_game_text跟 get_now_monster_frame_mode會透過給monster_frame
+    virtual void set_monster_frame_before() { monster_frame_mode_before_battle = pass_talk; }
+    //設定讀取戰鬥後(AFTER BATTLE)的monster_frame會印出甚麼字
+    //在此處指定monster_frame_game_text/monster_cost_round/monster_frame_mode
+    //東西會透過 get_monster_frame_game_text跟 get_now_monster_frame_mode會透過給monster_frame
+    virtual void set_monster_frame_after() { monster_frame_mode_after_battle = pass_talk; }
+//
+    virtual void set_fight() {} //fight打到怪會呼叫 如果有要判斷打到怪時 會做出甚麼寫在這裡
+    virtual void fight_open(Move *heart, Character *charactor) = 0; 
     virtual bool get_fight_end() = 0;
     void set_battle_timer(int time) {battel_mode_timer = time;}
     virtual void init_barrage_data() {}
@@ -85,8 +104,6 @@ public:
     int hp = 100;
     Coordinate red_attck_positon;
     Coordinate fight_bar_positon;
-    game_framework::CMovingBitmap enemy_barrage;
-    
     
     bool _monster_frame_enable = false;
     bool stage_stop = false;
@@ -131,14 +148,19 @@ protected:
     game_framework::CMovingBitmap enemy_targe_choose_hp_black;
     game_framework::CMovingBitmap monster_frame_img;
     
+    game_framework::CMovingBitmap enemy_barrage;
+    
     TextContent text_content;
 	GameText act_after;
 	GameText act_next_round;
     int cost_round;
     
-	GameText monster_frame_game_text;
+	GameText monster_frame_game_text_before_battle;
+    monster_frame_mode monster_frame_mode_before_battle;
     std::vector<std::vector<std::string>> monster_text;
-    int monster_cost_round;
-    monster_frame_mode monster_frame_mode;
+    int monster_cost_round_before;
     
+	GameText monster_frame_game_text_after_battle;
+    monster_frame_mode monster_frame_mode_after_battle;
+    int monster_cost_round_after;
 };
