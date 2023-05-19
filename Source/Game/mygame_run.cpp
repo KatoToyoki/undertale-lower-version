@@ -403,13 +403,5 @@ void CGameStateRun::OnShow()
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
-    
-    std::string str1 = std::to_string(heart_test.shine_time_count);
-    Text stage1(50,str1,RGB(255,255,255),600,100,200);
-    stage1.print();
-    
-    std::string str2 = std::to_string(heart_test._shine_mode);
-    Text stage2(50,str2,RGB(255,255,255),600,100,300);
-    stage2.print();
   }
 }
