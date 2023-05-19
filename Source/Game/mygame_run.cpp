@@ -54,7 +54,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
       if(!papyrusRound.GetIsSet())
       {
-        papyrusRound.SetAllData(20);
+        papyrusRound.SetAllData(21);
       }
     }
     break;
@@ -156,6 +156,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
       heart_test.move_control(user_frame.get_corner(),true);
       heart_test.shine_count();
+      heart_test.shine_two_second();
 
       // to do enemy attack
       // ===========================================================
@@ -406,5 +407,9 @@ void CGameStateRun::OnShow()
     std::string str1 = std::to_string(heart_test.shine_time_count);
     Text stage1(50,str1,RGB(255,255,255),600,100,200);
     stage1.print();
+    
+    std::string str2 = std::to_string(heart_test._shine_mode);
+    Text stage2(50,str2,RGB(255,255,255),600,100,300);
+    stage2.print();
   }
 }

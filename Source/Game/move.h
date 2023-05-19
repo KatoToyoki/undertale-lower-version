@@ -43,6 +43,7 @@ public:
 
     int GetCurrentX();
     int GetCurrentY();
+    bool _shine_mode = false;
 private:
     Vec2 check_range(Corner corner,Vec2 force);
     Vec2 normalize(Vec2 force);
@@ -54,7 +55,6 @@ private:
     float move_num_y;
     bool _enable_img = false;
     bool _enable_move = false;
-    bool _shine_mode = false;
     bool _enable_blue_heart_jump = false;
     
     HeartMode _heart_mode = heart_red;

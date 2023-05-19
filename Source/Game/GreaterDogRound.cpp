@@ -119,7 +119,7 @@ void GreaterDogRound::DetectRoundEnd()
         }
         break;
     case 1:
-        if(enemyBarrage[_quantity-1].GetOnePosition(IMGleft)<=620)
+        if(enemyBarrage[0].GetOnePosition(IMGleft)<=620)
         {
             isSet=false;
             isAttackEnd=true;
@@ -200,7 +200,7 @@ void GreaterDogRound::Spear(Move* heart, Character* character)
     bool secondWave=false;
     if(enemyBarrage[0].GetOnePosition(IMGtop)>665)
     {
-        GoUp(enemyBarrage[0],heart,allData[0].speed,character);
+        GoUp(enemyBarrage[0],heart,allData[0].speed,character,appear);
     }
     else
     {
@@ -209,7 +209,7 @@ void GreaterDogRound::Spear(Move* heart, Character* character)
 
     if(secondWave)
     {
-        GoLeft(enemyBarrage[0],heart,allData[0].speed,character);
+        GoLeft(enemyBarrage[0],heart,allData[0].speed,character,appear);
         
         if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-changeColor)<10)
         {

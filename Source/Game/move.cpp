@@ -219,7 +219,9 @@ void Move::shine_two_second()
 	}
 	else
 	{
-		if (shine_time_count % 10 > 5) {_shine_mode = !_shine_mode;}
+		if (shine_time_count % 10 > 5) {
+			_shine_mode = !_shine_mode;
+		}
 	}
 }
 
