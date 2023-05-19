@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "enemy.h"
 
+#include "mygame.h"
+
 int Enemy::generate_random_num(int min, int max)
 {
     return ( rand() % ((max-1) - min + 1) + min );
@@ -9,12 +11,37 @@ int Enemy::generate_random_num(int min, int max)
 void Enemy::show_img()
 {
 	enemy_img.ShowBitmap();
+	if (end_fight)
+	{
+		enemy_img_end_effc.ShowBitmap();
+	}
 }
 
 void Enemy::set_enemy_targe_choose_hp_bar(bool enable)
 {
 	_choose_targe_hp_bar_enable = enable;
 }
+
+void Enemy::set_enemy_shark_time(float time)
+{
+	shark_time = time;
+}
+
+void Enemy::enemy_shark()
+{
+	if (shark_time > 0 )
+	{
+		shark_time -= 1.0f;
+		int x = (int) (enemy_x + sin(shark_time) * 10.0f);
+		int y =(int) (enemy_y + sin(shark_time) * 10.0f);
+		enemy_img.SetTopLeft(x,y);
+	}
+	if (shark_time <= 0 )
+	{
+		enemy_img.SetTopLeft(enemy_x,enemy_y);
+	}
+}
+
 
 void Enemy::show_enemy_targe_choose_hp_bar()
 {
@@ -35,6 +62,11 @@ void Enemy::set_enemy_img_init_or_damege(int index)
 	if (index == damege)
 	{
 		enemy_img = enemy_img_damege;
+	}
+	if (index == end_img)
+	{
+		enemy_img = enemy_img_end;
+		end_fight = true;
 	}
 }
 
@@ -72,7 +104,7 @@ void Enemy::set_act_game_text_enable(bool enable)
 	{
 		if (cost_round == 0)
 		{
-			*_stege+=1;
+			_is_pass_stage = true;
 		}
 	}
 }
@@ -86,15 +118,15 @@ void Enemy::set_act_init(int current_selection)//monster frame那邊的init有�
 	}
 }
 
-void Enemy::act_after_stage_control_updata(UINT nChar, int* stage)//更改mercy目前在這裡但之後可稜會修?
+void Enemy::act_after_stage_control_updata(UINT nChar)//更改mercy目前在這裡但之後可稜會修?
 {
-	_stege = stage;
+	stage_stop = false;
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _act_after_enable)
 	{
 		if (act_times < cost_round-1)
 		{
 			act_times+=1;
-			*stage-=1;
+			stage_stop = true;
 		}
 	}
 }
@@ -109,31 +141,53 @@ void Enemy::set_monster_frame_init()
 	if (!_monster_frame_enable)
 	{
 		monster_times = 0;
-		monster_text = get_random_text("neutral");//only random use
+		//only random use need have neutral in json
+		monster_text = text_content.get_reaction("neutral");
 	}
-	set_monster_frame();
+	set_monster_frame_before();
+	set_monster_frame_after();
 }
 
-GameText Enemy::get_monster_frame_game_text()
+GameText Enemy::get_monster_frame_game_text(monster_frame_stage stage)
 {
-	return monster_frame_game_text;
-}
-
-int Enemy::get_now_monster_frame_mode()
-{
-    return monster_frame_mode;
-}
-
-void Enemy::monster_frame_stage_control_updata(UINT nChar, int* stage,MonsterFrame *monster_frame)
-{
-	_stege = stage;
-	_monster_frame = monster_frame;
-	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable && *stage ==6)
+	switch (stage)
 	{
-		if (monster_times < monster_cost_round-1)
+		case BEFORE_BATTLE:
+			return monster_frame_game_text_before_battle;
+		case AFTER_BATTLE:
+			return monster_frame_game_text_after_battle;
+	}
+	return GameText();
+}
+
+int Enemy::get_now_monster_frame_mode(monster_frame_stage stage)
+{
+	switch (stage)
+	{
+		case BEFORE_BATTLE:
+			return monster_frame_mode_before_battle;
+		case AFTER_BATTLE:
+			return monster_frame_mode_after_battle;
+	}
+	return 0;
+}
+
+void Enemy::monster_frame_stage_control_updata(UINT nChar, MonsterFrame *monster_frame,int stage)
+{
+	_monster_frame = monster_frame;
+	_monster_frame->set_monster_frame_img(monster_frame_img);
+	int cost_round;
+	if (stage == game_framework::SHOW_MONSTER_FRAME_FRAME_MOVE)
+		cost_round = monster_cost_round_before;
+	else if (stage == game_framework::BATTLE_AFTER_MONSTER_FRAME)
+		cost_round = monster_cost_round_after;
+	
+	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable )
+	{
+		if (monster_times < cost_round-1)
 		{
 			monster_times+=1;
-			*stage-=1;
+			stage_stop = true;
 		}
 	}
 }
@@ -141,18 +195,31 @@ void Enemy::monster_frame_stage_control_updata(UINT nChar, int* stage,MonsterFra
 void Enemy::set_monster_frame_game_text_enable(bool enable)
 {
 	_monster_frame_enable = enable;
-	if (_monster_frame_enable)
+	_is_pass_stage = false;
+}
+
+void Enemy::check_pass(monster_frame_stage stage)
+{
+	switch (stage)
 	{
-		if (monster_frame_mode == no_enter_talk && _monster_frame->_time_count > 800)
-		{
-			*_stege+=1;
-		}
-		if(monster_frame_mode == pass_talk && _monster_frame->_time_count > 0)
-		{
-			*_stege+=1;
-		}
+		case BEFORE_BATTLE:
+			if (monster_frame_mode_before_battle == no_enter_talk && _monster_frame->_time_count > 800) {
+				_is_pass_stage = true;
+			}
+			if(monster_frame_mode_before_battle == pass_talk && _monster_frame->_time_count > 0)
+			{
+				_is_pass_stage = true;
+			}
+			break;
+		case AFTER_BATTLE:
+			if(monster_frame_mode_after_battle == pass_talk && _monster_frame->_time_count > 0)
+			{
+				_is_pass_stage = true;
+			}
+			break;
 	}
 }
+
 
 GameText Enemy::get_next_round_game_text()
 {
@@ -164,7 +231,7 @@ GameText Enemy::set_vector_vector_to_game_text(std::vector<std::vector<std::stri
 	std::vector<Text> temp_text_vector;
 	 for(unsigned int j=0;j<text[times].size();j++)
 	 {
-	 	if (mode == monster_mode){ temp_text_vector.push_back(TEXXT_M(text[times][j])); }
+	 	if (mode == monster_mode_1 || mode == monster_mode_2){ temp_text_vector.push_back(TEXXT_M(text[times][j])); }
 	    else { temp_text_vector.push_back(TEXXT(text[times][j])); }
 	 }
 	return GameText (temp_text_vector,mode);

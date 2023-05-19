@@ -57,6 +57,7 @@ void CGameStateOver::OnInit()
 
 void CGameStateOver::OnShow()
 {
+	
 	game_over.ShowBitmap();
 	heart.print();
 	stay.print();

@@ -214,24 +214,12 @@ void GreaterDogRound::Spear(Move* heart, Character* character)
         if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-changeColor)<10)
         {
             enemyBarrage[0].barrage_img.SetFrameIndexOfBitmap(1);
-            if(mode==0)
-            {
-                enemyBarrage[0].switch_mode();
-                mode=1;
-            }
+            enemyBarrage[0].switch_mode(blue);
         }
-        if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-4*changeColor)<10)
+        else if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-4*changeColor)<10)
         {
-            if (mode==1)
-            {
-                mode=2;
-            }
             enemyBarrage[0].barrage_img.SetFrameIndexOfBitmap(0);
-            if(mode==2)
-            {
-                enemyBarrage[0].switch_mode();
-                mode=3;
-            }
+            enemyBarrage[0].switch_mode(white);
         }
     }
 }

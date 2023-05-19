@@ -24,15 +24,14 @@ public:
     //設定 判斷什麼條件之中 選擇完act後 在user_frame內 接下來該顯示的字
     void set_act_text_updata() override;//here run by 每偵
     //設定 按下enter後什麼條件會成立 如果要計數該選擇做了幾次也在這裡進行加減
-    void act_choose_count(UINT nChar,int button_current) override;
+    void act_choose_count(int button_current) override;
     //同上的set_act_text_updata 只是從在user_frame顯示變成在monster_frame顯示
-    void set_monster_frame() override;
+    // void set_monster_frame_before() override;
     //同上的set_act_text_updata 設定的文字 是下一回合該顯示的字
     void set_next_round_text_updata() override;
 
-    std::vector<std::vector<std::string>> get_random_text(std::string name) override;
     //在game_run的流程會統一call這個function所以如果需要更改戰鬥使用的眶 在這裏面判斷回傳的東西
-    frame_command get_monster_battle_mode() override;
+    frame_command_c get_monster_battle_mode() override;
     void set_fight() override;//這個會在fight裡面被呼叫 功用是如果怪物被打了會做什麼變化之類的
     void fight_open(Move* heart, Character* charactor) override;// 這裡面會選擇回合跟進行扣寫(大概吧)
     bool get_fight_end() override;//這裡面用來回傳判斷該回合戰鬥結束的條件 結束就true 還沒結束就false

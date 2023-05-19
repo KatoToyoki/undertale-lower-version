@@ -213,17 +213,23 @@ void Move::show_heart_img()
 
 void Move::shine_two_second()
 {
-	shine_time_count += game_framework::CSpecialEffect::GetEllipseTime();
-	
 	if (shine_time_count >= 400)
 	{
 		_shine_mode = false;
 	}
 	else
 	{
-		if (shine_time_count % 10 > 5) {_shine_mode = !_shine_mode;}
+		if (shine_time_count % 10 > 5) {
+			_shine_mode = !_shine_mode;
+		}
 	}
 }
+
+void Move::shine_count()
+{
+	shine_time_count += game_framework::CSpecialEffect::GetEllipseTime();
+}
+
 
 void Move::set_heart_jump_enable_and_init(bool enable)
 {

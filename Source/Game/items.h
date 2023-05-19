@@ -24,10 +24,12 @@ public:
     void set_item_updata();
     
     void set_item_cost_round_init(int current_selection, int button_selection);
-    void item_after_stage_control_updata(UINT nChar,int *stage);
+    void item_after_stage_control_updata(UINT nChar);
     void set_control_updata(bool enable);
+    void check_and_del_item();
     bool is_items_empty();
-    
+
+    bool stage_stop = false;
     vector<Item> items;
 private:
     int _times = 0;
@@ -37,12 +39,10 @@ private:
     int _button_selection;
 
     Item* get_item_by_index(int current_selection);
-    int generate_random_num(int min, int max);
-    std::string get_and_set_ramdon_text(std::string str);
+    std::vector<std::vector<std::string>> get_and_set_ramdon_text(std::string str);
     void set_items_init();
     void set_items(int current_selection);
 
-    void check_and_del_item();
     
     GameText set_vector_vector_to_game_text(std::vector<std::vector<std::string>> text,int times);
 
@@ -51,4 +51,6 @@ private:
     int cost_round;
 
     std::string nice_cream_random_text;
+    
+    std::vector<std::vector<std::string>> random_text;
 };

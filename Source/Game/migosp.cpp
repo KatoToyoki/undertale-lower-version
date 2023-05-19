@@ -25,12 +25,24 @@ Migosp::Migosp()
 void Migosp::set_img()
 {
 	set_hp_img();
+    enemy_x = 993;
+    enemy_y = 316;
+
+	monster_frame_img.LoadBitmapByString({"resources/monster_frame.bmp"},RGB(0,0,0));
+	monster_frame_img.SetTopLeft(1190,307);
+	
+	enemy_img_end_effc.LoadBitmapByString({"resources/enemy_end_effc.bmp"},RGB(0,0,0));
+	enemy_img_end_effc.SetTopLeft(enemy_x,enemy_y);
+	
 	enemy_img_init.LoadBitmapByString({"resources/migosp_0.bmp","resources/migosp_1.bmp"},RGB(0,0,0));
-	enemy_img_init.SetTopLeft(993,316);
+	enemy_img_init.SetTopLeft(enemy_x,enemy_y);
 	enemy_img_init.SetAnimation(300,false);
 
 	enemy_img_damege.LoadBitmapByString({"resources/migosp_hit.bmp"},RGB(0,0,0));
-	enemy_img_damege.SetTopLeft(993,316);
+	enemy_img_damege.SetTopLeft(enemy_x,enemy_y);
+
+	enemy_img_end.LoadBitmapByString({"resources/migosp_end.bmp"},RGB(0,0,0));
+	enemy_img_end.SetTopLeft(enemy_x,enemy_y);
 
 	enemy_img = enemy_img_init;
 	enemy_last = enemy_img_init;
@@ -104,43 +116,27 @@ void Migosp::check_mercy()
 	}
 }
 
-std::vector<std::vector<std::string>> Migosp::get_random_text(std::string name)
-{
-    std::vector< std::vector<std::vector<std::string> >> monster_text;
-	if(name == "neutral")
-	{
-		monster_text ={
-			text_content.get_reaction("netral_1"),
-			text_content.get_reaction("netral_2"),
-			text_content.get_reaction("netral_3"),
-			text_content.get_reaction("netral_4"),
-			text_content.get_reaction("netral_5"),
-			text_content.get_reaction("netral_6"),
-			text_content.get_reaction("netral_7"),
-			text_content.get_reaction("netral_8"),
-			text_content.get_reaction("netral_9"),
-			text_content.get_reaction("netral_10"),
-			text_content.get_reaction("netral_11")
-		};
-		int random_num = generate_random_num(0,monster_text.size());
-		return monster_text[random_num];
-	}
-	return {{}};
-}
-
-void Migosp::set_monster_frame()
+void Migosp::set_monster_frame_before()
 {
 	//
-	monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode);
-	monster_cost_round = monster_text.size();
-	monster_frame_mode = no_enter_talk;
+	monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
+	monster_cost_round_before = monster_text.size();
+	monster_frame_mode_before_battle = no_enter_talk;
 
-	// monster_text = text_content.get_reaction("netral_1");
-	// monster_frame_game_text = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode);
-	// monster_cost_round = monster_text.size();
-	// monster_frame_mode = enter_talk;
+	// monster_text = text_content.get_reaction("test");
+	// monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
+	// monster_cost_round_before = monster_text.size();
+	// monster_frame_mode_before_battle = enter_talk;
 	//enter_talk work example
 }
+
+// void Migosp::set_monster_frame_after()
+// {
+	// monster_text = text_content.get_reaction("test");
+	// monster_frame_game_text_after_battle = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
+	// monster_cost_round_after = monster_text.size();
+	// monster_frame_mode_after_battle = enter_talk;
+// }
 
 void Migosp::set_next_round_text_updata()
 {
@@ -163,7 +159,7 @@ void Migosp::fight_open(Move* heart, Character* charactor)
 
 bool Migosp::get_fight_end()
 {
-	battel_mode_timer += game_framework::CSpecialEffect::GetEllipseTime();
+	battel_mode_timer += (int)game_framework::CSpecialEffect::GetEllipseTime();
 	return (battel_mode_timer >=1300);
 }
 
@@ -171,4 +167,16 @@ void Migosp::show_barrage(Move* heart, Character* charactor,int stage)
 {
     barrage.show_img();
 }
+
+frame_command_c Migosp::get_monster_battle_mode()
+{
+	if (battel_mode_timer >500 && battel_mode_timer<1300)
+		return bit_bone_dog_to_papyrus_normal;
+	if (battel_mode_timer >100)
+		return papyrus_normal_to_bit_bone_dog;
+	return talk_to_papyrus_normal_battle;
+	
+	// return talk_to_normal_battle;
+}
+
 

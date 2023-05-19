@@ -3,23 +3,50 @@
         {
             "reaction0": {
                 "frame0": {
+                    "content0": "* You're super spiffy!",
                     "content1": "* You recovered 15 HP!"
                 }
-            }
-        }
-    ],
-    "NiceCream_random": [
-        {
-            "reaction0": {
+            },
+            "reaction1": {
                 "frame0": {
-                    "content0": "* You're super spiffy!",
-                    "content1": "* Are those claws natural?",
-                    "content2": "* Love yourself! I love you!",
-                    "content3": "* You look nice today!",
-                    "content4": "* (An illustration of a hug)",
-                    "content5": "* Have a wonderful day!",
-                    "content6": "* Is this as sweet as you?",
-                    "content7": "* You're just great!"
+                    "content0": "* Are those claws natural?",
+                    "content1": "* You recovered 15 HP!"
+                }
+            },
+            "reaction2": {
+                "frame0": {
+                    "content0": "* Love yourself! I love you!",
+                    "content1": "* You recovered 15 HP!"
+                }
+            },
+            "reaction3": {
+                "frame0": {
+                    "content0": "* You look nice today!",
+                    "content1": "* You recovered 15 HP!"
+                }
+            },
+            "reaction4": {
+                "frame0": {
+                    "content0": "* (An illustration of a hug)",
+                    "content1": "* You recovered 15 HP!"
+                }
+            },
+            "reaction5": {
+                "frame0": {
+                    "content0": "* Have a wonderful day!",
+                    "content1": "* You recovered 15 HP!"
+                }
+            },
+            "reaction6": {
+                "frame0": {
+                    "content0": "* Is this as sweet as you?",
+                    "content1": "* You recovered 15 HP!"
+                }
+            },
+            "reaction7": {
+                "frame0": {
+                    "content0": "* You're just great!",
+                    "content1": "* You recovered 15 HP!"
                 }
             }
         }
