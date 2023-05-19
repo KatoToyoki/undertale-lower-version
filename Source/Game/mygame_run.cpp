@@ -50,7 +50,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
       if(!papyrusRound.GetIsSet())
       {
-        papyrusRound.SetAllData(20);
+        papyrusRound.SetAllData(21);
       }
     }
     
@@ -185,7 +185,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
       stage_go = 1;
     }
-    
+  
     break;
   case 8://before exp&gold
     user_frame.control_frame(to_talk);

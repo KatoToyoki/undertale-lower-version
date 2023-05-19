@@ -66,40 +66,39 @@ void PapyrusRound::PincerAttack(int start,int end,Move* heart, int wave, int app
                 q+=4;
             }
         }
-
+        
         for(int i=start;i<start+q;i+=4)
         {
             GoRight(enemyBarrage[i],heart,allData[i].speed,character);
             GoRight(enemyBarrage[i+1],heart,allData[i+1].speed,character);
-            if(appearance==compoundDown)
+            if(appearance==compoundUp)
             {
                 CompoundBarrage(enemyBarrage[i+1],enemyBarrage[i],heart);
-                UpDownBarrage(enemyBarrage[i],allData[i].initY-50,825,4);
+                UpDownBarrage(enemyBarrage[i],allData[i].initY-60,825,4);
             }
-            else if(appearance==compoundUp)
+            else if(appearance==compoundDown)
             {
                 CompoundBarrage(enemyBarrage[i],enemyBarrage[i+1],heart);
-                UpDownBarrage(enemyBarrage[i+1],allData[i+1].initY-50,825,4);
+                UpDownBarrage(enemyBarrage[i+1],allData[i+1].initY-50,allData[i+1].initY+50,4);
             }
             
             GoLeft(enemyBarrage[i+2],heart,allData[i+2].speed,character);
             GoLeft(enemyBarrage[i+3],heart,allData[i+3].speed,character);
-            if(appearance==compoundDown)
+
+            if(appearance==compoundUp)
             {
                 CompoundBarrage(enemyBarrage[i+3],enemyBarrage[i+2],heart);
-                UpDownBarrage(enemyBarrage[i+2],allData[i+2].initY-50,825,4);
+                UpDownBarrage(enemyBarrage[i+2],allData[i+2].initY-60,825,4);
             }
-            else  if(appearance==compoundUp)
+            else if(appearance==compoundDown)
             {
                 CompoundBarrage(enemyBarrage[i+2],enemyBarrage[i+3],heart);
-                UpDownBarrage(enemyBarrage[i+3],allData[i+3].initY-50,825,4);
+                UpDownBarrage(enemyBarrage[i+3],allData[i+3].initY-50,allData[i+3].initY+50,4);
             }
-            //break; 
         }
         break;
     }
 }
-
 
 void PapyrusRound::CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart)
 {
@@ -141,6 +140,12 @@ void PapyrusRound::UpDownBarrage(Barrage& barrage, int upLimit, int downLimit, i
     }
 }
 
+void PapyrusRound::UpDownCompound(Barrage& cover, Barrage& barrage, Move* heart, int upLimit, int downLimit, int speed)
+{
+    CompoundBarrage(cover,barrage,heart);
+    UpDownBarrage(barrage,upLimit,downLimit,speed);
+}
+
 void PapyrusRound::DetectRoundEnd(int direction)
 {
     switch (direction)
@@ -172,38 +177,47 @@ int PapyrusRound::GetCurrentRound()
 
 void PapyrusRound::DogAnimation(Move *heart,Character *character)
 {
-    if(currentRound!=20 || !isRightTime)
+    if(!isRightTime)
     {
         return;
     }
 
-    switch (dogAnimation)
+    switch (currentRound)
     {
-    case 1:
-    case 2:
-        enemyBarrage[0].barrage_img.ShowBitmap();
-        enemyBarrage[0].barrage_img.SetAnimation(150,false);
+    case 20:
+        switch (dogAnimation)
+        {
+            case 1:
+            case 2:
+                enemyBarrage[0].barrage_img.ShowBitmap();
+                enemyBarrage[0].barrage_img.SetAnimation(150,false);
+                break;
+            case 3:
+                enemyBarrage[0].UnshowIMG();
+                enemyBarrage[0].set_positon(2000,2000);
+                enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(0);
+                enemyBarrage[1].barrage_img.SetTopLeft(1000,810);
+                break;
+            case 4:
+            case 5:
+                enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(1);
+                break;
+            case 6:
+                enemyBarrage[1].UnshowIMG();
+                enemyBarrage[1].set_positon(2000,2000);
+                enemyBarrage[2].barrage_img.SetTopLeft(1000,810);
+                dogAnimation+=1;
+                break;
+            default:
+                enemyBarrage[2].barrage_img.ShowBitmap();
+                enemyBarrage[2].barrage_img.SetAnimation(150,false);
+                GoRight(enemyBarrage[2],heart,3,character);
+            break;
+        }
         break;
-    case 3:
-        enemyBarrage[0].UnshowIMG();
-        enemyBarrage[0].set_positon(2000,2000);
-        enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(0);
-        enemyBarrage[1].barrage_img.SetTopLeft(1000,810);
-        break;
-    case 4:
-    case 5:
-        enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(1);
-        break;
-    case 6:
-        enemyBarrage[1].UnshowIMG();
-        enemyBarrage[1].set_positon(2000,2000);
-        enemyBarrage[2].barrage_img.SetTopLeft(1000,810);
-        dogAnimation+=1;
-        break;
-    default:
-        enemyBarrage[2].barrage_img.ShowBitmap();
-        enemyBarrage[2].barrage_img.SetAnimation(150,false);
-        GoRight(enemyBarrage[2],heart,3,character);
+    case 21:
+        enemyBarrage[34].barrage_img.ShowBitmap();
+        enemyBarrage[34].barrage_img.SetAnimation(150,false);
         break;
     }
 }
@@ -234,21 +248,6 @@ void PapyrusRound::ToGetEnterCount(UINT nChar)
 
 void PapyrusRound::SelectRound(Move *heart,Character *character,int selection)
 {
-    /*
-    // for test
-    if(selection!=-99)
-    {
-        currentRound=selection;
-    }
-
-    */
-    /*
-    if(!isSet)
-    {
-        SetAllData();
-    }
-    */
-    
     switch (currentRound)
     {
     case -1:
@@ -321,7 +320,6 @@ void PapyrusRound::SelectRound(Move *heart,Character *character,int selection)
         round21(heart,character);
         break;
     }
-    
 }
 
 void PapyrusRound::roundX(Move *heart,Character *character)
@@ -502,17 +500,13 @@ void PapyrusRound::round11(Move* heart,Character *character)
     for(int i=0;i<_quantity;i++)
     {
         GoLeft(enemyBarrage[i],heart,allData[i].speed,character);
-        CompoundBarrage(enemyBarrage[11],enemyBarrage[12],heart);
-        CompoundBarrage(enemyBarrage[14],enemyBarrage[13],heart);
-        CompoundBarrage(enemyBarrage[15],enemyBarrage[16],heart);
-        CompoundBarrage(enemyBarrage[18],enemyBarrage[17],heart);
     }
     
-    UpDownBarrage(enemyBarrage[12],422,522,2);
-    UpDownBarrage(enemyBarrage[13],742,842,2);
-    UpDownBarrage(enemyBarrage[16],385,485,4);
-    UpDownBarrage(enemyBarrage[17],703,803,4);
-
+    UpDownCompound(enemyBarrage[11],enemyBarrage[12],heart,422,522,2);
+    UpDownCompound(enemyBarrage[14],enemyBarrage[13],heart,742,842,2);
+    UpDownCompound(enemyBarrage[15],enemyBarrage[16],heart,385,485,4);
+    UpDownCompound(enemyBarrage[18],enemyBarrage[17],heart,703,803,4);
+    
     DetectRoundEnd(leftAtLeft);
 }
 
@@ -533,13 +527,10 @@ void PapyrusRound::round12(Move* heart,Character *character)
         {
             GoLeft(enemyBarrage[i],heart,allData[i].speed,character);
         }
-        CompoundBarrage(enemyBarrage[14],enemyBarrage[13],heart);
-        CompoundBarrage(enemyBarrage[16],enemyBarrage[15],heart);
-        CompoundBarrage(enemyBarrage[18],enemyBarrage[17],heart);
 
-        UpDownBarrage(enemyBarrage[13],allData[13].initY-50,825,4);
-        UpDownBarrage(enemyBarrage[15],allData[15].initY-50,825,4);
-        UpDownBarrage(enemyBarrage[17],allData[17].initY-50,825,4);
+        UpDownCompound(enemyBarrage[14],enemyBarrage[13],heart,allData[13].initY-50,825,4);
+        UpDownCompound(enemyBarrage[16],enemyBarrage[15],heart,allData[15].initY-50,825,4);
+        UpDownCompound(enemyBarrage[18],enemyBarrage[17],heart,allData[17].initY-50,825,4);
     }
 
     DetectRoundEnd(leftAtLeft);
@@ -583,26 +574,19 @@ void PapyrusRound::round15(Move* heart,Character *character)
     {
         GoLeft(enemyBarrage[i],heart,allData[i].speed+2,character);
     }
-    CompoundBarrage(enemyBarrage[1],enemyBarrage[0],heart);
-    CompoundBarrage(enemyBarrage[3],enemyBarrage[2],heart);
-    CompoundBarrage(enemyBarrage[5],enemyBarrage[4],heart);
-    UpDownBarrage(enemyBarrage[0],allData[0].initY-50,allData[0].initY+50,6);
-    UpDownBarrage(enemyBarrage[2],allData[2].initY-50,allData[2].initY+50,7);
-    UpDownBarrage(enemyBarrage[4],allData[4].initY-50,allData[4].initY+50,8);
-    
-    CompoundBarrage(enemyBarrage[6],enemyBarrage[7],heart);
-    CompoundBarrage(enemyBarrage[8],enemyBarrage[9],heart);
-    CompoundBarrage(enemyBarrage[10],enemyBarrage[11],heart);
-    UpDownBarrage(enemyBarrage[7],allData[7].initY-50,allData[7].initY+10,6);
-    UpDownBarrage(enemyBarrage[9],allData[9].initY-50,allData[9].initY+30,7);
-    UpDownBarrage(enemyBarrage[11],allData[11].initY-50,allData[11].initY+30,8);
 
-    CompoundBarrage(enemyBarrage[12],enemyBarrage[13],heart);
-    UpDownBarrage(enemyBarrage[13],allData[13].initY-40,allData[13].initY+100,3);
-    
-    CompoundBarrage(enemyBarrage[15],enemyBarrage[16],heart);
-    UpDownBarrage(enemyBarrage[16],allData[16].initY-40,allData[16].initY+130,3);
+    UpDownCompound(enemyBarrage[1],enemyBarrage[0],heart,allData[0].initY-50,allData[0].initY+50,6);
+    UpDownCompound(enemyBarrage[3],enemyBarrage[2],heart,allData[2].initY-50,allData[2].initY+50,7);
+    UpDownCompound(enemyBarrage[5],enemyBarrage[4],heart,allData[4].initY-50,allData[4].initY+50,8);
 
+    UpDownCompound(enemyBarrage[6],enemyBarrage[7],heart,allData[7].initY-50,allData[7].initY+10,6);
+    UpDownCompound(enemyBarrage[8],enemyBarrage[9],heart,allData[9].initY-50,allData[9].initY+30,7);
+    UpDownCompound(enemyBarrage[10],enemyBarrage[11],heart,allData[11].initY-50,allData[11].initY+30,8);
+
+    UpDownCompound(enemyBarrage[12],enemyBarrage[13],heart,allData[13].initY-40,allData[13].initY+100,3);
+
+    UpDownCompound(enemyBarrage[15],enemyBarrage[16],heart,allData[16].initY-40,allData[16].initY+130,3);
+    
     DetectRoundEnd(leftAtLeft);
 }
 
@@ -628,16 +612,11 @@ void PapyrusRound::round18(Move* heart,Character *character)
     {
         GoLeft(enemyBarrage[i],heart,allData[i].speed+2,character);
     }
-
-    CompoundBarrage(enemyBarrage[11],enemyBarrage[12],heart);
-    CompoundBarrage(enemyBarrage[14],enemyBarrage[13],heart);
-    CompoundBarrage(enemyBarrage[15],enemyBarrage[16],heart);
-    CompoundBarrage(enemyBarrage[18],enemyBarrage[17],heart);
-
-    UpDownBarrage(enemyBarrage[12],allData[12].initY-50,allData[12].initY+50,4);
-    UpDownBarrage(enemyBarrage[13],allData[13].initY-50,allData[13].initY+50,4);
-    UpDownBarrage(enemyBarrage[16],allData[16].initY-50,allData[16].initY+50,4);
-    UpDownBarrage(enemyBarrage[17],allData[17].initY-50,allData[17].initY+50,4);
+    
+    UpDownCompound(enemyBarrage[11],enemyBarrage[12],heart,allData[12].initY-50,allData[12].initY+50,4);
+    UpDownCompound(enemyBarrage[14],enemyBarrage[13],heart,allData[13].initY-50,allData[13].initY+50,4);
+    UpDownCompound(enemyBarrage[15],enemyBarrage[16],heart,allData[16].initY-50,allData[16].initY+50,4);
+    UpDownCompound(enemyBarrage[18],enemyBarrage[17],heart,allData[17].initY-50,allData[17].initY+50,4);
     
     DetectRoundEnd(leftAtLeft);
 }
@@ -655,19 +634,19 @@ void PapyrusRound::round20(Move* heart,Character *character)
 
 void PapyrusRound::round21(Move* heart,Character *character)
 {
-    bool secondWave=false, thirdWave=false, fourthWave=false, fifthWave=false, sixthWave=false;
-    // 0 1
-    for(int i=0;i<2;i++)
+   std::vector<bool> Waves(14,false);
+    
+    for(int i=0;i<2;i++) // 0 1
     {
         GoRight(enemyBarrage[i],heart,allData[i].speed+2,character);
     }
     
     if(DetectCertainPoint(enemyBarrage[1],940,back)||DetectLeft(enemyBarrage[1],vanish))
     {
-        secondWave=true;
+        Waves[1]=true;
     }
-    // 2 3
-    if(secondWave)
+    
+    if(Waves[1]) // 2 3
     {
         for(int i=2;i<4;i++)
         {
@@ -675,35 +654,136 @@ void PapyrusRound::round21(Move* heart,Character *character)
         }
         if(DetectCertainPoint(enemyBarrage[3],735,front)||DetectLeft(enemyBarrage[3],vanish))
         {
-            thirdWave=true;
+            Waves[2]=true;
         }
     }
-    // 4 5
-    if(thirdWave)
+    
+    if(Waves[2]) // 4 5
     {
         PincerAttack(4,5,heart,1,normal,character);
         if(DetectCertainPoint(enemyBarrage[4],810,back)||DetectLeft(enemyBarrage[4],vanish))
         {
-            fourthWave=true;
+            Waves[3]=true;
         }
     }
-    // 6 7 8 9
-    if(fourthWave)
+    
+    if(Waves[3]) // 6 7 8 9
     {
-        PincerAttack(6,9,heart,1,compoundDown,character);
+        PincerAttack(6,9,heart,1,compoundUp,character);
         if(DetectCertainPoint(enemyBarrage[7],870,back)||DetectLeft(enemyBarrage[7],vanish))
         {
-            fifthWave=true;
+            Waves[4]=true;
         }
     }
-    // 10 11 12 13
-    if(fifthWave)
+    
+    if(Waves[4]) // 10 11 12 13
     {
         PincerAttack(10,13,heart,1,compoundDown,character);
         if(DetectCertainPoint(enemyBarrage[10],910,back)||DetectLeft(enemyBarrage[10],vanish))
         {
-            sixthWave=true;
+            Waves[5]=true;
         }
-        
     }
+    
+    if(Waves[5]) // 14 15 16 17
+    {
+        PincerAttack(14,17,heart,1,compoundUp,character);
+        if(DetectCertainPoint(enemyBarrage[14],820,back)||DetectLeft(enemyBarrage[14],vanish))
+        {
+            Waves[6]=true;
+        }
+    }
+    
+    if(Waves[6]) // 18 19 20 21
+    {
+        PincerAttack(18,21,heart,1,compoundUp,character);
+        if(DetectCertainPoint(enemyBarrage[20],700,front)||DetectLeft(enemyBarrage[18],vanish))
+        {
+            Waves[7]=true;
+        }
+    }
+    
+    if(Waves[7]) // 22 23 24 25 26 27
+    {
+        for(int i=22;i<28;i++)
+        {
+            GoLeft(enemyBarrage[i],heart,allData[i].speed+2,character);
+        }
+       
+        UpDownCompound(enemyBarrage[23],enemyBarrage[22],heart,allData[22].initY-30,allData[22].initY+30,5);
+        UpDownCompound(enemyBarrage[25],enemyBarrage[24],heart,allData[24].initY-50,allData[24].initY+50,6);
+        UpDownCompound(enemyBarrage[27],enemyBarrage[26],heart,allData[26].initY-70,allData[26].initY+70,5);
+        
+        if(DetectCertainPoint(enemyBarrage[26],740,front)||DetectLeft(enemyBarrage[26],vanish))
+        {
+            Waves[8]=true;
+        }
+    }
+    
+    if(Waves[8]) // 28 29 30 31 32 33
+    {
+        for(int i=28;i<34;i++)
+        {
+            GoRight(enemyBarrage[i],heart,allData[i].speed+2,character);
+        }
+       
+        UpDownCompound(enemyBarrage[29],enemyBarrage[28],heart,allData[28].initY-30,allData[28].initY+30,5);
+        UpDownCompound(enemyBarrage[31],enemyBarrage[30],heart,allData[30].initY-60,allData[30].initY+60,6);
+        UpDownCompound(enemyBarrage[33],enemyBarrage[32],heart,allData[32].initY-60,allData[32].initY+60,5);
+
+        if(DetectCertainPoint(enemyBarrage[32],1120,back)||DetectLeft(enemyBarrage[32],vanish))
+        {
+            Waves[9]=true;
+        }
+    }
+
+    if(Waves[9]) // 34
+    {
+        GoLeft(enemyBarrage[34],heart,allData[34].speed+2,character);
+        if(DetectCertainPoint(enemyBarrage[34],700,front)||DetectLeft(enemyBarrage[34],vanish))
+        {
+            Waves[10]=true;
+        }
+    }
+    
+    if(Waves[10]) // 35 36 37 38
+    {
+        for(int i=35;i<39;i++)
+        {
+            GoLeft(enemyBarrage[i],heart,allData[i].speed+2,character);
+        }
+        if(DetectCertainPoint(enemyBarrage[38],835,front)||DetectLeft(enemyBarrage[38],vanish))
+        {
+            Waves[11]=true;
+        }  
+    }
+    
+    if(Waves[11]) // 39 40 41 42
+    {
+        for(int i=39;i<43;i++)
+        {
+            GoLeft(enemyBarrage[i],heart,allData[i].speed+2,character);
+        }
+        if(DetectCertainPoint(enemyBarrage[42],835,front)||DetectLeft(enemyBarrage[42],vanish))
+        {
+            Waves[12]=true;
+        }  
+    }
+
+    if(Waves[12]) // 43
+    {
+        GoLeft(enemyBarrage[43],heart,allData[43].speed+2,character);
+    
+        if(DetectCertainPoint(enemyBarrage[43],700,front)||DetectLeft(enemyBarrage[43],vanish))
+        {
+            Waves[13]=true;
+        }  
+    }
+
+    if(Waves[13]) // 44
+    {
+        GoLeft(enemyBarrage[44],heart,allData[44].speed,character);
+    }
+    
+    DetectRoundEnd(leftAtLeft);
 }

@@ -106,16 +106,13 @@ public:
     // close all barrages
     void UnshowBarrage();
 
-    void GoRight(Barrage& barrage, Move *heart, int speed,Character *character);
-    void GoLeft(Barrage& barrage, Move *heart, int speed,Character *character);
-    void GoUp(Barrage& barrage, Move *heart, int speed,Character *character);
+    void GoRight(Barrage& barrage, Move *heart, int speed,Character *character,isDisappear command=disappear);
+    void GoLeft(Barrage& barrage, Move *heart, int speed,Character *character,isDisappear command=disappear);
+    void GoUp(Barrage& barrage, Move *heart, int speed,Character *character,isDisappear command=disappear);
     bool DetectCertainPoint(Barrage& barrage,int point,int position);
     bool DetectLeft(Barrage& barrage,int direction);
 
-    void SetIsAttack(bool a)
-    {
-        isAttackEnd=a;
-    }
+    void SetIsAttack(bool a);
     
     void virtual HPcondition(Move *heart,Character *character,int command);
 
