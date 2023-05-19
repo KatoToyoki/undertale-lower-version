@@ -33,6 +33,7 @@ public:
     void show_heart_img();
 
     void shine_two_second();
+    void shine_count();
     
     game_framework::CMovingBitmap heart;
 	DWORD shine_time_count =1000;

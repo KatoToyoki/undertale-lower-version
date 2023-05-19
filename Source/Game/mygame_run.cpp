@@ -151,9 +151,11 @@ void CGameStateRun::OnMove() // 移動遊戲元素
    
     user_frame.control_frame(enemy->get_monster_battle_mode());
     heart_test.set_show_img_enable(true);
+    
     if (user_frame.get_move_done())
     {
       heart_test.move_control(user_frame.get_corner(),true);
+      heart_test.shine_count();
 
       // to do enemy attack
       // ===========================================================
@@ -400,5 +402,9 @@ void CGameStateRun::OnShow()
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
+    
+    std::string str1 = std::to_string(heart_test.shine_time_count);
+    Text stage1(50,str1,RGB(255,255,255),600,100,200);
+    stage1.print();
   }
 }
