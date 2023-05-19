@@ -63,12 +63,4 @@ public:
     void round19(Move *heart,Character *character);
     void round20(Move *heart,Character *character);
     void round21(Move *heart,Character *character);
-
-    void Test2()
-    {
-        CDC *pDC = game_framework::CDDraw::GetBackCDC();
-        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        game_framework::CTextDraw::Print(pDC, 0, 50, "current "+to_string(currentRound));
-        game_framework::CDDraw::ReleaseBackCDC();
-    }
 };

@@ -112,10 +112,7 @@ public:
     bool DetectCertainPoint(Barrage& barrage,int point,int position);
     bool DetectLeft(Barrage& barrage,int direction);
 
-    void SetIsAttack(bool a)
-    {
-        isAttackEnd=a;
-    }
+    void SetIsAttack(bool a);
     
     void virtual HPcondition(Move *heart,Character *character,int command);
 
