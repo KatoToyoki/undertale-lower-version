@@ -94,36 +94,8 @@ void Papyrus::set_act_text_updata()
 
 void Papyrus::set_next_round_text_updata()
 {
-	switch (flirt_after_count)
-	{
-	case 1:
-		next_round_text = text_content.get_reaction("flirt_next_round_0");
-		break;
-	case 2:
-		next_round_text = text_content.get_reaction("flirt_next_round_1");
-		break;
-	case 3:
-		next_round_text = text_content.get_reaction("flirt_next_round_2");
-		break;
-	case 4:
-		next_round_text = text_content.get_reaction("flirt_next_round_3");
-		break;
-	case 5:
-		next_round_text = text_content.get_reaction("flirt_next_round_4");
-		break;
-	case 6:
-		next_round_text = text_content.get_reaction("flirt_next_round_5");
-		break;
-	case 7:
-		next_round_text = text_content.get_reaction("flirt_next_round_6");
-		break;
-	case 8:
-		next_round_text = text_content.get_reaction("flirt_next_round_7");
-		break;
-	case 9:
-		next_round_text = text_content.get_reaction("flirt_next_round_8");
-		break;
-	}
+	if (flirt_after_count > 0 && flirt_after_count < 10)
+		next_round_text = text_content.get_reaction("flirt_next_round_"+std::to_string(flirt_after_count-1));
 	
 	act_next_round = set_vector_vector_to_game_text(next_round_text,0);
 }
