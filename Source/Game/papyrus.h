@@ -34,8 +34,10 @@ public:
     void check_mercy() override;
 private:
     bool _is_first_mercy_or_attck = false;
+    bool _is_flirt = false;
     int round_count = 0;
     int flirt_count = 0;
+    int flirt_after_count = 0;
     int insult_count = 0;
     
     PapyrusRound papyrus_round;

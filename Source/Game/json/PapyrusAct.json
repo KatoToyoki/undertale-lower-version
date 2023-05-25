@@ -78,48 +78,72 @@
             }
         }
     ],
-    "flirt_next_round_after": [
+    "flirt_next_round_2": [
         {
             "reaction0": {
-                "frame1": {
+                "frame0": {
                     "content0": "* Papyrus dabs some Bone",
                     "content1": "  Cologne behind his ear."
                 }
-            },
-            "reaction1": {
-                "frame1": {
+            }
+        }
+    ],
+    "flirt_next_round_3": [
+        {
+            "reaction0": {
+                "frame0": {
                     "content0": "* Papyrus dabs MTT-Brand Bishie",
                     "content1": "  Cream behind his ear."
                 }
-            },
-            "reaction2": {
-                "frame1": {
+            }
+        }
+    ],
+    "flirt_next_round_4": [
+        {
+            "reaction0": {
+                "frame0": {
                     "content0": "* Papyrus dabs MTT-Brand Anime",
                     "content1": "  Powder behind his ear."
                 }
-            },
-            "reaction3": {
-                "frame1": {
+            }
+        }
+    ],
+    "flirt_next_round_5": [
+        {
+            "reaction0": {
+                "frame0": {
                     "content0": "* Papyrus dabs MTT-Brand Cute",
                     "content1": "  Juice behind his ear."
                 }
-            },
-            "reaction4": {
-                "frame1": {
+            }
+        }
+    ],
+    "flirt_next_round_6": [
+        {
+            "reaction0": {
+                "frame0": {
                     "content0": "* Papyrus dabs MTT-Brand",
                     "content1": "  Attraction Slime behind his",
                     "content2": "  ear."
                 }
-            },
-            "reaction5": {
-                "frame1": {
+            }
+        }
+    ],
+    "flirt_next_round_7": [
+        {
+            "reaction0": {
+                "frame0": {
                     "content0": "* Papyrus dabs MTT-Brand",
                     "content1": "  Beauty Yogurt behind his",
                     "content2": "  ear."
                 }
-            },
-            "reaction6": {
-                "frame1": {
+            }
+        }
+    ],
+    "flirt_next_round_8": [
+        {
+            "reaction0": {
+                "frame0": {
                     "content0": "* Papyrus realizes he doesn't",
                     "content1": "  have ears."
                 }
