@@ -282,7 +282,7 @@
             }
         }
     ],
-    "after_three_times_flirt_monster_talk": [
+    "flirt_monster_talk_2": [
         {
             "reaction0": {
                 "frame0": {
@@ -694,6 +694,15 @@
                     "content0": "NOW’S YOUR CHANCE",
                     "content1": "TO ACCEPT MY",
                     "content2": "MERCY"
+                }
+            }
+        }
+    ],
+    "hp_low": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Papyrus is at the edge of defeat."
                 }
             }
         }

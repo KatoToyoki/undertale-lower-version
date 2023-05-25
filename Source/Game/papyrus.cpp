@@ -28,8 +28,8 @@ Papyrus::Papyrus()
 void Papyrus::set_img()
 {
 	set_hp_img();
-    enemy_x = 584;
-    enemy_y = 115;
+    enemy_x = 800;
+    enemy_y = 75;
 	
 	monster_frame_img.LoadBitmapByString({"resources/monster_frame_p.bmp"},RGB(0,0,0));
 	monster_frame_img.SetTopLeft(1129,207);
@@ -40,16 +40,16 @@ void Papyrus::set_img()
 	enemy_img_init.LoadBitmapByString({"resources/papyrus.bmp"},RGB(0,0,0));
 	enemy_img_init.SetTopLeft(enemy_x,enemy_y);
 
-	enemy_img_damege.LoadBitmapByString({"resources/dog_hit.bmp"},RGB(0,0,255));
+	enemy_img_damege.LoadBitmapByString({"resources/papyrus_hit.bmp"},RGB(0,0,0));
 	enemy_img_damege.SetTopLeft(enemy_x,enemy_y);
 
-	enemy_img_end.LoadBitmapByString({"resources/papyrus_end.bmp"},RGB(0,0,255));
+	enemy_img_end.LoadBitmapByString({"resources/papyrus_end.bmp"},RGB(0,0,0));
 	enemy_img_end.SetTopLeft(enemy_x,enemy_y);
 
 	enemy_img  =enemy_img_init;
 	enemy_last  =enemy_img_init;
 
-	red_attck_positon = {960,150};
+	red_attck_positon = {865,192};
 	fight_bar_positon = {0,374};
 }
 	
@@ -59,7 +59,7 @@ void Papyrus::set_hp_img()
 	enemy_targe_choose_hp_red.LoadBitmapByString({"resources/enemy_target_mode_hp_red.bmp"},RGB(255,255,255));
 	enemy_targe_choose_hp_black.LoadBitmapByString({"resources/enemy_target_mode_hp_black.bmp"},RGB(255,255,255));
 
-	hp_bar_x = 1034;
+	hp_bar_x = 900;
 	enemy_targe_choose_hp.SetTopLeft(hp_bar_x,hp_bar_y);
 	enemy_targe_choose_hp_red.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
 	enemy_targe_choose_hp_black.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
@@ -94,7 +94,9 @@ void Papyrus::set_act_text_updata()
 
 void Papyrus::set_next_round_text_updata()
 {
-	if (flirt_after_count > 0 && flirt_after_count < 10)
+	if (hp < 50)
+		next_round_text = text_content.get_reaction("hp_low");
+	else if (flirt_after_count > 0 && flirt_after_count < 10)
 		next_round_text = text_content.get_reaction("flirt_next_round_"+std::to_string(flirt_after_count-1));
 	
 	act_next_round = set_vector_vector_to_game_text(next_round_text,0);
@@ -131,19 +133,17 @@ void Papyrus::act_choose_count(int button_current)
 void Papyrus::set_monster_frame_before()
 {
 	 monster_text = text_content.get_reaction("flirt_monster_talk_0");
-	 monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times_before,monster_mode_2);
-	 monster_cost_round_before = monster_text.size();
 	 monster_frame_mode_before_battle = enter_talk;
 
 	if (_is_first_mercy_or_attck)
 	{
 		 monster_text = text_content.get_reaction("after_fight_mercy_after_battle");
-		 monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times_before,monster_mode_2);
-		 monster_cost_round_before = monster_text.size();
 		 monster_frame_mode_before_battle = enter_talk;
 	}
 	
 	// enter_talk work example
+	monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times_before,monster_mode_2);
+	monster_cost_round_before = monster_text.size();
 }
 
 void Papyrus::set_monster_frame_after()
