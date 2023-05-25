@@ -15,7 +15,7 @@ class PapyrusRound: public BarrageMode
 {
 private:
     int currentRound=-1;
-    int UDBdirection=0;
+    std::vector<int> UDBdirections = std::vector<int>(10,0);
     int dogAnimation=1;
 public:
     
@@ -23,14 +23,16 @@ public:
     ~PapyrusRound()=default;
     
     void SetAllData(int selection=-99);
+
+    void SetUDB();
     
     void SelectRound(Move *heart, Character *character,int selection=-99);
 
     void PincerAttack(int start,int end, Move* heart, int wave, int appearance,Character *character);
 
     void CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart);
-    void UpDownBarrage(Barrage& barrage, int upLimit, int downLimit, int speed);
-    void UpDownCompound(Barrage& cover,Barrage& barrage,Move *heart, int upLimit, int downLimit, int speed);
+    void UpDownBarrage(Barrage& barrage, int upLimit, int downLimit, int speed, int &UDB);
+    void UpDownCompound(Barrage& cover,Barrage& barrage,Move *heart, int upLimit, int downLimit, int speed, int &UDB);
     
     void DetectRoundEnd(int direction);
     
