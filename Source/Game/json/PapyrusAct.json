@@ -221,6 +221,16 @@
             }
         }
     ],
+    "after_fight_insult": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Papyrus is too busy FIGHTing",
+                    "content1": "* to accept your insult."
+                }
+            }
+        }
+    ],
     "init_check_monster_talk": [
         {
             "reaction0": {
@@ -249,7 +259,7 @@
                     "content3": "STANDARDS!!!"
                 },
                 "frame3": {
-                    "content0": "OH NO !!!YOU’RE",
+                    "content0": "OH NO !!!YOU'RE",
                     "content1": "MEETING ALL MY",
                     "content2": "STANDARDS!!!"
                 },
@@ -259,7 +269,7 @@
                     "content2": "DATE WITH YOU ...?"
                 },
                 "frame5": {
-                    "content0": "LET’S DATE",
+                    "content0": "LET'S DATE",
                     "content1": "L-LATER!!",
                     "content2": "AFTER I CAPTURE",
                     "content4": "YOU!"
@@ -272,13 +282,13 @@
             "reaction0": {
                 "frame0": {
                     "content0": "OH NO!!!"
+                },
+                "frame1": {
+                    "content0": "LET'S DATE",
+                    "content1": "L-LATER!!",
+                    "content2": "AFTER I CAPTURE",
+                    "content4": "YOU!"
                 }
-            },
-            "frame1": {
-                "content0": "LET’S DATE",
-                "content1": "L-LATER!!",
-                "content2": "AFTER I CAPTURE",
-                "content4": "YOU!"
             }
         }
     ],
@@ -478,7 +488,7 @@
                 "frame0": {
                     "content0": "MY BROTHER WILL",
                     "content1": "WELL, HE",
-                    "content2": "WON’T CHANGE",
+                    "content2": "WON'T CHANGE",
                     "content3": "VERY MUCH."
                 }
             }
@@ -488,7 +498,7 @@
         {
             "reaction0": {
                 "frame0": {
-                    "content0": "I’LL HAVE LOTS",
+                    "content0": "I'LL HAVE LOTS",
                     "content1": "OF ADMIRERS!!",
                     "content2": "BUT..."
                 }
@@ -532,7 +542,7 @@
         {
             "reaction0": {
                 "frame0": {
-                    "content0": "AFTER YOU’RE",
+                    "content0": "AFTER YOU'RE",
                     "content1": "CAPTURED AND",
                     "content2": "SENT AWAY."
                 }
@@ -601,7 +611,7 @@
         {
             "reaction0": {
                 "frame0": {
-                    "content0": "BEHOLD…! MY",
+                    "content0": "BEHOLD...! MY",
                     "content1": "SEPCIAL ATTACK"
                 }
             }
@@ -646,7 +656,7 @@
                     "content0": "OH WELL."
                 },
                 "frame9": {
-                    "content0": "I’LL JUST USE",
+                    "content0": "I'LL JUST USE",
                     "content1": "A REALLY COOL",
                     "content2": "REGULAR ATTACK."
                 }
@@ -657,7 +667,7 @@
         {
             "reaction0": {
                 "frame0": {
-                    "content0": "`SIGH` HERE’S",
+                    "content0": "`SIGH` HERE'S",
                     "content1": "ABSOLUTELY",
                     "content2": "NORMAL ATTACK."
                 }
@@ -669,8 +679,8 @@
             "reaction0": {
                 "frame0": {
                     "content0": "WELL...! `HUFF`",
-                    "content1": "IT’S CLEAR...",
-                    "content2": "YOU CAN’T! `HUFF`",
+                    "content1": "IT'S CLEAR...",
+                    "content2": "YOU CAN'T! `HUFF`",
                     "content3": "DEFEAT ME!!!"
                 },
                 "frame1": {
@@ -691,7 +701,7 @@
                     "content2": "HUMAN!!!"
                 },
                 "frame4": {
-                    "content0": "NOW’S YOUR CHANCE",
+                    "content0": "NOW'S YOUR CHANCE",
                     "content1": "TO ACCEPT MY",
                     "content2": "MERCY"
                 }

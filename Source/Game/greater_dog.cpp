@@ -49,7 +49,7 @@ void GreaterDog::set_img()
 	enemy_img_end.SetTopLeft(enemy_x,enemy_y);
 
 	enemy_img  =enemy_img_init;
-	enemy_last  =enemy_img_init150;
+	enemy_last  =enemy_img_init;
 
 	red_attck_positon = {960,150};
 	fight_bar_positon = {0,374};

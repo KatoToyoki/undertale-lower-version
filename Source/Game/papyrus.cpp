@@ -74,7 +74,6 @@ void Papyrus::set_acts()
 void Papyrus::set_act_text_updata()
 {
 	std::vector<std::vector<std::string>> act_text = {{}};
-	act_text = text_content.get_reaction("check");
 
 	switch (_current_selection)
 	{
@@ -82,20 +81,41 @@ void Papyrus::set_act_text_updata()
 		act_text = text_content.get_reaction("check");
 		break;
 	case FLIRT_P:
+		if (_is_first_mercy_or_attck)
+			act_text = text_content.get_reaction("after_fight_flirt");
+		else if (flirt_count >=3)
+			act_text = text_content.get_reaction("flirt_three_times");
 		break;
 	case INSULT_P:
+		if (_is_first_mercy_or_attck)
+			act_text = text_content.get_reaction("after_fight_insult");
+		else if (insult_count >=3)
+			act_text = text_content.get_reaction("insult_three_times");
 		break;
 	}
 	
 	act_after = set_vector_vector_to_game_text(act_text,act_times);
 	cost_round = act_text.size();
-}
 
+	if ((_current_selection == FLIRT_P && flirt_count < 3) ||
+		(_current_selection == INSULT_P && insult_count < 3))
+	{
+		std::vector<std::vector<std::string>> vector = {{}};
+		act_text = vector;
+		cost_round = 0;
+	}
+}
 
 void Papyrus::set_next_round_text_updata()
 {
 	if (hp < 50)
 		next_round_text = text_content.get_reaction("hp_low");
+	else if (_is_first_mercy_or_attck && round_count == 1)
+		next_round_text = text_content.get_reaction("first_fight_mercy_next_round");
+	else if (_is_first_mercy_or_attck && round_count == 21)
+		next_round_text = text_content.get_reaction("round21_next_round");
+	else if (_is_first_mercy_or_attck && round_count == 23)
+		next_round_text = text_content.get_reaction("end_next_round");
 	else if (flirt_after_count > 0 && flirt_after_count < 10)
 		next_round_text = text_content.get_reaction("flirt_next_round_"+std::to_string(flirt_after_count-1));
 	
@@ -132,34 +152,29 @@ void Papyrus::act_choose_count(int button_current)
 
 void Papyrus::set_monster_frame_before()
 {
-	 monster_text = text_content.get_reaction("flirt_monster_talk_0");
-	 monster_frame_mode_before_battle = enter_talk;
+	monster_frame_mode_before_battle = enter_talk;
+	monster_text = text_content.get_reaction("flirt_monster_talk_0");
+	//no first mercy or fight
+	if (_current_selection == CHECK_P)
+		monster_text = text_content.get_reaction("init_check_monster_talk");
 
-	if (_is_first_mercy_or_attck)
-	{
-		 monster_text = text_content.get_reaction("after_fight_mercy_after_battle");
-		 monster_frame_mode_before_battle = enter_talk;
-	}
 	
-	// enter_talk work example
 	monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times_before,monster_mode_2);
 	monster_cost_round_before = monster_text.size();
 }
 
 void Papyrus::set_monster_frame_after()
 {
+	monster_frame_mode_after_battle = pass_talk;
 	monster_text = text_content.get_reaction("round20_after_battle");
-	monster_frame_game_text_after_battle = set_vector_vector_to_game_text(monster_text,monster_times_after,monster_mode_2);
-	monster_cost_round_after = monster_text.size();
-	monster_frame_mode_after_battle = enter_talk;
 	
 	if (_is_first_mercy_or_attck)
 	{
 		monster_text = text_content.get_reaction("round21_after_battle");
-		monster_frame_game_text_after_battle = set_vector_vector_to_game_text(monster_text,monster_times_after,monster_mode_2);
-		monster_cost_round_after = monster_text.size();
-		monster_frame_mode_after_battle = enter_talk;
 	}
+	
+	monster_frame_game_text_after_battle = set_vector_vector_to_game_text(monster_text,monster_times_after,monster_mode_2);
+	monster_cost_round_after = monster_text.size();
 }
 
 void Papyrus::check_mercy()
