@@ -310,15 +310,5 @@
                 }
             }
         }
-    ],
-    "neutral": [
-        {
-            "reaction0": {
-                "frame0": {
-                    "content0": "Mmm, cha",
-                    "content1": "cha cha!"
-                }
-            }
-        }
     ]
 }

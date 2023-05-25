@@ -20,6 +20,7 @@ Migosp::Migosp()
 		TEXXT(text_content.get_reaction("win_text")[0][1])
 	},
 	talk_mode);
+	monster_text = text_content.get_reaction("neutral");
 }
 
 void Migosp::set_img()
@@ -93,14 +94,14 @@ void Migosp::set_acts()
 void Migosp::set_act_text_updata()
 {
 	std::vector<std::vector<std::string>> act_text = {{}};
-	if (_current_selection == check_m )
+	if (_current_selection == CHECK_M )
 	{
 		act_text = text_content.get_reaction("check");
 	}
 	act_after = set_vector_vector_to_game_text(act_text,act_times);
 	cost_round = act_text.size();
 	
-	if (_current_selection == talk_m)
+	if (_current_selection == TALK_M)
 	{
 		std::vector<std::vector<std::string>> vector = {{}};
 		act_text = vector;
@@ -110,7 +111,7 @@ void Migosp::set_act_text_updata()
 
 void Migosp::check_mercy()
 {
-	if (_current_selection == talk_m)
+	if (_current_selection == TALK_M)
 	{
 		_is_mercy = true;
 	}
@@ -119,7 +120,7 @@ void Migosp::check_mercy()
 void Migosp::set_monster_frame_before()
 {
 	//
-	monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
+	monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times_before,monster_mode_1);
 	monster_cost_round_before = monster_text.size();
 	monster_frame_mode_before_battle = no_enter_talk;
 
@@ -179,4 +180,8 @@ frame_command_c Migosp::get_monster_battle_mode()
 	// return talk_to_normal_battle;
 }
 
+void Migosp::act_choose_count(int button_current)
+{
+	monster_text = text_content.get_reaction("neutral");
+}
 

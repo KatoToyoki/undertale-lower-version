@@ -51,7 +51,7 @@ public:
     bool is_mercy() {return _is_mercy ;}
     
 /// barrage
-    virtual void set_barrage() = 0;
+    virtual void set_barrage() {}
     void set_barrage_enable(bool enable);
     virtual void show_barrage(Move *heart, Character *charactor, int stage) = 0;
     Barrage get_barrage();
@@ -94,6 +94,8 @@ public:
     virtual void set_monster_frame_after() { monster_frame_mode_after_battle = pass_talk; }
 //
     virtual void set_fight() {} //fight打到怪會呼叫 如果有要判斷打到怪時 會做出甚麼寫在這裡
+    //game_manager choose_mercy_after call  功用是如果怪物被mercy會做什麼變化之類的
+    virtual void set_mercy() {} //如果有要判斷mercy 會做出甚麼寫在這裡
     virtual void fight_open(Move *heart, Character *charactor) = 0; 
     virtual bool get_fight_end() = 0;
     void set_battle_timer(int time) {battel_mode_timer = time;}
@@ -117,8 +119,10 @@ protected:
     bool _barrage_enable = false;
     bool _is_mercy = false;
     bool _is_gameover = false;
+    bool _is_init = true;
     int act_times = 0;
-    int monster_times = 0;
+    int monster_times_before =0;
+    int monster_times_after =0;
     int _current_selection =0;
     float shark_time = 0;
 
@@ -163,4 +167,6 @@ protected:
 	GameText monster_frame_game_text_after_battle;
     monster_frame_mode monster_frame_mode_after_battle;
     int monster_cost_round_after;
+
+    std::vector<std::vector<std::string>> next_round_text = {{}};
 };

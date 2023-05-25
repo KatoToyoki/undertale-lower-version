@@ -1,12 +1,12 @@
 #include "stdafx.h"
-#include "show_normal_mode.h"
-#include "../ButtonFrame.h"
-#include "../acts.h"
-#include "../migosp.h"
-#include "../monster_frame.h"
+#include "game_manager.h"
+#include "ButtonFrame.h"
+#include "acts.h"
+#include "migosp.h"
+#include "monster_frame.h"
 
 
-void ShowNormalMode::load_data(UserFrame* user_frame, ButtonFrame* button_frame, MonsterFrame* monster_frame, Move* heart_test, Fight* game_fight, Enemy* enemy, Items* items, Character* charactor)
+void GameManager::load_data(UserFrame* user_frame, ButtonFrame* button_frame, MonsterFrame* monster_frame, Move* heart_test, Fight* game_fight, Enemy* enemy, Items* items, Character* charactor)
 {
 	_user_frame = user_frame;
 	_button_frame = button_frame;
@@ -21,7 +21,7 @@ void ShowNormalMode::load_data(UserFrame* user_frame, ButtonFrame* button_frame,
     _game_fight->load_img();
 }
 
-void ShowNormalMode::updata()
+void GameManager::updata()
 {
   _charactor->updata_hp_bar_by_hp();
   _enemy->updata_hp_bar_by_hp();
@@ -39,7 +39,7 @@ void ShowNormalMode::updata()
   }
 }
 
-void ShowNormalMode::init()//宣告於OnMove()
+void GameManager::init()//宣告於OnMove()
 {
 	_user_frame->control_frame(to_talk);
 	_user_frame->set_choose(false);
@@ -77,11 +77,11 @@ void ShowNormalMode::init()//宣告於OnMove()
 	}
 }
 
-void ShowNormalMode::end()
+void GameManager::end()
 {
 }
 
-void ShowNormalMode::choose_fight_taget()
+void GameManager::choose_fight_taget()
 {
 	_button_frame->set_updata_enable(false);
 	
@@ -89,7 +89,7 @@ void ShowNormalMode::choose_fight_taget()
 	_user_frame->set_choose(true);
 	_enemy->set_enemy_targe_choose_hp_bar(true);
 }
-void ShowNormalMode::choose_fight()
+void GameManager::choose_fight()
 {
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
@@ -99,7 +99,7 @@ void ShowNormalMode::choose_fight()
 	_user_frame->set_choose(true);
 }
 
-void ShowNormalMode::choose_act_target()
+void GameManager::choose_act_target()
 {
 	_button_frame->set_updata_enable(false);
 	
@@ -107,13 +107,13 @@ void ShowNormalMode::choose_act_target()
 	_user_frame->set_choose(true);
 }
 
-void ShowNormalMode::choose_act()
+void GameManager::choose_act()
 {
 	_user_frame->load_text(_enemy->acts.get_act_name_list());
 	_user_frame->set_choose(true);
 }
 
-void ShowNormalMode::choose_act_after()
+void GameManager::choose_act_after()
 {
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
@@ -123,7 +123,7 @@ void ShowNormalMode::choose_act_after()
 	_user_frame->set_choose(true);
 }
 
-void ShowNormalMode::choose_item()
+void GameManager::choose_item()
 {
 	_button_frame->set_updata_enable(false);
 
@@ -133,7 +133,7 @@ void ShowNormalMode::choose_item()
 	_charactor->change_hp(true,_items->get_selection_heal_num());
 }
 
-void ShowNormalMode::choose_item_after()
+void GameManager::choose_item_after()
 {
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
@@ -145,7 +145,7 @@ void ShowNormalMode::choose_item_after()
 	_charactor->change_hp(false);
 }
 
-void ShowNormalMode::monster_frame_no_battle()
+void GameManager::monster_frame_no_battle()
 {
     _game_fight->set_fight_enable(false);
     _items->set_control_updata(false);
@@ -155,7 +155,7 @@ void ShowNormalMode::monster_frame_no_battle()
 	
 }
 
-void ShowNormalMode::monster_frame_battle()
+void GameManager::monster_frame_battle()
 {
     _heart_test->set_show_img_enable(true);
     _heart_test->set_shine_mode(false);
@@ -167,13 +167,13 @@ void ShowNormalMode::monster_frame_battle()
     _monster_frame->set_enable(true);
 }
 
-void ShowNormalMode::choose_mercy()
+void GameManager::choose_mercy()
 {
 	_user_frame->load_text(_enemy->get_mercy_game_text());
 	_user_frame->set_choose(true);
 }
 
-void ShowNormalMode::choose_mercy_after()
+void GameManager::choose_mercy_after()
 {
 	if (_enemy->is_mercy())
 	{
@@ -182,7 +182,7 @@ void ShowNormalMode::choose_mercy_after()
 	}
 }
 
-void ShowNormalMode::battle_after_monster_frame()
+void GameManager::battle_after_monster_frame()
 {
     _enemy->set_monster_frame_game_text_enable(true);
 	_enemy->check_pass(AFTER_BATTLE);
@@ -191,7 +191,7 @@ void ShowNormalMode::battle_after_monster_frame()
     _monster_frame->set_enable(true);
 }
 
-void ShowNormalMode::set_heart_mode(HeartMode mode)
+void GameManager::set_heart_mode(HeartMode mode)
 {
     _heart_test->set_heart_mode(mode);
     _button_frame->set_heart_mode(mode);

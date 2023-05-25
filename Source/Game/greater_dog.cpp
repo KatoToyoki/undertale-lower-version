@@ -6,7 +6,7 @@
 GreaterDog::GreaterDog()
 {
 	text_content.load("GreaterDogAct");
-    is_init = true;
+    _is_init = true;
 	set_acts();
 	_current_selection = 0;
 	monster_name = GameText({
@@ -53,15 +53,6 @@ void GreaterDog::set_img()
 
 	red_attck_positon = {960,150};
 	fight_bar_positon = {0,374};
-
-	enemy_barrage.LoadBitmapByString({
- "resources/dog_barage_0.bmp",
- "resources/dog_barage_1.bmp",
- "resources/dog_barage_2.bmp",
-	},RGB(255,255,255));
-	
-	enemy_barrage.SetTopLeft(933,799);
-	enemy_barrage.SetAnimation(250,false);
 }
 
 void GreaterDog::set_hp_img()
@@ -76,11 +67,6 @@ void GreaterDog::set_hp_img()
 	enemy_targe_choose_hp_black.SetTopLeft(hp_bar_x+enemy_targe_choose_hp.GetWidth(),hp_bar_y);
 }
 
-void GreaterDog::set_barrage()
-{
-	barrage = Barrage(4,white);
-    barrage.loda_CMoving_Bitmap(enemy_barrage);
-}
 
 void GreaterDog::set_acts()
 {
@@ -100,11 +86,11 @@ void GreaterDog::set_act_text_updata()
 	
 	std::vector<std::vector<std::string>> act_text = {{}};
 	
-	if (_current_selection == check_d )
+	if (_current_selection == CHECK_D )
 	{
 		act_text = text_content.get_reaction("check");
 	}
-	if (_current_selection == pet_d)
+	if (_current_selection == PET_D)
 	{
 		if (is_play_afb)
 		{
@@ -137,7 +123,7 @@ void GreaterDog::set_act_text_updata()
 			 pet_times=0;
 		}
 	}
-	if (_current_selection == beckon_d)
+	if (_current_selection == BECKON_D)
 	{
 		switch(beckon_times)
 		{
@@ -149,7 +135,7 @@ void GreaterDog::set_act_text_updata()
 			 break;
 		}
 	}
-	if (_current_selection == play_d)
+	if (_current_selection == PLAY_D)
 	{
 		if (is_pet_afb)
 		{
@@ -169,7 +155,7 @@ void GreaterDog::set_act_text_updata()
 			 play_times=0;
 		}
 	}
-	if (_current_selection == ignore_d)
+	if (_current_selection == IGNORE_D)
 	{
 		switch (ignore_times)
 		{
@@ -189,28 +175,28 @@ void GreaterDog::set_act_text_updata()
 
 void GreaterDog::act_choose_count(int button_current)
 {
-	is_init = false;
+	_is_init = false;
 	if ( button_current ==1)
 	{
 		act_times_enter+=1;
-		if (_current_selection == pet_d)
+		if (_current_selection == PET_D)
 		{
 			pet_times+=1;
 			if(is_beckon)
 				is_pet_afb = true;
 		}
-		if (_current_selection == beckon_d)
+		if (_current_selection == BECKON_D)
 		{
 			beckon_times+=1;
 			is_beckon = true;
 		}
-		if (_current_selection == play_d)
+		if (_current_selection == PLAY_D)
 		{
 			play_times+=1;
 			if (is_pet_afb)
 				is_play_afb = true;
 		}
-		if (_current_selection == ignore_d)
+		if (_current_selection == IGNORE_D)
 		{
 			ignore_times+=1;
 			if (ignore_times == 4)
@@ -264,7 +250,7 @@ void GreaterDog::set_next_round_text_updata()
 	{
 		next_round_text = text_content.get_reaction("ignore_over_4_next_round");
 	}
-	else if (!is_init)
+	else if (!_is_init)
 	{
 		switch (act_times_enter%4)
 		{

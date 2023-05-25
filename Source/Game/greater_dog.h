@@ -5,11 +5,11 @@
 
 enum dog_act_selection
 {
-    check_d,
-    pet_d,
-    beckon_d,
-    play_d,
-    ignore_d
+    CHECK_D,
+    PET_D,
+    BECKON_D,
+    PLAY_D,
+    IGNORE_D
 };
 
 class GreaterDog : public Enemy
@@ -19,7 +19,6 @@ public:
     //set enemy normal img & damege img & red attcke posion & fight attck bar positon & barrage
     void set_img() override;
     void set_hp_img() override;//set choose fight target need set the hp bar x postion
-    void set_barrage() override;//now only migosp barrage dont read json so use this
     void set_acts() override;//set enemy act list
     //設定 判斷什麼條件之中 選擇完act後 在user_frame內 接下來該顯示的字
     void set_act_text_updata() override;//here run by 每偵
@@ -48,7 +47,6 @@ private:
     bool is_beckon = false;
     bool is_play_afb = false;//play過在b之後
     bool is_pet_afb = false;//pet過在b之後
-    bool is_init = true;
 
     game_framework::CMovingBitmap enemy_img_close;
     GreaterDogRound greater_dog_round;

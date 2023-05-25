@@ -1,0 +1,687 @@
+{
+    "init": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Papyrus blocks the way!"
+                }
+            }
+        }
+    ],
+    "after_init_next_round": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Papyrus is considering his",
+                    "content1": "  options."
+                }
+            },
+            "reaction1": {
+                "frame1": {
+                    "content0": "* Papyrus remembered a bad joke",
+                    "content1": "  Sans told and is frowning."
+                }
+            },
+            "reaction2": {
+                "frame1": {
+                    "content0": "* Papyrus prepares a non-bone",
+                    "content1": "  attack then spends a minute",
+                    "content2": "  fixing his mistake."
+                }
+            },
+            "reaction3": {
+                "frame1": {
+                    "content0": "* Papyrus is rattling his bones."
+                }
+            },
+            "reaction4": {
+                "frame1": {
+                    "content0": "* Papyrus whispers \"Nyeh heh",
+                    "content1": "  heh!\""
+                }
+            },
+            "reaction5": {
+                "frame1": {
+                    "content0": "* Smells like bones."
+                }
+            },
+            "reaction6": {
+                "frame1": {
+                    "content0": "* Papyrus is trying hard to play",
+                    "content1": "  it cool."
+                }
+            },
+            "reaction7": {
+                "frame1": {
+                    "content0": "* Papyrus is cackling."
+                }
+            }
+        }
+    ],
+    "flirt_next_round_0": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Papyrus is thinking about",
+                    "content1": "  what to wear for his date."
+                }
+            }
+        }
+    ],
+    "flirt_next_round_1": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Papyrus is thinking about",
+                    "content1": "  what to cook for his date."
+                }
+            }
+        }
+    ],
+    "flirt_next_round_after": [
+        {
+            "reaction0": {
+                "frame1": {
+                    "content0": "* Papyrus dabs some Bone",
+                    "content1": "  Cologne behind his ear."
+                }
+            },
+            "reaction1": {
+                "frame1": {
+                    "content0": "* Papyrus dabs MTT-Brand Bishie",
+                    "content1": "  Cream behind his ear."
+                }
+            },
+            "reaction2": {
+                "frame1": {
+                    "content0": "* Papyrus dabs MTT-Brand Anime",
+                    "content1": "  Powder behind his ear."
+                }
+            },
+            "reaction3": {
+                "frame1": {
+                    "content0": "* Papyrus dabs MTT-Brand Cute",
+                    "content1": "  Juice behind his ear."
+                }
+            },
+            "reaction4": {
+                "frame1": {
+                    "content0": "* Papyrus dabs MTT-Brand",
+                    "content1": "  Attraction Slime behind his",
+                    "content2": "  ear."
+                }
+            },
+            "reaction5": {
+                "frame1": {
+                    "content0": "* Papyrus dabs MTT-Brand",
+                    "content1": "  Beauty Yogurt behind his",
+                    "content2": "  ear."
+                }
+            },
+            "reaction6": {
+                "frame1": {
+                    "content0": "* Papyrus realizes he doesn't",
+                    "content1": "  have ears."
+                }
+            }
+        }
+    ],
+    "first_fight_mercy_next_round": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* You're blue now."
+                }
+            }
+        }
+    ],
+    "round21_next_round": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Papyrus is getting ready",
+                    "content1": "  for a regular attack."
+                }
+            }
+        }
+    ],
+    "end_next_round": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Papyrus is sparing you"
+                }
+            }
+        }
+    ],
+    "check": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* PAPYRUS - ATK 20 DEF 20",
+                    "content1": "* He likes to say:",
+                    "content2": "  \"Nyeh heh heh!\""
+                }
+            }
+        }
+    ],
+    "flirt_three_times": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* You FLIRT, but to no avail",
+                    "content1": "* Seems ACTing won't escalate",
+                    "content2": "  this battle..."
+                }
+            }
+        }
+    ],
+    "after_fight_flirt": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* Papyrus is too busy FIGHTing",
+                    "content1": "* to flirt back."
+                }
+            }
+        }
+    ],
+    "insult_three_times": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* You INSULT, but to no avail",
+                    "content1": "* Seems ACTing won't escalate",
+                    "content2": "  this battle..."
+                }
+            }
+        }
+    ],
+    "init_check_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "Nyeh heh heh"
+                }
+            }
+        }
+    ],
+    "flirt_monster_talk_0": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "WHAT!?",
+                    "content1": "FL-FLIRTING!?"
+                },
+                "frame1": {
+                    "content0": "SO YOU FINALLY",
+                    "content1": "REVERAL YOUR",
+                    "content2": "ULTIMATE FEELINGS!"
+                },
+                "frame2": {
+                    "content0": "W-WELL!",
+                    "content1": "I'M A SKELETON",
+                    "content2": "WITH VERY HIGH",
+                    "content3": "STANDARDS!!!"
+                },
+                "frame3": {
+                    "content0": "OH NO !!!YOU’RE",
+                    "content1": "MEETING ALL MY",
+                    "content2": "STANDARDS!!!"
+                },
+                "frame4": {
+                    "content0": "I GUESS THIS MEANS",
+                    "content1": "I HAVE TO GO ON A",
+                    "content2": "DATE WITH YOU ...?"
+                },
+                "frame5": {
+                    "content0": "LET’S DATE",
+                    "content1": "L-LATER!!",
+                    "content2": "AFTER I CAPTURE",
+                    "content4": "YOU!"
+                }
+            }
+        }
+    ],
+    "flirt_monster_talk_1": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "OH NO!!!"
+                }
+            },
+            "frame1": {
+                "content0": "LET’S DATE",
+                "content1": "L-LATER!!",
+                "content2": "AFTER I CAPTURE",
+                "content4": "YOU!"
+            }
+        }
+    ],
+    "after_three_times_flirt_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "LET'S DATE L-LATER!!"
+                }
+            }
+        }
+    ],
+    "after_fight_flirt_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "WHAT!? I'M NOT",
+                    "content1": "THINKING ABOUT",
+                    "content2": "THAT DATE THING!!"
+                }
+            }
+        }
+    ],
+    "first_insult_monster_talk_0": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "HOW SELFLESS..."
+                },
+                "frame1": {
+                    "content0": "YOU WANT ME TO",
+                    "content1": "FEEL BETTER",
+                    "content2": "ABOUT FIGHTING",
+                    "content3": "YOU..."
+                },
+                "frame2": {
+                    "content0": "I DON'T DESERVE",
+                    "content1": "SUCH HOSPITALITY",
+                    "content2": "FROM YOU..."
+                }
+            }
+        }
+    ],
+    "first_insult_monster_talk_1": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "THERE'S NO NEED",
+                    "content1": "TO LIE TO",
+                    "content2": "YOURSELF!!!"
+                },
+                "frame1": {
+                    "content0": "YOUR BARBS HIDE",
+                    "content1": "A HIDDEN",
+                    "content2": "AFFECTION! YOU",
+                    "content3": "EMOTIONAL CACTUS!"
+                },
+                "frame2": {
+                    "content0": "I DON'T DESERVE",
+                    "content1": "SUCH HOSPITALITY",
+                    "content2": "FROM YOU..."
+                }
+            }
+        }
+    ],
+    "after_insult_times_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "DON'T...!",
+                    "content1": "DONT WASTE YOUR",
+                    "content2": "WORDS ON ME!"
+                }
+            }
+        }
+    ],
+    "first_fight_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "SO YOU'RE",
+                    "content1": "SERIOUS..."
+                },
+                "frame1": {
+                    "content0": "THEN, LET'S SEE",
+                    "content1": "IF YOU CAN HANDLE",
+                    "content2": "MY FABLED",
+                    "content3": "\"BLUE ATTACK!\""
+                }
+            }
+        }
+    ],
+    "first_mercy_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "SO YOU WON'T",
+                    "content1": "FIGHT..."
+                },
+                "frame1": {
+                    "content0": "THEN, LET'S SEE",
+                    "content1": "IF YOU CAN HANDLE",
+                    "content2": "MY FABLED",
+                    "content3": "\"BLUE ATTACK!\""
+                }
+            }
+        }
+    ],
+    "after_fight_mercy_after_battle": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "YOU'RE BLUE NOW."
+                },
+                "frame1": {
+                    "content0": "THAT'S MY ATTACK!"
+                },
+                "frame2": {
+                    "content0": "NYEH HEH HEH",
+                    "content1": "HEH HEH HEH",
+                    "content2": "HEH HEH HEH!!!"
+                }
+            }
+        }
+    ],
+    "round3_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "YEAH1",
+                    "content1": "DON'T MAKE ME",
+                    "content2": "USE MY SPECIAL",
+                    "content3": "ATTACK!"
+                }
+            }
+        }
+    ],
+    "round4_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "I CAN ALMOST",
+                    "content1": "TASTE MY FUTURE",
+                    "content2": "POPULARITY!!"
+                }
+            }
+        }
+    ],
+    "round5_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "PAPYRUS:",
+                    "content1": "HEAD OF THE",
+                    "content2": "ROYAL GUARD"
+                }
+            }
+        }
+    ],
+    "round6_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "PAPYRUS:",
+                    "content1": "UNPARALLELED",
+                    "content2": "SPAGHETTORE!"
+                }
+            }
+        }
+    ],
+    "round7_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "UNDYNE WILL BE",
+                    "content1": "REALLY PROUD",
+                    "content2": "OF ME!!"
+                }
+            }
+        }
+    ],
+    "round8_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "THE KING WILL",
+                    "content1": "TRIM A HEDGE",
+                    "content2": "IN THE SHAPE",
+                    "content3": "OF MY SMILE!!!"
+                }
+            }
+        }
+    ],
+    "round9_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "MY BROTHER WILL",
+                    "content1": "WELL, HE",
+                    "content2": "WON’T CHANGE",
+                    "content3": "VERY MUCH."
+                }
+            }
+        }
+    ],
+    "round10_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "I’LL HAVE LOTS",
+                    "content1": "OF ADMIRERS!!",
+                    "content2": "BUT..."
+                }
+            }
+        }
+    ],
+    "round11_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "WILL ANYONE LIKE",
+                    "content1": "ME AS SINCERELY",
+                    "content2": "AS YOU?"
+                }
+            }
+        }
+    ],
+    "round12_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "SOMEONE LIKE",
+                    "content1": "YOU IS REALLY",
+                    "content2": "RARE..."
+                }
+            }
+        }
+    ],
+    "round13_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "AND DATING MIGHT",
+                    "content1": "BE KIND OF",
+                    "content2": "HARD..."
+                }
+            }
+        }
+    ],
+    "round14_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "AFTER YOU’RE",
+                    "content1": "CAPTURED AND",
+                    "content2": "SENT AWAY."
+                }
+            }
+        }
+    ],
+    "round15_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "URGH...",
+                    "content1": "WHO CARES!",
+                    "content2": "GIVE UP!!"
+                }
+            }
+        }
+    ],
+    "round16_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "GIVE UP OR",
+                    "content1": "FACE MY...",
+                    "content2": "SPECIAL ATTACK!!!"
+                }
+            }
+        }
+    ],
+    "round17_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "YEAH!!!",
+                    "content1": "VERY SOON I WILL",
+                    "content2": "USE MY",
+                    "content4": "SPECIAL ATTACK!"
+                }
+            }
+        }
+    ],
+    "round18_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "NOT TOO LONG",
+                    "content1": "AND I WILL",
+                    "content2": "USE THAT",
+                    "content3": "SPECIAL ATTACK!!!"
+                }
+            }
+        }
+    ],
+    "round19_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "THIS IS YOUR",
+                    "content1": "LAST CHANGE...",
+                    "content2": "BEFORE MY",
+                    "content3": "SPECIAL ATTACK!!"
+                }
+            }
+        }
+    ],
+    "round20_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "BEHOLD…! MY",
+                    "content1": "SEPCIAL ATTACK"
+                }
+            }
+        }
+    ],
+    "round20_after_battle": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "WHAT THE HECK!"
+                },
+                "frame1": {
+                    "content0": "THAT'S MY",
+                    "content1": "SPECIAL ATTACK!"
+                },
+                "frame2": {
+                    "content0": "HEY!",
+                    "content1": "YOU STUPID DOG"
+                },
+                "frame3": {
+                    "content0": "DO YOU HEAR",
+                    "content1": "ME!?"
+                },
+                "frame4": {
+                    "content0": "STOP MUNCHING ON",
+                    "content1": "THAT BONE!!!"
+                },
+                "frame5": {
+                    "content0": "HEY!!!",
+                    "content1": "WHAT ARE YOU",
+                    "content2": "DOING!!!"
+                },
+                "frame6": {
+                    "content0": "COME BACK HERE",
+                    "content1": "WITH MY SPECIAL",
+                    "content2": "ATTACK!!!"
+                },
+                "frame7": {
+                    "content0": "..."
+                },
+                "frame8": {
+                    "content0": "OH WELL."
+                },
+                "frame9": {
+                    "content0": "I’LL JUST USE",
+                    "content1": "A REALLY COOL",
+                    "content2": "REGULAR ATTACK."
+                }
+            }
+        }
+    ],
+    "round21_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "`SIGH` HERE’S",
+                    "content1": "ABSOLUTELY",
+                    "content2": "NORMAL ATTACK."
+                }
+            }
+        }
+    ],
+    "round21_after_battle": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "WELL...! `HUFF`",
+                    "content1": "IT’S CLEAR...",
+                    "content2": "YOU CAN’T! `HUFF`",
+                    "content3": "DEFEAT ME!!!"
+                },
+                "frame1": {
+                    "content0": "YEAH!!!",
+                    "content1": "I CAN SEE YOU",
+                    "content2": "SHAKING IN YOUR",
+                    "content3": "BOOTS!!!"
+                },
+                "frame2": {
+                    "content0": "THRERFORE I, THE",
+                    "content1": "GREAT PAPYRUS,",
+                    "content2": "ELECT TO GRANT",
+                    "content3": "YOU PITY!!"
+                },
+                "frame3": {
+                    "content0": "I WILL SPARE",
+                    "content1": "YOU HUMAN!!!",
+                    "content2": "HUMAN!!!"
+                },
+                "frame4": {
+                    "content0": "NOW’S YOUR CHANCE",
+                    "content1": "TO ACCEPT MY",
+                    "content2": "MERCY"
+                }
+            }
+        }
+    ],
+    "win_text": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "* YOU WON!",
+                    "content1": "* You earned 0 XP and 100 gold."
+                }
+            }
+        }
+    ]
+}
