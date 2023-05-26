@@ -150,6 +150,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_sub = false;
    
     user_frame.control_frame(enemy->get_monster_battle_mode());
+    
     heart_test.set_show_img_enable(true);
     
     if (user_frame.get_move_done())
@@ -158,10 +159,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       heart_test.shine_count();
       heart_test.shine_two_second();
 
-      // to do enemy attack
-      // ===========================================================
       enemy->fight_open(&heart_test,&charactor);
-      
+
       if (menu.get_current_stage()== 3)
       {
         papyrusRound.SelectRound(&heart_test,&charactor);
@@ -292,6 +291,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
       }
     }
   } else{
+    //need OnKeyDown can put here
+
     gameButtonFrame.choose_update(nChar);
     user_frame.choose_updata(nChar);
     gameFight.ToStop(nChar);
@@ -301,6 +302,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     if (stage_go!= BATTLE) {charactor.change_hp_updata(nChar);}
     papyrusRound.ToGetEnterCount(nChar);
   }
+
   //stage_control
   if ((nChar == VK_RETURN || nChar == 0x5A) && (stage_go == END)) {
     music->Pause();
