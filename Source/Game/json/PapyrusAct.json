@@ -365,7 +365,7 @@
             }
         }
     ],
-    "first_fight_monster_talk": [
+    "round0_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -381,7 +381,7 @@
             }
         }
     ],
-    "first_mercy_monster_talk": [
+    "round0_mercy_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -414,7 +414,7 @@
             }
         }
     ],
-    "round3_monster_talk": [
+    "round1_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -426,7 +426,7 @@
             }
         }
     ],
-    "round4_monster_talk": [
+    "round2_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -437,7 +437,7 @@
             }
         }
     ],
-    "round5_monster_talk": [
+    "round3_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -448,7 +448,7 @@
             }
         }
     ],
-    "round6_monster_talk": [
+    "round4_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -459,7 +459,7 @@
             }
         }
     ],
-    "round7_monster_talk": [
+    "round5_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -470,7 +470,7 @@
             }
         }
     ],
-    "round8_monster_talk": [
+    "round6_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -482,7 +482,7 @@
             }
         }
     ],
-    "round9_monster_talk": [
+    "round7_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -494,7 +494,7 @@
             }
         }
     ],
-    "round10_monster_talk": [
+    "round8_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -505,7 +505,7 @@
             }
         }
     ],
-    "round11_monster_talk": [
+    "round9_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -516,7 +516,7 @@
             }
         }
     ],
-    "round12_monster_talk": [
+    "round10_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -527,7 +527,7 @@
             }
         }
     ],
-    "round13_monster_talk": [
+    "round11_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -538,7 +538,7 @@
             }
         }
     ],
-    "round14_monster_talk": [
+    "round12_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -549,7 +549,7 @@
             }
         }
     ],
-    "round15_monster_talk": [
+    "round13_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -560,7 +560,7 @@
             }
         }
     ],
-    "round16_monster_talk": [
+    "round14_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -571,7 +571,7 @@
             }
         }
     ],
-    "round17_monster_talk": [
+    "round15_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -583,7 +583,7 @@
             }
         }
     ],
-    "round18_monster_talk": [
+    "round16_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -595,7 +595,7 @@
             }
         }
     ],
-    "round19_monster_talk": [
+    "round17_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -607,7 +607,7 @@
             }
         }
     ],
-    "round20_monster_talk": [
+    "round18_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -617,7 +617,7 @@
             }
         }
     ],
-    "round20_after_battle": [
+    "round18_after_battle": [
         {
             "reaction0": {
                 "frame0": {
@@ -663,7 +663,7 @@
             }
         }
     ],
-    "round21_monster_talk": [
+    "round19_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -674,7 +674,7 @@
             }
         }
     ],
-    "round21_after_battle": [
+    "round19_after_battle": [
         {
             "reaction0": {
                 "frame0": {

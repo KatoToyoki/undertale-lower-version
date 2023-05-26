@@ -157,7 +157,9 @@ void Papyrus::set_monster_frame_before()
 	monster_frame_mode_before_battle = enter_talk;
 	monster_text = text_content.get_reaction("flirt_monster_talk_0");
 	//no first mercy or fight
-	if (_current_selection == CHECK_P)
+	if (_is_first_mercy_or_attck )
+		monster_text = text_content.get_reaction("round"+to_string(round_count)+"_monster_talk");
+	else if (_current_selection == CHECK_P)
 		monster_text = text_content.get_reaction("init_check_monster_talk");
 	else if (_current_selection == FLIRT_P)
 		monster_text = text_content.get_reaction("flirt_monster_talk_"+to_string(flirt_count));
@@ -172,11 +174,12 @@ void Papyrus::set_monster_frame_before()
 void Papyrus::set_monster_frame_after()
 {
 	monster_frame_mode_after_battle = pass_talk;
-	monster_text = text_content.get_reaction("round20_after_battle");
+	monster_text = text_content.get_reaction("round19_after_battle");
 	
-	if (_is_first_mercy_or_attck)
+	if (_is_first_mercy_or_attck && round_count == 0)
 	{
-		monster_text = text_content.get_reaction("round21_after_battle");
+		monster_text = text_content.get_reaction("after_fight_mercy_after_battle");
+		monster_frame_mode_after_battle = enter_talk;
 	}
 	
 	monster_frame_game_text_after_battle = set_vector_vector_to_game_text(monster_text,monster_times_after,monster_mode_2);
