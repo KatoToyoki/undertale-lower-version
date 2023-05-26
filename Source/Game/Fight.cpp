@@ -112,6 +112,7 @@ void Fight::show_fight_img()
         MovingHPBar();
         
         if(GetDurationMinusHP()>0){
+            MinusBG();
             RevealMinusHP();
             ShowHPBar();
         }
@@ -239,13 +240,21 @@ bool Fight::GetIsMiss()
 void Fight::RevealMinusHP()
 {
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
-    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "Determination Mono Web", RGB(255, 255, 255), 800);
-    game_framework::CTextDraw::Print(pDC, 900, _enemy->fight_bar_positon.y-70, minusHP);
+    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "UNDERTALE ATTACK FONT (REVERSED)", RGB(255, 0, 0), 800);
+    game_framework::CTextDraw::Print(pDC, 860, _enemy->fight_bar_positon.y-70, minusHP);
     game_framework::CDDraw::ReleaseBackCDC();
     if(durationMinusHP!=0)
     {
         durationMinusHP-=1;
     }
+}
+
+void Fight::MinusBG()
+{
+    CDC *pDC = game_framework::CDDraw::GetBackCDC();
+    game_framework::CTextDraw::ChangeFontLog(pDC, 30, "UNDERTALE ATTACK FONT (REVERSED)", RGB(0, 255, 0), 800);
+    game_framework::CTextDraw::Print(pDC, 870, _enemy->fight_bar_positon.y-60, minusHP);
+    game_framework::CDDraw::ReleaseBackCDC();
 }
 
 void Fight::ShowHPBar()
