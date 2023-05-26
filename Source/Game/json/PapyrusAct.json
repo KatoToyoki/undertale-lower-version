@@ -301,7 +301,7 @@
             }
         }
     ],
-    "after_fight_flirt_monster_talk": [
+    "flirt_monster_talk_3": [
         {
             "reaction0": {
                 "frame0": {
@@ -312,7 +312,7 @@
             }
         }
     ],
-    "first_insult_monster_talk_0": [
+    "insult_monster_talk_0": [
         {
             "reaction0": {
                 "frame0": {
@@ -332,7 +332,7 @@
             }
         }
     ],
-    "first_insult_monster_talk_1": [
+    "insult_monster_talk_1": [
         {
             "reaction0": {
                 "frame0": {
@@ -354,7 +354,7 @@
             }
         }
     ],
-    "after_insult_times_monster_talk": [
+    "insult_monster_talk_2": [
         {
             "reaction0": {
                 "frame0": {

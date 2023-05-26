@@ -89,7 +89,7 @@ void Papyrus::set_act_text_updata()
 	case INSULT_P:
 		if (_is_first_mercy_or_attck)
 			act_text = text_content.get_reaction("after_fight_insult");
-		else if (insult_count >=3)
+		else if (insult_count >=2)
 			act_text = text_content.get_reaction("insult_three_times");
 		break;
 	}
@@ -98,7 +98,7 @@ void Papyrus::set_act_text_updata()
 	cost_round = act_text.size();
 
 	if ((_current_selection == FLIRT_P && flirt_count < 3) ||
-		(_current_selection == INSULT_P && insult_count < 3))
+		(_current_selection == INSULT_P && insult_count < 2))
 	{
 		std::vector<std::vector<std::string>> vector = {{}};
 		act_text = vector;
@@ -112,9 +112,9 @@ void Papyrus::set_next_round_text_updata()
 		next_round_text = text_content.get_reaction("hp_low");
 	else if (_is_first_mercy_or_attck && round_count == 1)
 		next_round_text = text_content.get_reaction("first_fight_mercy_next_round");
-	else if (_is_first_mercy_or_attck && round_count == 21)
+	else if (_is_first_mercy_or_attck && round_count == 22)
 		next_round_text = text_content.get_reaction("round21_next_round");
-	else if (_is_first_mercy_or_attck && round_count == 23)
+	else if (_is_first_mercy_or_attck && round_count >= 23)
 		next_round_text = text_content.get_reaction("end_next_round");
 	else if (flirt_after_count > 0 && flirt_after_count < 10)
 		next_round_text = text_content.get_reaction("flirt_next_round_"+std::to_string(flirt_after_count-1));
@@ -129,12 +129,12 @@ void Papyrus::act_choose_count(int button_current)
 	next_round_text = text_content.get_reaction("after_init_next_round");
 	if (button_current == 1)
 	{
-		if (_current_selection == FLIRT_P)
+		if (_current_selection == FLIRT_P && flirt_count < 3)
 		{
 			_is_flirt = true;
 			flirt_count+=1;
 		}
-		if (_current_selection == INSULT_P)
+		if (_current_selection == INSULT_P && insult_count < 2)
 		{
 			insult_count+=1;
 		}
@@ -147,6 +147,8 @@ void Papyrus::act_choose_count(int button_current)
 	if (_is_first_mercy_or_attck)
 	{
 		round_count+=1;
+		flirt_count = 3;
+		insult_count = 2;
 	}
 }
 
@@ -157,6 +159,10 @@ void Papyrus::set_monster_frame_before()
 	//no first mercy or fight
 	if (_current_selection == CHECK_P)
 		monster_text = text_content.get_reaction("init_check_monster_talk");
+	else if (_current_selection == FLIRT_P)
+		monster_text = text_content.get_reaction("flirt_monster_talk_"+to_string(flirt_count));
+	else if (_current_selection == INSULT_P)
+		monster_text = text_content.get_reaction("insult_monster_talk_"+to_string(insult_count));
 
 	
 	monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times_before,monster_mode_2);
@@ -205,7 +211,10 @@ void Papyrus::init_barrage_data()
 {
 	if(!papyrus_round.GetIsSet())
 	{
-		papyrus_round.SetAllData(round_count);
+		if (!_is_first_mercy_or_attck)
+			papyrus_round.SetAllData(-1);
+		else
+			papyrus_round.SetAllData(round_count);
 	}
 }
 
@@ -227,4 +236,6 @@ void Papyrus::set_fight()
 void Papyrus::set_mercy()
 {
 	_is_first_mercy_or_attck = true;
+	papyrus_round.set_is_set(false);
+	init_barrage_data();
 }
