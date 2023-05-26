@@ -50,7 +50,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
       if(!papyrusRound.GetIsSet())
       {
-        papyrusRound.SetAllData();
+        papyrusRound.SetAllData(21);
       }
     }
     
@@ -168,10 +168,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       // to do enemy attack
       // ===========================================================
       // for not be impacted by migosp in papyrus's round
-      if(enemy!=&migosp)
-      {
+      //if(enemy!=&migosp)
+      //{
         enemy->fight_open(&heart_test,&charactor);
-      }
+      //}
 
       if (menu.get_current_stage()== 3)
       {
@@ -185,13 +185,13 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       stage_go = 1;
     }
     // for not be impacted by migosp in papyrus's round
-    if(enemy!=&migosp)
-    {
+    //if(enemy!=&migosp)
+    //{
       if (enemy->get_fight_end())
       {
         stage_go = 1;
       }  
-    }
+    //}
     
   
     break;
@@ -230,7 +230,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
   migosp.set_img();
-  // migosp.set_barrage();
+  // for not be impacted by migosp in papyrus's round
+  migosp.set_barrage();
   greater_dog.set_img();
   
   user_frame.load_img();

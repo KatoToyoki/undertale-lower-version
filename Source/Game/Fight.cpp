@@ -233,8 +233,8 @@ bool Fight::GetIsMiss()
 void Fight::RevealMinusHP()
 {
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
-    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "Determination Mono Web", RGB(255, 255, 255), 800);
-    game_framework::CTextDraw::Print(pDC, 900, _enemy->fight_bar_positon.y-70, minusHP);
+    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "UNDERTALE ATTACK FONT (REVERSED)", RGB(255, 0, 0), 800);
+    game_framework::CTextDraw::Print(pDC, 860, _enemy->fight_bar_positon.y-70, minusHP);
     game_framework::CDDraw::ReleaseBackCDC();
     if(durationMinusHP!=0)
     {
@@ -245,15 +245,8 @@ void Fight::RevealMinusHP()
 void Fight::MinusBG()
 {
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
-    if(minusHP=="MISS")
-    {
-        game_framework::CTextDraw::ChangeFontLog(pDC, 48, "Determination Mono Web", RGB(255, 0, 0), 800);
-        game_framework::CTextDraw::Print(pDC, 892, _enemy->fight_bar_positon.y-75, minusHP);
-    }else
-    {
-        game_framework::CTextDraw::ChangeFontLog(pDC, 50, "Determination Mono Web", RGB(255, 0, 0), 800);
-        game_framework::CTextDraw::Print(pDC, 887, _enemy->fight_bar_positon.y-75, minusHP);
-    }
+    game_framework::CTextDraw::ChangeFontLog(pDC, 30, "UNDERTALE ATTACK FONT (REVERSED)", RGB(0, 255, 0), 800);
+    game_framework::CTextDraw::Print(pDC, 870, _enemy->fight_bar_positon.y-60, minusHP);
     game_framework::CDDraw::ReleaseBackCDC();
 }
 
