@@ -159,7 +159,7 @@
             }
         }
     ],
-    "round21_next_round": [
+    "round18_next_round": [
         {
             "reaction0": {
                 "frame0": {
@@ -418,7 +418,7 @@
         {
             "reaction0": {
                 "frame0": {
-                    "content0": "YEAH1",
+                    "content0": "YEAH!",
                     "content1": "DON'T MAKE ME",
                     "content2": "USE MY SPECIAL",
                     "content3": "ATTACK!"

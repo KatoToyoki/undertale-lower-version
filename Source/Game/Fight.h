@@ -108,7 +108,6 @@ public:
     void ResetMinusHP();
     void ResetIsAttack();
     void ResetIsMiss();
-
     
     // REQUIRED
     // load and set img for init
@@ -141,6 +140,8 @@ public:
 
     // to show how much attack enemy received
     void RevealMinusHP();
+
+    void MinusBG();
 
     // after the enter was pressed, the image then show up
     // so it can't be place with load img together

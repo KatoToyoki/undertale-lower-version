@@ -112,9 +112,9 @@ void Papyrus::set_next_round_text_updata()
 		next_round_text = text_content.get_reaction("hp_low");
 	else if (_is_first_mercy_or_attck && round_count == 1)
 		next_round_text = text_content.get_reaction("first_fight_mercy_next_round");
-	else if (_is_first_mercy_or_attck && round_count == 22)
-		next_round_text = text_content.get_reaction("round21_next_round");
-	else if (_is_first_mercy_or_attck && round_count >= 23)
+	else if (_is_first_mercy_or_attck && round_count == 18)//maybe see
+		next_round_text = text_content.get_reaction("round18_next_round");
+	else if (_is_first_mercy_or_attck && round_count >= 19)//maybe see
 		next_round_text = text_content.get_reaction("end_next_round");
 	else if (flirt_after_count > 0 && flirt_after_count < 10)
 		next_round_text = text_content.get_reaction("flirt_next_round_"+std::to_string(flirt_after_count-1));
@@ -157,7 +157,7 @@ void Papyrus::set_monster_frame_before()
 	monster_frame_mode_before_battle = enter_talk;
 	monster_text = text_content.get_reaction("flirt_monster_talk_0");
 	//no first mercy or fight
-	if (_is_first_mercy_or_attck )
+	if (_is_first_mercy_or_attck && round_count <20)
 		monster_text = text_content.get_reaction("round"+to_string(round_count)+"_monster_talk");
 	else if (_current_selection == CHECK_P)
 		monster_text = text_content.get_reaction("init_check_monster_talk");
@@ -181,6 +181,11 @@ void Papyrus::set_monster_frame_after()
 		monster_text = text_content.get_reaction("after_fight_mercy_after_battle");
 		monster_frame_mode_after_battle = enter_talk;
 	}
+	else if (round_count == 18 || round_count == 19)
+	{
+		monster_text = text_content.get_reaction("round"+ to_string(round_count)+"_after_battle");
+		monster_frame_mode_after_battle = enter_talk;
+	}
 	
 	monster_frame_game_text_after_battle = set_vector_vector_to_game_text(monster_text,monster_times_after,monster_mode_2);
 	monster_cost_round_after = monster_text.size();
@@ -188,7 +193,7 @@ void Papyrus::set_monster_frame_after()
 
 void Papyrus::check_mercy()
 {
-	if (round_count >= 23)
+	if (round_count >= 20)
 	{
 		_is_mercy = true;
 	}
