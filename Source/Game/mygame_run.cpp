@@ -22,6 +22,7 @@ void CGameStateRun::OnBeginState()
   menu.init();
   items.init();
   charactor.init();
+  gameFight.init();
   stage_go = LOAD;
   music->Pause();
   music->Play(0,true);
