@@ -100,6 +100,7 @@ public:
     virtual bool get_fight_end() = 0;
     void set_battle_timer(int time) {battel_mode_timer = time;}
     virtual void init_barrage_data() {}
+    virtual void to_get_enter_count(UINT nChar,int stage){}
     
 
     Acts acts;

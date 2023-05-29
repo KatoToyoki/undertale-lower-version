@@ -162,9 +162,10 @@ void GreaterDog::set_act_text_updata()
 		case 0:
 		case 1:
 		case 2:
+		case 3:
 			 act_text = text_content.get_reaction("ignore_4");
 			 break;
-		case 3:
+		case 4:
 			 act_text = text_content.get_reaction("ignore_over_4");
 			 break;
 		}
@@ -196,13 +197,6 @@ void GreaterDog::act_choose_count(int button_current)
 			if (is_pet_afb)
 				is_play_afb = true;
 		}
-		if (_current_selection == IGNORE_D)
-		{
-			ignore_times+=1;
-			if (ignore_times == 4)
-				_is_gameover = true;
-		}
-		
 	}
 }
 
@@ -242,11 +236,11 @@ void GreaterDog::set_next_round_text_updata()
 	{
 		next_round_text = text_content.get_reaction("afb_play_wait_pet");
 	}
-	else if(ignore_times >=3)
+	else if(ignore_times >=4)
 	{
 		next_round_text = text_content.get_reaction("ignore_4_next_round");
 	}
-	else if (ignore_times > 0 && ignore_times < 3)
+	else if (ignore_times > 0 && ignore_times < 4)
 	{
 		next_round_text = text_content.get_reaction("ignore_over_4_next_round");
 	}
@@ -318,5 +312,15 @@ void GreaterDog::show_barrage(Move* heart, Character* charactor,int stege)
 		greater_dog_round.SetIsRightTime(true);
 		greater_dog_round.RevealBarrage();
 		greater_dog_round.DogAnimation(heart,charactor);
+	}
+}
+    
+void GreaterDog::to_get_enter_count(UINT nChar, int stage)
+{
+	if (_current_selection == IGNORE_D && stage == game_framework::CHOOSE_ACT_ITEM)
+	{
+		ignore_times+=1;
+		if (ignore_times == 4)
+			 _is_gameover = true;
 	}
 }

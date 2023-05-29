@@ -36,6 +36,7 @@ public:
     bool get_fight_end() override;//這裡面用來回傳判斷該回合戰鬥結束的條件 結束就true 還沒結束就false
     void init_barrage_data() override;//用來init彈幕資料
     void show_barrage(Move* heart, Character* charactor, int stage) override;//判斷該enemy的彈幕們何時顯示
+    void to_get_enter_count(UINT nChar, int stage) override;
     
     void check_mercy() override;//mercy條件寫在這裡 條件齊了就改變is_mercy
 private:

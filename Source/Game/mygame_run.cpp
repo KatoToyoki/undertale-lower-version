@@ -135,7 +135,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     if (enemy->_is_pass_stage)
       stage_go = BATTLE;
 
-    // show_normal_mode.set_heart_mode(heart_blue);
+    game_manager.set_heart_mode(heart_blue);
     stage_go_enable_add = enemy->get_now_monster_frame_mode(BEFORE_BATTLE) == enter_talk;
     stage_go_enable_sub = false;
     break;
@@ -284,7 +284,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     enemy->monster_frame_stage_control_updata(nChar,&monster_frame,stage_go);
     items.item_after_stage_control_updata(nChar);
     if (stage_go!= BATTLE && stage_go!= BATTLE_AFTER_MONSTER_FRAME) {charactor.change_hp_updata(nChar);}
-    papyrusRound.ToGetEnterCount(nChar);
+    enemy->to_get_enter_count(nChar,stage_go);
   }
   //stage_control
   if ((nChar == VK_RETURN || nChar == 0x5A) && (stage_go == END)) {

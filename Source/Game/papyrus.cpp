@@ -247,3 +247,8 @@ void Papyrus::set_mercy()
 	papyrus_round.set_is_set(false);
 	init_barrage_data();
 }
+
+void Papyrus::to_get_enter_count(UINT nChar, int stage)
+{
+    papyrus_round.ToGetEnterCount(nChar);
+}

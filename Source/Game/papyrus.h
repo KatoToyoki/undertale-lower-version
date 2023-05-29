@@ -30,6 +30,7 @@ public:
     bool get_fight_end() override;
     void show_barrage(Move* heart, Character* charactor,int stage) override;
     void init_barrage_data() override;//用來init彈幕資料
+    void to_get_enter_count(UINT nChar, int stage) override;
 
     void check_mercy() override;
 private:

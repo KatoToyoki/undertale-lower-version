@@ -40,6 +40,7 @@ public:
 	DWORD jump_time_count;
 	DWORD jump_time_count_max_up;
 	DWORD jump_time_count_max_down;
+	DWORD max_init = 450;
 
     int GetCurrentX();
     int GetCurrentY();
