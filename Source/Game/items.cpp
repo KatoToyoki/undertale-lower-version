@@ -10,6 +10,12 @@ Items::Items()
     set_items_init();
 }
 
+void Items::init()
+{
+    set_items_init();
+}
+
+
 GameText Items::get_item_list()
 {
     vector<Text> text_vector = {};

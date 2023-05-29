@@ -6,7 +6,9 @@
 GreaterDog::GreaterDog()
 {
 	text_content.load("GreaterDogAct");
+	_is_mercy = false;
     _is_init = true;
+	monster_exp = 50;
 	set_acts();
 	_current_selection = 0;
 	monster_name = GameText({
@@ -21,6 +23,18 @@ GreaterDog::GreaterDog()
 		TEXXT(text_content.get_reaction("win_text")[0][1])
 	},
 	talk_mode);
+}
+
+void GreaterDog::init_sub()
+{
+    ignore_times = 0;
+    beckon_times = 0;
+    pet_times = 0;
+	play_times = 0;
+	act_times_enter = 0;
+	is_beckon = false;
+    is_play_afb = false;
+	is_pet_afb = false;
 }
 
 void GreaterDog::set_img()

@@ -22,7 +22,7 @@ void CGameStateOver::OnMove()
 	GotoGameState(GAME_STATE_OVER);
 	if ( GetKeyState(0x51)&0x8000)
 	{
-		exit(0);
+		GotoGameState(GAME_STATE_RUN);
 	}
 }
 

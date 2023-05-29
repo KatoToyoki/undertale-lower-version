@@ -25,6 +25,8 @@ enum monster_frame_stage
 class Enemy
 {
 public:
+    void init();
+    virtual void init_sub() = 0;
     virtual void set_hp_img() = 0;
     virtual void set_img() = 0;
     bool is_game_over() {return  _is_gameover;}
@@ -42,6 +44,7 @@ public:
 
     void set_enemy_shark_time(float time);
     void enemy_shark();
+    int get_monster_exp() {return monster_exp;}
     
 /// mercy
     GameText get_mercy_game_text() { return mercy_text;}
@@ -141,6 +144,7 @@ protected:
     int hp_bar_y = 630;
     int enemy_x;
     int enemy_y;
+    int monster_exp = 0;
 
     game_framework::CMovingBitmap enemy_img;
     game_framework::CMovingBitmap enemy_last;

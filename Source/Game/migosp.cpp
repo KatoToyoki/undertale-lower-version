@@ -7,6 +7,9 @@ Migosp::Migosp()
 {
 	text_content.load("MigospAct");
 	set_acts();
+    _is_init = true;
+	_is_mercy = false;
+	monster_exp = 40;
 	_current_selection = 0;
 	monster_name = GameText({
 		Text (60, "* Migosp", RGB(255,255,255),500, 465,613)},
@@ -22,6 +25,11 @@ Migosp::Migosp()
 	talk_mode);
 	monster_text = text_content.get_reaction("neutral");
 }
+
+void Migosp::init_sub()
+{
+}
+
 
 void Migosp::set_img()
 {

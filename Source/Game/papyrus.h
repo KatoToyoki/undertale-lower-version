@@ -13,6 +13,7 @@ class Papyrus : public Enemy
 {
 public:
     Papyrus();
+    void init_sub() override;
     void set_img() override;
     void set_hp_img() override;
     void set_acts() override;

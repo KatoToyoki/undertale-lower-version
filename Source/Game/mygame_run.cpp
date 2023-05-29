@@ -17,7 +17,15 @@ CGameStateRun::CGameStateRun(CGame *g) : CGameState(g) {}
 
 CGameStateRun::~CGameStateRun() {}
 
-void CGameStateRun::OnBeginState() {}
+void CGameStateRun::OnBeginState()
+{
+  menu.init();
+  items.init();
+  charactor.init();
+  stage_go = LOAD;
+  music->Pause();
+  music->Play(0,true);
+}
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
   if (charactor.get_current_hp() == 0)
@@ -43,7 +51,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     if (menu.get_current_stage() == 1) {enemy = &migosp;}
     if (menu.get_current_stage() == 2) {enemy = &greater_dog;}
     if (menu.get_current_stage() == 3) {enemy = &papyrus;}
+    enemy->init();
     game_manager.load_data(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,enemy,&items,&charactor);
+    game_manager.set_heart_mode(heart_red);
     break;
   case INIT:
     stage_go_enable_add = true;
@@ -176,6 +186,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     if (gameFight.GetDurationMinusHP()<=0 || gameButtonFrame.get_current_selection() != FIGHT)
     {
       music->Play(9);
+      charactor.add_exp(enemy->get_monster_exp());
       enemy->set_enemy_img_init_or_damege(end_img);
       if (enemy->is_game_over() && stage_go < BEFORE_END)
         stage_go = BEFORE_END;
@@ -250,7 +261,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   music ->Load(7,"Resources/Effects/fight.MP3");
   music ->Load(8,"Resources/Effects/heal.MP3");
   music ->Load(9,"Resources/Effects/endfight.MP3");
-  music->Play(0,true);
 }
 
 

@@ -58,5 +58,5 @@ private:
     bool _enable_move = false;
     bool _enable_blue_heart_jump = false;
     
-    HeartMode _heart_mode = heart_red;
+    HeartMode _heart_mode;// = heart_red;
 };

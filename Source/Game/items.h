@@ -17,6 +17,7 @@ class Items
 {
 public:
     Items();
+    void init();
     
     GameText get_item_list();
     int get_selection_heal_num();

@@ -3,6 +3,24 @@
 
 #include "text.h"
 
+void Character::init()
+{
+    hp = hp_max;
+}
+
+void Character::add_exp(int monster_exp)
+{
+  exp += monster_exp;
+  check_level();
+}
+
+void Character::check_level()
+{
+  level = ((int) exp/50 ) +1;
+  hp_max = level*20;
+  hp = hp_max;
+}
+
 void Character::set_hp_img()
 {
   hp_bar.LoadBitmapByString({"resources/char_hp.bmp"});

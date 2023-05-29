@@ -16,6 +16,7 @@ class GreaterDog : public Enemy
 {
 public:
     GreaterDog();
+    void init_sub() override;
     //set enemy normal img & damege img & red attcke posion & fight attck bar positon & barrage
     void set_img() override;
     void set_hp_img() override;//set choose fight target need set the hp bar x postion

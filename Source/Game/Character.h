@@ -6,12 +6,15 @@
 class Character
 {
 public:
+    void init();
     void change_hp(bool enable,int heal_or_damege = 0);
     void change_hp_updata(UINT nChar);
     void set_hp_img();
     void show_charactor_data();
     void updata_hp_bar_by_hp();
     int get_current_hp() { return hp; }
+    void add_exp(int monster_exp);
+    void check_level();
 
 private:
     std::string name = "Frisk";

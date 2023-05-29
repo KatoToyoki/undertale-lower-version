@@ -9,6 +9,7 @@ Papyrus::Papyrus()
     _is_init = true;
 	_is_mercy = false;
 	round_count = 0;
+	monster_exp = 100;
 	set_acts();
 	_current_selection = 0;
 	monster_name = GameText({
@@ -23,6 +24,15 @@ Papyrus::Papyrus()
 	},
 	talk_mode);
 	next_round_text = text_content.get_reaction("init");
+}
+void Papyrus::init_sub()
+{
+	_is_first_mercy_or_attck = false;
+	_is_flirt = false;
+	round_count = 0;
+	flirt_count = 0;
+	flirt_after_count = 0;
+	insult_count = 0;
 }
 
 void Papyrus::set_img()
