@@ -165,7 +165,7 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
         break;
     }
 
-    if(dogFindCounter==0)
+    if(dogFindCounter==0 || (dogFindQ%2==0 && DetectCertainPoint(enemyBarrage[dogFindQ],720,up)))
     {
         replacement=GetBase(heart->GetCurrentX()-enemyBarrage[dogFindQ+1].GetOnePosition(IMGleft)-20,
                 heart->GetCurrentY()-enemyBarrage[dogFindQ+1].GetOnePosition(IMGtop)-20);

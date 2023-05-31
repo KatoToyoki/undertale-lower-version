@@ -245,8 +245,21 @@ void Fight::RevealMinusHP()
 void Fight::MinusBG()
 {
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
-    game_framework::CTextDraw::ChangeFontLog(pDC, 30, "UNDERTALE ATTACK FONT (REVERSED)", RGB(0, 255, 0), 800);
-    game_framework::CTextDraw::Print(pDC, 870, _enemy->fight_bar_positon.y-60, minusHP);
+    
+    std::string minusBG;
+    if(minusHP!="MISS")
+    {
+        minusBG="--"+minusHP;
+        game_framework::CTextDraw::ChangeFontLog(pDC, 60, "", RGB(1, 1, 1), 800);
+        game_framework::CTextDraw::Print(pDC, 860, _enemy->fight_bar_positon.y-90, minusBG);
+    }
+    else
+    {
+        minusBG=minusHP+"S";
+        game_framework::CTextDraw::ChangeFontLog(pDC, 60, "", RGB(1, 1, 1), 800);
+        game_framework::CTextDraw::Print(pDC, 850, _enemy->fight_bar_positon.y-80, minusBG);
+    }
+    
     game_framework::CDDraw::ReleaseBackCDC();
 }
 
