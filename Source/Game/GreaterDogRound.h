@@ -16,7 +16,7 @@ private:
     int changeColor=0;
     int dogFindQ=1;
     int dogFindCounter=0;
-    int mode=0;
+    int barkSpaceCounter=0;
     
 public:
     GreaterDogRound()=default;

@@ -36,6 +36,7 @@ void GreaterDogRound::SetAllData(int selection)
     dogFindQ=1;
     dogFindCounter=0;
     isRightTime=false;
+    barkSpaceCounter=0;
 }
 
 void GreaterDogRound::SelectRound(Move* heart, Character* character, int selection)
@@ -150,16 +151,42 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
     switch (dogFindQ)
     {
     case 1:
-        if(BarkLeft(enemyBarrage[dogFindQ+1]))
+        barkSpaceCounter++;
+        if(barkSpaceCounter==10)
         {
-            dogFindQ=3;
+            dogFindQ=2;
             dogFindCounter=0;
         }
         break;
+    case 2:
+        std::cout<<"gg";
+        if(BarkLeft(enemyBarrage[dogFindQ]))
+        {
+            dogFindQ=3;
+            dogFindCounter=0;
+            barkSpaceCounter=0;
+        }
+        break;
     case 3:
-        if(BarkLeft(enemyBarrage[dogFindQ+1]))
+        barkSpaceCounter++;
+        if(barkSpaceCounter==10)
+        {
+            dogFindQ=4;
+            dogFindCounter=0;
+        }
+        break;
+    case 4:
+        if(BarkLeft(enemyBarrage[dogFindQ]))
         {
             dogFindQ=5;
+            dogFindCounter=0;
+            barkSpaceCounter=0;
+        }
+        break;
+    case 5:
+        barkSpaceCounter++;
+        if(barkSpaceCounter==10)
+        {
             dogFindCounter=0;
         }
         break;
@@ -189,10 +216,20 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
         dogFindCounter++;
     }    
 
-    GoUp(enemyBarrage[dogFindQ],heart,(abs(replacement.displacementY)),character);
-    GoRight(enemyBarrage[dogFindQ],heart,replacement.displacementX,character);
-    GoUp(enemyBarrage[dogFindQ+1],heart,(abs(replacement.displacementY)),character);
-    GoRight(enemyBarrage[dogFindQ+1],heart,replacement.displacementX,character);
+    if(dogFindQ%2!=0)
+    {
+        GoUp(enemyBarrage[dogFindQ],heart,(abs(replacement.displacementY)),character);
+        GoRight(enemyBarrage[dogFindQ],heart,replacement.displacementX,character);
+        GoUp(enemyBarrage[dogFindQ+1],heart,(abs(replacement.displacementY)),character);
+        GoRight(enemyBarrage[dogFindQ+1],heart,replacement.displacementX,character);
+    }
+    else
+    {
+        GoUp(enemyBarrage[dogFindQ-1],heart,(abs(replacement.displacementY)),character);
+        GoRight(enemyBarrage[dogFindQ-1],heart,replacement.displacementX,character);
+        GoUp(enemyBarrage[dogFindQ],heart,(abs(replacement.displacementY)),character);
+        GoRight(enemyBarrage[dogFindQ],heart,replacement.displacementX,character);
+    }
 }
 
 void GreaterDogRound::Spear(Move* heart, Character* character)
