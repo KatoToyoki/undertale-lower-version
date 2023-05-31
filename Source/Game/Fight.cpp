@@ -2,6 +2,8 @@
 #include "Fight.h"
 #include <string>
 
+#include "../Library/audio.h"
+
 bool Fight::GetEnable()
 {
     return _enable;
@@ -222,6 +224,11 @@ void Fight::ToStop(UINT nChar)
         _isAttack=true;
         attackThisRound+=1;
         DetectMissCondition();
+        if (attackThisRound == 1 && !_isMiss)
+        {
+            game_framework::CAudio::Instance() -> Play(7);
+            _enemy->set_enemy_shark_time(15);
+        }
     }
 }
 

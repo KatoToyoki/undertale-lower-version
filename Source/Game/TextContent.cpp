@@ -9,6 +9,8 @@ void TextContent::HandleActContent(std::string fileName, std::string situation)
     file >> data;
 
     std::string temp;
+    act.clear();
+    act.shrink_to_fit();
 
     for (auto &item : data[situation]) {
         for (auto &reaction : item) {
@@ -21,14 +23,15 @@ void TextContent::HandleActContent(std::string fileName, std::string situation)
                 }
                 container.push_back(_frame);
             }
-                actOneReaction = container;
+            act.push_back(container);
         }
     }
 }
 
 std::vector<std::vector<std::string>> TextContent::get_reaction(std::string situation)
 {
-    return data_context[situation];
+    int random=rand()%data_context[situation].size();
+    return data_context[situation][random];
 }
 
 void TextContent::get_data(std::string fileName)
@@ -43,7 +46,7 @@ void TextContent::get_data(std::string fileName)
     {
         HandleActContent(fileName,item.key());
         string key = item.key();
-        data_context.insert({key, actOneReaction});
+        data_context.insert({key, act});
     }
 }
 

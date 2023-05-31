@@ -28,6 +28,7 @@ public:
 
     void monster_frame_no_battle();
     void monster_frame_battle();
+    void battle_after_monster_frame();
 
 
     void set_heart_mode(HeartMode mode);

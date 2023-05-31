@@ -21,19 +21,18 @@ public:
     void set_barrage() override;
     void set_acts() override;
     void set_act_text_updata() override;
-    void act_choose_count(UINT nChar,int button_current) override {}
-    void set_monster_frame() override;
+    void act_choose_count(int button_current) override {}
+    void set_monster_frame_before() override;
     void set_next_round_text_updata() override;
 
-    std::vector<std::vector<std::string>> get_random_text(std::string name) override;
-    frame_command get_monster_battle_mode() override { return talk_to_normal_battle; }
+    frame_command_c get_monster_battle_mode() override ;
     
     void check_mercy() override;
     void fight_open(Move* heart, Character* charactor) override;
     bool get_fight_end() override;
 
     void show_barrage(Move* heart, Character* charactor,int stage) override;
-    
-///
-private:
+
+    //test
+    // void set_monster_frame_after() override;
 };

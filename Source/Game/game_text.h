@@ -10,7 +10,8 @@ enum mode
     talk_mode,
     target_mode,
     act_item_mode,
-    monster_mode
+    monster_mode_1,
+    monster_mode_2,
 };
 class GameText
 {

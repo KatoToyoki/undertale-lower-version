@@ -18,10 +18,9 @@ public:
     void load_img();
     void load_game_text_and_mode(GameText game_text,int mode = no_enter_talk);
     void show_monster_frame_and_print();
-    void set_img_position(int x, int y);
     void set_enable(bool enable);
+    void set_monster_frame_img(game_framework::CMovingBitmap img);
     
-    bool _monster_saying_is_done = true;
     DWORD _time_count = 0;
 private:
     game_framework::CMovingBitmap monster_frame_img;

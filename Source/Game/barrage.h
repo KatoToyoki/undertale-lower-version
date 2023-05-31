@@ -44,7 +44,7 @@ public:
     void show_img();
     void UnshowIMG();
     
-    void switch_mode();
+    void switch_mode(barrage_mode mode);
     
     void damege_hit(Move *heart,Character *character, int command=appear);
 

@@ -91,16 +91,9 @@ void Barrage::UnshowIMG()
     }
 }
 
-void Barrage::switch_mode()
+void Barrage::switch_mode(barrage_mode mode)
 {
-    if (_mode == white)
-    {
-        _mode = blue;
-    }
-    else
-    {
-        _mode = white;
-    }
+    _mode = mode;
 }
 
 void Barrage::damege_hit(Move *heart, Character *character,int command)
@@ -108,7 +101,6 @@ void Barrage::damege_hit(Move *heart, Character *character,int command)
     if (_mode == white && barrage_img.IsOverlap(barrage_img,heart->heart) && heart -> shine_time_count >=400)
     {
         heart->shine_time_count = 0;
-        heart->shine_two_second();
         
         character->change_hp(true,_damage*(-1));
 
@@ -126,7 +118,6 @@ void Barrage::damege_hit(Move *heart, Character *character,int command)
             if (barrage_img.IsOverlap(barrage_img,heart->heart) && heart -> shine_time_count >=400 )
             {
                 heart->shine_time_count = 0;
-                heart->shine_two_second();
                 
                 character->change_hp(true,_damage*(-1));
 
@@ -134,12 +125,9 @@ void Barrage::damege_hit(Move *heart, Character *character,int command)
                 {
                     barrage_img.SetTopLeft(0,0);
                 }
-                return;
             }
         }
     }
-    heart->shine_two_second();
-    return ;
 }
 
 int Barrage::GetOnePosition(int direction)
