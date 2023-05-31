@@ -84,6 +84,8 @@ private:
 
     game_framework::CMovingBitmap attack_red;
     Enemy *_enemy;
+
+    std::vector<game_framework::CMovingBitmap> minusText;
 protected:
     
 public:
@@ -138,11 +140,6 @@ public:
     // in order to do the miss condition
     bool GetIsMiss();
 
-    // to show how much attack enemy received
-    void RevealMinusHP();
-
-    void MinusBG();
-
     // after the enter was pressed, the image then show up
     // so it can't be place with load img together
     void ShowHPBar();
@@ -154,4 +151,6 @@ public:
     void UnshowHPBar();
 
     bool is_hp_zero() { return (monsterHP == 0); }
+
+    void RevealMinusText();
 };

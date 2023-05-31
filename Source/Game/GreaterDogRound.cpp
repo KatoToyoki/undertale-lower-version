@@ -23,7 +23,7 @@ void GreaterDogRound::SetAllData(int selection)
         HandleJsonData("DogFindYou","GreaterDogRounds");   
         break;
     case 1:
-        changeColor=rand()%(170-100+1)+100; 
+        changeColor=rand()%(220-90+1)+90; 
         HandleJsonData("Spear","GreaterDogRounds");   
         break;
     }
@@ -216,7 +216,7 @@ void GreaterDogRound::Spear(Move* heart, Character* character)
             enemyBarrage[0].barrage_img.SetFrameIndexOfBitmap(1);
             enemyBarrage[0].switch_mode(blue);
         }
-        else if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-4*changeColor)<10)
+        if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-3*changeColor)<20)
         {
             enemyBarrage[0].barrage_img.SetFrameIndexOfBitmap(0);
             enemyBarrage[0].switch_mode(white);

@@ -75,6 +75,30 @@ void Fight::load_img()
     ,RGB(0,0,0));
 	attack_red.SetTopLeft(_enemy->red_attck_positon.x,_enemy->red_attck_positon.y);
 	attack_red.SetAnimation(150,false);
+
+    if(minusText.size()>0)
+    {
+        return;
+    }
+    
+   for(int i=0;i<4;i++)
+   {
+       game_framework::CMovingBitmap temp;
+       temp.LoadBitmapByString(
+        {"resources/0.bmp",
+        "resources/1.bmp",
+        "resources/2.bmp",
+        "resources/3.bmp",
+        "resources/4.bmp",
+        "resources/5.bmp",
+        "resources/6.bmp",
+        "resources/7.bmp",
+            "resources/8.bmp",
+            "resources/9.bmp",
+        "resources/miss.bmp"
+        },RGB(255,255,255));
+       minusText.push_back(temp);
+   }
 }
 void Fight::set_monster(Enemy* enemy)
 {
@@ -112,9 +136,8 @@ void Fight::show_fight_img()
         MovingHPBar();
         
         if(GetDurationMinusHP()>0){
-            MinusBG();
-            RevealMinusHP();
             ShowHPBar();
+            RevealMinusText();
         }
         else if(GetDurationMinusHP()==0){
             ResetDurationMinusHP();
@@ -163,7 +186,7 @@ int Fight::Minus(double range)
         minusPosition-=displacement;
     }
     
-    minusHP="-"+(std::to_string(damage));
+    minusHP=std::to_string(damage);
 
     return damage;
 }
@@ -237,39 +260,6 @@ bool Fight::GetIsMiss()
     return _isMiss;
 }
 
-void Fight::RevealMinusHP()
-{
-    CDC *pDC = game_framework::CDDraw::GetBackCDC();
-    game_framework::CTextDraw::ChangeFontLog(pDC, 40, "UNDERTALE ATTACK FONT (REVERSED)", RGB(255, 0, 0), 800);
-    game_framework::CTextDraw::Print(pDC, 860, _enemy->fight_bar_positon.y-70, minusHP);
-    game_framework::CDDraw::ReleaseBackCDC();
-    if(durationMinusHP!=0)
-    {
-        durationMinusHP-=1;
-    }
-}
-
-void Fight::MinusBG()
-{
-    CDC *pDC = game_framework::CDDraw::GetBackCDC();
-    
-    std::string minusBG;
-    if(minusHP!="MISS")
-    {
-        minusBG="--"+minusHP;
-        game_framework::CTextDraw::ChangeFontLog(pDC, 60, "", RGB(1, 1, 1), 800);
-        game_framework::CTextDraw::Print(pDC, 860, _enemy->fight_bar_positon.y-90, minusBG);
-    }
-    else
-    {
-        minusBG=minusHP+"S";
-        game_framework::CTextDraw::ChangeFontLog(pDC, 60, "", RGB(1, 1, 1), 800);
-        game_framework::CTextDraw::Print(pDC, 850, _enemy->fight_bar_positon.y-80, minusBG);
-    }
-    
-    game_framework::CDDraw::ReleaseBackCDC();
-}
-
 void Fight::ShowHPBar()
 {
     HP.ShowBitmap();
@@ -296,4 +286,30 @@ void Fight::UnshowHPBar()
     HP.UnshowBitmap();
     HPminus.UnshowBitmap();
     HPFrame.UnshowBitmap();
+}
+
+void Fight::RevealMinusText()
+{
+    int times = minusHP.length();
+    int startPoint = (1920-68*times)/2;
+    if(minusHP=="MISS")
+    {
+        minusText[0].SetFrameIndexOfBitmap(10);
+        minusText[0].SetTopLeft(805,_enemy->fight_bar_positon.y-80);
+        minusText[0].ShowBitmap();
+    }
+    else
+    {
+        for(int i=0;i<times;i++)
+        {
+            minusText[i].SetFrameIndexOfBitmap(minusHP[i]-'0');
+            minusText[i].SetTopLeft(startPoint+68*i,_enemy->fight_bar_positon.y-70);
+            minusText[i].ShowBitmap();
+        }
+    }
+
+    if(durationMinusHP!=0)
+    {
+        durationMinusHP-=1;
+    }
 }
