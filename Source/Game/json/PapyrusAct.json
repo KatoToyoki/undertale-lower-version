@@ -712,7 +712,8 @@
         {
             "reaction0": {
                 "frame0": {
-                    "content0": "* Papyrus is at the edge of defeat."
+                    "content0": "* Papyrus is at the edge ",
+                    "content1": "  of defeat."
                 }
             }
         }

@@ -299,6 +299,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     if (stage_go!= BATTLE && stage_go!= BATTLE_AFTER_MONSTER_FRAME) {charactor.change_hp_updata(nChar);}
     enemy->to_get_enter_count(nChar,stage_go);
   }
+
   //stage_control
   if ((nChar == VK_RETURN || nChar == 0x5A) && (stage_go == END)) {
     music->Pause();
@@ -306,7 +307,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
   
-  if ((nChar == VK_RETURN || nChar == 0x5A) && user_frame.get_move_done() && stage_go_enable_add)
+  if ((nChar == VK_RETURN || nChar == 0x5A) && !items.is_items_empty() && user_frame.get_move_done() && stage_go_enable_add)
   {
     if ((stage_go <= CHOOSE_ACT_ITEM && gameButtonFrame.get_current_selection() != FIGHT)
       || stage_go <= CHOOSE_TARGET)

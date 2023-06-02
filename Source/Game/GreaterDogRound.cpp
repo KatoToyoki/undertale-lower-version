@@ -23,7 +23,7 @@ void GreaterDogRound::SetAllData(int selection)
         HandleJsonData("DogFindYou","GreaterDogRounds");   
         break;
     case 1:
-        changeColor=rand()%(170-100+1)+100; 
+        changeColor=rand()%(220-90+1)+90; 
         HandleJsonData("Spear","GreaterDogRounds");   
         break;
     }
@@ -36,6 +36,7 @@ void GreaterDogRound::SetAllData(int selection)
     dogFindQ=1;
     dogFindCounter=0;
     isRightTime=false;
+    barkSpaceCounter=0;
 }
 
 void GreaterDogRound::SelectRound(Move* heart, Character* character, int selection)
@@ -150,49 +151,43 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
     switch (dogFindQ)
     {
     case 1:
-        if(BarkLeft(enemyBarrage[dogFindQ+1]))
+    case 3:
+    case 5:
+        barkSpaceCounter++;
+        if(barkSpaceCounter==10)
         {
-            dogFindQ=3;
+            if(dogFindQ!=5)
+            {
+                dogFindQ+=1;
+            }
             dogFindCounter=0;
         }
         break;
-    case 3:
-        if(BarkLeft(enemyBarrage[dogFindQ+1]))
+    case 2:
+    case 4:
+        if(BarkLeft(enemyBarrage[dogFindQ]))
         {
-            dogFindQ=5;
+            dogFindQ+=1;
             dogFindCounter=0;
+            barkSpaceCounter=0;
         }
         break;
     }
 
-    if(dogFindCounter==0)
+    if(dogFindCounter==0 || (dogFindQ%2==0 && DetectCertainPoint(enemyBarrage[dogFindQ],720,up)))
     {
         replacement=GetBase(heart->GetCurrentX()-enemyBarrage[dogFindQ+1].GetOnePosition(IMGleft)-20,
                 heart->GetCurrentY()-enemyBarrage[dogFindQ+1].GetOnePosition(IMGtop)-20);
+        replacement.displacementX = abs(replacement.displacementX*4)>12 ? 12 : replacement.displacementX*4;
+        replacement.displacementY = abs(replacement.displacementY*4)>12 ? 12 : replacement.displacementY*4;
 
-        if(abs(replacement.displacementX*4)>12)
-        {
-            replacement.displacementX=12;
-        }
-        else
-        {
-            replacement.displacementX*=4;
-        }
-        if(abs(replacement.displacementY*4)>12)
-        {
-            replacement.displacementY=12;
-        }
-        else
-        {
-            replacement.displacementY*=4;
-        }
         dogFindCounter++;
-    }    
-
-    GoUp(enemyBarrage[dogFindQ],heart,(abs(replacement.displacementY)),character);
-    GoRight(enemyBarrage[dogFindQ],heart,replacement.displacementX,character);
-    GoUp(enemyBarrage[dogFindQ+1],heart,(abs(replacement.displacementY)),character);
-    GoRight(enemyBarrage[dogFindQ+1],heart,replacement.displacementX,character);
+    }
+    
+    GoUp(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ : dogFindQ-1],heart,(abs(replacement.displacementY)),character);
+    GoRight(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ : dogFindQ-1],heart,replacement.displacementX,character);
+    GoUp(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ+1 : dogFindQ],heart,(abs(replacement.displacementY)),character);
+    GoRight(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ+1 : dogFindQ],heart,replacement.displacementX,character);
 }
 
 void GreaterDogRound::Spear(Move* heart, Character* character)
@@ -216,7 +211,7 @@ void GreaterDogRound::Spear(Move* heart, Character* character)
             enemyBarrage[0].barrage_img.SetFrameIndexOfBitmap(1);
             enemyBarrage[0].switch_mode(blue);
         }
-        else if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-4*changeColor)<10)
+        if(enemyBarrage[0].GetOnePosition(IMGleft)-(allData[0].initX-3*changeColor)<20)
         {
             enemyBarrage[0].barrage_img.SetFrameIndexOfBitmap(0);
             enemyBarrage[0].switch_mode(white);

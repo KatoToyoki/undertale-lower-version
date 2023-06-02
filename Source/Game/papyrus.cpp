@@ -118,7 +118,9 @@ void Papyrus::set_act_text_updata()
 
 void Papyrus::set_next_round_text_updata()
 {
-	if (hp < 50)
+	if (_is_init)
+		next_round_text = text_content.get_reaction("init");
+	else if (hp < 50)
 		next_round_text = text_content.get_reaction("hp_low");
 	else if (_is_first_mercy_or_attck && round_count == 1)
 		next_round_text = text_content.get_reaction("first_fight_mercy_next_round");
