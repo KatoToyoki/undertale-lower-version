@@ -149,9 +149,6 @@ private:
   Menu menu;
   GameManager game_manager;
 
-  PapyrusRound papyrusRound;
-  GreaterDogRound greaterDogRound;
-
   MonsterFrame monster_frame;
   Migosp migosp;
   GreaterDog greater_dog;
@@ -171,6 +168,8 @@ private:
   Fight gameFight;
 
   CMovingBitmap green_line;
+
+  bool god_enable = false;//no damage
 };
 
 /////////////////////////////////////////////////////////////////////////////

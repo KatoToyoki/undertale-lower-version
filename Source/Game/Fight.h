@@ -108,7 +108,7 @@ public:
     void ResetMinusHP();
     void ResetIsAttack();
     void ResetIsMiss();
-    void init() { ResetDurationMinusHP(); ResetMinusHP(); ResetIsAttack(); ResetIsMiss(); monsterHP = 100;}
+    void init() { ResetDurationMinusHP(); ResetMinusHP(); ResetIsAttack(); ResetIsMiss(); monsterHP = 100; minusPosition = 1300;}
     
     // REQUIRED
     // load and set img for init

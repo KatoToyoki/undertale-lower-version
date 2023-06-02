@@ -17,7 +17,7 @@ void Character::add_exp(int monster_exp)
 void Character::check_level()
 {
   level = ((int) exp/50 ) +1;
-  hp_max = level*20;
+  hp_max = level*10;
   hp = hp_max;
 }
 
@@ -58,7 +58,7 @@ void Character::change_hp(bool enable, int heal_or_damege)
   _heal_or_damege = heal_or_damege;
   change_hp_enable = enable;
   
-  if (_heal_or_damege < 0 && change_hp_enable)
+  if (_heal_or_damege < 0 && change_hp_enable && !god_enable)
   {
     hp += _heal_or_damege;
     if (hp <= 0)
@@ -84,4 +84,9 @@ void Character::change_hp_updata(UINT nChar)
       hp = hp_max;
     }
   }
+}
+
+void Character::set_god_enable(bool enable)
+{
+  god_enable = enable;
 }

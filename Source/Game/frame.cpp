@@ -50,12 +50,12 @@ void Frame::set_position(Coordinate inner_leftTop) {
 Corner Frame::get_corner() const { return _corner; }
 
 void Frame::show_frame() {
+  up_horizontal_frame.ShowBitmap();
   down_horizontal_frame.ShowBitmap();
-  // up_horizontal_frame.ShowBitmap();
   left_vertical_frame.ShowBitmap();
   right_vertical_frame.ShowBitmap();
   down_black.ShowBitmap();
-  // stage_in_top_black.ShowBitmap();
+  stage_in_top_black.ShowBitmap();
 }
 
 void Frame::off_frame() {

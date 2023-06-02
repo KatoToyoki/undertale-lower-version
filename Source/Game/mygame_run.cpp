@@ -44,6 +44,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     enemy->set_monster_frame_game_text_enable(false);
     items.set_item_updata();
     monster_frame.set_enable(false);
+    charactor.set_god_enable(god_enable);
   }
   
   switch (stage_go)
@@ -164,6 +165,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       heart_test.shine_two_second();
 
       enemy->fight_open(&heart_test,&charactor);
+      // if (enemy->get_blue_enable) { game_manager.set_heart_mode(heart_blue);}
     }
     if (enemy->get_fight_end())
       stage_go = BATTLE_AFTER_MONSTER_FRAME;
@@ -336,6 +338,10 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     user_frame._current_selection = 0;
   }
 
+  if (nChar == 0x47)
+  {
+    god_enable = !god_enable;
+  }
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -367,26 +373,17 @@ void CGameStateRun::OnShow()
     menu.WholeMenu();
   } else {
     //all show thing put here
-    user_frame.stage_in_top_black.ShowBitmap();
+    // user_frame.stage_in_top_black.ShowBitmap();
+    if (user_frame.get_move_done()) {enemy->show_barrage(&heart_test, &charactor,stage_go);}
+    user_frame.show_frame();
     green_line.ShowBitmap();
     enemy->show_img();
     
-    user_frame.up_horizontal_frame.ShowBitmap();
+    // user_frame.up_horizontal_frame.ShowBitmap();
     heart_test.show_heart_img();
     // ===========================================================
     // enemy attack path
-    if (user_frame.get_move_done()) {enemy->show_barrage(&heart_test, &charactor,stage_go);}
-    if(stage_go==BATTLE)
-    {
-      if(menu.get_current_stage()==3)
-      {
-        papyrusRound.SetIsRightTime(true);
-        papyrusRound.RevealBarrage();
-        papyrusRound.DogAnimation(&heart_test,&charactor);
-      }
-    }
 
-    user_frame.show_frame();
     user_frame.show_select_heart();
     user_frame.print();//print all thing in user_frame by load_text(GameText) in OnMove and set_enable)
     
@@ -403,5 +400,9 @@ void CGameStateRun::OnShow()
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
+    
+    std::string str_1 = "God enable :" + to_string(god_enable);
+    Text stage1(50,str_1,RGB(255,255,255),600,100,200);
+    stage1.print();
   }
 }

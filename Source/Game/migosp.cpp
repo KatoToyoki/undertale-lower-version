@@ -127,25 +127,10 @@ void Migosp::check_mercy()
 
 void Migosp::set_monster_frame_before()
 {
-	//
 	monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times_before,monster_mode_1);
 	monster_cost_round_before = monster_text.size();
 	monster_frame_mode_before_battle = no_enter_talk;
-
-	// monster_text = text_content.get_reaction("test");
-	// monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
-	// monster_cost_round_before = monster_text.size();
-	// monster_frame_mode_before_battle = enter_talk;
-	//enter_talk work example
 }
-
-// void Migosp::set_monster_frame_after()
-// {
-	// monster_text = text_content.get_reaction("test");
-	// monster_frame_game_text_after_battle = set_vector_vector_to_game_text(monster_text,monster_times,monster_mode_1);
-	// monster_cost_round_after = monster_text.size();
-	// monster_frame_mode_after_battle = enter_talk;
-// }
 
 void Migosp::set_next_round_text_updata()
 {
@@ -179,17 +164,10 @@ void Migosp::show_barrage(Move* heart, Character* charactor,int stage)
 
 frame_command_c Migosp::get_monster_battle_mode()
 {
-	if (battel_mode_timer >500 && battel_mode_timer<1300)
-		return bit_bone_dog_to_papyrus_normal;
-	if (battel_mode_timer >100)
-		return papyrus_normal_to_bit_bone_dog;
-	return talk_to_papyrus_normal_battle;
-	
-	// return talk_to_normal_battle;
+	return talk_to_normal_battle;
 }
 
 void Migosp::act_choose_count(int button_current)
 {
 	monster_text = text_content.get_reaction("neutral");
 }
-

@@ -244,6 +244,16 @@ void Papyrus::show_barrage(Move* heart, Character* charactor,int stege)
 		papyrus_round.RevealBarrage();
 		papyrus_round.DogAnimation(heart,charactor);
 	}
+	//笨狗特判 改round_count 偵測笨狗回合
+	if ( (stege == game_framework::BATTLE ||
+		 stege == game_framework::BATTLE_AFTER_MONSTER_FRAME) && round_count == 18
+		 )
+	{
+		papyrus_round.SetIsRightTime(true);
+		papyrus_round.RevealBarrage();
+		papyrus_round.DogAnimation(heart,charactor);
+	}
+	
 }
 
 void Papyrus::set_fight()
@@ -262,3 +272,8 @@ void Papyrus::to_get_enter_count(UINT nChar, int stage)
 {
     papyrus_round.ToGetEnterCount(nChar);
 }
+
+// bool Papyrus::get_blue_enable()
+// {
+//     papyrus_round.blue_enable();
+// }
