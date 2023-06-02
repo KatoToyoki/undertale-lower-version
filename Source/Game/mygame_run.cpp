@@ -54,7 +54,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     {
       if(!papyrusRound.GetIsSet())
       {
-        papyrusRound.SetAllData(21);
+        papyrusRound.SetAllData(0);
       }
     }
     break;
