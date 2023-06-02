@@ -151,43 +151,25 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
     switch (dogFindQ)
     {
     case 1:
-        barkSpaceCounter++;
-        if(barkSpaceCounter==10)
-        {
-            dogFindQ=2;
-            dogFindCounter=0;
-        }
-        break;
-    case 2:
-        std::cout<<"gg";
-        if(BarkLeft(enemyBarrage[dogFindQ]))
-        {
-            dogFindQ=3;
-            dogFindCounter=0;
-            barkSpaceCounter=0;
-        }
-        break;
     case 3:
-        barkSpaceCounter++;
-        if(barkSpaceCounter==10)
-        {
-            dogFindQ=4;
-            dogFindCounter=0;
-        }
-        break;
-    case 4:
-        if(BarkLeft(enemyBarrage[dogFindQ]))
-        {
-            dogFindQ=5;
-            dogFindCounter=0;
-            barkSpaceCounter=0;
-        }
-        break;
     case 5:
         barkSpaceCounter++;
         if(barkSpaceCounter==10)
         {
+            if(dogFindQ!=5)
+            {
+                dogFindQ+=1;
+            }
             dogFindCounter=0;
+        }
+        break;
+    case 2:
+    case 4:
+        if(BarkLeft(enemyBarrage[dogFindQ]))
+        {
+            dogFindQ+=1;
+            dogFindCounter=0;
+            barkSpaceCounter=0;
         }
         break;
     }
@@ -196,40 +178,16 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
     {
         replacement=GetBase(heart->GetCurrentX()-enemyBarrage[dogFindQ+1].GetOnePosition(IMGleft)-20,
                 heart->GetCurrentY()-enemyBarrage[dogFindQ+1].GetOnePosition(IMGtop)-20);
+        replacement.displacementX = abs(replacement.displacementX*4)>12 ? 12 : replacement.displacementX*4;
+        replacement.displacementY = abs(replacement.displacementY*4)>12 ? 12 : replacement.displacementY*4;
 
-        if(abs(replacement.displacementX*4)>12)
-        {
-            replacement.displacementX=12;
-        }
-        else
-        {
-            replacement.displacementX*=4;
-        }
-        if(abs(replacement.displacementY*4)>12)
-        {
-            replacement.displacementY=12;
-        }
-        else
-        {
-            replacement.displacementY*=4;
-        }
         dogFindCounter++;
-    }    
-
-    if(dogFindQ%2!=0)
-    {
-        GoUp(enemyBarrage[dogFindQ],heart,(abs(replacement.displacementY)),character);
-        GoRight(enemyBarrage[dogFindQ],heart,replacement.displacementX,character);
-        GoUp(enemyBarrage[dogFindQ+1],heart,(abs(replacement.displacementY)),character);
-        GoRight(enemyBarrage[dogFindQ+1],heart,replacement.displacementX,character);
     }
-    else
-    {
-        GoUp(enemyBarrage[dogFindQ-1],heart,(abs(replacement.displacementY)),character);
-        GoRight(enemyBarrage[dogFindQ-1],heart,replacement.displacementX,character);
-        GoUp(enemyBarrage[dogFindQ],heart,(abs(replacement.displacementY)),character);
-        GoRight(enemyBarrage[dogFindQ],heart,replacement.displacementX,character);
-    }
+    
+    GoUp(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ : dogFindQ-1],heart,(abs(replacement.displacementY)),character);
+    GoRight(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ : dogFindQ-1],heart,replacement.displacementX,character);
+    GoUp(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ+1 : dogFindQ],heart,(abs(replacement.displacementY)),character);
+    GoRight(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ+1 : dogFindQ],heart,replacement.displacementX,character);
 }
 
 void GreaterDogRound::Spear(Move* heart, Character* character)
