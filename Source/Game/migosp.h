@@ -7,8 +7,8 @@
 
 enum migosp_act_selection
 {
-    check_m,
-    talk_m,
+    CHECK_M,
+    TALK_M,
 };
 
 
@@ -16,12 +16,13 @@ class Migosp : public Enemy
 {
 public:
     Migosp();
+    void init_sub() override;
     void set_img() override;
     void set_hp_img() override;
     void set_barrage() override;
     void set_acts() override;
     void set_act_text_updata() override;
-    void act_choose_count(int button_current) override {}
+    void act_choose_count(int button_current) override;
     void set_monster_frame_before() override;
     void set_next_round_text_updata() override;
 

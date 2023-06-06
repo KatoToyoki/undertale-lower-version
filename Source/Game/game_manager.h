@@ -1,15 +1,14 @@
 #pragma once
 
-#include "../ButtonFrame.h"
-#include "../Character.h"
-#include "../Fight.h"
-#include "../items.h"
-#include "../migosp.h"
-#include "../monster_frame.h"
-#include "../user_frame.h"
-#include "../sub_stage.h"
+#include "ButtonFrame.h"
+#include "Character.h"
+#include "Fight.h"
+#include "items.h"
+#include "monster_frame.h"
+#include "user_frame.h"
+#include "sub_stage.h"
 
-class ShowNormalMode : public SubStage
+class GameManager : public SubStage
 {
 public:
     void updata();

@@ -47,7 +47,7 @@ Vec2 Move::check_range(Corner corner,Vec2 force)
 		force_new.y = (float) (border_bottom - heart.GetTop());
 		_enable_blue_heart_jump = true;
 		jump_time_count = 0;
-		jump_time_count_max_up = 330;
+		jump_time_count_max_up = max_init;
 		jump_time_count_max_down = 0;
 	}
 	
@@ -79,7 +79,7 @@ void Move::move_control(Corner corner,bool enable)
 			DWORD time;
 			if (_enable_blue_heart_jump)
 			{
-				time = (jump_time_count_max_up - jump_time_count)/45;
+				time = (jump_time_count_max_up - jump_time_count)/60;
 			}
 			else
 			{
@@ -131,7 +131,7 @@ Vec2 Move::blue_mode()
     Vec2 force = {0 ,1};
 		if ( GetKeyState(VK_UP)&0x8000 && _enable_blue_heart_jump)
 		{
-			if (jump_time_count > 300)
+			if (jump_time_count > max_init-30)
 			{
 				_enable_blue_heart_jump = false;
 				jump_time_count_max_down = jump_time_count+20;
@@ -235,7 +235,7 @@ void Move::set_heart_jump_enable_and_init(bool enable)
 {
 	_enable_blue_heart_jump = enable;
 	jump_time_count = 170;
-	jump_time_count_max_up = 330;
+	jump_time_count_max_up = max_init;
 	jump_time_count_max_down = 200;
 }
 

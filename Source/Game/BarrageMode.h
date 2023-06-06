@@ -133,4 +133,6 @@ public:
     // detect for you automatically
     // if it's not attacking, unshow the img
     void RevealBarrage();
+
+    void set_is_set(bool enable) {isSet = enable;}
 };

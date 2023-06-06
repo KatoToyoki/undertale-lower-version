@@ -8,6 +8,33 @@ int Enemy::generate_random_num(int min, int max)
     return ( rand() % ((max-1) - min + 1) + min );
 }
 
+void Enemy::init()
+{
+	enemy_img = enemy_img_init;
+	enemy_last = enemy_img_init;
+	
+    hp = 100;
+    _monster_frame_enable = false;
+    stage_stop = false;
+    _is_pass_stage = false;
+    battel_mode_timer = 0;
+	end_fight = false;
+	_act_after_enable = false;
+	_choose_targe_hp_bar_enable = false;
+	_barrage_enable = false;
+	_is_mercy = false;
+	_is_gameover = false;
+	_is_init = true;
+	act_times = 0;
+	monster_times_before =0;
+	monster_times_after =0;
+	_current_selection =0;
+	shark_time = 0;
+	
+	init_sub();
+}
+
+
 void Enemy::show_img()
 {
 	enemy_img.ShowBitmap();
@@ -95,6 +122,12 @@ void Enemy::check_change_mercy_name_to_yellow_by_is_mercy()
 		monster_name._data[0].set_color(RGB(255,255,45));
 		mercy_text._data[0].set_color(RGB(255,255,45));
 	}
+	else
+	{
+		monster_name._data[0].set_color(RGB(255,255,255));
+		mercy_text._data[0].set_color(RGB(255,255,255));
+	}
+	
 }
 
 void Enemy::set_act_game_text_enable(bool enable)
@@ -140,9 +173,9 @@ void Enemy::set_monster_frame_init()
 {
 	if (!_monster_frame_enable)
 	{
-		monster_times = 0;
+		monster_times_before = 0;
+		monster_times_after = 0;
 		//only random use need have neutral in json
-		monster_text = text_content.get_reaction("neutral");
 	}
 	set_monster_frame_before();
 	set_monster_frame_after();
@@ -176,11 +209,17 @@ void Enemy::monster_frame_stage_control_updata(UINT nChar, MonsterFrame *monster
 {
 	_monster_frame = monster_frame;
 	_monster_frame->set_monster_frame_img(monster_frame_img);
-	int cost_round;
+	int cost_round = 0;
+	int monster_times = 0;
 	if (stage == game_framework::SHOW_MONSTER_FRAME_FRAME_MOVE)
+	{
 		cost_round = monster_cost_round_before;
-	else if (stage == game_framework::BATTLE_AFTER_MONSTER_FRAME)
+		monster_times = monster_times_before;
+	}
+	else if (stage == game_framework::BATTLE_AFTER_MONSTER_FRAME){
 		cost_round = monster_cost_round_after;
+		monster_times = monster_times_after;
+	}
 	
 	if ((nChar == VK_RETURN || nChar == 0x5A) && _monster_frame_enable )
 	{
@@ -190,6 +229,14 @@ void Enemy::monster_frame_stage_control_updata(UINT nChar, MonsterFrame *monster
 			stage_stop = true;
 		}
 	}
+	if (stage == game_framework::SHOW_MONSTER_FRAME_FRAME_MOVE)
+	{
+		monster_times_before = monster_times;
+	}
+	else if (stage == game_framework::BATTLE_AFTER_MONSTER_FRAME){
+		monster_times_after = monster_times;
+	}
+	
 }
 
 void Enemy::set_monster_frame_game_text_enable(bool enable)

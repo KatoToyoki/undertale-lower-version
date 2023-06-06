@@ -40,6 +40,7 @@ public:
 	DWORD jump_time_count;
 	DWORD jump_time_count_max_up;
 	DWORD jump_time_count_max_down;
+	DWORD max_init = 450;
 
     int GetCurrentX();
     int GetCurrentY();
@@ -57,5 +58,5 @@ private:
     bool _enable_move = false;
     bool _enable_blue_heart_jump = false;
     
-    HeartMode _heart_mode = heart_red;
+    HeartMode _heart_mode;// = heart_red;
 };

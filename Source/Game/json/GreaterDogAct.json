@@ -306,17 +306,7 @@
             "reaction0": {
                 "frame0": {
                     "content0": "* YOU WON!",
-                    "content1": "* You earned 0 XP and 40 gold."
-                }
-            }
-        }
-    ],
-    "neutral": [
-        {
-            "reaction0": {
-                "frame0": {
-                    "content0": "Mmm, cha",
-                    "content1": "cha cha!"
+                    "content1": "* You earned 50 XP and 40 gold."
                 }
             }
         }

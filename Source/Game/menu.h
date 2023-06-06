@@ -6,6 +6,7 @@ class Menu
 {
 public:
     Menu() = default;
+    void init() { isMenu =true; current_stage =1;};
     
     void load_img_set_postion();
 

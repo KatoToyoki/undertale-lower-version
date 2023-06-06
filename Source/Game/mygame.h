@@ -44,7 +44,7 @@
 #include "user_frame.h"
 #include "menu.h"
 #include "game_text.h"
-#include "first_stage_sub_stage/show_normal_mode.h"
+#include "game_manager.h"
 #include "barrage.h"
 #include "Character.h"
 #include "monster_frame.h"
@@ -54,6 +54,7 @@
 #include "PapyrusRound.h"
 #include "TextContent.h"
 #include "GreaterDogRound.h"
+#include "papyrus.h"
 #include "../Library/audio.h"
 
 namespace game_framework {
@@ -146,14 +147,12 @@ private:
   UserFrame user_frame;
   Move heart_test;
   Menu menu;
-  ShowNormalMode show_normal_mode;
-
-  PapyrusRound papyrusRound;
-  GreaterDogRound greaterDogRound;
+  GameManager game_manager;
 
   MonsterFrame monster_frame;
   Migosp migosp;
   GreaterDog greater_dog;
+  Papyrus papyrus;
   Items items;
   Character charactor;
   Enemy *enemy;
@@ -169,6 +168,8 @@ private:
   Fight gameFight;
 
   CMovingBitmap green_line;
+
+  bool god_enable = false;//no damage
 };
 
 /////////////////////////////////////////////////////////////////////////////

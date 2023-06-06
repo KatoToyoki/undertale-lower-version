@@ -8,7 +8,7 @@ void UserFrame::load_img() {
   left_vertical_frame.LoadBitmapByString({"resources/left_vertical_frame.bmp"});
   right_vertical_frame.LoadBitmapByString(
       {"resources/right_vertical_frame.bmp"});
-  up_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame.bmp"});
+  up_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame_down.bmp"});
   down_horizontal_frame.LoadBitmapByString({"resources/horizontal_frame_down.bmp"});
   down_black.LoadBitmapByString({"resources/down_black.bmp"});
   stage_in_top_black.LoadBitmapByString({"resources/stage_in_top_black.bmp"});

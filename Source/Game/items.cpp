@@ -10,6 +10,12 @@ Items::Items()
     set_items_init();
 }
 
+void Items::init()
+{
+    set_items_init();
+}
+
+
 GameText Items::get_item_list()
 {
     vector<Text> text_vector = {};
@@ -182,7 +188,7 @@ void Items::check_and_del_item()
 
 bool Items::is_items_empty()
 {
-    return (items[0].heal_num == 0 && *_stage == 1 && _button_selection == 2);
+    return (items[0].heal_num == 0 && _button_selection == 2);
 }
 
 GameText Items::set_vector_vector_to_game_text(std::vector<std::vector<std::string>> text, int times)
