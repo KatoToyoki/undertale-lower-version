@@ -406,7 +406,5 @@ void CGameStateRun::OnShow()
     std::string str_1 = "God enable :" + to_string(god_enable);
     Text stage1(50,str_1,RGB(255,255,255),600,100,200);
     stage1.print();
-
-    papyrus.Test2();
   }
 }
