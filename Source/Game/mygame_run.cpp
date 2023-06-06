@@ -22,6 +22,7 @@ void CGameStateRun::OnBeginState()
   menu.init();
   items.init();
   charactor.init();
+  
   gameFight.init();
   stage_go = LOAD;
   music->Pause();
@@ -264,6 +265,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   music ->Load(7,"Resources/Effects/fight.MP3");
   music ->Load(8,"Resources/Effects/heal.MP3");
   music ->Load(9,"Resources/Effects/endfight.MP3");
+  music ->Load(10,"Resources/Effects/txt_2.MP3");
 }
 
 

@@ -39,14 +39,10 @@ void Text::type_mode()
     timer+=1;
     if (_str != _print_text && timer%2 == 0 && _str_index<=(int)_str.length())
     {
+        game_framework::CAudio::Instance() -> Play(10);
         _print_text+= _str[_str_index];
         _str_index+=1;
     }
-}
-
-void Text::set_str_index(int index)
-{
-    _print_text+= _str[index];
 }
 
 void Text::print()

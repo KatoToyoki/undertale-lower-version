@@ -6,6 +6,10 @@
 void Character::init()
 {
     hp = hp_max;
+    max_bar_position_x = hp_bar_position_x + (one_hp_pixel * hp_max);
+    hp_bar.SetTopLeft(hp_bar_position_x,hp_bar_position_y);
+    hp_bar_red.SetTopLeft(max_bar_position_x,hp_bar_position_y);
+    hp_bar_black.SetTopLeft(max_bar_position_x,hp_bar_position_y);
 }
 
 void Character::add_exp(int monster_exp)
@@ -17,7 +21,9 @@ void Character::add_exp(int monster_exp)
 void Character::check_level()
 {
   level = ((int) exp/50 ) +1;
-  hp_max = level*10;
+  if (level>3) level=3;
+  
+  hp_max = level*20;
   hp = hp_max;
 }
 

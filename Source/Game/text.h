@@ -16,7 +16,6 @@ public:
     void set_positon(int x,int y);
     void set_enable(bool enable);
     void type_mode();
-    void set_str_index(int index);
     void print();
 
     int _x,_y;
