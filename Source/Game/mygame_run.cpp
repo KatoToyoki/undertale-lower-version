@@ -147,7 +147,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     if (enemy->_is_pass_stage)
       stage_go = BATTLE;
 
-    game_manager.set_heart_mode(heart_blue);
+    enemy == &papyrus && papyrus.GetIsBlue() ? game_manager.set_heart_mode(heart_blue) : game_manager.set_heart_mode(heart_red);
+    
     stage_go_enable_add = enemy->get_now_monster_frame_mode(BEFORE_BATTLE) == enter_talk;
     stage_go_enable_sub = false;
     break;
@@ -165,8 +166,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       heart_test.shine_two_second();
 
       enemy->fight_open(&heart_test,&charactor);
-      // if (enemy->get_blue_enable) { game_manager.set_heart_mode(heart_blue);}
-    }
+      enemy == &papyrus && papyrus.GetIsBlue() ? game_manager.set_heart_mode(heart_blue) : game_manager.set_heart_mode(heart_red);
+      }
     if (enemy->get_fight_end())
       stage_go = BATTLE_AFTER_MONSTER_FRAME;
     break;
@@ -405,5 +406,7 @@ void CGameStateRun::OnShow()
     std::string str_1 = "God enable :" + to_string(god_enable);
     Text stage1(50,str_1,RGB(255,255,255),600,100,200);
     stage1.print();
+
+    papyrus.Test2();
   }
 }

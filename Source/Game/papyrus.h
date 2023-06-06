@@ -34,6 +34,17 @@ public:
     void to_get_enter_count(UINT nChar, int stage) override;
 
     void check_mercy() override;
+
+    bool GetIsBlue();
+
+    void Test2()
+    {
+        CDC *pDC = game_framework::CDDraw::GetBackCDC();
+        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
+        game_framework::CTextDraw::Print(pDC, 0, 250, "round "+to_string(papyrus_round.GetCurrentRound()));
+        game_framework::CDDraw::ReleaseBackCDC();
+    }
+    
 private:
     bool _is_first_mercy_or_attck = false;
     bool _is_flirt = false;
