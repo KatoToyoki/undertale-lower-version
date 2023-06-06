@@ -682,8 +682,7 @@
             }
         }
     ],
-    "round21_monster_talk": [
-        {
+    "round21_monster_talk": [ {
             "reaction0": {
                 "frame0": {
                     "content0": "`SIGH` HERE'S",
@@ -726,6 +725,14 @@
                 }
             }
         }
+    ],
+    "can_mercy_monster_talk": [ {
+        "reaction0": {
+            "frame0": {
+                "content0": "..."
+            }
+        }
+    }
     ],
     "hp_low": [
         {
