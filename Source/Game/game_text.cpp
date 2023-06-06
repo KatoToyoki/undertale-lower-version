@@ -37,7 +37,7 @@ GameText::GameText(std::vector<Text> data,mode mode_command)
 void GameText::set_enable(bool enable)
 {
     _enable = enable;
-    for (Text text : _data)
+    for (Text &text : _data)
     {
         text.set_enable(_enable);
     }
@@ -47,7 +47,7 @@ void GameText::print_vector()
 {
     if (_enable)
     {
-        for (Text text : _data)
+        for (Text &text : _data)
         {
             text.print();
         }

@@ -103,9 +103,13 @@ void Papyrus::set_act_text_updata()
 			act_text = text_content.get_reaction("insult_three_times");
 		break;
 	}
-	
-	act_after = set_vector_vector_to_game_text(act_text,act_times);
-	cost_round = act_text.size();
+
+	if (_print_index_act_after)
+	{
+		act_after = set_vector_vector_to_game_text(act_text,act_times);
+		cost_round = act_text.size();
+		_print_index_act_after = false;
+	}
 
 	if ((_current_selection == FLIRT_P && flirt_count < 3) ||
 		(_current_selection == INSULT_P && insult_count < 2))
@@ -130,8 +134,12 @@ void Papyrus::set_next_round_text_updata()
 		next_round_text = text_content.get_reaction("end_next_round");
 	else if (flirt_after_count > 0 && flirt_after_count < 10)
 		next_round_text = text_content.get_reaction("flirt_next_round_"+std::to_string(flirt_after_count-1));
-	
-	act_next_round = set_vector_vector_to_game_text(next_round_text,0);
+
+	if (_print_index_next_round)
+	{
+		act_next_round = set_vector_vector_to_game_text(next_round_text,0);
+		_print_index_next_round = false;
+	}
 }
 
 void Papyrus::act_choose_count(int button_current)
@@ -180,9 +188,13 @@ void Papyrus::set_monster_frame_before()
 	else if (_current_selection == INSULT_P)
 		monster_text = text_content.get_reaction("insult_monster_talk_"+to_string(insult_count));
 
-	
-	monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times_before,monster_mode_2);
-	monster_cost_round_before = monster_text.size();
+
+	if (_print_index_monster_before)
+	{
+		monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times_before,monster_mode_2);
+		monster_cost_round_before = monster_text.size();
+		_print_index_monster_before = false;
+	}
 }
 
 void Papyrus::set_monster_frame_after()
@@ -200,9 +212,13 @@ void Papyrus::set_monster_frame_after()
 		monster_text = text_content.get_reaction("round"+ to_string(round_count)+"_after_battle");
 		monster_frame_mode_after_battle = enter_talk;
 	}
-	
-	monster_frame_game_text_after_battle = set_vector_vector_to_game_text(monster_text,monster_times_after,monster_mode_2);
-	monster_cost_round_after = monster_text.size();
+
+	if (_print_index_monster_after)
+	{
+		monster_frame_game_text_after_battle = set_vector_vector_to_game_text(monster_text,monster_times_after,monster_mode_2);
+		monster_cost_round_after = monster_text.size();
+		_print_index_monster_after = false;
+	}
 }
 
 void Papyrus::check_mercy()

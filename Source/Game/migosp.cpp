@@ -106,8 +106,14 @@ void Migosp::set_act_text_updata()
 	{
 		act_text = text_content.get_reaction("check");
 	}
-	act_after = set_vector_vector_to_game_text(act_text,act_times);
-	cost_round = act_text.size();
+
+	if (_print_index_act_after)
+	{
+		act_after = set_vector_vector_to_game_text(act_text,act_times);
+		cost_round = act_text.size();
+		_print_index_act_after = false;
+	}
+	
 	
 	if (_current_selection == TALK_M)
 	{
@@ -127,9 +133,13 @@ void Migosp::check_mercy()
 
 void Migosp::set_monster_frame_before()
 {
-	monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times_before,monster_mode_1);
-	monster_cost_round_before = monster_text.size();
-	monster_frame_mode_before_battle = no_enter_talk;
+	if (_print_index_monster_before)
+	{
+		monster_frame_game_text_before_battle = set_vector_vector_to_game_text(monster_text,monster_times_before,monster_mode_1);
+		monster_cost_round_before = monster_text.size();
+		monster_frame_mode_before_battle = no_enter_talk;
+		_print_index_monster_before = false;
+	}
 }
 
 void Migosp::set_next_round_text_updata()
@@ -141,8 +151,12 @@ void Migosp::set_next_round_text_updata()
 	{
 		next_round_text = text_content.get_reaction("hp_low");
 	}
-	
-	act_next_round = set_vector_vector_to_game_text(next_round_text,0);
+
+	if (_print_index_next_round)
+	{
+		act_next_round = set_vector_vector_to_game_text(next_round_text,0);
+		_print_index_next_round = false;
+	}
 }
 
 void Migosp::fight_open(Move* heart, Character* charactor)

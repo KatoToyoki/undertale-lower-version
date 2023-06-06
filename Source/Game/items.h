@@ -4,7 +4,7 @@
 
 #include "TextContent.h"
 
-#define TEXXT(content) Text(60, content, RGB(255,255,255), 600, 420, 69)
+#define TEXXT(content) Text(60, content, RGB(255,255,255), 600, 420, 69,TYPE)
 
 struct Item
 {

@@ -299,6 +299,9 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     if (stage_go!= BATTLE && stage_go!= BATTLE_AFTER_MONSTER_FRAME) {charactor.change_hp_updata(nChar);}
     enemy->to_get_enter_count(nChar,stage_go);
   }
+  if (nChar == VK_RETURN || nChar == 0x5A)
+    enemy->print_index_reset();
+    
 
   //stage_control
   if ((nChar == VK_RETURN || nChar == 0x5A) && (stage_go == END)) {

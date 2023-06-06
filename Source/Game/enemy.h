@@ -6,8 +6,8 @@
 #include "TextContent.h"
 #include "user_frame.h"
 
-#define TEXXT(content) Text(60, content, RGB(255,255,255), 600, 420, 69)
-#define TEXXT_M(content) Text(33, content, RGB(0,0,0), 30, 420, 69)
+#define TEXXT(content) Text(60, content, RGB(255,255,255), 600, 420, 69,TYPE)
+#define TEXXT_M(content) Text(33, content, RGB(0,0,0), 30, 420, 69,TYPE)
 
 enum enemy_img_state
 {
@@ -32,7 +32,7 @@ public:
     bool is_game_over() {return  _is_gameover;}
     void show_img();
     int generate_random_num(int min, int max);
-    GameText get_monster_name() { return  monster_name; }
+    GameText* get_monster_name() { return  &monster_name; }
     virtual frame_command_c get_monster_battle_mode() = 0;
 
     void updata_hp_bar_by_hp();
@@ -47,8 +47,8 @@ public:
     int get_monster_exp() {return monster_exp;}
     
 /// mercy
-    GameText get_mercy_game_text() { return mercy_text;}
-    GameText get_mercy_win_game_text() { return mercy_win_text;}
+    GameText* get_mercy_game_text() { return &mercy_text;}
+    GameText* get_mercy_win_game_text() { return &mercy_win_text;}
     void check_change_mercy_name_to_yellow_by_is_mercy();
     void set_mercy(bool enable) { _is_mercy = enable; }
     bool is_mercy() {return _is_mercy ;}
@@ -59,7 +59,7 @@ public:
     virtual void show_barrage(Move *heart, Character *charactor, int stage) = 0;
     Barrage get_barrage();
 /// act
-    GameText get_act_after_game_text();
+    GameText* get_act_after_game_text();
     void set_act_init(int current_selection);
     void set_act_game_text_enable(bool enable);
     
@@ -70,13 +70,13 @@ public:
 
 /// next_round
     //回傳set_next_round_text_updata指定的東西給userframe
-    GameText get_next_round_game_text();
+    GameText* get_next_round_game_text();
     //設定下回合在什麼狀態下 會顯示怎麼字 隨時讀取
     virtual void set_next_round_text_updata() = 0;
     
 /// monster frame
     //傳出monster_frame需要的game_text 給monster_frame印出(SHOW_MONSTER_FRAME_STOP用)
-    GameText get_monster_frame_game_text(monster_frame_stage stage);
+    GameText* get_monster_frame_game_text(monster_frame_stage stage);
     //用於傳入monster_frame_mode (auto/enter/pass) 給 monster_frame印出
     int get_now_monster_frame_mode(monster_frame_stage stage);
     
@@ -104,7 +104,8 @@ public:
     void set_battle_timer(int time) {battel_mode_timer = time;}
     virtual void init_barrage_data() {}
     virtual void to_get_enter_count(UINT nChar,int stage){}
-    
+
+    void print_index_reset();
 
     Acts acts;
     int hp = 100;
@@ -124,6 +125,12 @@ protected:
     bool _is_mercy = false;
     bool _is_gameover = false;
     bool _is_init = true;
+
+    bool _print_index_next_round = true;
+    bool _print_index_act_after = true;
+    bool _print_index_monster_before = true;
+    bool _print_index_monster_after = true;
+    
     int act_times = 0;
     int monster_times_before =0;
     int monster_times_after =0;

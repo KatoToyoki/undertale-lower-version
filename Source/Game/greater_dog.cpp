@@ -184,8 +184,13 @@ void GreaterDog::set_act_text_updata()
 			 break;
 		}
 	}
-	act_after = set_vector_vector_to_game_text(act_text,act_times);
-	cost_round = act_text.size();
+
+	if (_print_index_act_after)
+	{
+		act_after = set_vector_vector_to_game_text(act_text,act_times);
+		cost_round = act_text.size();
+		_print_index_act_after = false;
+	}
 }
 
 void GreaterDog::act_choose_count(int button_current)
@@ -276,7 +281,11 @@ void GreaterDog::set_next_round_text_updata()
 			break;
 		}
 	}
-	act_next_round = set_vector_vector_to_game_text(next_round_text,0);
+	if (_print_index_next_round)
+	{
+		act_next_round = set_vector_vector_to_game_text(next_round_text,0);
+		_print_index_next_round = false;
+	}
 }
 
 void GreaterDog::set_fight()

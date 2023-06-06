@@ -20,7 +20,8 @@ public:
     
     game_framework::CMovingBitmap menuTop, menuBottom;
 private:
-    Text stage1,stage2,stage3,LV_text,save_point;
+    Text stage1,stage2,stage3,LV_text,mouse,dog,town;
+    Text* save_point;
     int current_stage = 1;
     bool isMenu = true;
 };

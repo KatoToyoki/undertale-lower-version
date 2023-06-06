@@ -11,10 +11,13 @@ void Menu::load_img_set_postion()
   menuBottom.LoadBitmapByString({"resources/menu_bottom.bmp"},RGB(0,0,0));
   menuBottom.SetTopLeft(607,662);
 
-  stage1 = Text(40,"Stage1",RGB(255,255,255),800,430,480);
-  stage2 = Text(40,"Stage2",RGB(255,255,255),800,880,480);
-  stage3 = Text(40, "Stage3",RGB(255,255,255),800,1330,480);
-  LV_text = Text(40, "LV 1        00:00",RGB(255,255,255),800,834,291);
+  stage1 = Text(40,"Stage1",RGB(255,255,255),800,430,480,TYPE);
+  stage2 = Text(40,"Stage2",RGB(255,255,255),800,880,480,TYPE);
+  stage3 = Text(40, "Stage3",RGB(255,255,255),800,1330,480,TYPE);
+  LV_text = Text(40, "LV 1        00:00",RGB(255,255,255),800,834,291,TYPE);
+  mouse = Text(50, "Ruins-Mouse Hole",RGB(255,255,255),800,555,365,TYPE);
+  dog = Text(50, "Snowdin-Dog House",RGB(255,255,255),800,555,365,TYPE);
+  town = Text(50, "Snowdin-Town",RGB(255,255,255),800,555,365,TYPE);
   //45
 }
 
@@ -33,27 +36,27 @@ void Menu::MenuState()
     stage1.set_color(RGB(255,255,45));
     stage2.set_color(RGB(255,255,255));
     stage3.set_color(RGB(255,255,255));
-    save_point = Text(50, "Ruins-Mouse Hole",RGB(255,255,255),800,555,365);
+    save_point = &mouse;
     
     break;
   case(2):
     stage1.set_color(RGB(255,255,255));
     stage2.set_color(RGB(255,255,45));
     stage3.set_color(RGB(255,255,255));
-    save_point = Text(50, "Snowdin-Dog House",RGB(255,255,255),800,555,365);
+    save_point = &dog;
     break;
   case(3):
     stage1.set_color(RGB(255,255,255));
     stage2.set_color(RGB(255,255,255));
     stage3.set_color(RGB(255,255,45));
-    save_point = Text(50, "Snowdin-Town",RGB(255,255,255),800,555,365);
+    save_point = &town;
     break;
   }
   stage1.print();
   stage2.print();
   stage3.print();
   LV_text.print();
-  save_point.print();
+  save_point->print();
 }
 
 void Menu::ShowMenuImg()

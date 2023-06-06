@@ -41,6 +41,7 @@ void GameManager::updata()
 
 void GameManager::init()//宣告於OnMove()
 {
+	_user_frame->load_text(_enemy->get_next_round_game_text());
 	_user_frame->control_frame(to_talk);
 	_user_frame->set_choose(false);
 	_user_frame->_current_selection = 0;
@@ -72,7 +73,6 @@ void GameManager::init()//宣告於OnMove()
 	
 	if (_user_frame->get_move_done())
 	{
-		_user_frame->load_text(_enemy->get_next_round_game_text());
 		_user_frame->set_choose(true);
 	}
 }
@@ -127,7 +127,7 @@ void GameManager::choose_item()
 {
 	_button_frame->set_updata_enable(false);
 
-	_user_frame->load_text(_items->get_item_list());
+	// _user_frame->load_text(_items->get_item_list());
 	_user_frame->set_choose(true);
 
 	_charactor->change_hp(true,_items->get_selection_heal_num());
@@ -138,7 +138,7 @@ void GameManager::choose_item_after()
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
 	
-	_user_frame->load_text(_items->get_item_after_game_text());
+	// _user_frame->load_text(_items->get_item_after_game_text());
 	_items->set_control_updata(true);
 	_user_frame->set_choose(true);
 
@@ -151,8 +151,6 @@ void GameManager::monster_frame_no_battle()
     _items->set_control_updata(false);
 	_user_frame->set_choose(false);
     _enemy->set_enemy_img_init_or_damege(init_img);
-
-	
 }
 
 void GameManager::monster_frame_battle()
