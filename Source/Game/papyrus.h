@@ -41,6 +41,7 @@ private:
     int flirt_count = 0;
     int flirt_after_count = 0;
     int insult_count = 0;
+    int max_round = 21;
     
     PapyrusRound papyrus_round;
 };

@@ -124,9 +124,9 @@ void Papyrus::set_next_round_text_updata()
 		next_round_text = text_content.get_reaction("hp_low");
 	else if (_is_first_mercy_or_attck && round_count == 1)
 		next_round_text = text_content.get_reaction("first_fight_mercy_next_round");
-	else if (_is_first_mercy_or_attck && round_count == 18)//maybe see
-		next_round_text = text_content.get_reaction("round18_next_round");
-	else if (_is_first_mercy_or_attck && round_count >= 19)//maybe see
+	else if (_is_first_mercy_or_attck && round_count == max_round-1)//maybe see
+		next_round_text = text_content.get_reaction("before_end_next_round");
+	else if (_is_first_mercy_or_attck && round_count >= max_round)//maybe see
 		next_round_text = text_content.get_reaction("end_next_round");
 	else if (flirt_after_count > 0 && flirt_after_count < 10)
 		next_round_text = text_content.get_reaction("flirt_next_round_"+std::to_string(flirt_after_count-1));
@@ -169,7 +169,7 @@ void Papyrus::set_monster_frame_before()
 	monster_frame_mode_before_battle = enter_talk;
 	monster_text = text_content.get_reaction("flirt_monster_talk_0");
 	//no first mercy or fight
-	if (_is_first_mercy_or_attck && round_count <20)
+	if (_is_first_mercy_or_attck && round_count <= max_round)
 		monster_text = text_content.get_reaction("round"+to_string(round_count)+"_monster_talk");
 	else if (_current_selection == CHECK_P)
 		monster_text = text_content.get_reaction("init_check_monster_talk");
@@ -186,14 +186,14 @@ void Papyrus::set_monster_frame_before()
 void Papyrus::set_monster_frame_after()
 {
 	monster_frame_mode_after_battle = pass_talk;
-	monster_text = text_content.get_reaction("round19_after_battle");
+	monster_text = text_content.get_reaction("round20_after_battle");
 	
 	if (_is_first_mercy_or_attck && round_count == 0)
 	{
 		monster_text = text_content.get_reaction("after_fight_mercy_after_battle");
 		monster_frame_mode_after_battle = enter_talk;
 	}
-	else if (round_count == 18 || round_count == 19)
+	else if (round_count == max_round-1 || round_count == max_round)
 	{
 		monster_text = text_content.get_reaction("round"+ to_string(round_count)+"_after_battle");
 		monster_frame_mode_after_battle = enter_talk;
@@ -205,7 +205,7 @@ void Papyrus::set_monster_frame_after()
 
 void Papyrus::check_mercy()
 {
-	if (round_count >= 20)
+	if (round_count > max_round)
 	{
 		_is_mercy = true;
 	}
