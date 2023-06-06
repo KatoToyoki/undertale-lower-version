@@ -16,7 +16,7 @@ void Items::init()
 }
 
 
-GameText Items::get_item_list()
+GameText* Items::get_item_list()
 {
     vector<Text> text_vector = {};
     for(Item item : items)
@@ -24,8 +24,8 @@ GameText Items::get_item_list()
         Text text(60,item.name,RGB(255,255,255),600,0,0);
         text_vector.push_back(text);
     }
-    GameText data(text_vector, act_item_mode);
-    return data;
+    data = GameText(text_vector, act_item_mode);
+    return &data;
 }
 
 int Items::get_selection_heal_num()
@@ -120,9 +120,13 @@ void Items::set_item_updata()
     {
         item_text = text_content.get_reaction("tem_flake");
     }
-    
-    item_after = set_vector_vector_to_game_text(item_text,_times);
-	cost_round = item_text.size();
+
+    if (_text_index)
+    {
+        item_after = set_vector_vector_to_game_text(item_text,_times);
+        cost_round = item_text.size();
+        _text_index = false;
+    }
 }
 
 void Items::set_control_updata(bool enable)
@@ -152,9 +156,9 @@ void Items::item_after_stage_control_updata(UINT nChar)
 	}
 }
 
-GameText Items::get_item_after_game_text()
+GameText* Items::get_item_after_game_text()
 {
-    return item_after;
+    return &item_after;
 }
 
 Item* Items::get_item_by_index(int current_selection)

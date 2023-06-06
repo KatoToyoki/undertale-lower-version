@@ -300,7 +300,10 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     enemy->to_get_enter_count(nChar,stage_go);
   }
   if (nChar == VK_RETURN || nChar == 0x5A)
+  {
     enemy->print_index_reset();
+    items._text_index = true;
+  }
     
 
   //stage_control

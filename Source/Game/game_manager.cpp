@@ -127,7 +127,7 @@ void GameManager::choose_item()
 {
 	_button_frame->set_updata_enable(false);
 
-	// _user_frame->load_text(_items->get_item_list());
+	_user_frame->load_text(_items->get_item_list());
 	_user_frame->set_choose(true);
 
 	_charactor->change_hp(true,_items->get_selection_heal_num());
@@ -138,7 +138,7 @@ void GameManager::choose_item_after()
 	_user_frame->set_choose(false);
 	_button_frame->all_button_off();
 	
-	// _user_frame->load_text(_items->get_item_after_game_text());
+	_user_frame->load_text(_items->get_item_after_game_text());
 	_items->set_control_updata(true);
 	_user_frame->set_choose(true);
 
