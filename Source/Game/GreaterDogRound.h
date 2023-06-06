@@ -12,7 +12,7 @@ class GreaterDogRound: public BarrageMode
 {
 private:
     int currentRound=-99;
-    coorderinate replacement,replacementA={-1,-1},replacementB={-1,-1};
+    coorderinate replacementA={-1,-1},replacementB={-1,-1};
     int changeColor=0;
     int dogFindQ=1;
     int dogFindCounter=0;

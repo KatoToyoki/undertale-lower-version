@@ -68,6 +68,4 @@ public:
     void round19(Move *heart,Character *character);
     void round20(Move *heart,Character *character);
     void round21(Move *heart,Character *character);
-
-    
 };

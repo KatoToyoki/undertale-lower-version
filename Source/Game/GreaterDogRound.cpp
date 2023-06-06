@@ -59,11 +59,7 @@ int GreaterDogRound::GetCurrentRound()
 
 bool GreaterDogRound::xBigger(double x, double y)
 {
-    if(x>y){
-        return true;
-    }
-
-    return false;
+    return x>y ? true : false;
 }
 
 coorderinate GreaterDogRound::GetBase(int deltaX, int deltaY)

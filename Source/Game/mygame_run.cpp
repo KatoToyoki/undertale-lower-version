@@ -376,15 +376,13 @@ void CGameStateRun::OnShow()
   } else {
     //all show thing put here
     // user_frame.stage_in_top_black.ShowBitmap();
+    heart_test.show_heart_img();
     if (user_frame.get_move_done()) {enemy->show_barrage(&heart_test, &charactor,stage_go);}
     user_frame.show_frame();
     green_line.ShowBitmap();
     enemy->show_img();
     
     // user_frame.up_horizontal_frame.ShowBitmap();
-    heart_test.show_heart_img();
-    // ===========================================================
-    // enemy attack path
 
     user_frame.show_select_heart();
     user_frame.print();//print all thing in user_frame by load_text(GameText) in OnMove and set_enable)

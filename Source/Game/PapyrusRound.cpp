@@ -13,27 +13,14 @@ void PapyrusRound::SetAllData(int selection)
         currentRound=selection;
     }
 
-    if(currentRound==-1)
-    {
-        HandleJsonData("RoundXData","PapyrusRounds");    
-    }
-    else
-    {
-        HandleJsonData("Round"+to_string(currentRound)+"Data","PapyrusRounds");
-    }
+    currentRound == -1 ? HandleJsonData("RoundXData","PapyrusRounds") : HandleJsonData("Round"+to_string(currentRound)+"Data","PapyrusRounds");
     
     SetQuantity(allData.size());
     PushEmpty();
     SetUDB();
-    
-    if(currentRound==-1)
-    {
-        RandomBarrage();        
-    }
-    else
-    {
-        NormalBarrage();
-    }
+
+    currentRound == -1 ? RandomBarrage() : NormalBarrage();
+
     isSet=true;
     isAttackEnd=false;
     dogAnimation=1;
@@ -64,14 +51,7 @@ void PapyrusRound::PincerAttack(int start,int end,Move* heart, int wave, int app
 
         for(int i=start;i<start+q;i++)
         {
-            if(i%2==0)
-            {
-                GoRight(enemyBarrage[i],heart,allData[i].speed,character);
-            }
-            else
-            {
-                GoLeft(enemyBarrage[i],heart,allData[i].speed,character);
-            }
+            i%2 == 0 ? GoRight(enemyBarrage[i],heart,allData[i].speed,character) : GoLeft(enemyBarrage[i],heart,allData[i].speed,character);
         }
         break;
     case compoundUp:
@@ -135,25 +115,11 @@ void PapyrusRound::UpDownBarrage(Barrage& barrage, int upLimit, int downLimit, i
     switch (UDB)
     {
     case goUp:
-        if(barrage.GetOnePosition(IMGtop)>=upLimit)
-        {
-            barrage.up_move(speed);
-        }
-        else if(barrage.GetOnePosition(IMGtop)<upLimit)
-        {
-            UDB=goDown;
-        }
+        barrage.GetOnePosition(IMGtop)>=upLimit ? barrage.up_move(speed) : UDB=goDown;
         break;
         
     case goDown:
-        if(barrage.GetOnePosition(IMGtop)<=downLimit)
-        {
-            barrage.down_move(speed);
-        }
-        else if(barrage.GetOnePosition(IMGtop)>downLimit)
-        {
-            UDB=goUp;
-        }
+        barrage.GetOnePosition(IMGtop)<=downLimit ? barrage.down_move(speed) : UDB=goUp;
         break;
     }
 }
@@ -174,7 +140,6 @@ void PapyrusRound::DetectRoundEnd(int direction)
             currentRound+=1;
             isSet=false;
             isAttackEnd = true;
-            
         }
         break;
     case leftAtRight:
@@ -242,14 +207,7 @@ void PapyrusRound::DogAnimation(Move *heart,Character *character)
 
 void PapyrusRound::HPcondition(Move* heart, Character* character,int command)
 {
-    if(currentRound==20)
-    {
-        GetMinusHP_M(heart,character,appear);
-    }
-    else
-    {
-        GetMinusHP_M(heart,character,disappear);
-    }
+    currentRound == 20 ? GetMinusHP_M(heart,character,appear) : GetMinusHP_M(heart,character,disappear);
 }
 
 void PapyrusRound::ToGetEnterCount(UINT nChar)

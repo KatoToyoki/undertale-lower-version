@@ -31,7 +31,4 @@ public:
     void get_data(std::string fileName);
     void load(string file_name);
     std::unordered_map<string, vector <vector< vector< string>>>> data_context;
-    
-    //testing
-    void PrintItOut();
 };
