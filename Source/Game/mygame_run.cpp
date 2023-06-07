@@ -51,12 +51,15 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   switch (stage_go)
   {
   case LOAD:
+    stage_go_enable_add = true;
+    stage_go_enable_sub = false;
     if (menu.get_current_stage() == 1) {enemy = &migosp;}
     if (menu.get_current_stage() == 2) {enemy = &greater_dog;}
     if (menu.get_current_stage() == 3) {enemy = &papyrus;}
     enemy->init();
     game_manager.load_data(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,enemy,&items,&charactor);
     game_manager.set_heart_mode(heart_red);
+	  user_frame.control_frame(to_talk);
     break;
   case INIT:
     stage_go_enable_add = true;
@@ -187,16 +190,15 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go = INIT;
     break;
   case FIGHT_END:
-    if (gameFight.GetDurationMinusHP()<=0 || gameButtonFrame.get_current_selection() != FIGHT)
-    {
-      music->Play(9);
-      charactor.add_exp(enemy->get_monster_exp());
-      enemy->set_enemy_img_init_or_damege(end_img);
-      if (enemy->is_game_over() && stage_go < BEFORE_END)
-        stage_go = BEFORE_END;
-      else
-        stage_go = END;
-    }
+    music->Play(9);
+    charactor.add_exp(enemy->get_monster_exp());
+    enemy->set_enemy_img_init_or_damege(end_img);
+    if (enemy->is_game_over() && stage_go < BEFORE_END)
+      stage_go = BEFORE_END;
+    else
+      stage_go = END;
+    stage_go_enable_add = false;
+    stage_go_enable_sub = false;
   case BEFORE_END://before exp&gold
     user_frame.control_frame(to_talk);
     stage_go_enable_add = false;
@@ -222,7 +224,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     break;
   }
   
-  if (gameFight.is_hp_zero() && stage_go != END)
+  if (gameFight.is_hp_zero() && gameFight.GetDurationMinusHP()<=0 && stage_go != END)
   {
     stage_go = FIGHT_END;
   }
@@ -397,6 +399,8 @@ void CGameStateRun::OnShow()
 
     charactor.show_charactor_data();
 
+  }
+  
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
@@ -404,5 +408,4 @@ void CGameStateRun::OnShow()
     std::string str_1 = "God enable :" + to_string(god_enable);
     Text stage1(50,str_1,RGB(255,255,255),600,100,200);
     stage1.print();
-  }
 }
