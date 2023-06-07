@@ -17,6 +17,9 @@ public:
     void set_enable(bool enable);
     void type_mode();
     void print();
+    void effect();
+
+    bool get_print_over() {return  print_over;}
 
     int _x,_y;
     std::string _print_text;
@@ -30,5 +33,6 @@ private:
     COLORREF _color;
     int _weight;
     TEXT_MODE _text_mode = NO_TYPE;
+    bool print_over = false;
     
 };

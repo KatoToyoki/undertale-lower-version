@@ -13,9 +13,15 @@ Text::Text(int size, std::string str, COLORREF color, int weight, int x, int y,T
     _text_mode = text_mode;
     set_positon(x,y);
     if (text_mode == TYPE)
+    {
         _print_text = "";
+        print_over = false;
+    }
     else
+    {
         _print_text = _str;
+        print_over = true;
+    }
 }
 
 void Text::set_color(COLORREF color)
@@ -39,9 +45,13 @@ void Text::type_mode()
     timer+=1;
     if (_str != _print_text && timer%2 == 0 && _str_index<=(int)_str.length())
     {
-        game_framework::CAudio::Instance() -> Play(10);
+        game_framework::CAudio::Instance() -> Play(10+(_str_index%10));
         _print_text+= _str[_str_index];
         _str_index+=1;
+    }
+    if (_str == _print_text)
+    {
+        print_over = true;
     }
 }
 
@@ -56,3 +66,4 @@ void Text::print()
     game_framework::CTextDraw::Print(pDC, _x, _y, _print_text);
     game_framework::CDDraw::ReleaseBackCDC();
 }
+

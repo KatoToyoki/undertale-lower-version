@@ -2,6 +2,7 @@
 #include "Character.h"
 
 #include "text.h"
+#include "../Library/audio.h"
 
 void Character::init()
 {
@@ -67,6 +68,8 @@ void Character::change_hp(bool enable, int heal_or_damege)
   if (_heal_or_damege < 0 && change_hp_enable && !god_enable)
   {
     hp += _heal_or_damege;
+    if (_heal_or_damege < 0)
+      game_framework::CAudio::Instance()->Play(20);
     if (hp <= 0)
     {
       hp = 0;

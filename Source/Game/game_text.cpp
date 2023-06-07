@@ -47,9 +47,14 @@ void GameText::print_vector()
 {
     if (_enable)
     {
+        int i=0;
         for (Text &text : _data)
         {
-            text.print();
+            if (i == 0)
+                text.print();
+            else if (_data[i-1].get_print_over())
+                text.print();
+            i++;
         }
     }
 }

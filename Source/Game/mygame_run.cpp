@@ -255,17 +255,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   charactor.set_hp_img();
 
   music = CAudio::Instance();
-  music ->Load(0,"Resources/Background/start.MP3");
-  music ->Load(1,"Resources/Background/01.MP3");
-  music ->Load(2,"Resources/Background/02.MP3");
-  music ->Load(3,"Resources/Background/03.MP3");
-  music ->Load(4,"Resources/Background/end.MP3");
-  music ->Load(5,"Resources/Effects/select.MP3");
-  music ->Load(6,"Resources/Effects/select_1.MP3");
-  music ->Load(7,"Resources/Effects/fight.MP3");
-  music ->Load(8,"Resources/Effects/heal.MP3");
-  music ->Load(9,"Resources/Effects/endfight.MP3");
-  music ->Load(10,"Resources/Effects/txt_2.MP3");
+  game_manager.add_audio();
 }
 
 
@@ -278,6 +268,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     if (stage_go == LOAD && (nChar == 0x5A || nChar == VK_RETURN))
     {
       music->Stop(0);
+      music->Play(21);
       switch (menu.get_current_stage())
       {
       case 1:
