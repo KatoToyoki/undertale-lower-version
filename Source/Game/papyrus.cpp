@@ -177,7 +177,11 @@ void Papyrus::set_monster_frame_before()
 	monster_frame_mode_before_battle = enter_talk;
 	monster_text = text_content.get_reaction("flirt_monster_talk_0");
 	//no first mercy or fight
-	if (_is_first_mercy_or_attck && round_count <= max_round)
+	if (_is_first_attck && round_count == 0)
+		monster_text = text_content.get_reaction("round0_fight_monster_talk");
+	else if (_is_first_mercy && round_count == 0)
+		monster_text = text_content.get_reaction("round0_mercy_monster_talk");
+	else if (_is_first_mercy_or_attck && round_count <= max_round)
 		monster_text = text_content.get_reaction("round"+to_string(round_count)+"_monster_talk");
 	else if (_is_first_mercy_or_attck && round_count > max_round)
 		monster_text = text_content.get_reaction("can_mercy_monster_talk");
@@ -274,17 +278,24 @@ void Papyrus::show_barrage(Move* heart, Character* charactor,int stege)
 		papyrus_round.RevealBarrage();
 		papyrus_round.DogAnimation(heart,charactor);
 	}
-	
 }
 
 void Papyrus::set_fight()
 {
 	_is_first_mercy_or_attck = true;
+	_is_first_attck = true;
+	_print_index_monster_before = true;
+	
+	papyrus_round.set_is_set(false);
+	init_barrage_data();
 }
 
 void Papyrus::set_mercy()
 {
 	_is_first_mercy_or_attck = true;
+	_is_first_mercy = true;
+	_print_index_monster_before = true;
+	
 	papyrus_round.set_is_set(false);
 	init_barrage_data();
 }

@@ -105,7 +105,7 @@ public:
     virtual void init_barrage_data() {}
     virtual void to_get_enter_count(UINT nChar,int stage){}
 
-    void print_index_reset();
+    void print_index_reset(int stage);
 
     Acts acts;
     int hp = 100;

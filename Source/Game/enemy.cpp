@@ -285,10 +285,14 @@ GameText Enemy::set_vector_vector_to_game_text(std::vector<std::vector<std::stri
 	return GameText (temp_text_vector,mode);
 }
 
-void Enemy::print_index_reset()
+void Enemy::print_index_reset(int stage)
 {
 	_print_index_next_round = true;
 	_print_index_act_after = true;
 	_print_index_monster_after = true;
-	_print_index_monster_before = true;
+	if (monster_frame_mode_before_battle == no_enter_talk)
+		_print_index_monster_before = (stage == game_framework::INIT);
+	else
+		_print_index_monster_before = true;
+		
 }

@@ -365,7 +365,7 @@
             }
         }
     ],
-    "round0_monster_talk": [
+    "round0_fight_monster_talk": [
         {
             "reaction0": {
                 "frame0": {

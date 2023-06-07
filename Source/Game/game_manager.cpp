@@ -182,6 +182,9 @@ void GameManager::choose_mercy_after()
 
 void GameManager::battle_after_monster_frame()
 {
+	_heart_test->shine_time_count = 1000;
+	_heart_test->set_shine_mode(false);
+	
     _enemy->set_monster_frame_game_text_enable(true);
 	_enemy->check_pass(AFTER_BATTLE);
 	
