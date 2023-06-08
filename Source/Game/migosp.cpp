@@ -11,6 +11,7 @@ Migosp::Migosp()
 	_is_mercy = false;
 	monster_exp = 40;
 	_current_selection = 0;
+	monster_font = "Determination Mono Web";
 	monster_name = GameText({
 		Text (60, "* Migosp", RGB(255,255,255),500, 465,613)},
 		target_mode);

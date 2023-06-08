@@ -7,7 +7,7 @@
 #include "user_frame.h"
 
 #define TEXXT(content) Text(60, content, RGB(255,255,255), 600, 420, 69,TYPE)
-#define TEXXT_M(content) Text(33, content, RGB(0,0,0), 30, 420, 69,TYPE)
+#define TEXXT_M(content,monster_font) Text(30, content, RGB(0,0,0), 10, 420, 69,TYPE,monster_font)
 
 enum enemy_img_state
 {
@@ -136,6 +136,7 @@ protected:
     int monster_times_after =0;
     int _current_selection =0;
     float shark_time = 0;
+    string monster_font;
 
     MonsterFrame *_monster_frame;
     GameText monster_name;

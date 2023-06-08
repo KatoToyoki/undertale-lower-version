@@ -9,6 +9,7 @@ GreaterDog::GreaterDog()
 	_is_mercy = false;
     _is_init = true;
 	monster_exp = 50;
+	monster_font = "Determination Mono Web";
 	set_acts();
 	_current_selection = 0;
 	monster_name = GameText({

@@ -3,7 +3,9 @@
 
 #include "mygame.h"
 
-Text::Text(int size, std::string str, COLORREF color, int weight, int x, int y,TEXT_MODE text_mode)
+Text::Text(int size, std::string str, COLORREF color,
+    int weight, int x, int y,
+    TEXT_MODE text_mode,string font_name)
 {
     _size = size;
     _str = str;
@@ -11,6 +13,7 @@ Text::Text(int size, std::string str, COLORREF color, int weight, int x, int y,T
     _weight = weight;
     _str_index = 0;
     _text_mode = text_mode;
+    _font_name = font_name;
     set_positon(x,y);
     if (text_mode == TYPE)
     {
@@ -61,7 +64,7 @@ void Text::print()
     
     CDC *pDC = game_framework::CDDraw::GetBackCDC();
 
-    game_framework::CTextDraw::ChangeFontLog(pDC, _size, "Determination Mono Web", _color, _weight);
+    game_framework::CTextDraw::ChangeFontLog(pDC, _size, _font_name, _color, _weight);
 
     game_framework::CTextDraw::Print(pDC, _x, _y, _print_text);
     game_framework::CDDraw::ReleaseBackCDC();

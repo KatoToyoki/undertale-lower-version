@@ -10,7 +10,11 @@ enum TEXT_MODE
 class Text
 {
 public:
-    Text(int size = 21, std::string str = "", COLORREF color = RGB(255,255,255), int weight = 800, int x = 0, int y = 0,TEXT_MODE text_mode = NO_TYPE);
+    Text(int size = 21, std::string str = "",
+        COLORREF color = RGB(255,255,255),
+        int weight = 800, int x = 0, int y = 0,
+        TEXT_MODE text_mode = NO_TYPE,
+        std::string font_name = "Determination Mono Web" );
 
     void set_color(COLORREF color);
     void set_positon(int x,int y);
@@ -32,6 +36,7 @@ private:
     int timer = 0;
     COLORREF _color;
     int _weight;
+    std::string _font_name;
     TEXT_MODE _text_mode = NO_TYPE;
     bool print_over = false;
     

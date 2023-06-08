@@ -279,7 +279,7 @@ GameText Enemy::set_vector_vector_to_game_text(std::vector<std::vector<std::stri
 	std::vector<Text> temp_text_vector;
 	 for(unsigned int j=0;j<text[times].size();j++)
 	 {
-	 	if (mode == monster_mode_1 || mode == monster_mode_2){ temp_text_vector.push_back(TEXXT_M(text[times][j])); }
+	 	if (mode == monster_mode_1 || mode == monster_mode_2){ temp_text_vector.push_back(TEXXT_M(text[times][j],monster_font)); }
 	    else { temp_text_vector.push_back(TEXXT(text[times][j])); }
 	 }
 	return GameText (temp_text_vector,mode);
