@@ -44,13 +44,13 @@ void Papyrus::set_img()
 	monster_frame_img.LoadBitmapByString({"resources/monster_frame_p.bmp"},RGB(0,0,0));
 	monster_frame_img.SetTopLeft(1129,207);
 	
-	enemy_img_end_effc.LoadBitmapByString({"resources/enemy_end_effc.bmp"},RGB(0,0,0));
+	enemy_img_end_effc.LoadBitmapByString({"resources/enemy_end_effc.bmp"},RGB(0,0,255));
 	enemy_img_end_effc.SetTopLeft(enemy_x,enemy_y);
 	
-	enemy_img_init.LoadBitmapByString({"resources/papyrus.bmp"},RGB(0,0,0));
+	enemy_img_init.LoadBitmapByString({"resources/papyrus.bmp"},RGB(0,0,255));
 	enemy_img_init.SetTopLeft(enemy_x,enemy_y);
 
-	enemy_img_damege.LoadBitmapByString({"resources/papyrus_hit.bmp"},RGB(0,0,0));
+	enemy_img_damege.LoadBitmapByString({"resources/papyrus_hit.bmp"},RGB(0,0,255));
 	enemy_img_damege.SetTopLeft(enemy_x,enemy_y);
 
 	enemy_img_end.LoadBitmapByString({"resources/papyrus_end.bmp"},RGB(0,0,0));
