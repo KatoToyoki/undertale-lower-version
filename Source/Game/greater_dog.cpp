@@ -92,7 +92,7 @@ void GreaterDog::set_acts()
 
 void GreaterDog::set_act_text_updata()
 {
-	if (ignore_times>0 && ignore_times<3 && !end_fight)
+	if (ignore_times>0 && ignore_times<4 && !end_fight)
 	{
 		enemy_img_close.SetFrameIndexOfBitmap(ignore_times-1);
 		enemy_img = enemy_img_close;
