@@ -30,10 +30,9 @@ void CGameStateRun::OnBeginState()
 }
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
+  music->Stop(4);
   if (charactor.get_current_hp() == 0)
   {
-    music->Pause();
-    music->Play(4,true);
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
   
@@ -303,8 +302,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
 
   //stage_control
   if ((nChar == VK_RETURN || nChar == 0x5A) && (stage_go == END)) {
-    music->Pause();
-    music->Play(4,true);
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
   

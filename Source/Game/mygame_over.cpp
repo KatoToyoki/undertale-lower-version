@@ -27,6 +27,8 @@ void CGameStateOver::OnMove()
 
 void CGameStateOver::OnBeginState()
 {
+	game_framework::CAudio::Instance()->Pause();
+	game_framework::CAudio::Instance()->Play(4,true);
 	heart = Text (60,"Heart!",RGB(255,255,255),100,600,739,TYPE);
 	stay = Text (60,"Stay determined...",RGB(255,255,255),100,600,820,TYPE);
 	press_q = Text (50,"PRESS Q TO MENU",RGB(255,255,255),100,600,920,TYPE);
