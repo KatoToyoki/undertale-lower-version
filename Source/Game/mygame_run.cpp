@@ -184,8 +184,10 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_add = false;
     stage_go_enable_sub = false;
     enemy->act_choose_count(gameButtonFrame.get_current_selection());
+	  enemy->check_change_mercy_name_to_yellow_by_is_mercy();
     items.set_control_updata(false);
   	enemy->set_act_game_text_enable(false);
+    enemy->print_index_reset(stage_go);
     stage_go = INIT;
     break;
   case FIGHT_END:
@@ -282,6 +284,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
         music->Play(3,true);
         break;
       }
+      stage_go = INIT;
     }
   } else{
     gameButtonFrame.choose_update(nChar);
@@ -292,14 +295,13 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     items.item_after_stage_control_updata(nChar);
     if (stage_go!= BATTLE && stage_go!= BATTLE_AFTER_MONSTER_FRAME) {charactor.change_hp_updata(nChar);}
     enemy->to_get_enter_count(nChar,stage_go);
-  }
-  if ((nChar == VK_RETURN || nChar == 0x5A) && stage_go > LOAD)
+    
+  if ((nChar == VK_RETURN || nChar == 0x5A))
   {
     enemy->print_index_reset(stage_go);
     items._text_index = true;
   }
     
-
   //stage_control
   if ((nChar == VK_RETURN || nChar == 0x5A) && (stage_go == END)) {
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
@@ -335,6 +337,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
       ((nChar == 0x5A || nChar == VK_RETURN) || (nChar == 0x58 || nChar == VK_SHIFT)))
   {
     user_frame._current_selection = 0;
+  }
+    
   }
 
   if (nChar == 0x47)
