@@ -306,7 +306,7 @@ void Papyrus::to_get_enter_count(UINT nChar, int stage)
     papyrus_round.ToGetEnterCount(nChar);
 }
 
-// bool Papyrus::get_blue_enable()
-// {
-//     papyrus_round.blue_enable();
-// }
+bool Papyrus::GetIsBlue()
+{
+	return papyrus_round.GetIsBlue();
+}

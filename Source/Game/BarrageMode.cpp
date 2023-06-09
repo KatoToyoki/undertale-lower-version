@@ -249,12 +249,5 @@ bool BarrageMode::LastOneDisappear()
 
 void BarrageMode::RevealBarrage()
 {
-    if(isRightTime)
-    {
-        ShowBarrage();
-    }
-    else
-    {
-        UnshowBarrage();
-    }
+    isRightTime ? ShowBarrage() : UnshowBarrage();
 }

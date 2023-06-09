@@ -54,23 +54,3 @@ void TextContent::load(string file_name)
 {
     get_data(file_name);
 }
-
-void TextContent::PrintItOut()
-{
-    for(unsigned int i=0;i<actOneReaction.size();i++)
-    {
-        std::string b;
-        for(unsigned int j=0;j<actOneReaction[i].size();j++)
-        {
-            b=b+actOneReaction[i][j]+"\n\n";
-        }
-
-        CDC *pDC = game_framework::CDDraw::GetBackCDC();
-        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        game_framework::CTextDraw::Print(pDC, 0, 200, b);
-        game_framework::CDDraw::ReleaseBackCDC();
-    }
-}
-
-
-
