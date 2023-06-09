@@ -146,8 +146,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     game_manager.monster_frame_battle();
     if (enemy->_is_pass_stage)
       stage_go = BATTLE;
-
-    game_manager.set_heart_mode(heart_blue);
     stage_go_enable_add = enemy->get_now_monster_frame_mode(BEFORE_BATTLE) == enter_talk;
     stage_go_enable_sub = false;
     break;
@@ -165,8 +163,8 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       heart_test.shine_two_second();
 
       enemy->fight_open(&heart_test,&charactor);
-      // if (enemy->get_blue_enable) { game_manager.set_heart_mode(heart_blue);}
-    }
+      enemy == &papyrus && papyrus.GetIsBlue() ? game_manager.set_heart_mode(heart_blue) : game_manager.set_heart_mode(heart_red);
+      }
     if (enemy->get_fight_end())
       stage_go = BATTLE_AFTER_MONSTER_FRAME;
     break;
@@ -375,15 +373,13 @@ void CGameStateRun::OnShow()
   } else {
     //all show thing put here
     // user_frame.stage_in_top_black.ShowBitmap();
+    heart_test.show_heart_img();
     if (user_frame.get_move_done()) {enemy->show_barrage(&heart_test, &charactor,stage_go);}
     user_frame.show_frame();
     green_line.ShowBitmap();
     enemy->show_img();
     
     // user_frame.up_horizontal_frame.ShowBitmap();
-    heart_test.show_heart_img();
-    // ===========================================================
-    // enemy attack path
 
     user_frame.show_select_heart();
     user_frame.print();//print all thing in user_frame by load_text(GameText) in OnMove and set_enable)

@@ -210,7 +210,7 @@
     {
       "damage": 3,
       "speed": 9,
-      "initX":600,
+      "initX":500,
       "initY":819,
       "barrage_mode": "white",
       "imgPath": [
@@ -2002,7 +2002,7 @@
     {
       "damage": 3,
       "speed": 4,
-      "initX": 260,
+      "initX": 290,
       "initY": 795,
       "barrage_mode": "white",
       "imgPath": [
@@ -2439,119 +2439,21 @@
   "Round17Data": [
     {
       "damage": 3,
-      "speed": 6,
-      "initX": 650,
-      "initY": 819,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h45bone"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 6,
-      "initX": 1270,
-      "initY": 819,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h45bone"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 6,
-      "initX": 650,
-      "initY": 819,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h45bone"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 6,
-      "initX": 1270,
-      "initY": 819,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h45bone"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 6,
-      "initX": 650,
-      "initY": 819,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h45bone"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 6,
-      "initX": 1270,
-      "initY": 819,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h45bone"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 6,
-      "initX": 650,
-      "initY": 819,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h45bone"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 6,
-      "initX": 1270,
-      "initY": 819,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h45bone"
-        }
-      ]
-    }
-  ],
-  "Round18Data": [
-    {
-      "damage": 3,
       "speed": 4,
-      "initX": 1270,
-      "initY": 740,
-      "barrage_mode": "blue",
+      "initX": 650,
+      "initY": 795,
+      "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h124bone"
+          "path0": "h69bone"
         }
       ]
     },
     {
       "damage": 3,
       "speed": 4,
-      "initX": 1605,
-      "initY": 575,
+      "initX": 590,
+      "initY": 777,
       "barrage_mode": "white",
       "imgPath": [
         {
@@ -2562,68 +2464,20 @@
     {
       "damage": 3,
       "speed": 4,
-      "initX": 1605,
-      "initY": 740,
+      "initX": 530,
+      "initY": 753,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h124bone"
+          "path0": "h111bone"
         }
       ]
     },
     {
       "damage": 3,
       "speed": 4,
-      "initX": 1905,
-      "initY": 575,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h100bone"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 1905,
-      "initY": 764,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h100bone"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 2205,
-      "initY": 575,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h124bone"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 2205,
-      "initY": 783,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "h81bone"
-        }
-      ]
-    },
-    {
-      "damage": 3,
-      "speed": 4,
-      "initX": 2505,
-      "initY": 575,
+      "initX": 470,
+      "initY": 729,
       "barrage_mode": "white",
       "imgPath": [
         {
@@ -2634,7 +2488,43 @@
     {
       "damage": 3,
       "speed": 4,
-      "initX": 2505,
+      "initX": 410,
+      "initY": 753,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 350,
+      "initY": 777,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h87bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 290,
+      "initY": 795,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h69bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 1270,
       "initY": 804,
       "barrage_mode": "white",
       "imgPath": [
@@ -2646,120 +2536,206 @@
     {
       "damage": 3,
       "speed": 4,
-      "initX": 2805,
-      "initY": 575,
+      "initX": 1360,
+      "initY": 777,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h186bone"
+          "path0": "h87bone"
         }
       ]
     },
     {
       "damage": 3,
       "speed": 4,
-      "initX": 2805,
-      "initY": 842,
+      "initX": 1450,
+      "initY": 753,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h22bone"
-        }
-      ]
-    },
-    {
-      "damage": 0,
-      "speed": 4,
-      "initX": 3245,
-      "initY": 575,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bone_top"
+          "path0": "h111bone"
         }
       ]
     },
     {
       "damage": 3,
       "speed": 4,
-      "initX": 3245,
-      "initY": 472,
+      "initX": 1540,
+      "initY": 729,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h221bone"
+          "path0": "h135bone"
         }
       ]
     },
     {
       "damage": 3,
       "speed": 4,
-      "initX": 3245,
+      "initX": 1630,
+      "initY": 753,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 1720,
+      "initY": 777,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h87bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 1810,
       "initY": 804,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h221bone"
+          "path0": "h60bone"
         }
       ]
-    },
+    }
+  ],
+  "Round18Data": [
     {
-      "damage": 0,
-      "speed": 4,
-      "initX": 3245,
-      "initY": 855,
+      "damage": 3,
+      "speed": 7,
+      "initX":1270,
+      "initY":819,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "bone_bottom"
-        }
-      ]
-    },
-    {
-      "damage": 0,
-      "speed": 4,
-      "initX": 3535,
-      "initY": 575,
-      "barrage_mode": "white",
-      "imgPath": [
-        {
-          "path0": "bone_top"
+          "path0":"h45bone"
         }
       ]
     },
     {
       "damage": 3,
-      "speed": 4,
-      "initX": 3535,
-      "initY": 414,
+      "speed": 7,
+      "initX":1560,
+      "initY":575,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h221bone"
+          "path0":"h153bone"
         }
       ]
     },
     {
       "damage": 3,
-      "speed": 4,
-      "initX": 3535,
-      "initY": 740,
+      "speed": 7,
+      "initX":1560,
+      "initY":819,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h221bone"
+          "path0":"h45bone"
         }
       ]
     },
     {
-      "damage": 0,
-      "speed": 4,
-      "initX": 3535,
-      "initY": 855,
+      "damage": 3,
+      "speed": 7,
+      "initX":1870,
+      "initY":575,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "bone_bottom"
+          "path0":"h135bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":1870,
+      "initY":795,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h69bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2200,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2200,
+      "initY":774,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h90bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2530,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h87bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2530,
+      "initY":753,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2860,
+      "initY":575,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h69bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 7,
+      "initX":2860,
+      "initY":729,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0":"h135bone"
         }
       ]
     }
@@ -2767,97 +2743,169 @@
   "Round19Data": [
     {
       "damage": 3,
-      "speed": 6,
+      "speed": 4,
       "initX": 650,
-      "initY": 819,
+      "initY": 795,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h45bone"
+          "path0": "h69bone"
         }
       ]
     },
     {
       "damage": 3,
-      "speed": 6,
+      "speed": 4,
+      "initX": 590,
+      "initY": 777,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h87bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 530,
+      "initY": 753,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 470,
+      "initY": 729,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h135bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 410,
+      "initY": 753,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h111bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 350,
+      "initY": 777,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h87bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
+      "initX": 290,
+      "initY": 795,
+      "barrage_mode": "white",
+      "imgPath": [
+        {
+          "path0": "h69bone"
+        }
+      ]
+    },
+    {
+      "damage": 3,
+      "speed": 4,
       "initX": 1270,
-      "initY": 819,
+      "initY": 804,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h45bone"
+          "path0": "h60bone"
         }
       ]
     },
     {
       "damage": 3,
-      "speed": 6,
-      "initX": 650,
-      "initY": 819,
+      "speed": 4,
+      "initX": 1360,
+      "initY": 777,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h45bone"
+          "path0": "h87bone"
         }
       ]
     },
     {
       "damage": 3,
-      "speed": 6,
-      "initX": 1270,
-      "initY": 819,
+      "speed": 4,
+      "initX": 1450,
+      "initY": 753,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h45bone"
+          "path0": "h111bone"
         }
       ]
     },
     {
       "damage": 3,
-      "speed": 6,
-      "initX": 650,
-      "initY": 819,
+      "speed": 4,
+      "initX": 1540,
+      "initY": 729,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h45bone"
+          "path0": "h135bone"
         }
       ]
     },
     {
       "damage": 3,
-      "speed": 6,
-      "initX": 1270,
-      "initY": 819,
+      "speed": 4,
+      "initX": 1630,
+      "initY": 753,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h45bone"
+          "path0": "h111bone"
         }
       ]
     },
     {
       "damage": 3,
-      "speed": 6,
-      "initX": 650,
-      "initY": 819,
+      "speed": 4,
+      "initX": 1720,
+      "initY": 777,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h45bone"
+          "path0": "h87bone"
         }
       ]
     },
     {
       "damage": 3,
-      "speed": 6,
-      "initX": 1270,
-      "initY": 819,
+      "speed": 4,
+      "initX": 1810,
+      "initY": 804,
       "barrage_mode": "white",
       "imgPath": [
         {
-          "path0": "h45bone"
+          "path0": "h60bone"
         }
       ]
     }

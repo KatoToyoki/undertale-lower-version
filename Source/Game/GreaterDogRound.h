@@ -12,24 +12,19 @@ class GreaterDogRound: public BarrageMode
 {
 private:
     int currentRound=-99;
-    coorderinate replacement;
+    coorderinate replacementA={-1,-1},replacementB={-1,-1};
     int changeColor=0;
     int dogFindQ=1;
     int dogFindCounter=0;
-    int barkSpaceCounter=0;
     
 public:
     GreaterDogRound()=default;
     ~GreaterDogRound()=default;
-    GreaterDogRound(const GreaterDogRound &other) = delete;
-    GreaterDogRound &operator=(const GreaterDogRound &other) = delete;
-    GreaterDogRound(GreaterDogRound &&other) = delete;
-    GreaterDogRound &operator=(GreaterDogRound &&other) = delete;
-
+    
     void SetAllData(int selection=-99);
 
     int GetCurrentRound();
-
+    void SetReplacement(coorderinate &replacement,Move *heart,Character *character,int index);
     void SelectRound(Move *heart, Character *character,int selection=-99);
     bool xBigger(double x, double y);
     coorderinate GetBase(int deltaX,int deltaY);

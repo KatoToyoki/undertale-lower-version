@@ -13,27 +13,14 @@ void PapyrusRound::SetAllData(int selection)
         currentRound=selection;
     }
 
-    if(currentRound==-1)
-    {
-        HandleJsonData("RoundXData","PapyrusRounds");    
-    }
-    else
-    {
-        HandleJsonData("Round"+to_string(currentRound)+"Data","PapyrusRounds");
-    }
+    currentRound == -1 ? HandleJsonData("RoundXData","PapyrusRounds") : HandleJsonData("Round"+to_string(currentRound)+"Data","PapyrusRounds");
     
     SetQuantity(allData.size());
     PushEmpty();
     SetUDB();
-    
-    if(currentRound==-1)
-    {
-        RandomBarrage();        
-    }
-    else
-    {
-        NormalBarrage();
-    }
+
+    currentRound == -1 ? RandomBarrage() : NormalBarrage();
+
     isSet=true;
     isAttackEnd=false;
     dogAnimation=1;
@@ -64,14 +51,7 @@ void PapyrusRound::PincerAttack(int start,int end,Move* heart, int wave, int app
 
         for(int i=start;i<start+q;i++)
         {
-            if(i%2==0)
-            {
-                GoRight(enemyBarrage[i],heart,allData[i].speed,character);
-            }
-            else
-            {
-                GoLeft(enemyBarrage[i],heart,allData[i].speed,character);
-            }
+            i%2 == 0 ? GoRight(enemyBarrage[i],heart,allData[i].speed,character) : GoLeft(enemyBarrage[i],heart,allData[i].speed,character);
         }
         break;
     case compoundUp:
@@ -135,25 +115,11 @@ void PapyrusRound::UpDownBarrage(Barrage& barrage, int upLimit, int downLimit, i
     switch (UDB)
     {
     case goUp:
-        if(barrage.GetOnePosition(IMGtop)>=upLimit)
-        {
-            barrage.up_move(speed);
-        }
-        else if(barrage.GetOnePosition(IMGtop)<upLimit)
-        {
-            UDB=goDown;
-        }
+        barrage.GetOnePosition(IMGtop)>=upLimit ? barrage.up_move(speed) : UDB=goDown;
         break;
         
     case goDown:
-        if(barrage.GetOnePosition(IMGtop)<=downLimit)
-        {
-            barrage.down_move(speed);
-        }
-        else if(barrage.GetOnePosition(IMGtop)>downLimit)
-        {
-            UDB=goUp;
-        }
+        barrage.GetOnePosition(IMGtop)<=downLimit ? barrage.down_move(speed) : UDB=goUp;
         break;
     }
 }
@@ -174,7 +140,6 @@ void PapyrusRound::DetectRoundEnd(int direction)
             currentRound+=1;
             isSet=false;
             isAttackEnd = true;
-            
         }
         break;
     case leftAtRight:
@@ -242,14 +207,7 @@ void PapyrusRound::DogAnimation(Move *heart,Character *character)
 
 void PapyrusRound::HPcondition(Move* heart, Character* character,int command)
 {
-    if(currentRound==20)
-    {
-        GetMinusHP_M(heart,character,appear);
-    }
-    else
-    {
-        GetMinusHP_M(heart,character,disappear);
-    }
+    currentRound == 20 ? GetMinusHP_M(heart,character,appear) : GetMinusHP_M(heart,character,disappear);
 }
 
 void PapyrusRound::ToGetEnterCount(UINT nChar)
@@ -359,6 +317,7 @@ void PapyrusRound::round0(Move *heart,Character *character)
 
     if(DetectCertainPoint(enemyBarrage[_quantity-2],665,front)||DetectCertainPoint(enemyBarrage[_quantity-3],665,front))
     {
+        isBlue=true;
         GoRight(enemyBarrage[_quantity-1],heart,allData[_quantity-1].speed,character);
     }
 
@@ -620,29 +579,17 @@ void PapyrusRound::round16(Move* heart,Character *character)
 
 void PapyrusRound::round17(Move* heart,Character *character)
 {
-    PincerAttack(0,_quantity,heart,4,normal,character);
-    DetectRoundEnd(leftAtLeft);
+    round14(heart,character);
 }
 
 void PapyrusRound::round18(Move* heart,Character *character)
 {
-    for(int i=0;i<_quantity;i++)
-    {
-        GoLeft(enemyBarrage[i],heart,allData[i].speed+2,character);
-    }
-    
-    UpDownCompound(enemyBarrage[11],enemyBarrage[12],heart,allData[12].initY-50,allData[12].initY+50,4,UDBdirections[0]);
-    UpDownCompound(enemyBarrage[14],enemyBarrage[13],heart,allData[13].initY-50,allData[13].initY+50,4,UDBdirections[1]);
-    UpDownCompound(enemyBarrage[15],enemyBarrage[16],heart,allData[16].initY-50,allData[16].initY+50,4,UDBdirections[2]);
-    UpDownCompound(enemyBarrage[18],enemyBarrage[17],heart,allData[17].initY-50,allData[17].initY+50,4,UDBdirections[3]);
-    
-    DetectRoundEnd(leftAtLeft);
+    round10(heart,character);
 }
 
 void PapyrusRound::round19(Move* heart,Character *character)
 {
-    PincerAttack(0,_quantity,heart,4,normal,character);
-    DetectRoundEnd(leftAtLeft);
+    round14(heart,character);
 }
 
 void PapyrusRound::round20(Move* heart,Character *character)
@@ -804,4 +751,9 @@ void PapyrusRound::round21(Move* heart,Character *character)
     }
     
     DetectRoundEnd(leftAtLeft);
+}
+
+bool PapyrusRound::GetIsBlue()
+{
+    return isBlue;
 }

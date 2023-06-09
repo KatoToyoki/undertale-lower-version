@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GreaterDogRound.h"
-#include <iostream>
+
 void GreaterDogRound::SetAllData(int selection)
 {
     allData.clear();
@@ -36,7 +36,6 @@ void GreaterDogRound::SetAllData(int selection)
     dogFindQ=1;
     dogFindCounter=0;
     isRightTime=false;
-    barkSpaceCounter=0;
 }
 
 void GreaterDogRound::SelectRound(Move* heart, Character* character, int selection)
@@ -60,11 +59,7 @@ int GreaterDogRound::GetCurrentRound()
 
 bool GreaterDogRound::xBigger(double x, double y)
 {
-    if(x>y){
-        return true;
-    }
-
-    return false;
+    return x>y ? true : false;
 }
 
 coorderinate GreaterDogRound::GetBase(int deltaX, int deltaY)
@@ -148,46 +143,39 @@ void GreaterDogRound::HPcondition(Move* heart, Character* character, int command
 
 void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
 {
-    switch (dogFindQ)
+    if(enemyBarrage[dogFindQ].GetOnePosition(IMGtop) == 920)
     {
-    case 1:
-    case 3:
-    case 5:
-        barkSpaceCounter++;
-        if(barkSpaceCounter==10)
-        {
-            if(dogFindQ!=5)
-            {
-                dogFindQ+=1;
-            }
-            dogFindCounter=0;
-        }
-        break;
-    case 2:
-    case 4:
-        if(BarkLeft(enemyBarrage[dogFindQ]))
-        {
-            dogFindQ+=1;
-            dogFindCounter=0;
-            barkSpaceCounter=0;
-        }
-        break;
+        SetReplacement(replacementA,heart,character,dogFindQ);
     }
-
-    if(dogFindCounter==0 || (dogFindQ%2==0 && DetectCertainPoint(enemyBarrage[dogFindQ],720,up)))
+    else if(abs(enemyBarrage[dogFindQ].GetOnePosition(IMGtop)-enemyBarrage[dogFindQ+1].GetOnePosition(IMGtop)) - 70 > 0 && dogFindCounter==0)
     {
-        replacement=GetBase(heart->GetCurrentX()-enemyBarrage[dogFindQ+1].GetOnePosition(IMGleft)-20,
-                heart->GetCurrentY()-enemyBarrage[dogFindQ+1].GetOnePosition(IMGtop)-20);
-        replacement.displacementX = abs(replacement.displacementX*4)>12 ? 12 : replacement.displacementX*4;
-        replacement.displacementY = abs(replacement.displacementY*4)>12 ? 12 : replacement.displacementY*4;
-
+        SetReplacement(replacementB,heart,character,dogFindQ+1);
         dogFindCounter++;
     }
+
+    GoUp(enemyBarrage[dogFindQ],heart,abs(replacementA.displacementY),character);
+    GoRight(enemyBarrage[dogFindQ],heart,replacementA.displacementX,character);
+    GoUp(enemyBarrage[dogFindQ+1],heart,replacementB.displacementY==-1?0:abs(replacementB.displacementY),character);
+    GoRight(enemyBarrage[dogFindQ+1],heart,replacementB.displacementX==-1?0:replacementB.displacementX,character);
+
+    if(BarkLeft(enemyBarrage[dogFindQ+1]))
+    {
+        dogFindQ+=2;
+        dogFindCounter = 0;
+        replacementB.displacementX=-1;
+        replacementB.displacementY=-1;
+    }
+}
+
+void GreaterDogRound::SetReplacement(coorderinate &replacement,Move *heart,Character *character,int index)
+{
+    replacement = GetBase(heart->GetCurrentX()-enemyBarrage[index].GetOnePosition(IMGleft)-20,
+                    heart->GetCurrentY()-enemyBarrage[index].GetOnePosition(IMGtop)-20);
+    replacement.displacementX = abs(replacement.displacementX*4)>12 ? 12 : replacement.displacementX*4;
     
-    GoUp(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ : dogFindQ-1],heart,(abs(replacement.displacementY)),character);
-    GoRight(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ : dogFindQ-1],heart,replacement.displacementX,character);
-    GoUp(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ+1 : dogFindQ],heart,(abs(replacement.displacementY)),character);
-    GoRight(enemyBarrage[dogFindQ%2 != 0 ? dogFindQ+1 : dogFindQ],heart,replacement.displacementX,character);
+    replacement.displacementY = abs(replacement.displacementY*4)>12 ? 12 : replacement.displacementY*4;
+    replacement.displacementY = replacement.displacementY < 8 ? 8 : replacement.displacementY;
+    replacement.displacementY= replacement.displacementY > replacementA.displacementY ? replacementA.displacementY-1 : replacement.displacementY;
 }
 
 void GreaterDogRound::Spear(Move* heart, Character* character)

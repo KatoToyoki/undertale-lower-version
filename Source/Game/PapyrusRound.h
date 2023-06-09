@@ -17,10 +17,13 @@ private:
     int currentRound=-1;
     std::vector<int> UDBdirections = std::vector<int>(10,0);
     int dogAnimation=1;
+    bool isBlue=false;
 public:
     
     PapyrusRound()=default;
     ~PapyrusRound()=default;
+
+    bool GetIsBlue();
     
     void SetAllData(int selection=-99);
 

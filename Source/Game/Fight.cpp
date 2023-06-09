@@ -168,24 +168,9 @@ int Fight::Minus(double range)
 {
     int damage=(int)(test*range);
     int displacement=(int)(MPF*range);
-    if(damage>monsterHP)
-    {
-        monsterHP=0;
-    }
-    else
-    {
-        monsterHP-=damage;
-    }
 
-    if(minusPosition-displacement<610)
-    {
-        minusPosition=610;
-    }
-    else
-    {
-        minusPosition-=displacement;
-    }
-    
+    monsterHP = damage > monsterHP ? 0 : monsterHP-damage;
+    minusPosition = minusPosition-displacement<610 ? 610 : minusPosition-displacement;
     minusHP=std::to_string(damage);
 
     return damage;
@@ -229,13 +214,7 @@ void Fight::MovingBar()
 {
     if (_enable && fightBarthisRound==0)
     {
-        if(fightBar.GetLeft()<1560 && _isBarStop==false ){
-            fightBar.SetTopLeft(fightBar.GetLeft()+16,590);
-        }
-        else
-        {
-            DetectMissCondition();
-        }
+        fightBar.GetLeft()<1560 && _isBarStop==false ? fightBar.SetTopLeft(fightBar.GetLeft()+16,590) : DetectMissCondition();
     }
 }
 

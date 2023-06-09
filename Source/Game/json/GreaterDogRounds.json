@@ -29,8 +29,8 @@
       {
         "damage": 4,
         "speed": 0,
-        "initX":931,
-        "initY":970,
+        "initX":911,
+        "initY":920,
         "barrage_mode": "white",
         "imgPath": [
           {
@@ -53,8 +53,8 @@
       {
         "damage": 4,
         "speed": 0,
-        "initX":931,
-        "initY":970,
+        "initX":911,
+        "initY":920,
         "barrage_mode": "white",
         "imgPath": [
           {
@@ -77,8 +77,8 @@
       {
         "damage": 4,
         "speed": 0,
-        "initX":931,
-        "initY":970,
+        "initX":911,
+        "initY":920,
         "barrage_mode": "white",
         "imgPath": [
           {
