@@ -146,9 +146,6 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     game_manager.monster_frame_battle();
     if (enemy->_is_pass_stage)
       stage_go = BATTLE;
-
-    enemy == &papyrus && papyrus.GetIsBlue() ? game_manager.set_heart_mode(heart_blue) : game_manager.set_heart_mode(heart_red);
-    
     stage_go_enable_add = enemy->get_now_monster_frame_mode(BEFORE_BATTLE) == enter_talk;
     stage_go_enable_sub = false;
     break;
