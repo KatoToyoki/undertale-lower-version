@@ -34,6 +34,7 @@ void Papyrus::init_sub()
 	flirt_count = 0;
 	flirt_after_count = 0;
 	insult_count = 0;
+	papyrus_round.init();
 }
 
 void Papyrus::set_img()
@@ -236,7 +237,7 @@ void Papyrus::check_mercy()
 
 frame_command_c Papyrus::get_monster_battle_mode()
 {
-	return talk_to_papyrus_normal_battle;
+	return monster_frame_mode;
 }
 
 void Papyrus::fight_open(Move* heart, Character* charactor)
@@ -272,7 +273,7 @@ void Papyrus::show_barrage(Move* heart, Character* charactor,int stege)
 	}
 	//笨狗特判 改round_count 偵測笨狗回合
 	if ( (stege == game_framework::BATTLE ||
-		 stege == game_framework::BATTLE_AFTER_MONSTER_FRAME) && round_count == 18
+		 stege == game_framework::BATTLE_AFTER_MONSTER_FRAME) && round_count == 20
 		 )
 	{
 		papyrus_round.SetIsRightTime(true);
@@ -309,4 +310,15 @@ void Papyrus::to_get_enter_count(UINT nChar, int stage)
 bool Papyrus::GetIsBlue()
 {
 	return papyrus_round.GetIsBlue();
+}
+
+void Papyrus::change_frame()
+{
+	int dog_animation_count = papyrus_round.get_dog_animation();
+	if (round_count == 20 && dog_animation_count < 8)
+		monster_frame_mode = papyrus_normal_to_bit_bone_dog;
+	else if (round_count == 20)
+		monster_frame_mode = bit_bone_dog_to_papyrus_normal;
+	else
+		monster_frame_mode = talk_to_papyrus_normal_battle;
 }

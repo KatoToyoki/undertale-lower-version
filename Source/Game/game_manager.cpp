@@ -61,6 +61,7 @@ void GameManager::init()//宣告於OnMove()
 	_enemy->check_change_mercy_name_to_yellow_by_is_mercy();
 	_enemy->init_barrage_data();//here init round SetAllData 
     _enemy->set_battle_timer(0);
+	_enemy->change_frame();
 
 	_items->set_control_updata(false);
 	_items->check_and_del_item();
@@ -182,9 +183,12 @@ void GameManager::choose_mercy_after()
 
 void GameManager::battle_after_monster_frame()
 {
+	
+    _user_frame->control_frame(_enemy->get_monster_battle_mode());
 	_heart_test->shine_time_count = 1000;
 	_heart_test->set_shine_mode(false);
-	
+
+	_enemy->change_frame();
     _enemy->set_monster_frame_game_text_enable(true);
 	_enemy->check_pass(AFTER_BATTLE);
 	

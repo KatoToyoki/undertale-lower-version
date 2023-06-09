@@ -104,6 +104,9 @@ public:
     void set_battle_timer(int time) {battel_mode_timer = time;}
     virtual void init_barrage_data() {}
     virtual void to_get_enter_count(UINT nChar,int stage){}
+    virtual void change_frame() {}
+
+    virtual bool GetIsBlue(){ return false;}
 
     void print_index_reset(int stage);
 

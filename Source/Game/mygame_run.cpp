@@ -166,7 +166,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       heart_test.shine_two_second();
 
       enemy->fight_open(&heart_test,&charactor);
-      enemy == &papyrus && papyrus.GetIsBlue() ? game_manager.set_heart_mode(heart_blue) : game_manager.set_heart_mode(heart_red);
+      enemy->GetIsBlue() ? game_manager.set_heart_mode(heart_blue) : game_manager.set_heart_mode(heart_red);
       }
     if (enemy->get_fight_end())
       stage_go = BATTLE_AFTER_MONSTER_FRAME;
