@@ -158,13 +158,19 @@ void GreaterDogRound::DogFindsYou(Move* heart, Character* character)
     GoUp(enemyBarrage[dogFindQ+1],heart,replacementB.displacementY==-1?0:abs(replacementB.displacementY),character);
     GoRight(enemyBarrage[dogFindQ+1],heart,replacementB.displacementX==-1?0:replacementB.displacementX,character);
 
-    if(BarkLeft(enemyBarrage[dogFindQ+1]))
+    if(BarkLeft(enemyBarrage[dogFindQ+1]) && !BarkLeft(enemyBarrage[dogFindQ]))
+    {
+        replacementB.displacementX=-1;
+        replacementB.displacementY=-1;
+    }
+    else if(BarkLeft(enemyBarrage[dogFindQ+1]) && BarkLeft(enemyBarrage[dogFindQ]))
     {
         dogFindQ+=2;
         dogFindCounter = 0;
         replacementB.displacementX=-1;
         replacementB.displacementY=-1;
     }
+
 }
 
 void GreaterDogRound::SetReplacement(coorderinate &replacement,Move *heart,Character *character,int index)

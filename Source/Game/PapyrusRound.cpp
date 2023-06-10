@@ -68,7 +68,7 @@ void PapyrusRound::PincerAttack(int start,int end,Move* heart, int wave, int app
         {
             GoRight(enemyBarrage[i],heart,allData[i].speed,character);
             GoRight(enemyBarrage[i+1],heart,allData[i+1].speed,character);
-            if(appearance==compoundUp)
+            if(appearance==compoundUp) //correct
             {
                 CompoundBarrage(enemyBarrage[i+1],enemyBarrage[i],heart);
                 UpDownBarrage(enemyBarrage[i],allData[i].initY-100,825,4,UDBdirections[0]);
@@ -99,9 +99,10 @@ void PapyrusRound::PincerAttack(int start,int end,Move* heart, int wave, int app
 
 void PapyrusRound::CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart)
 {
-    if(barrage.GetIsOverlay(heart)||DetectLeft(barrage,vanish))
+    if(barrage.GetIsOverlay(heart) || cover.GetIsOverlay(heart))
     {
         cover.set_positon(0,0);
+        barrage.set_positon(0,0);
     }
 }
 
