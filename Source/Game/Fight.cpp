@@ -31,7 +31,7 @@ void Fight::set_fight_enable(bool enable)
 
 void Fight::ResetDurationMinusHP()
 {
-    durationMinusHP=100;
+    durationMinusHP=45;
 }
 
 void Fight::ResetMinusHP()
@@ -251,7 +251,7 @@ void Fight::MovingHPBar()
 {
     if(HPminus.GetLeft()-10>minusPosition && _isHPBarStop==false){
         //374 ori
-        HPminus.SetTopLeft(HPminus.GetLeft()-5,_enemy->fight_bar_positon.y);
+        HPminus.SetTopLeft(HPminus.GetLeft()-7,_enemy->fight_bar_positon.y);
     }
     else if(HPminus.GetLeft()-4<=minusPosition)
     {

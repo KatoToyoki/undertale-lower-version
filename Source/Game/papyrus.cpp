@@ -315,7 +315,7 @@ bool Papyrus::GetIsBlue()
 void Papyrus::change_frame()
 {
 	int dog_animation_count = papyrus_round.get_dog_animation();
-	if (round_count == 20 && dog_animation_count < 8)
+	if (round_count == 20 && dog_animation_count < 9)
 		monster_frame_mode = papyrus_normal_to_bit_bone_dog;
 	else if (round_count == 20)
 		monster_frame_mode = bit_bone_dog_to_papyrus_normal;

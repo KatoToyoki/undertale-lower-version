@@ -16,12 +16,14 @@ public:
     void MenuOff();
     void choose(UINT nChar);
     bool get_menu();
+    bool GetIsTutorial();
     int get_current_stage() {return current_stage;}
     
-    game_framework::CMovingBitmap menuTop, menuBottom;
+    game_framework::CMovingBitmap menuTop, menuBottom, tutorial;
 private:
     Text stage1,stage2,stage3,LV_text,mouse,dog,town;
     Text* save_point;
     int current_stage = 1;
     bool isMenu = true;
+    bool isTutorial = false;
 };

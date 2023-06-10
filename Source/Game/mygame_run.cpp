@@ -372,7 +372,13 @@ void CGameStateRun::OnShow()
 {
   if (menu.get_menu()) {
     menu.WholeMenu();
-  } else {
+    if(!menu.GetIsTutorial())
+    {
+      Text openTutorial(30,"press Q to open tutorial",RGB(255,255,255),600,730,965);
+      openTutorial.print();  
+    }
+  }
+  else {
     //all show thing put here
     // user_frame.stage_in_top_black.ShowBitmap();
     heart_test.show_heart_img();
@@ -396,8 +402,6 @@ void CGameStateRun::OnShow()
 
     charactor.show_charactor_data();
 
-  }
-  
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
@@ -405,4 +409,5 @@ void CGameStateRun::OnShow()
     std::string str_1 = "God enable :" + to_string(god_enable);
     Text stage1(50,str_1,RGB(255,255,255),600,100,200);
     stage1.print();
+  }
 }

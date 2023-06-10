@@ -68,7 +68,7 @@ private:
     int monsterHP=100;
 
     // this is to let items stay on screen for a while, not just quickly disappear
-    int durationMinusHP=100;
+    int durationMinusHP=45;
 
     // to avoid the green line be covered
     game_framework::CMovingBitmap greenLineRight;

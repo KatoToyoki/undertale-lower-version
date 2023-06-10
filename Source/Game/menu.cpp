@@ -9,7 +9,9 @@ void Menu::load_img_set_postion()
   menuTop.LoadBitmapByString({"resources/menu_top.bmp"},RGB(0,0,0));
   menuTop.SetTopLeft(727, 0);
   menuBottom.LoadBitmapByString({"resources/menu_bottom.bmp"},RGB(0,0,0));
-  menuBottom.SetTopLeft(607,662);
+  menuBottom.SetTopLeft(607,630);
+  tutorial.LoadBitmapByString({"resources/tutorial.bmp"});
+  tutorial.SetTopLeft(0, 0);
 
   stage1 = Text(40,"Stage1",RGB(255,255,255),800,430,480,TYPE);
   stage2 = Text(40,"Stage2",RGB(255,255,255),800,880,480,TYPE);
@@ -52,17 +54,23 @@ void Menu::MenuState()
     save_point = &town;
     break;
   }
-  stage1.print();
-  stage2.print();
-  stage3.print();
-  LV_text.print();
-  save_point->print();
+
+  if(!isTutorial)
+  {
+    stage1.print();
+    stage2.print();
+    stage3.print();
+    LV_text.print();
+    save_point->print();  
+  }
 }
 
 void Menu::ShowMenuImg()
 {
   menuTop.ShowBitmap();
   menuBottom.ShowBitmap();
+
+  isTutorial ? tutorial.ShowBitmap() : tutorial.UnshowBitmap();
 }
 
 
@@ -70,11 +78,25 @@ void Menu::MenuOff()
 {
   menuTop.UnshowBitmap();
   menuBottom.UnshowBitmap();
+  tutorial.UnshowBitmap();
 }
 
 void Menu::choose(UINT nChar)
 {
-  
+
+    if(nChar == 0x51)
+    {
+      isTutorial = true;
+      return;
+    }
+    if(isTutorial && nChar == VK_ESCAPE)
+    {
+      isTutorial = false;
+      return;
+    }
+
+  if(!isTutorial)
+  {
     if (nChar == VK_LEFT && current_stage != 1) {
       current_stage -= 1;
     } else if (nChar == VK_RIGHT && current_stage != 3) {
@@ -84,8 +106,8 @@ void Menu::choose(UINT nChar)
     if (nChar == VK_RETURN || nChar == 0x5A) {
       isMenu = false;
       MenuOff();
-      // gameButtonFrame.set_updata_enable(true);
     }
+  }
 }
 
 bool Menu::get_menu()
@@ -93,4 +115,7 @@ bool Menu::get_menu()
   return isMenu;
 }
 
-
+bool Menu::GetIsTutorial()
+{
+  return isTutorial;
+}
