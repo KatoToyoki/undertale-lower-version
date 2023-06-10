@@ -3,13 +3,28 @@
 
 #include "mygame.h"
 
-Text::Text(int size, std::string str, COLORREF color, int weight, int x, int y)
+Text::Text(int size, std::string str, COLORREF color,
+    int weight, int x, int y,
+    TEXT_MODE text_mode,string font_name)
 {
     _size = size;
     _str = str;
     _color = color;
     _weight = weight;
+    _str_index = 0;
+    _text_mode = text_mode;
+    _font_name = font_name;
     set_positon(x,y);
+    if (text_mode == TYPE)
+    {
+        _print_text = "";
+        print_over = false;
+    }
+    else
+    {
+        _print_text = _str;
+        print_over = true;
+    }
 }
 
 void Text::set_color(COLORREF color)
@@ -28,15 +43,30 @@ void Text::set_enable(bool enable)
     _enable = enable;
 }
 
-void Text::print()
+void Text::type_mode()
 {
-    if (true)
+    timer+=1;
+    if (_str != _print_text && timer%2 == 0 && _str_index<=(int)_str.length())
     {
-        CDC *pDC = game_framework::CDDraw::GetBackCDC();
-    
-        game_framework::CTextDraw::ChangeFontLog(pDC, _size, "Determination Mono Web", _color, _weight);
-    
-        game_framework::CTextDraw::Print(pDC, _x, _y, _str);
-        game_framework::CDDraw::ReleaseBackCDC();
+        game_framework::CAudio::Instance() -> Play(10+(_str_index%10));
+        _print_text+= _str[_str_index];
+        _str_index+=1;
+    }
+    if (_str == _print_text)
+    {
+        print_over = true;
     }
 }
+
+void Text::print()
+{
+    if (_text_mode == TYPE) type_mode();
+    
+    CDC *pDC = game_framework::CDDraw::GetBackCDC();
+
+    game_framework::CTextDraw::ChangeFontLog(pDC, _size, _font_name, _color, _weight);
+
+    game_framework::CTextDraw::Print(pDC, _x, _y, _print_text);
+    game_framework::CDDraw::ReleaseBackCDC();
+}
+

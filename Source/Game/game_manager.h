@@ -7,6 +7,7 @@
 #include "monster_frame.h"
 #include "user_frame.h"
 #include "sub_stage.h"
+#include "../Library/audio.h"
 
 class GameManager : public SubStage
 {
@@ -30,6 +31,7 @@ public:
     void battle_after_monster_frame();
 
 
+    void add_audio();
     void set_heart_mode(HeartMode mode);
     void load_data(UserFrame *user_frame,
         ButtonFrame *button_frame,MonsterFrame *monster_frame,
@@ -45,6 +47,7 @@ public:
     Enemy *_enemy;
     Items *_items;
     Character *_charactor;
+    game_framework::CAudio *music;
 
     int last_act_selection = 0;
 };

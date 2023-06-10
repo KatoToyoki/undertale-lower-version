@@ -9,6 +9,7 @@ GreaterDog::GreaterDog()
 	_is_mercy = false;
     _is_init = true;
 	monster_exp = 50;
+	monster_font = "Determination Mono Web";
 	set_acts();
 	_current_selection = 0;
 	monster_name = GameText({
@@ -47,7 +48,7 @@ void GreaterDog::set_img()
 	monster_frame_img.SetTopLeft(1129,207);
 	
 	enemy_img_end_effc.LoadBitmapByString({"resources/enemy_end_effc.bmp"},RGB(0,0,0));
-	enemy_img_end_effc.SetTopLeft(enemy_x,enemy_y);
+	enemy_img_end_effc.SetTopLeft(enemy_x+250,enemy_y);
 	
 	enemy_img_init.LoadBitmapByString({"resources/dog_0.bmp","resources/dog_1.bmp"},RGB(0,0,255));
 	enemy_img_init.SetTopLeft(enemy_x,enemy_y);
@@ -91,7 +92,7 @@ void GreaterDog::set_acts()
 
 void GreaterDog::set_act_text_updata()
 {
-	if (ignore_times>0 && !end_fight)
+	if (ignore_times>0 && ignore_times<4 && !end_fight)
 	{
 		enemy_img_close.SetFrameIndexOfBitmap(ignore_times-1);
 		enemy_img = enemy_img_close;
@@ -184,8 +185,13 @@ void GreaterDog::set_act_text_updata()
 			 break;
 		}
 	}
-	act_after = set_vector_vector_to_game_text(act_text,act_times);
-	cost_round = act_text.size();
+
+	if (_print_index_act_after)
+	{
+		act_after = set_vector_vector_to_game_text(act_text,act_times);
+		cost_round = act_text.size();
+		_print_index_act_after = false;
+	}
 }
 
 void GreaterDog::act_choose_count(int button_current)
@@ -276,7 +282,11 @@ void GreaterDog::set_next_round_text_updata()
 			break;
 		}
 	}
-	act_next_round = set_vector_vector_to_game_text(next_round_text,0);
+	if (_print_index_next_round)
+	{
+		act_next_round = set_vector_vector_to_game_text(next_round_text,0);
+		_print_index_next_round = false;
+	}
 }
 
 void GreaterDog::set_fight()
@@ -331,7 +341,8 @@ void GreaterDog::show_barrage(Move* heart, Character* charactor,int stege)
     
 void GreaterDog::to_get_enter_count(UINT nChar, int stage)
 {
-	if (_current_selection == IGNORE_D && stage == game_framework::CHOOSE_ACT_ITEM)
+	if (_current_selection == IGNORE_D && stage == game_framework::CHOOSE_ACT_ITEM &&
+		(nChar == VK_RETURN || nChar == 0x5A))
 	{
 		ignore_times+=1;
 		if (ignore_times == 4)

@@ -164,9 +164,9 @@ void Enemy::act_after_stage_control_updata(UINT nChar)//更改mercy目前在這�
 	}
 }
 
-GameText Enemy::get_act_after_game_text()
+GameText* Enemy::get_act_after_game_text()
 {
-	return act_after;
+	return &act_after;
 }
 
 void Enemy::set_monster_frame_init()
@@ -181,16 +181,17 @@ void Enemy::set_monster_frame_init()
 	set_monster_frame_after();
 }
 
-GameText Enemy::get_monster_frame_game_text(monster_frame_stage stage)
+GameText* Enemy::get_monster_frame_game_text(monster_frame_stage stage)
 {
 	switch (stage)
 	{
 		case BEFORE_BATTLE:
-			return monster_frame_game_text_before_battle;
+			return &monster_frame_game_text_before_battle;
 		case AFTER_BATTLE:
-			return monster_frame_game_text_after_battle;
+			return &monster_frame_game_text_after_battle;
 	}
-	return GameText();
+	
+	return &monster_frame_game_text_after_battle;
 }
 
 int Enemy::get_now_monster_frame_mode(monster_frame_stage stage)
@@ -268,9 +269,9 @@ void Enemy::check_pass(monster_frame_stage stage)
 }
 
 
-GameText Enemy::get_next_round_game_text()
+GameText* Enemy::get_next_round_game_text()
 {
-	return act_next_round;
+	return &act_next_round;
 }
 
 GameText Enemy::set_vector_vector_to_game_text(std::vector<std::vector<std::string>> text,int times,mode mode)
@@ -278,8 +279,20 @@ GameText Enemy::set_vector_vector_to_game_text(std::vector<std::vector<std::stri
 	std::vector<Text> temp_text_vector;
 	 for(unsigned int j=0;j<text[times].size();j++)
 	 {
-	 	if (mode == monster_mode_1 || mode == monster_mode_2){ temp_text_vector.push_back(TEXXT_M(text[times][j])); }
+	 	if (mode == monster_mode_1 || mode == monster_mode_2){ temp_text_vector.push_back(TEXXT_M(text[times][j],monster_font)); }
 	    else { temp_text_vector.push_back(TEXXT(text[times][j])); }
 	 }
 	return GameText (temp_text_vector,mode);
+}
+
+void Enemy::print_index_reset(int stage)
+{
+	_print_index_next_round = true;
+	_print_index_act_after = true;
+	_print_index_monster_after = true;
+	if (monster_frame_mode_before_battle == no_enter_talk)
+		_print_index_monster_before = (stage == game_framework::INIT);
+	else
+		_print_index_monster_before = true;
+		
 }

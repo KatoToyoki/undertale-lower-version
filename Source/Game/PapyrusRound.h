@@ -23,6 +23,8 @@ public:
     PapyrusRound()=default;
     ~PapyrusRound()=default;
 
+    void init();
+    
     bool GetIsBlue();
     
     void SetAllData(int selection=-99);
@@ -43,7 +45,9 @@ public:
     void ToGetEnterCount(UINT nChar);
     void DogAnimation(Move *heart,Character *character);
 
-    void HPcondition(Move *heart,Character *character,int command=0) override ; 
+    void HPcondition(Move *heart,Character *character,int command=0) override ;
+
+    int get_dog_animation() {return dogAnimation;}
 
     void roundX(Move *heart,Character *character);
     void round0(Move *heart,Character *character);

@@ -4,7 +4,7 @@
 
 #include "TextContent.h"
 
-#define TEXXT(content) Text(60, content, RGB(255,255,255), 600, 420, 69)
+#define TEXXT(content) Text(60, content, RGB(255,255,255), 600, 420, 69,TYPE)
 
 struct Item
 {
@@ -19,9 +19,9 @@ public:
     Items();
     void init();
     
-    GameText get_item_list();
+    GameText* get_item_list();
     int get_selection_heal_num();
-    GameText get_item_after_game_text();
+    GameText* get_item_after_game_text();
     void set_item_updata();
     
     void set_item_cost_round_init(int current_selection, int button_selection);
@@ -32,6 +32,7 @@ public:
 
     bool stage_stop = false;
     vector<Item> items;
+    bool _text_index = true;
 private:
     int _times = 0;
     int *_stage;
@@ -54,4 +55,5 @@ private:
     std::string nice_cream_random_text;
     
     std::vector<std::vector<std::string>> random_text;
+    GameText data;
 };

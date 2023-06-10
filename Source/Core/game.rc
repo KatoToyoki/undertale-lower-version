@@ -159,15 +159,18 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOGEX 0, 0, 340, 60
+IDD_ABOUTBOX DIALOGEX 0, 0, 340, 100
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About game"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "Leistungsstarkes Game Framework by ntut-xuan",IDC_STATIC,39,10,300,8,SS_NOPREFIX
-	LTEXT           "It is a revised game framework, base on game framework made by woei-kae, Chen", IDC_STATIC, 39, 23, 300, 8
-    LTEXT           "Copyright (C) 2022-2023",IDC_STATIC,39,36,119,8
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,12,20,20
+    LTEXT           "Undertale is a role-playing game developed independently",IDC_STATIC,39,10,300,8,SS_NOPREFIX
+	LTEXT           "by Toby Fox with additional art by Temmie Chang.",IDC_STATIC,39,22,300,8,SS_NOPREFIX
+	LTEXT           "The battle system in Undertale is turn-based.", IDC_STATIC, 39, 40, 300, 8
+    LTEXT           "During the enemy's turn, they attack with bullet hell patterns.", IDC_STATIC, 39, 52, 300, 8
+    LTEXT           "The Player must move the protagonist's SOUL,represented by a red heart, to avoid attacks.",IDC_STATIC,39,64,300,8
+	LTEXT           "God enable: Press 'G' to open or close invincible mode.", IDC_STATIC, 39, 82, 300, 8
 END
 
 

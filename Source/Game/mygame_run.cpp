@@ -22,6 +22,7 @@ void CGameStateRun::OnBeginState()
   menu.init();
   items.init();
   charactor.init();
+  
   gameFight.init();
   stage_go = LOAD;
   music->Pause();
@@ -29,10 +30,9 @@ void CGameStateRun::OnBeginState()
 }
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
+  music->Stop(4);
   if (charactor.get_current_hp() == 0)
   {
-    music->Pause();
-    music->Play(4,true);
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
   
@@ -50,12 +50,15 @@ void CGameStateRun::OnMove() // 移動遊戲元素
   switch (stage_go)
   {
   case LOAD:
+    stage_go_enable_add = true;
+    stage_go_enable_sub = false;
     if (menu.get_current_stage() == 1) {enemy = &migosp;}
     if (menu.get_current_stage() == 2) {enemy = &greater_dog;}
     if (menu.get_current_stage() == 3) {enemy = &papyrus;}
     enemy->init();
     game_manager.load_data(&user_frame,&gameButtonFrame,&monster_frame,&heart_test,&gameFight,enemy,&items,&charactor);
     game_manager.set_heart_mode(heart_red);
+	  user_frame.control_frame(to_talk);
     break;
   case INIT:
     stage_go_enable_add = true;
@@ -163,7 +166,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
       heart_test.shine_two_second();
 
       enemy->fight_open(&heart_test,&charactor);
-      enemy == &papyrus && papyrus.GetIsBlue() ? game_manager.set_heart_mode(heart_blue) : game_manager.set_heart_mode(heart_red);
+      enemy->GetIsBlue() ? game_manager.set_heart_mode(heart_blue) : game_manager.set_heart_mode(heart_red);
       }
     if (enemy->get_fight_end())
       stage_go = BATTLE_AFTER_MONSTER_FRAME;
@@ -179,21 +182,22 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     stage_go_enable_add = false;
     stage_go_enable_sub = false;
     enemy->act_choose_count(gameButtonFrame.get_current_selection());
+	  enemy->check_change_mercy_name_to_yellow_by_is_mercy();
     items.set_control_updata(false);
   	enemy->set_act_game_text_enable(false);
+    enemy->print_index_reset(stage_go);
     stage_go = INIT;
     break;
   case FIGHT_END:
-    if (gameFight.GetDurationMinusHP()<=0 || gameButtonFrame.get_current_selection() != FIGHT)
-    {
-      music->Play(9);
-      charactor.add_exp(enemy->get_monster_exp());
-      enemy->set_enemy_img_init_or_damege(end_img);
-      if (enemy->is_game_over() && stage_go < BEFORE_END)
-        stage_go = BEFORE_END;
-      else
-        stage_go = END;
-    }
+    music->Play(9);
+    charactor.add_exp(enemy->get_monster_exp());
+    enemy->set_enemy_img_init_or_damege(end_img);
+    if (enemy->is_game_over() && stage_go < BEFORE_END)
+      stage_go = BEFORE_END;
+    else
+      stage_go = END;
+    stage_go_enable_add = false;
+    stage_go_enable_sub = false;
   case BEFORE_END://before exp&gold
     user_frame.control_frame(to_talk);
     stage_go_enable_add = false;
@@ -219,7 +223,7 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     break;
   }
   
-  if (gameFight.is_hp_zero() && stage_go != END)
+  if (gameFight.is_hp_zero() && gameFight.GetDurationMinusHP()<=0 && stage_go != END)
   {
     stage_go = FIGHT_END;
   }
@@ -252,16 +256,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
   charactor.set_hp_img();
 
   music = CAudio::Instance();
-  music ->Load(0,"Resources/Background/start.MP3");
-  music ->Load(1,"Resources/Background/01.MP3");
-  music ->Load(2,"Resources/Background/02.MP3");
-  music ->Load(3,"Resources/Background/03.MP3");
-  music ->Load(4,"Resources/Background/end.MP3");
-  music ->Load(5,"Resources/Effects/select.MP3");
-  music ->Load(6,"Resources/Effects/select_1.MP3");
-  music ->Load(7,"Resources/Effects/fight.MP3");
-  music ->Load(8,"Resources/Effects/heal.MP3");
-  music ->Load(9,"Resources/Effects/endfight.MP3");
+  game_manager.add_audio();
 }
 
 
@@ -274,6 +269,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     if (stage_go == LOAD && (nChar == 0x5A || nChar == VK_RETURN))
     {
       music->Stop(0);
+      music->Play(21);
       switch (menu.get_current_stage())
       {
       case 1:
@@ -286,6 +282,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
         music->Play(3,true);
         break;
       }
+      stage_go = INIT;
     }
   } else{
     gameButtonFrame.choose_update(nChar);
@@ -296,12 +293,15 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     items.item_after_stage_control_updata(nChar);
     if (stage_go!= BATTLE && stage_go!= BATTLE_AFTER_MONSTER_FRAME) {charactor.change_hp_updata(nChar);}
     enemy->to_get_enter_count(nChar,stage_go);
+    
+  if ((nChar == VK_RETURN || nChar == 0x5A))
+  {
+    enemy->print_index_reset(stage_go);
+    items._text_index = true;
   }
-
+    
   //stage_control
   if ((nChar == VK_RETURN || nChar == 0x5A) && (stage_go == END)) {
-    music->Pause();
-    music->Play(4,true);
     GotoGameState(GAME_STATE_OVER); // 切換至GAME_STATE_OVER
   }
   
@@ -335,6 +335,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
       ((nChar == 0x5A || nChar == VK_RETURN) || (nChar == 0x58 || nChar == VK_SHIFT)))
   {
     user_frame._current_selection = 0;
+  }
+    
   }
 
   if (nChar == 0x47)
@@ -394,6 +396,8 @@ void CGameStateRun::OnShow()
 
     charactor.show_charactor_data();
 
+  }
+  
     std::string str = std::to_string(stage_go);
     Text stage(50,str,RGB(255,255,255),600,100,100);
     stage.print();
@@ -401,5 +405,4 @@ void CGameStateRun::OnShow()
     std::string str_1 = "God enable :" + to_string(god_enable);
     Text stage1(50,str_1,RGB(255,255,255),600,100,200);
     stage1.print();
-  }
 }

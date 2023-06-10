@@ -175,7 +175,7 @@ void UserFrame::check_which_change_frame_need_call(int frame_commend){
   
 }
 
-void UserFrame::load_text(GameText game_text)
+void UserFrame::load_text(GameText* game_text)
 {
   _game_text = game_text;
 }
@@ -188,11 +188,11 @@ int UserFrame::get_current_selection()
 void UserFrame::set_choose(bool enable)
 {
   _enable = enable;
-  _game_text.set_enable(_enable);
-  if (_enable && _game_text._mode != talk_mode)
+  _game_text->set_enable(_enable);
+  if (_enable && _game_text->_mode != talk_mode)
   {
-    int x= _game_text.get_positon_x(_current_selection);
-    int y= _game_text.get_positon_y(_current_selection);
+    int x= _game_text->get_positon_x(_current_selection);
+    int y= _game_text->get_positon_y(_current_selection);
     heart.SetTopLeft(x-78,y+21);
   }
 }
@@ -200,7 +200,7 @@ void UserFrame::set_choose(bool enable)
 void UserFrame::print()
 {
   if (_enable){
-    _game_text.print();
+    _game_text->print();
   }
 }
 
@@ -208,19 +208,19 @@ void UserFrame::choose_updata(UINT nChar)
 {
   if (_enable)
   {
-    if (_game_text._mode == act_item_mode)
+    if (_game_text->_mode == act_item_mode)
     {
       if ( nChar == VK_LEFT && (_current_selection%2) != 0)
       {
         _current_selection -=1;
         game_framework::CAudio::Instance() -> Play(6);
       }
-      if (nChar == VK_RIGHT && (_current_selection%2) != 1 && _current_selection+1 <=_game_text.get_vector_len()-1)
+      if (nChar == VK_RIGHT && (_current_selection%2) != 1 && _current_selection+1 <=_game_text->get_vector_len()-1)
       {
         _current_selection +=1;
         game_framework::CAudio::Instance() -> Play(6);
       }
-      if (nChar == VK_DOWN && (_current_selection+2<=_game_text.get_vector_len()-1))
+      if (nChar == VK_DOWN && (_current_selection+2<=_game_text->get_vector_len()-1))
       {
         _current_selection +=2;
         game_framework::CAudio::Instance() -> Play(6);
@@ -231,9 +231,9 @@ void UserFrame::choose_updata(UINT nChar)
         game_framework::CAudio::Instance() -> Play(6);
       }
     }
-    if (_game_text._mode == target_mode)
+    if (_game_text->_mode == target_mode)
     {
-      if (nChar == VK_DOWN && _current_selection < _game_text.get_vector_len()-1)
+      if (nChar == VK_DOWN && _current_selection < _game_text->get_vector_len()-1)
       {
         _current_selection +=1;
         game_framework::CAudio::Instance() -> Play(6);
@@ -249,12 +249,12 @@ void UserFrame::choose_updata(UINT nChar)
 
 int UserFrame::get_text_vector_len()
 {
-  return _game_text.get_vector_len();
+  return _game_text->get_vector_len();
 }
 
 void UserFrame::show_select_heart()
 {
-  if (_enable && _game_text._mode != talk_mode)
+  if (_enable && _game_text->_mode != talk_mode)
   {
     heart.ShowBitmap();
   }

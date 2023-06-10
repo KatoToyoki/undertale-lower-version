@@ -159,7 +159,7 @@
             }
         }
     ],
-    "round18_next_round": [
+    "before_end_next_round": [
         {
             "reaction0": {
                 "frame0": {
@@ -365,7 +365,7 @@
             }
         }
     ],
-    "round0_monster_talk": [
+    "round0_fight_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -418,10 +418,7 @@
         {
             "reaction0": {
                 "frame0": {
-                    "content0": "YEAH!",
-                    "content1": "DON'T MAKE ME",
-                    "content2": "USE MY SPECIAL",
-                    "content3": "ATTACK!"
+                    "content0": "BEHOLD!"
                 }
             }
         }
@@ -430,14 +427,36 @@
         {
             "reaction0": {
                 "frame0": {
-                    "content0": "I CAN ALMOST",
-                    "content1": "TASTE MY FUTURE",
-                    "content2": "POPULARITY!!"
+                    "content0": "HOW HIGH CAN YOU",
+                    "content1": "JUMP?"
                 }
             }
         }
     ],
     "round3_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "YEAH!",
+                    "content1": "DON'T MAKE ME",
+                    "content2": "USE MY SPECIAL",
+                    "content3": "ATTACK!"
+                }
+            }
+        }
+    ],
+    "round4_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "I CAN ALMOST",
+                    "content1": "TASTE MY",
+                    "content2": "FUTURE POPULARITY"
+                }
+            }
+        }
+    ],
+    "round5_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -448,7 +467,7 @@
             }
         }
     ],
-    "round4_monster_talk": [
+    "round6_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -459,7 +478,7 @@
             }
         }
     ],
-    "round5_monster_talk": [
+    "round7_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -470,7 +489,7 @@
             }
         }
     ],
-    "round6_monster_talk": [
+    "round8_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -482,7 +501,7 @@
             }
         }
     ],
-    "round7_monster_talk": [
+    "round9_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -494,18 +513,29 @@
             }
         }
     ],
-    "round8_monster_talk": [
+    "round10_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
-                    "content0": "I'LL HAVE LOTS",
+                    "content0": "I'll HAVE LOTS",
                     "content1": "OF ADMIRERS!!",
                     "content2": "BUT..."
                 }
             }
         }
     ],
-    "round9_monster_talk": [
+    "round11_monster_talk": [
+        {
+            "reaction0": {
+                "frame0": {
+                    "content0": "HOW WILL I",
+                    "content1": "KNOW IF PEOPLE",
+                    "content2": "SICERELY LIKE ME?"
+                }
+            }
+        }
+    ],
+    "round12_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -516,29 +546,18 @@
             }
         }
     ],
-    "round10_monster_talk": [
+    "round13_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
-                    "content0": "SOMEONE LIKE",
-                    "content1": "YOU IS REALLY",
-                    "content2": "RARE..."
+                    "content0": "I DON'T THINK",
+                    "content1": "THEY'LL LET YOU",
+                    "content2": "GO..."
                 }
             }
         }
     ],
-    "round11_monster_talk": [
-        {
-            "reaction0": {
-                "frame0": {
-                    "content0": "AND DATING MIGHT",
-                    "content1": "BE KIND OF",
-                    "content2": "HARD..."
-                }
-            }
-        }
-    ],
-    "round12_monster_talk": [
+    "round14_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -549,7 +568,7 @@
             }
         }
     ],
-    "round13_monster_talk": [
+    "round15_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -560,7 +579,7 @@
             }
         }
     ],
-    "round14_monster_talk": [
+    "round16_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -571,7 +590,7 @@
             }
         }
     ],
-    "round15_monster_talk": [
+    "round17_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -583,7 +602,7 @@
             }
         }
     ],
-    "round16_monster_talk": [
+    "round18_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -595,7 +614,7 @@
             }
         }
     ],
-    "round17_monster_talk": [
+    "round19_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
@@ -607,17 +626,17 @@
             }
         }
     ],
-    "round18_monster_talk": [
+    "round20_monster_talk": [
         {
             "reaction0": {
                 "frame0": {
                     "content0": "BEHOLD...! MY",
-                    "content1": "SEPCIAL ATTACK"
+                    "content1": "SPECIAL ATTACK"
                 }
             }
         }
     ],
-    "round18_after_battle": [
+    "round20_after_battle": [
         {
             "reaction0": {
                 "frame0": {
@@ -663,8 +682,7 @@
             }
         }
     ],
-    "round19_monster_talk": [
-        {
+    "round21_monster_talk": [ {
             "reaction0": {
                 "frame0": {
                     "content0": "`SIGH` HERE'S",
@@ -674,7 +692,7 @@
             }
         }
     ],
-    "round19_after_battle": [
+    "round21_after_battle": [
         {
             "reaction0": {
                 "frame0": {
@@ -707,6 +725,14 @@
                 }
             }
         }
+    ],
+    "can_mercy_monster_talk": [ {
+        "reaction0": {
+            "frame0": {
+                "content0": "..."
+            }
+        }
+    }
     ],
     "hp_low": [
         {

@@ -35,7 +35,7 @@ public:
   int get_current_selection();
   int get_text_vector_len();
   
-  void load_text(GameText game_text);
+  void load_text(GameText* game_text);
   void set_choose(bool enable);
   void set_heart_mode(int mode);
   void up_frame_updata(Move *heart);
@@ -60,5 +60,5 @@ private:
   bool move_done = true;
   bool _enable = false;
   bool _up_limit_enable = false;
-  GameText _game_text;
+  GameText *_game_text;
 };

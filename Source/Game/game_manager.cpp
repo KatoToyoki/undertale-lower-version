@@ -41,6 +41,7 @@ void GameManager::updata()
 
 void GameManager::init()//宣告於OnMove()
 {
+	_user_frame->load_text(_enemy->get_next_round_game_text());
 	_user_frame->control_frame(to_talk);
 	_user_frame->set_choose(false);
 	_user_frame->_current_selection = 0;
@@ -60,6 +61,7 @@ void GameManager::init()//宣告於OnMove()
 	_enemy->check_change_mercy_name_to_yellow_by_is_mercy();
 	_enemy->init_barrage_data();//here init round SetAllData 
     _enemy->set_battle_timer(0);
+	_enemy->change_frame();
 
 	_items->set_control_updata(false);
 	_items->check_and_del_item();
@@ -72,7 +74,6 @@ void GameManager::init()//宣告於OnMove()
 	
 	if (_user_frame->get_move_done())
 	{
-		_user_frame->load_text(_enemy->get_next_round_game_text());
 		_user_frame->set_choose(true);
 	}
 }
@@ -151,8 +152,6 @@ void GameManager::monster_frame_no_battle()
     _items->set_control_updata(false);
 	_user_frame->set_choose(false);
     _enemy->set_enemy_img_init_or_damege(init_img);
-
-	
 }
 
 void GameManager::monster_frame_battle()
@@ -184,6 +183,12 @@ void GameManager::choose_mercy_after()
 
 void GameManager::battle_after_monster_frame()
 {
+	
+    _user_frame->control_frame(_enemy->get_monster_battle_mode());
+	_heart_test->shine_time_count = 1000;
+	_heart_test->set_shine_mode(false);
+
+	_enemy->change_frame();
     _enemy->set_monster_frame_game_text_enable(true);
 	_enemy->check_pass(AFTER_BATTLE);
 	
@@ -197,3 +202,31 @@ void GameManager::set_heart_mode(HeartMode mode)
     _button_frame->set_heart_mode(mode);
     _user_frame->set_heart_mode(mode);
 }
+
+void GameManager::add_audio()
+{
+  music = game_framework::CAudio::Instance();
+  music ->Load(0,"Resources/Background/start.MP3");
+  music ->Load(1,"Resources/Background/01.MP3");
+  music ->Load(2,"Resources/Background/02.MP3");
+  music ->Load(3,"Resources/Background/03.MP3");
+  music ->Load(4,"Resources/Background/end.MP3");
+  music ->Load(5,"Resources/Effects/select.MP3");
+  music ->Load(6,"Resources/Effects/select_1.MP3");
+  music ->Load(7,"Resources/Effects/fight.MP3");
+  music ->Load(8,"Resources/Effects/heal.MP3");
+  music ->Load(9,"Resources/Effects/endfight.MP3");
+  music ->Load(10,"Resources/Effects/txt_2.MP3");
+  music ->Load(11,"Resources/Effects/txt_2.MP3");
+  music ->Load(12,"Resources/Effects/txt_2.MP3");
+  music ->Load(13,"Resources/Effects/txt_2.MP3");
+  music ->Load(14,"Resources/Effects/txt_2.MP3");
+  music ->Load(15,"Resources/Effects/txt_2.MP3");
+  music ->Load(16,"Resources/Effects/txt_2.MP3");
+  music ->Load(17,"Resources/Effects/txt_2.MP3");
+  music ->Load(18,"Resources/Effects/txt_2.MP3");
+  music ->Load(19,"Resources/Effects/txt_2.MP3");
+  music ->Load(20,"Resources/Effects/hurt.MP3");
+  music ->Load(21,"Resources/Effects/battlefall.MP3");
+}
+

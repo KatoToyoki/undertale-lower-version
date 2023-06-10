@@ -21,6 +21,7 @@ public:
     int get_positon_x(int index);
     int get_positon_y(int index);
     void set_enable(bool enable);
+    void set_print_line_index(vector<int> print_line_index);
     void print();
 
     int get_vector_len();
