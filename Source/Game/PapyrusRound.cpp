@@ -104,7 +104,7 @@ void PapyrusRound::PincerAttack(int start,int end,Move* heart, int wave, int app
 
 void PapyrusRound::CompoundBarrage(Barrage& cover,Barrage& barrage,Move *heart)
 {
-    if(barrage.GetIsOverlay(heart) || cover.GetIsOverlay(heart))
+    if(barrage.GetIsOverlay(heart) || cover.GetIsOverlay(heart) || barrage.GetOnePosition(IMGtop)==0 || barrage.GetOnePosition(IMGtop)==0)
     {
         cover.set_positon(0,0);
         barrage.set_positon(0,0);
