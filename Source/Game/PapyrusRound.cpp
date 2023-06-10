@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "PapyrusRound.h"
 
+void PapyrusRound::init()
+{
+    isBlue = false;
+}
+
 void PapyrusRound::SetAllData(int selection)
 {
     allData.clear();
@@ -180,7 +185,7 @@ void PapyrusRound::DogAnimation(Move *heart,Character *character)
                 enemyBarrage[0].UnshowIMG();
                 enemyBarrage[0].set_positon(2000,2000);
                 enemyBarrage[1].barrage_img.SetFrameIndexOfBitmap(0);
-                enemyBarrage[1].barrage_img.SetTopLeft(1000,810);
+                enemyBarrage[1].barrage_img.SetTopLeft(1250,810);
                 break;
             case 4:
             case 5:
@@ -189,7 +194,7 @@ void PapyrusRound::DogAnimation(Move *heart,Character *character)
             case 6:
                 enemyBarrage[1].UnshowIMG();
                 enemyBarrage[1].set_positon(2000,2000);
-                enemyBarrage[2].barrage_img.SetTopLeft(1000,810);
+                enemyBarrage[2].barrage_img.SetTopLeft(1250,810);
                 dogAnimation+=1;
                 break;
             default:
@@ -595,7 +600,9 @@ void PapyrusRound::round19(Move* heart,Character *character)
 
 void PapyrusRound::round20(Move* heart,Character *character)
 {
-    DetectRoundEnd(leftAtRight);
+    // DetectRoundEnd(leftAtRight);
+    isAttackEnd = true;
+    isSet = false;
 }
 
 void PapyrusRound::round21(Move* heart,Character *character)

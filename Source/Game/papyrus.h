@@ -35,23 +35,20 @@ public:
 
     void check_mercy() override;
 
-    bool GetIsBlue();
-
-    void Test2()
-    {
-        CDC *pDC = game_framework::CDDraw::GetBackCDC();
-        game_framework::CTextDraw::ChangeFontLog(pDC, 40, "微軟正黑體", RGB(252, 252, 45), 800);
-        game_framework::CTextDraw::Print(pDC, 0, 250, "round "+to_string(papyrus_round.GetCurrentRound()));
-        game_framework::CDDraw::ReleaseBackCDC();
-    }
+    bool GetIsBlue() override;
+    void change_frame() override;
     
 private:
     bool _is_first_mercy_or_attck = false;
+    bool _is_first_mercy = false;
+    bool _is_first_attck = false;
     bool _is_flirt = false;
     int round_count = 0;
     int flirt_count = 0;
     int flirt_after_count = 0;
     int insult_count = 0;
+    int max_round = 21;
     
     PapyrusRound papyrus_round;
+    frame_command_c monster_frame_mode = talk_to_papyrus_normal_battle;
 };

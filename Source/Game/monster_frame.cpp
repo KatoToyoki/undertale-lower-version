@@ -17,8 +17,7 @@ void MonsterFrame::set_monster_frame_img(game_framework::CMovingBitmap img)
   monster_frame_img = img;
 }
 
-
-void MonsterFrame::load_game_text_and_mode(GameText game_text,int mode)
+void MonsterFrame::load_game_text_and_mode(GameText* game_text,int mode)
 {
   _game_text = game_text;
   _mode = mode;
@@ -27,7 +26,7 @@ void MonsterFrame::load_game_text_and_mode(GameText game_text,int mode)
 void MonsterFrame::set_enable(bool enable)
 {
   _enable = enable;
-  _game_text.set_enable(enable);
+  _game_text->set_enable(enable);
 }
 
 void MonsterFrame::show_monster_frame_and_print()
@@ -39,13 +38,13 @@ void MonsterFrame::show_monster_frame_and_print()
     if (_time_count <=800)
     {
       monster_frame_img.ShowBitmap();
-      _game_text.print();
+      _game_text->print();
     }
   }
   else if (_enable && _mode == enter_talk )
   {
       monster_frame_img.ShowBitmap();
-      _game_text.print();
+      _game_text->print();
   }
   else if (_enable && _mode == pass_talk)
   {
