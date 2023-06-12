@@ -402,12 +402,12 @@ void CGameStateRun::OnShow()
 
     charactor.show_charactor_data();
 
-    std::string str = std::to_string(stage_go);
-    Text stage(50,str,RGB(255,255,255),600,100,100);
-    stage.print();
+    // std::string str = std::to_string(stage_go);
+    // Text stage(50,str,RGB(255,255,255),600,100,100);
+    // stage.print();
     
-    std::string str_1 = "God enable :" + to_string(god_enable);
-    Text stage1(50,str_1,RGB(255,255,255),600,100,200);
+    std::string str_1 = "God Mode:" + to_string(god_enable);
+    Text stage1(30,str_1,RGB(255,255,255),600,20,20);
     stage1.print();
   }
 }
