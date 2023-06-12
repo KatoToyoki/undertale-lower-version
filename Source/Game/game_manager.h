@@ -6,10 +6,9 @@
 #include "items.h"
 #include "monster_frame.h"
 #include "user_frame.h"
-#include "sub_stage.h"
 #include "../Library/audio.h"
 
-class GameManager : public SubStage
+class GameManager
 {
 public:
     void updata();

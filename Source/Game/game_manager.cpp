@@ -228,5 +228,7 @@ void GameManager::add_audio()
   music ->Load(19,"Resources/Effects/txt_2.MP3");
   music ->Load(20,"Resources/Effects/hurt.MP3");
   music ->Load(21,"Resources/Effects/battlefall.MP3");
+  music ->Load(22,"Resources/Effects/tempbell.MP3");
+	
 }
 

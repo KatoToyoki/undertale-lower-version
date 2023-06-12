@@ -18,6 +18,7 @@ private:
     std::vector<int> UDBdirections = std::vector<int>(10,0);
     int dogAnimation=1;
     bool isBlue=false;
+    bool effect = true;
 public:
     
     PapyrusRound()=default;
