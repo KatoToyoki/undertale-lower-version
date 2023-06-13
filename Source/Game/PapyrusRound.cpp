@@ -225,7 +225,7 @@ void PapyrusRound::ToGetEnterCount(UINT nChar)
     {
         return;
     }
-    if(nChar==VK_RETURN && currentRound==20)
+    if((nChar==VK_RETURN || nChar == 0x5A ) && currentRound==20)
     {
         dogAnimation+=1;
     }
