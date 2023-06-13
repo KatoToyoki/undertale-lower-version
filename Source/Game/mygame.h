@@ -161,6 +161,7 @@ private:
   CAudio *music;
   
   int stage_go = 0;
+  long int game_time = 0;
   bool stage_go_enable_add = true;
   bool stage_go_enable_sub = true;
 

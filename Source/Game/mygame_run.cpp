@@ -30,6 +30,8 @@ void CGameStateRun::OnBeginState()
 }
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
+  game_time+=1;
+  menu.count_time(game_time,charactor.get_level());
   music->Stop(4);
   if (charactor.get_current_hp() == 0)
   {
