@@ -250,7 +250,6 @@
     <ClCompile Include="Source\Game\Character.cpp" />
     <ClCompile Include="Source\Game\enemy.cpp" />
     <ClCompile Include="Source\Game\Fight.cpp" />
-    <ClCompile Include="Source\Game\first_stage.cpp" />
     <ClCompile Include="Source\Game\frame.cpp" />
     <ClCompile Include="Source\Game\game_manager.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
@@ -384,7 +383,6 @@
       <AdditionalOptions>/utf-8 </AdditionalOptions>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
-    <ClCompile Include="Source\Game\sub_stage.cpp" />
     <ClCompile Include="Source\Game\text.cpp" />
     <ClCompile Include="Source\Game\TextContent.cpp" />
     <ClCompile Include="Source\Game\user_frame.cpp" />
@@ -409,7 +407,6 @@
     <ClInclude Include="Source\Game\config.h" />
     <ClInclude Include="Source\Game\enemy.h" />
     <ClInclude Include="Source\Game\Fight.h" />
-    <ClInclude Include="Source\Game\first_stage.h" />
     <ClInclude Include="Source\Game\frame.h" />
     <ClInclude Include="Source\Game\game_manager.h" />
     <ClInclude Include="Source\Game\game_text.h" />
@@ -423,7 +420,6 @@
     <ClInclude Include="Source\Game\mygame.h" />
     <ClInclude Include="Source\Game\papyrus.h" />
     <ClInclude Include="Source\Game\PapyrusRound.h" />
-    <ClInclude Include="Source\Game\sub_stage.h" />
     <ClInclude Include="Source\Game\text.h" />
     <ClInclude Include="Source\Game\TextContent.h" />
     <ClInclude Include="Source\Game\user_frame.h" />

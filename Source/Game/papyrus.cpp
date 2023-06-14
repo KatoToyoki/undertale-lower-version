@@ -29,12 +29,15 @@ Papyrus::Papyrus()
 void Papyrus::init_sub()
 {
 	_is_first_mercy_or_attck = false;
+	_is_first_attck = false;
+	_is_first_mercy = false;
 	_is_flirt = false;
 	round_count = 0;
 	flirt_count = 0;
 	flirt_after_count = 0;
 	insult_count = 0;
 	papyrus_round.init();
+	papyrus_round.SetAllData(-1);
 }
 
 void Papyrus::set_img()
@@ -309,6 +312,7 @@ void Papyrus::to_get_enter_count(UINT nChar, int stage)
 
 bool Papyrus::GetIsBlue()
 {
+		
 	return papyrus_round.GetIsBlue();
 }
 

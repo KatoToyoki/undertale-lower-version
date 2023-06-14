@@ -13,6 +13,7 @@ public:
     void show_charactor_data();
     void updata_hp_bar_by_hp();
     int get_current_hp() { return hp; }
+    int get_level() { return level; }
     void add_exp(int monster_exp);
     void check_level();
 

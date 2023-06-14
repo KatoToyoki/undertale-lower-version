@@ -9,6 +9,7 @@ public:
     void init() { isMenu =true; current_stage =1;};
     
     void load_img_set_postion();
+    void count_time(long int current_counter,int lev);
 
     void WholeMenu();
     void MenuState();
@@ -26,4 +27,7 @@ private:
     int current_stage = 1;
     bool isMenu = true;
     bool isTutorial = false;
+    string hour;
+    string min;
+    int level = 1;
 };

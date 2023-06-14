@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "PapyrusRound.h"
 
+#include "../Library/audio.h"
+
 void PapyrusRound::init()
 {
     isBlue = false;
+    effect = true;
 }
 
 void PapyrusRound::SetAllData(int selection)
@@ -222,7 +225,7 @@ void PapyrusRound::ToGetEnterCount(UINT nChar)
     {
         return;
     }
-    if(nChar==VK_RETURN && currentRound==20)
+    if((nChar==VK_RETURN || nChar == 0x5A ) && currentRound==20)
     {
         dogAnimation+=1;
     }
@@ -324,6 +327,11 @@ void PapyrusRound::round0(Move *heart,Character *character)
     if(DetectCertainPoint(enemyBarrage[_quantity-2],665,front)||DetectCertainPoint(enemyBarrage[_quantity-3],665,front))
     {
         isBlue=true;
+        if (effect)
+        {
+            game_framework::CAudio::Instance()->Play(22);
+            effect = false;
+        }
         GoRight(enemyBarrage[_quantity-1],heart,allData[_quantity-1].speed,character);
     }
 

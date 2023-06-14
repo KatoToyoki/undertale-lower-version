@@ -16,13 +16,25 @@ void Menu::load_img_set_postion()
   stage1 = Text(40,"Stage1",RGB(255,255,255),800,430,480,TYPE);
   stage2 = Text(40,"Stage2",RGB(255,255,255),800,880,480,TYPE);
   stage3 = Text(40, "Stage3",RGB(255,255,255),800,1330,480,TYPE);
-  LV_text = Text(40, "LV 1        00:00",RGB(255,255,255),800,834,291,TYPE);
+  LV_text = Text(40, "LV 1        00:00",RGB(255,255,255),800,834,291);
   mouse = Text(50, "Ruins-Mouse Hole",RGB(255,255,255),800,555,365,TYPE);
   dog = Text(50, "Snowdin-Dog House",RGB(255,255,255),800,555,365,TYPE);
   town = Text(50, "Snowdin-Town",RGB(255,255,255),800,555,365,TYPE);
   //45
 }
 
+void Menu::count_time(long current_counter, int lev)
+{
+  int current_min =(int) current_counter/30;
+  level = lev;
+  CString hourC;
+  hourC.Format(_T("%02d"), current_min / 60);
+  hour = CA2A(hourC.GetString());
+  
+  CString minC;
+  minC.Format(_T("%02d"), current_min % 60);
+  min = CA2A(minC.GetString());
+}
 
 void Menu::WholeMenu()
 {
@@ -60,6 +72,7 @@ void Menu::MenuState()
     stage1.print();
     stage2.print();
     stage3.print();
+    LV_text = Text(40, "LV "+ to_string(level) +"        " + hour + ":" + min,RGB(255,255,255),800,834,291);
     LV_text.print();
     save_point->print();  
   }
