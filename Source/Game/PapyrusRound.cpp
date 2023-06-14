@@ -374,7 +374,7 @@ void PapyrusRound::round4(Move* heart,Character *character)
     for(int i=0;i<_quantity-1;i++)
     {
         GoRight(enemyBarrage[i],heart,allData[i].speed,character);
-        if(DetectCertainPoint(enemyBarrage[_quantity-2],1250,back))
+        if(DetectCertainPoint(enemyBarrage[_quantity-2],1250,back)||DetectLeft(enemyBarrage[_quantity-2],vanish))
         {
             temp=true;
         }
