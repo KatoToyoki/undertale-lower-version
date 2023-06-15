@@ -1,6 +1,6 @@
 # Undertale
 
-## noteice
+## notice
 - This project is for academic purpose, if you want to explore more contents of the real game please check here : https://undertale.com/
 - Please go Resources/fonts to download all the fonts there so that you can have better experiences when playing
 - You don't have to press enter when finishing reading monster's talk contents in Stage1, but in Stage 3 you should do so or it will just stop there wait you enter to do the next action.
